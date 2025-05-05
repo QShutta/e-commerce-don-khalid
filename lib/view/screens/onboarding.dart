@@ -26,7 +26,7 @@ class Onboarding extends StatelessWidget {
     // أو أي جزء من واجهة النظام في بعض الأجهزة
     // وده بيخلي التطبيق يظهر بشكل أفضل على جميع الأجهزة
 
-    Get.put(OnBoardingControllerImp());
+    var onBoardingCont = Get.put(OnBoardingControllerImp());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
@@ -38,7 +38,13 @@ class Onboarding extends StatelessWidget {
             SizedBox(height: 20),
             NextButton(
               onPressed: () {
-                // Handle next button press
+                onBoardingCont.next();
+                // هنا بنستخدم الدالة
+                // next()
+                // من الكلاس
+                // OnBoardingControllerImp
+                // عشان ننتقل للصفحة الجاية في الـ
+                // PageView
               },
             ),
           ],

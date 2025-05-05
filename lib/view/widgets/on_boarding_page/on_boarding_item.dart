@@ -18,6 +18,7 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
     return SizedBox(
       height: 650,
       child: PageView.builder(
+        controller: controller.pageController,
         // This function is called when the user moves between onboarding pages.
         // It sends the new page index (value) to the controller
         // so the controller can handle any logic related to page change,
