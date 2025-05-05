@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/data/data_source/static_data_source/static.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 // الكلاس الـ
@@ -41,21 +42,25 @@ class OnBoardingControllerImp extends OnBoardingController {
     // If the current page is 1, it will become 2, and so on.
     // This is useful for keeping track of which page the user is on in the onboarding flow.
     // It helps us know when to show the next page or perform any actions related to the current page.
-    if (currentPage >= 3) {
-      currentPage =
-          0; // Reset to the first page if it exceeds the number of pages
-      // This line checks if the current page index is greater than or equal to 3.
-      // If it is, it resets the current page index back to 0.
-      // This is useful for looping through the onboarding pages.
-      // For example, if there are 3 pages (0, 1, 2), and the user tries to go to page 3,
-      // we reset it to page 0, so they can start over from the beginning.
+    // نستخدم -1 لأن الفهرسة
+    //(indexing)
+    // تبدأ من الصفر،
+    // فإذا كانت القائمة تحتوي على 3 عناصر، فإن آخر
+    //index
+    //هو 2 (وليس 3)
+    if (currentPage > onboardingList.length - 1) {
+      // This condition checks if the current page index is greater than the last page index.
+      // If it is, it means the user has reached the end of the onboarding process.
+      // In this case, we can navigate to the sign-in page or any other desired action.
+      Get.offAllNamed("/signIn");
+    } else {
+      pageController.animateToPage(
+        currentPage, // Navigate to the next page
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+      // This method is used to move to the next page in the PageView
     }
-    pageController.animateToPage(
-      currentPage, // Navigate to the next page
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-    // This method is used to move to the next page in the PageView.
   }
 
   @override

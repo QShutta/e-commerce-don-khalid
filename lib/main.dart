@@ -1,4 +1,6 @@
+import 'package:e_commerce_halfa/routest.dart';
 import 'package:e_commerce_halfa/view/screens/onboarding.dart';
+import 'package:e_commerce_halfa/view/screens/auth/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +13,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Onboarding(),
+      initialRoute: "/",
+      routes: routes,
     );
   }
 }
