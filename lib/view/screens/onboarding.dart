@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+//Test move from the last on boarding to the sign page page
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
 
