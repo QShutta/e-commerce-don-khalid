@@ -33,7 +33,7 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
               SvgPicture.asset(onboardingList[index].imagePath, height: 500),
               SizedBox(height: 20),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 decoration: BoxDecoration(
                   color: AppColor.onboardingImageColor,
                   borderRadius: BorderRadius.circular(10),

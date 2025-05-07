@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NextButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -15,7 +16,9 @@ class NextButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Text(
-        "Next",
+        "9".tr,
+        // "Next".tr, // Next button text in Arabic
+        // "التالي".tr, // Next button text in Arabic
         style: TextStyle(
           fontSize: 16,
           fontFamily: "Tajawal",

@@ -1,7 +1,6 @@
+import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/routest.dart';
-import 'package:e_commerce_halfa/view/screens/onboarding.dart';
-import 'package:e_commerce_halfa/view/screens/auth/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +17,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: const Locale("ar"),
+      translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: routes,

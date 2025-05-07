@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/onboarding_model.dart';
+import 'package:get/get.dart';
 
 // قمنا بإنشاء قائمة
 //(List)
@@ -19,25 +20,26 @@ import 'package:e_commerce_halfa/data/model/onboarding_model.dart';
 // كما أن إضافة أو تعديل الشرائح يصبح أسهل.
 List<OnboardingModel> onboardingList = [
   OnboardingModel(
-    title: "Selection of the best products",
+    title: "1".tr, // Selection of the best products
     imagePath: ImageAssets.onBoarding1,
-    description: 'We offer you the best products at the best prices',
+    description: "2".tr, // We offer you the best products at the best prices
   ),
   OnboardingModel(
-    title: "Secure and easy payment",
+    title: "3".tr, // Secure and easy payment
     imagePath: ImageAssets.onBoarding2,
-    description: 'Pay with confidence using secure and user-friendly options',
+    description:
+        "4".tr, // Pay with confidence using secure and user-friendly options
   ),
-
   OnboardingModel(
-    title: "Fast and secure delivery",
+    title: "5".tr, // Fast and secure delivery
     imagePath: ImageAssets.onBoarding3,
-    description: 'We guarantee fast and secure delivery to your doorstep',
+    description:
+        "6".tr, // We guarantee fast and secure delivery to your doorstep
   ),
   OnboardingModel(
-    title: "Safe and Fast Delivery",
+    title: "7".tr, // Safe and Fast Delivery
     imagePath: ImageAssets.onBoarding4,
     description:
-        'We deliver your product fast and safe, and you’ll always be satisfied.',
+        "8".tr, // We deliver your product fast and safe, and you’ll always be satisfied.
   ),
 ];
