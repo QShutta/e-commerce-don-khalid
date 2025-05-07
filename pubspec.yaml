@@ -24,6 +24,7 @@ dependencies:
   jiffy: ^6.4.3
   path: ^1.9.1
   qr_flutter: ^4.1.0
+  shared_preferences: ^2.5.3
   show_up_animation: ^2.1.2
 
 dev_dependencies:
