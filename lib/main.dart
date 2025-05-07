@@ -4,6 +4,7 @@ import 'package:e_commerce_halfa/view/screens/auth/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//befor of watch the lesson num 10.
 void main() {
   runApp(const MainApp());
 }
