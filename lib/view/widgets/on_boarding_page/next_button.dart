@@ -2,6 +2,7 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Test add switch language
 class NextButton extends StatelessWidget {
   final VoidCallback onPressed;
   const NextButton({super.key, required this.onPressed});
