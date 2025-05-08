@@ -10,6 +10,7 @@ dependencies:
   auto_animated: ^3.2.0
   cached_network_image: ^3.4.1
   cloud_firestore: ^5.6.7
+  country_icons: ^3.0.0
   firebase_core: ^3.13.0
   firebase_messaging: ^15.2.5
   flutter:
@@ -41,7 +42,6 @@ flutter:
     - assets/images/onboarding/on_board3.svg
     - assets/images/onboarding/on_board4.svg
     - assets/images/onboarding/lang.png
-    
 
   fonts:
     - family: Tajawal
