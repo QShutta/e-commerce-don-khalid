@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 
 class LanguageOptionEnglish extends StatelessWidget {
   const LanguageOptionEnglish({super.key});
@@ -11,7 +12,7 @@ class LanguageOptionEnglish extends StatelessWidget {
         InkWell(
           onTap: () {},
           child: Text(
-            "English",
+            "12".tr,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
-import 'package:e_commerce_halfa/view/widgets/on_boarding_page/language_selection.dart';
+import 'package:e_commerce_halfa/view/screens/language_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

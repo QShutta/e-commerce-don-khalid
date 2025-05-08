@@ -14,6 +14,9 @@ class MyTranslation extends Translations {
       "8":
           "We deliver your product fast and safe, and you’ll always be satisfied.",
       "9": "Next",
+      "10": "CHOOSE YOUR LANGUAGE",
+      "11": "ENGLISH",
+      "12": "ARABIC",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -25,6 +28,9 @@ class MyTranslation extends Translations {
       "7": "استلم طلبك وانت مطمن",
       "8": "اطلب واستلم وأنت مطمئن، سلامة وجودة الخدمة أولويتنا",
       "9": "التالي",
+      "10": "اختر لغتك المفضلة",
+      "11": "العربية",
+      "12": "الانجليزية",
     },
   };
 }

@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LanguageTitle extends StatelessWidget {
   const LanguageTitle({super.key});
@@ -9,8 +10,8 @@ class LanguageTitle extends StatelessWidget {
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
-      child: const Text(
-        "CHOOSE YOUR LANGUAGE",
+      child: Text(
+        "10".tr,
         style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
