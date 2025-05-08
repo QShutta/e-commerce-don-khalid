@@ -40,6 +40,8 @@ flutter:
     - assets/images/onboarding/on_board2.svg
     - assets/images/onboarding/on_board3.svg
     - assets/images/onboarding/on_board4.svg
+    - assets/images/onboarding/lang.png
+    
 
   fonts:
     - family: Tajawal
