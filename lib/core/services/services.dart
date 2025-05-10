@@ -18,5 +18,5 @@ class MyServices extends GetxService {
 // It makes sure the MyServices class is created and ready to use.
 // We use Get.putAsync because init() is an async function.
 Future initlizeServices() async {
-  await Get.putAsync(() => MyServices().init());
+  await Get.putAsync<MyServices>(() async => await MyServices().init());
 }

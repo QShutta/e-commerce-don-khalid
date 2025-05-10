@@ -1,13 +1,18 @@
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
-import 'package:e_commerce_halfa/view/screens/language_selection.dart';
+import 'package:e_commerce_halfa/routest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//befor of watch the lesson num 10.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initlizeServices();
+
+  // Put LocaleController after services are ready
+  Get.put(LocaleController());
+
   runApp(const MainApp());
 }
 
@@ -16,14 +21,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      locale: const Locale("ar"),
-      translations: MyTranslation(),
+    // No need to put controller here again
+    LocaleController langCont = Get.find();
 
+    return GetMaterialApp(
+      locale: langCont.lang,
+      translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
-      home: LanguageSelection(),
-      // initialRoute: "/",
-      // routes: routes,
+      // home: LanguageSelection(),
+      initialRoute: AppRoutes.languageSelection,
+      routes: routes,
     );
   }
 }

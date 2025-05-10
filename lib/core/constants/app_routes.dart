@@ -14,5 +14,6 @@ class AppRoutes {
   /// Onboarding
   /// هي أول شاشة عاوزين المستخدم يشوفها،
   /// عشان كده ربطناها بالـ "/".
-  static const String onBoarding = '/';
+  static const String onBoarding = '/onBoarding';
+  static const String languageSelection = '/';
 }
