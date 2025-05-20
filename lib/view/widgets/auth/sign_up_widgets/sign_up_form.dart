@@ -1,0 +1,168 @@
+import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controller.dart';
+import 'package:e_commerce_halfa/core/constants/color_app.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/text_form_field_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class SignUpForm extends StatelessWidget {
+  SignUpForm({super.key});
+  // استخدمنا
+  //'final'
+  // عشان نضمن إنو
+  //signInController
+  //يتم إنشاؤه مرة واحدة فقط
+  // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
+  final SignUpControllerImp signInController = Get.put(SignUpControllerImp());
+  @override
+  Widget build(BuildContext context) {
+    return // الجزء السفلي (نموذج تسجيل الدخول)
+    // استخدمنا
+    //ClipRRect
+    //عشان نقدر نعمل زوايا دائرية
+    //(Rounded Corners)
+    // للـ
+    // Container
+    // اللي تحت الجزء العلوي. بدون
+    //ClipRRect،
+    // الزوايا الدائرية
+    // ما كانت هتظهر لأن
+    //Container
+    // لوحده ما يقدر يقص المحتوى الداخلي.
+    // يعني
+    //ClipRRect
+    // هو المسؤول عن قص الحواف بحسب الشكل المحدد.
+    ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(50),
+        topRight: Radius.circular(50),
+      ),
+      child: Container(
+        width: double.infinity,
+        // شوف يا زول، فوق إحنا محددين ارتفاع الجزء العلوي بـ 250،
+        // هنا بنطرح الـ 250 دي من ارتفاع الشاشة الكلي،
+        // عشان ندي الجزء التحتاني المساحة الباقية بس من الشاشة.
+        // يعني الشاشة كلها - 250 = المساحة الباقية للجزء التاني.
+        height: MediaQuery.of(context).size.height - 250,
+
+        // البادينج دا خاص بالمحتوى الداخلي زي
+        //"Welcome Back"، TextFormField، والأزرار.
+        // الهدف منه يدي مسافة داخلية بين حدود الكونتينر والمحتويات، عشان ما تكون لازقة في الأطراف.
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        color: Colors.white,
+
+        // هنا بنستخدم
+        // ListView
+        // عشان نقدر نسكرول (نمرر) المحتوى لو كان أكبر من الشاشة.
+        // يعني لو عندنا محتوى طويل، المستخدم يقدر يسحب لأعلى أو لأسفل عشان يشوف كل المحتوى.
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                "30".tr,
+
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Center(
+              child: Text(
+                "31".tr,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium!.copyWith(color: AppColor.greyText),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+            // Name
+            CustomTextFormField(
+              onFieldSubmitted: (value) {
+                FocusScope.of(
+                  context,
+                ).requestFocus(signInController.emailFocusNode);
+              },
+              label: "32".tr,
+              hint: "33".tr,
+              suffixIcon: const Icon(Icons.person_outline_outlined),
+              isPassword: false,
+              controller: signInController.nameCont,
+              focusNode: signInController.nameFocusNode,
+            ),
+            SizedBox(height: 15),
+            // Email
+            CustomTextFormField(
+              // الـ
+              //onFieldSubmitted
+              // تشتغل لما المستخدم يضغط
+              //Enter أو Done
+              // في الكيبورد.
+              // المتغير
+              //p0
+              //هو الاسم التلقائي اللي بيجي من الدالة، وهو يمثل النص
+              //(String)
+              // اللي كتبه المستخدم داخل الحقل وقت ما ضغط
+              // Enter.
+              // يعني مثلاً لو المستخدم كتب
+              //"example@gmail.com"، فـ p0 = "example@gmail.com".
+              // في حالتك هنا ما بنحتاج نستخدم النص، فقط بننقل التركيز لحقل الباسورد.
+              onFieldSubmitted: (p0) {
+                FocusScope.of(
+                  context,
+                ).requestFocus(signInController.passwordFocusNode);
+              },
+              label: "34".tr,
+              hint: "35".tr,
+              isPassword: false,
+              suffixIcon: const Icon(Icons.email_outlined),
+              controller: signInController.emailCont,
+              focusNode: signInController.emailFocusNode,
+            ),
+
+            const SizedBox(height: 15),
+
+            // Password
+            CustomTextFormField(
+              onFieldSubmitted: (value) {
+                FocusScope.of(
+                  context,
+                ).requestFocus(signInController.confirmPassword);
+              },
+              focusNode: signInController.passwordFocusNode,
+              isPassword: true,
+              label: "36".tr,
+              hint: "37".tr,
+              controller: signInController.passwordCont,
+            ),
+            SizedBox(height: 15),
+
+            // Confirm Password
+            CustomTextFormField(
+              onFieldSubmitted: (value) {
+                FocusScope.of(context).unfocus();
+              },
+              focusNode: signInController.confirmPassword,
+              isPassword: true,
+              label: "38".tr,
+              hint: "38".tr,
+              controller: signInController.confirmPasswordCont,
+            ),
+            const SizedBox(height: 30),
+            // Sign In Button
+            SignButton(
+              text: "15".tr,
+              onPressed: () {
+                // هنا بنستخدم
+                // FocusScope.of(context).unfocus()
+                // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
+                // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
+                FocusScope.of(context).unfocus();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

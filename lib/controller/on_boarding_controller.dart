@@ -1,3 +1,5 @@
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/static_data_source/static.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -18,6 +20,7 @@ abstract class OnBoardingController extends GetxController {
   // is called when the user presses the "Next" button
   // to go to the next onboarding page.
 
+  skipe();
   onPageChanged(int index);
   // is called when the user swipes or moves
   // from one onboarding page to another. The 'index' parameter tells
@@ -32,7 +35,7 @@ class OnBoardingControllerImp extends OnBoardingController {
   // It allows us to programmatically move between pages using methods like 'animateToPage'.
   // We initialize it in onInit to make sure it's ready when the widget starts.
   late PageController pageController;
-
+  MyServices myServices = Get.find();
   @override
   next() {
     currentPage++;
@@ -53,6 +56,11 @@ class OnBoardingControllerImp extends OnBoardingController {
       // If it is, it means the user has reached the end of the onboarding process.
       // In this case, we can navigate to the sign-in page or any other desired action.
       Get.offAllNamed("/signIn");
+      myServices.sharedPreferences.setBool("isFirstTime", false);
+      // This line saves a boolean value in shared preferences to indicate that the onboarding process has been completed.
+      // It uses the 'myServices' instance to access the shared preferences and set the value.
+      // This is useful for keeping track of whether the user has completed the onboarding process or not.
+      // For example, if the user has completed the onboarding, we can set this value to true.
     } else {
       pageController.animateToPage(
         currentPage, // Navigate to the next page
@@ -84,5 +92,10 @@ class OnBoardingControllerImp extends OnBoardingController {
     // It tells GetX to rebuild any widgets that are listening to this controller.
     // So when the page changes, we call update() to refresh the UI with the new page index.
     // This is important for keeping the UI in sync with the data or state of the application.
+  }
+
+  @override
+  skipe() {
+    Get.offAllNamed(AppRoutes.signIn);
   }
 }

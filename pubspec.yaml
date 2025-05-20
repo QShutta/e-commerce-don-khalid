@@ -17,6 +17,7 @@ dependencies:
     sdk: flutter
   flutter_local_notifications: ^19.1.0
   flutter_svg: ^2.1.0
+  font_awesome_flutter: ^10.8.0
   get: ^4.7.2
   get_it: ^8.0.3
   http: ^1.3.0
@@ -42,6 +43,14 @@ flutter:
     - assets/images/onboarding/on_board3.svg
     - assets/images/onboarding/on_board4.svg
     - assets/images/onboarding/lang.png
+    - assets/images/auth/Login-amico.svg
+    - assets/images/auth/sign_up_amico.svg
+    - assets/images/auth/Forgot_password.svg
+    - assets/images/auth/email.svg
+    - assets/images/auth/otp.svg
+    - assets/images/auth/reset_passowrd.svg
+    - assets/images/auth/verified.svg
+    - assets/images/auth/success.svg
 
   fonts:
     - family: Tajawal
@@ -59,3 +68,8 @@ flutter:
           weight: 800
         - asset: assets/fonts/Tajawal-ExtraLight.ttf
           weight: 200
+
+    - family: playFair
+      fonts:
+        - asset: assets/fonts/play_fair/PlayfairDisplay-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/play_fair/PlayfairDisplay-VariableFont_wght.ttf

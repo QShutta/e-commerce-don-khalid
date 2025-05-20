@@ -1,6 +1,5 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
-import 'package:e_commerce_halfa/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -16,7 +16,7 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 650,
+      height: 600,
       child: PageView.builder(
         controller: controller.pageController,
         // This function is called when the user moves between onboarding pages.
@@ -30,7 +30,7 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              SvgPicture.asset(onboardingList[index].imagePath, height: 500),
+              SvgPicture.asset(onboardingList[index].imagePath, height: 450),
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),

@@ -5,7 +5,6 @@ import 'package:e_commerce_halfa/view/widgets/on_boarding_page/language_page_wid
 import 'package:e_commerce_halfa/view/widgets/on_boarding_page/language_page_widgets/language_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class LanguageSelection extends GetView<LocaleController> {
   const LanguageSelection({super.key});

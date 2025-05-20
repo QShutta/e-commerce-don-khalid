@@ -2,9 +2,9 @@ import 'package:e_commerce_halfa/controller/on_boarding_controller.dart';
 import 'package:e_commerce_halfa/view/widgets/on_boarding_page/dots_indicator.dart';
 import 'package:e_commerce_halfa/view/widgets/on_boarding_page/next_button.dart';
 import 'package:e_commerce_halfa/view/widgets/on_boarding_page/on_boarding_item.dart';
+import 'package:e_commerce_halfa/view/widgets/on_boarding_page/skip_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 //Test move from the last on boarding to the sign page page
 class Onboarding extends StatelessWidget {
@@ -34,18 +34,18 @@ class Onboarding extends StatelessWidget {
         body: Column(
           children: [
             OnBoardingItem(),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             DotsIndicator(),
-            SizedBox(height: 20),
+            SizedBox(height: 25),
             NextButton(
               onPressed: () {
                 onBoardingCont.next();
-                // هنا بنستخدم الدالة
-                // next()
-                // من الكلاس
-                // OnBoardingControllerImp
-                // عشان ننتقل للصفحة الجاية في الـ
-                // PageView
+              },
+            ),
+            SizedBox(height: 15),
+            SkipButton(
+              onPressed: () {
+                onBoardingCont.skipe();
               },
             ),
           ],

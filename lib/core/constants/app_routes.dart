@@ -1,19 +1,12 @@
 class AppRoutes {
   static const String signIn = '/signIn';
-
-  /// ❗️استخدمنا "/" كشاشة البداية في التطبيق.
-  /// - لأن "/" هو المسار الافتراضي
-  /// (default route) في Flutter.
-  /// - أول ما التطبيق يشتغل، بيبدأ بالشاشة اللي مرتبطة بـ "/".
-  /// - وده بنحددو في
-  /// `initialRoute: "/"`
-  /// داخل
-  /// `GetMaterialApp`.
-  ///
-  /// في حالتنا دي، شاشة الـ
-  /// Onboarding
-  /// هي أول شاشة عاوزين المستخدم يشوفها،
-  /// عشان كده ربطناها بالـ "/".
-  static const String onBoarding = '/onBoarding';
+  static const String signUp = '/signUp';
   static const String languageSelection = '/';
+  static const String onBoarding = '/onBoarding';
+
+  // 🔐 Forgot Password Flow
+  static const String forgotPasswordEmail = '/forgotPasswordEmail';
+  static const String forgotPasswordOtp = '/forgotPasswordOtp';
+  static const String resetPassword = '/resetPassword';
+  static const String passwordResetSuccess = '/passwordResetSuccess';
 }
