@@ -1,4 +1,7 @@
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 // ✅ استخدمنا abstract class علشان نحدد شكل الدوال اللي لازم تتنفذ في الكلاس الأساسي
@@ -10,7 +13,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 abstract class SignUpController extends GetxController {
   signUp();
   goToSignIn();
-  goToVerifyCode();
+  goToVerfyCode();
 }
 
 class SignUpControllerImp extends SignUpController {
@@ -55,8 +58,8 @@ class SignUpControllerImp extends SignUpController {
   }
 
   @override
-  goToVerifyCode() {
-    // TODO: implement navigation to Verify Code screen
+  goToVerfyCode() {
+    Get.offAllNamed(AppRoutes.signUpOtp, arguments: {"email": emailCont.text});
   }
 
   @override

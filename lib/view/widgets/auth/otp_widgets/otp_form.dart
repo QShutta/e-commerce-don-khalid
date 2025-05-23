@@ -1,20 +1,21 @@
-import 'package:e_commerce_halfa/controller/auth_controller/sign_in_controller.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_verfy_code_controller.dart';
+import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
+import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/email_otp_cont.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/otp_widgets/otp_text_form_field.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpForm extends StatelessWidget {
-  OtpForm({super.key});
+  final void Function(String)? onSubmit;
+  OtpForm({super.key, required this.onSubmit});
   // استخدمنا
   //'final'
   // عشان نضمن إنو
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final SignInControllerImp signInController = Get.put(SignInControllerImp());
+  final EmailOtpControllerImp otpCont = Get.put(EmailOtpControllerImp());
   @override
   Widget build(BuildContext context) {
     return // الجزء السفلي (نموذج تسجيل الدخول)
@@ -64,6 +65,11 @@ class OtpForm extends StatelessWidget {
               children: [
                 const SizedBox(height: 8),
                 Text(
+                  "43".tr,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                SizedBox(height: 20),
+                Text(
                   "41".tr,
                   textAlign: TextAlign.start,
                   style: Theme.of(
@@ -73,13 +79,27 @@ class OtpForm extends StatelessWidget {
 
                 SizedBox(height: 30),
                 // Email
-                OtpTextFormField(),
+                OtpTextFormField(onSubmit: onSubmit),
 
                 const SizedBox(height: 20),
+
                 //هنا مفترض يكون عندنا الايمل اتحصلنا عليهو من اصفحة السابقة يعني لمن نجي ننتقل من صفحة ال sendVer
                 //مفترض نعمل pass for the email as a parameter .then will add the email text here
-                Text("42".tr),
 
+                // هنا بنعرض نص مترجم فيه متغير
+                // (email).
+                // "42".trParams({"email": otpCont.email})
+                // يعني نعوض
+                //@email
+                // في النص بقيمة الإيميل.
+                // النص في الترجمة بيكون مثل:
+                // "42":
+                // "تم إرسال رمز التحقق إلى بريدك:
+                // @email."
+                Text(
+                  "42".trParams({"email": otpCont.email}),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
                 const SizedBox(height: 20),
 
                 InkWell(
@@ -93,18 +113,6 @@ class OtpForm extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                // Sign In Button
-                SignButton(
-                  text: "43".tr,
-                  onPressed: () {
-                    // هنا بنستخدم
-                    // FocusScope.of(context).unfocus()
-                    // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
-                    // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
-                    FocusScope.of(context).unfocus();
-                    Get.toNamed(AppRoutes.resetPassword);
-                  },
-                ),
               ],
             ),
           ],

@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -8,17 +9,17 @@ abstract class ForgotPasswordEmailController extends GetxController {
 }
 
 class ForgotPasswordEmailControllerImp extends ForgotPasswordEmailController {
-  late TextEditingController emailCont;
+  late TextEditingController textEmailCont;
 
   @override
   void onInit() {
-    emailCont = TextEditingController();
+    textEmailCont = TextEditingController();
     super.onInit();
   }
 
   @override
   void dispose() {
-    emailCont.dispose();
+    textEmailCont.dispose();
     super.dispose();
   }
 
@@ -33,7 +34,9 @@ class ForgotPasswordEmailControllerImp extends ForgotPasswordEmailController {
 
   @override
   goToVerficationCodePage() {
-    // TODO: implement goToVerficationCodePage
-    throw UnimplementedError();
+    Get.toNamed(
+      AppRoutes.forgotPasswordOtp,
+      arguments: {"email": textEmailCont.text},
+    );
   }
 }

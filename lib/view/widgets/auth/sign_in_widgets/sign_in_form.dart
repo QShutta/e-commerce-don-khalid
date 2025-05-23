@@ -105,7 +105,7 @@ class SignInForm extends StatelessWidget {
                   },
                   label: "18".tr,
                   hint: "19".tr,
-                  controller: signInController.emailCont,
+                  textcontroller: signInController.emailCont,
                   focusNode: signInController.emailFocusNode,
                 ),
 
@@ -119,7 +119,7 @@ class SignInForm extends StatelessWidget {
 
                   // هنا بنستخدم
                   hint: "21",
-                  controller: signInController.passwordCont,
+                  textcontroller: signInController.passwordCont,
                 ),
 
                 ForgotPasswordText(),

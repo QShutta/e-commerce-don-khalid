@@ -1,13 +1,11 @@
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_form.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_header.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_header.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_pass_form.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+class ForgotPasswordSuccess extends StatelessWidget {
+  const ForgotPasswordSuccess({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,24 +20,16 @@ class SignInPage extends StatelessWidget {
           child: Column(
             children: [
               // الجزء العلوي (الخلفية الملونة)
-              SignHeader(
-                imagePath: ImageAssets.signInImage,
-                title: "13".tr,
-                subtitle: "14".tr,
-                buttonText: "15".tr,
-                onPressed: () {
-                  // مثلاً تنقل لصفحة التسجيل
-                  Get.toNamed(
-                    AppRoutes.signUp,
-                    // مدة التحريك (0.5 ثانية)
-                  );
-                },
+              SuccessResetHeader(
+                imagePath: ImageAssets.successResetPass,
                 backgroundColor: AppColor.primaryColor,
-                height: 300,
+                height:
+                    MediaQuery.of(context).size.height *
+                    0.5, // 40% of screen height
               ),
 
               // الجزء السفلي (نموذج تسجيل الدخول)
-              SignInForm(),
+              SuccessResetPassForm(),
             ],
           ),
         ),

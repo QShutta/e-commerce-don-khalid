@@ -1,23 +1,24 @@
-import 'package:e_commerce_halfa/controller/auth_controller/sign_in_controller.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_email_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/otp_widgets/otp_text_form_field.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/forgot_password_text.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/social_media_sign_in.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/text_form_field_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EmailForm extends StatelessWidget {
-  EmailForm({super.key});
+  final void Function() onPressed;
+  final TextEditingController textEmailCont;
+  EmailForm({super.key, required this.onPressed, required this.textEmailCont});
+
   // استخدمنا
   //'final'
   // عشان نضمن إنو
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final SignInControllerImp signInController = Get.put(SignInControllerImp());
+  // final ForgotPasswordEmailControllerImp emailCont = Get.put(
+  //   ForgotPasswordEmailControllerImp(),
+  // );
   @override
   Widget build(BuildContext context) {
     return // الجزء السفلي (نموذج تسجيل الدخول)
@@ -78,21 +79,27 @@ class EmailForm extends StatelessWidget {
 
                 SizedBox(height: 30),
                 // Email
-                OtpTextFormField(),
+                CustomTextFormField(
+                  label: "18".tr,
+                  hint: "19".tr,
+                  textcontroller: textEmailCont,
+                ),
 
                 const SizedBox(height: 20),
 
                 // Sign In Button
                 SignButton(
                   text: "40".tr,
-                  onPressed: () {
-                    // هنا بنستخدم
-                    // FocusScope.of(context).unfocus()
-                    // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
-                    // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
-                    FocusScope.of(context).unfocus();
-                    Get.toNamed(AppRoutes.forgotPasswordOtp);
-                  },
+                  onPressed: onPressed,
+
+                  //  () {
+                  //   // هنا بنستخدم
+                  //   // FocusScope.of(context).unfocus()
+                  //   // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
+                  //   // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
+                  //   FocusScope.of(context).unfocus();
+                  //   emailCont.goToVerficationCodePage();
+                  // },
                 ),
               ],
             ),

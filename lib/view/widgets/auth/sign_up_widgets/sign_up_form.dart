@@ -1,5 +1,7 @@
-import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controller.dart';
+import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
+
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/text_form_field_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class SignUpForm extends StatelessWidget {
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final SignUpControllerImp signInController = Get.put(SignUpControllerImp());
+  final SignUpControllerImp signUpController = Get.put(SignUpControllerImp());
   @override
   Widget build(BuildContext context) {
     return // الجزء السفلي (نموذج تسجيل الدخول)
@@ -81,14 +83,14 @@ class SignUpForm extends StatelessWidget {
               onFieldSubmitted: (value) {
                 FocusScope.of(
                   context,
-                ).requestFocus(signInController.emailFocusNode);
+                ).requestFocus(signUpController.emailFocusNode);
               },
               label: "32".tr,
               hint: "33".tr,
               suffixIcon: const Icon(Icons.person_outline_outlined),
               isPassword: false,
-              controller: signInController.nameCont,
-              focusNode: signInController.nameFocusNode,
+              textcontroller: signUpController.nameCont,
+              focusNode: signUpController.nameFocusNode,
             ),
             SizedBox(height: 15),
             // Email
@@ -110,14 +112,14 @@ class SignUpForm extends StatelessWidget {
               onFieldSubmitted: (p0) {
                 FocusScope.of(
                   context,
-                ).requestFocus(signInController.passwordFocusNode);
+                ).requestFocus(signUpController.passwordFocusNode);
               },
               label: "34".tr,
               hint: "35".tr,
               isPassword: false,
               suffixIcon: const Icon(Icons.email_outlined),
-              controller: signInController.emailCont,
-              focusNode: signInController.emailFocusNode,
+              textcontroller: signUpController.emailCont,
+              focusNode: signUpController.emailFocusNode,
             ),
 
             const SizedBox(height: 15),
@@ -127,13 +129,13 @@ class SignUpForm extends StatelessWidget {
               onFieldSubmitted: (value) {
                 FocusScope.of(
                   context,
-                ).requestFocus(signInController.confirmPassword);
+                ).requestFocus(signUpController.confirmPassword);
               },
-              focusNode: signInController.passwordFocusNode,
+              focusNode: signUpController.passwordFocusNode,
               isPassword: true,
               label: "36".tr,
               hint: "37".tr,
-              controller: signInController.passwordCont,
+              textcontroller: signUpController.passwordCont,
             ),
             SizedBox(height: 15),
 
@@ -142,11 +144,11 @@ class SignUpForm extends StatelessWidget {
               onFieldSubmitted: (value) {
                 FocusScope.of(context).unfocus();
               },
-              focusNode: signInController.confirmPassword,
+              focusNode: signUpController.confirmPassword,
               isPassword: true,
               label: "38".tr,
               hint: "38".tr,
-              controller: signInController.confirmPasswordCont,
+              textcontroller: signUpController.confirmPasswordCont,
             ),
             const SizedBox(height: 30),
             // Sign In Button
@@ -158,6 +160,7 @@ class SignUpForm extends StatelessWidget {
                 // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
                 // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
                 FocusScope.of(context).unfocus();
+                signUpController.goToVerfyCode();
               },
             ),
           ],

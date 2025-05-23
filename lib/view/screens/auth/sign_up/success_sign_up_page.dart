@@ -1,11 +1,12 @@
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
-import 'package:e_commerce_halfa/view/screens/auth/success_reset_header.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_pass.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/sign_up_widgets/success_sign_up_form.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_header.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_pass_form.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPasswordSuccess extends StatelessWidget {
-  const ForgotPasswordSuccess({super.key});
+class SuccessSignUpPage extends StatelessWidget {
+  const SuccessSignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ForgotPasswordSuccess extends StatelessWidget {
               ),
 
               // الجزء السفلي (نموذج تسجيل الدخول)
-              SuccessResetPassForm(),
+              SuccessSignUpForm(),
             ],
           ),
         ),

@@ -8,7 +8,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword; // لتحديد ما إذا كان الحقل مخصص لكلمة السر
   final TextInputType keyboardType; // نوع لوحة المفاتيح (نص، رقم، إيميل...)
   final String? Function(String?)? validator; // دالة التحقق من صحة الإدخال
-  final TextEditingController controller; // للتحكم بقيمة الحقل
+  final TextEditingController textcontroller; // للتحكم بقيمة الحقل
   final void Function(String)?
   onFieldSubmitted; // دالة عند الضغط على زر الإدخال
   final Widget?
@@ -21,7 +21,7 @@ class CustomTextFormField extends StatefulWidget {
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
     this.validator,
-    required this.controller,
+    required this.textcontroller,
     this.focusNode,
     this.onFieldSubmitted,
     this.suffixIcon,
@@ -47,7 +47,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
       onFieldSubmitted: widget.onFieldSubmitted, // عند الضغط على زر الإدخال
       focusNode: widget.focusNode, // ربط الحقل بالـ focusNode
-      controller: widget.controller, // ربط الحقل بالـ controller
+      controller: widget.textcontroller, // ربط الحقل بالـ controller
       // لو الحقل هو Password، نخفي النص حسب حالة _obscureText
       obscureText: widget.isPassword ? _obscureText : false,
       keyboardType: widget.keyboardType, // نوع لوحة المفاتيح حسب الاستخدام
