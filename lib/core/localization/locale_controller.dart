@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:e_commerce_halfa/core/constants/apptheme.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +9,18 @@ class LocaleController extends GetxController {
   Locale? lang;
   MyServices myServices = Get.find();
 
-  ThemeData appTheme = englishTheme;
+  //دة المتغير  اللى هنستخدمه عشان نغير تصميم التطبيق حسب اللغة
+  // لو اللغة عربية هنستخدم تصميم معين، ولو إنجليزي هنستخدم تصميم تاني
 
+  ThemeData appTheme = englishTheme;
   changeLanguage(String langCode) {
     Locale locale = Locale(langCode);
     myServices.sharedPreferences.setString("lang", langCode);
+
+    // نغير التصميم حسب اللغة: لو عربي نستخدم arabicTheme، لو إنجليزي englishTheme
     appTheme = langCode == "ar" ? arabicTheme : englishTheme;
+
+    // نحدث التصميم في كامل التطبيق
     Get.changeTheme(appTheme);
     Get.updateLocale(locale);
   }
