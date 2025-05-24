@@ -97,5 +97,6 @@ class OnBoardingControllerImp extends OnBoardingController {
   @override
   skipe() {
     Get.offAllNamed(AppRoutes.signIn);
+    myServices.sharedPreferences.setBool("isFirstTime", false);
   }
 }

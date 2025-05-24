@@ -32,10 +32,7 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              SvgPicture.asset(
-                onboardingList[index].imagePath,
-                height: Get.width,
-              ),
+              SvgPicture.asset(onboardingList[index].imagePath, height: 450),
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),

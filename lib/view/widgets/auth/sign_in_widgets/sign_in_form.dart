@@ -57,92 +57,87 @@ class SignInForm extends StatelessWidget {
         // ListView
         // عشان نقدر نسكرول (نمرر) المحتوى لو كان أكبر من الشاشة.
         // يعني لو عندنا محتوى طويل، المستخدم يقدر يسحب لأعلى أو لأسفل عشان يشوف كل المحتوى.
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Text(
-                    "16".tr,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Center(
-                  child: Text(
-                    "17".tr,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium!.copyWith(color: AppColor.greyText),
-                  ),
-                ),
-
-                const SizedBox(height: 15),
-
-                SizedBox(height: 15),
-                // Email
-                CustomTextFormField(
-                  // الـ
-                  //onFieldSubmitted
-                  // تشتغل لما المستخدم يضغط
-                  //Enter أو Done
-                  // في الكيبورد.
-                  // المتغير
-                  //p0
-                  //هو الاسم التلقائي اللي بيجي من الدالة، وهو يمثل النص
-                  //(String)
-                  // اللي كتبه المستخدم داخل الحقل وقت ما ضغط
-                  // Enter.
-                  // يعني مثلاً لو المستخدم كتب
-                  //"example@gmail.com"، فـ p0 = "example@gmail.com".
-                  // في حالتك هنا ما بنحتاج نستخدم النص، فقط بننقل التركيز لحقل الباسورد.
-                  onFieldSubmitted: (p0) {
-                    FocusScope.of(
-                      context,
-                    ).requestFocus(signInController.passwordFocusNode);
-                  },
-                  label: "18".tr,
-                  hint: "19".tr,
-                  textcontroller: signInController.emailCont,
-                  focusNode: signInController.emailFocusNode,
-                ),
-
-                const SizedBox(height: 15),
-
-                // Password
-                CustomTextFormField(
-                  focusNode: signInController.passwordFocusNode,
-                  isPassword: true,
-                  label: "20".tr,
-
-                  // هنا بنستخدم
-                  hint: "21",
-                  textcontroller: signInController.passwordCont,
-                ),
-
-                ForgotPasswordText(),
-                const SizedBox(height: 10),
-                // Sign In Button
-                SignButton(
-                  text: "22".tr,
-                  onPressed: () {
-                    // هنا بنستخدم
-                    // FocusScope.of(context).unfocus()
-                    // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
-                    // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
-                    FocusScope.of(context).unfocus();
-                  },
-                ),
-
-                const SizedBox(height: 15),
-                Center(child: Text("23".tr)),
-                const SizedBox(height: 15),
-                // Google and Facebook
-                SocialMediaSignIn(),
-              ],
+            Center(
+              child: Text(
+                "16".tr,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
             ),
+            const SizedBox(height: 8),
+            Center(
+              child: Text(
+                "17".tr,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium!.copyWith(color: AppColor.greyText),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            SizedBox(height: 15),
+            // Email
+            CustomTextFormField(
+              // الـ
+              //onFieldSubmitted
+              // تشتغل لما المستخدم يضغط
+              //Enter أو Done
+              // في الكيبورد.
+              // المتغير
+              //p0
+              //هو الاسم التلقائي اللي بيجي من الدالة، وهو يمثل النص
+              //(String)
+              // اللي كتبه المستخدم داخل الحقل وقت ما ضغط
+              // Enter.
+              // يعني مثلاً لو المستخدم كتب
+              //"example@gmail.com"، فـ p0 = "example@gmail.com".
+              // في حالتك هنا ما بنحتاج نستخدم النص، فقط بننقل التركيز لحقل الباسورد.
+              onFieldSubmitted: (p0) {
+                FocusScope.of(
+                  context,
+                ).requestFocus(signInController.passwordFocusNode);
+              },
+              label: "18".tr,
+              hint: "19".tr,
+              textcontroller: signInController.emailCont,
+              focusNode: signInController.emailFocusNode,
+            ),
+
+            const SizedBox(height: 15),
+
+            // Password
+            CustomTextFormField(
+              focusNode: signInController.passwordFocusNode,
+              isPassword: true,
+              label: "20".tr,
+
+              // هنا بنستخدم
+              hint: "21",
+              textcontroller: signInController.passwordCont,
+            ),
+
+            ForgotPasswordText(),
+            const SizedBox(height: 10),
+            // Sign In Button
+            SignButton(
+              text: "22".tr,
+              onPressed: () {
+                // هنا بنستخدم
+                // FocusScope.of(context).unfocus()
+                // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
+                // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
+                FocusScope.of(context).unfocus();
+              },
+            ),
+
+            const SizedBox(height: 15),
+            Center(child: Text("23".tr)),
+            const SizedBox(height: 15),
+            // Google and Facebook
+            SocialMediaSignIn(),
           ],
         ),
       ),
