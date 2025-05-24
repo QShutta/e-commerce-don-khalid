@@ -1,5 +1,3 @@
-import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_verfy_code_controller.dart';
-import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
 import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/email_otp_cont.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/otp_widgets/otp_text_form_field.dart';

@@ -3,6 +3,8 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/data/data_source/static_data_source/static.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 // GetView<OnBoardingControllerImp> is a shortcut for using Get.find()
@@ -30,7 +32,10 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              SvgPicture.asset(onboardingList[index].imagePath, height: 450),
+              SvgPicture.asset(
+                onboardingList[index].imagePath,
+                height: Get.width,
+              ),
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -42,7 +47,6 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
                   onboardingList[index].title,
                   style: TextStyle(
                     fontSize: 24,
-                    fontFamily: "Tajawal",
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -56,10 +60,9 @@ class OnBoardingItem extends GetView<OnBoardingControllerImp> {
                   textAlign: TextAlign.center,
 
                   style: TextStyle(
+                    fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: AppColor.greyText,
-                    fontFamily: "Tajawal",
-                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ),

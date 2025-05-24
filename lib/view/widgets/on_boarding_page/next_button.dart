@@ -21,9 +21,8 @@ class NextButton extends StatelessWidget {
         // "Next".tr, // Next button text in Arabic
         // "التالي".tr, // Next button text in Arabic
         style: TextStyle(
-          fontSize: 16,
-          fontFamily: "Tajawal",
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
           color: Colors.white,
         ),
       ),

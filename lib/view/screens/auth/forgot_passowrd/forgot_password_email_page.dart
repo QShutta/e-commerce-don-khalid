@@ -1,13 +1,10 @@
 import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_email_controller.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/forgot_passord_email_page_widgets/email_header.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/forgot_passord_email_page_widgets/forgot_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class EmailPage extends StatelessWidget {
   const EmailPage({super.key});

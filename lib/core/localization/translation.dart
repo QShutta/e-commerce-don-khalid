@@ -6,6 +6,7 @@ class MyTranslation extends Translations {
     "en": {
       "1": "Selection of the best products",
       "2": "We offer you the best products at the best prices",
+
       "3": "Secure and easy payment",
       "4": "Pay with confidence using secure and user-friendly options",
       "5": "Fast and secure delivery",
@@ -120,16 +121,17 @@ class MyTranslation extends Translations {
       "49": "Your Password has been Updated",
       "50": "Your Account Has Been Created Successfully",
       "51": "Welcome! You can now shop and enjoy our services.",
+      "52": "Skip",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
-      "2": "نقدم لك أفضل المنتجات بأفضل الأسعار",
+      "2": "نقدم لك\n أفضل المنتجات بأفضل الأسعار",
       "3": "دفع آمن وسهل",
-      "4": "ادفع بثقة باستخدام خيارات آمنة وسهلة الاستخدام",
+      "4": "ادفع بثقة\n باستخدام خيارات آمنة وسهلة الاستخدام",
       "5": "توصيل سريع وآمن",
-      "6": "نضمن لك توصيل سريع وآمن حتى باب منزلك",
+      "6": "نضمن لك\n توصيل سريع وآمن حتى باب منزلك",
       "7": "استلم طلبك وانت مطمن",
-      "8": "اطلب واستلم وأنت مطمئن، سلامة وجودة الخدمة أولويتنا",
+      "8": "اطلب واستلم \n وأنت مطمئن سلامة وجودة الخدمة أولويتنا",
       "9": "التالي",
       "10": "اختر لغتك المفضلة",
       "11": "العربية",
@@ -177,6 +179,7 @@ class MyTranslation extends Translations {
       "49": "تم تحديث كلمة المرور بنجاح",
       "50": "تم إنشاء حسابك بنجاح",
       "51": "يمكنك الآن التسوق والاستمتاع بخدماتنا",
+      "52": "تخطي",
     },
   };
 }

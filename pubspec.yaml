@@ -54,23 +54,12 @@ flutter:
     - assets/images/auth/success.svg
 
   fonts:
-    - family: Tajawal
-      fonts:
-        - asset: assets/fonts/Tajawal-Regular.ttf
-        - asset: assets/fonts/Tajawal-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Tajawal-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Tajawal-Black.ttf
-          weight: 900
-        - asset: assets/fonts/Tajawal-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Tajawal-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/Tajawal-ExtraLight.ttf
-          weight: 200
 
     - family: playFair
       fonts:
         - asset: assets/fonts/play_fair/PlayfairDisplay-Italic-VariableFont_wght.ttf
         - asset: assets/fonts/play_fair/PlayfairDisplay-VariableFont_wght.ttf
+    
+    - family: cairo
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-VariableFont_slnt,wght.ttf

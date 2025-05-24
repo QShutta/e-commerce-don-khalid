@@ -8,7 +8,11 @@ import 'package:get/get.dart';
 class EmailForm extends StatelessWidget {
   final void Function() onPressed;
   final TextEditingController textEmailCont;
-  EmailForm({super.key, required this.onPressed, required this.textEmailCont});
+  const EmailForm({
+    super.key,
+    required this.onPressed,
+    required this.textEmailCont,
+  });
 
   // استخدمنا
   //'final'

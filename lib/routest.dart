@@ -1,5 +1,4 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
-import 'package:e_commerce_halfa/core/midle_ware/init_middle_ware.dart';
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_passord_reset_password_success_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_password_email_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_password_otp_page.dart';
@@ -17,7 +16,7 @@ List<GetPage> appPages = [
   GetPage(
     name: AppRoutes.languageSelection,
     page: () => LanguageSelection(),
-    middlewares: [InitMiddleware()],
+    // middlewares: [InitMiddleware()],
     transition: Transition.fadeIn,
     transitionDuration: const Duration(milliseconds: 500),
   ),

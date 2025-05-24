@@ -2,7 +2,6 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_up_widgets/success_sign_up_form.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_header.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/success_reset_passowrd/success_reset_pass_form.dart';
 import 'package:flutter/material.dart';
 
 class SuccessSignUpPage extends StatelessWidget {

@@ -23,29 +23,7 @@ class MainApp extends StatelessWidget {
     LocaleController langCont = Get.find();
 
     return GetMaterialApp(
-      theme: ThemeData(
-        fontFamily: "playFair",
-        textTheme: const TextTheme(
-          headlineLarge: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineMedium: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          bodyLarge: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.white,
-          ),
-          bodyMedium: TextStyle(fontSize: 16, color: Colors.black),
-          bodySmall: TextStyle(fontSize: 14, color: Colors.white70),
-          labelLarge: TextStyle(fontSize: 16, color: Colors.white),
-        ),
-      ),
+      theme: langCont.appTheme,
       locale: langCont.lang,
       // locale: Locale("en"),
       translations: MyTranslation(),

@@ -1,8 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 // ✅ استخدمنا abstract class علشان نحدد شكل الدوال اللي لازم تتنفذ في الكلاس الأساسي
 // ✅ ده بيساعدنا نفصل بين تعريف الوظائف (interface) وبين التطبيق الفعلي (implementation)
