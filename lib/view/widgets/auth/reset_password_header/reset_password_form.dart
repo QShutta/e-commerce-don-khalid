@@ -63,6 +63,7 @@ class ResetPasswordForm extends StatelessWidget {
                     ).requestFocus(resetCont.confitmPasswordFocus);
                   },
                   textcontroller: resetCont.passwordCont,
+                  validator: (String) {},
                 ),
                 const SizedBox(height: 15),
 
@@ -73,6 +74,7 @@ class ResetPasswordForm extends StatelessWidget {
                   label: "38".tr,
                   hint: "38".tr,
                   textcontroller: resetCont.confitmPasswordCont,
+                  validator: (String) {},
                 ),
 
                 const SizedBox(height: 30),

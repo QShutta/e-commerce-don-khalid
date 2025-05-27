@@ -90,10 +90,12 @@ class SignUpForm extends StatelessWidget {
               isPassword: false,
               textcontroller: signUpController.nameCont,
               focusNode: signUpController.nameFocusNode,
+              validator: (String? value) {},
             ),
             SizedBox(height: 15),
             // Email
             CustomTextFormField(
+              validator: (String? value) {},
               // الـ
               //onFieldSubmitted
               // تشتغل لما المستخدم يضغط
@@ -125,6 +127,7 @@ class SignUpForm extends StatelessWidget {
 
             // Password
             CustomTextFormField(
+              validator: (String? value) {},
               onFieldSubmitted: (value) {
                 FocusScope.of(
                   context,
@@ -140,6 +143,7 @@ class SignUpForm extends StatelessWidget {
 
             // Confirm Password
             CustomTextFormField(
+              validator: (String? value) {},
               onFieldSubmitted: (value) {
                 FocusScope.of(context).unfocus();
               },

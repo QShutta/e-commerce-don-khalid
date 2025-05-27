@@ -87,6 +87,7 @@ class EmailForm extends StatelessWidget {
                   label: "18".tr,
                   hint: "19".tr,
                   textcontroller: textEmailCont,
+                  validator: (String) {},
                 ),
 
                 const SizedBox(height: 20),
