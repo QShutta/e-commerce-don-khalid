@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 
 class SuccessSignUpForm extends StatelessWidget {
   SuccessSignUpForm({super.key});
-  final ResetPasswordController resetCont = Get.put(ResetPasswordController());
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

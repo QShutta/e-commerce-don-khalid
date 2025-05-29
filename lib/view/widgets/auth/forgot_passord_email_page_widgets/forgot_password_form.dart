@@ -1,11 +1,12 @@
 import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_email_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
+import 'package:e_commerce_halfa/core/functions/valid_input.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/text_form_field_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EmailForm extends StatelessWidget {
+class EmailForm extends GetView<ForgotPasswordEmailControllerImp> {
   final void Function() onPressed;
   final TextEditingController textEmailCont;
   const EmailForm({
@@ -82,29 +83,38 @@ class EmailForm extends StatelessWidget {
                 ),
 
                 SizedBox(height: 30),
-                // Email
-                CustomTextFormField(
-                  label: "18".tr,
-                  hint: "19".tr,
-                  textcontroller: textEmailCont,
-                  validator: (String) {},
-                ),
+                Form(
+                  key: controller.formKey,
+                  child: Column(
+                    children: [
+                      // Email
+                      CustomTextFormField(
+                        label: "18".tr,
+                        hint: "19".tr,
+                        textcontroller: textEmailCont,
+                        validator: (String? value) {
+                          return validInput(value!, 5, 100, "email");
+                        },
+                      ),
 
-                const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                // Sign In Button
-                SignButton(
-                  text: "40".tr,
-                  onPressed: onPressed,
+                      // Sign In Button
+                      SignButton(
+                        text: "40".tr,
+                        onPressed: onPressed,
 
-                  //  () {
-                  //   // هنا بنستخدم
-                  //   // FocusScope.of(context).unfocus()
-                  //   // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
-                  //   // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
-                  //   FocusScope.of(context).unfocus();
-                  //   emailCont.goToVerficationCodePage();
-                  // },
+                        //  () {
+                        //   // هنا بنستخدم
+                        //   // FocusScope.of(context).unfocus()
+                        //   // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.
+                        //   // يعني لو الكيبورد مفتوح، لما نضغط الزر، الكيبورد حيتقفل.
+                        //   FocusScope.of(context).unfocus();
+                        //   emailCont.goToVerficationCodePage();
+                        // },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

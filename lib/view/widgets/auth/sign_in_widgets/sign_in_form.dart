@@ -86,9 +86,6 @@ class SignInForm extends StatelessWidget {
                 children: [
                   // Email
                   CustomTextFormField(
-                    validator: (String? value) {
-                      return validInput(value!, 5, 30, "email");
-                    },
                     // الـ
                     //onFieldSubmitted
                     // تشتغل لما المستخدم يضغط
@@ -112,15 +109,15 @@ class SignInForm extends StatelessWidget {
                     hint: "19".tr,
                     textcontroller: signInController.emailCont,
                     focusNode: signInController.emailFocusNode,
+                    validator: (value) {
+                      return validInput(value!, 5, 30, "email");
+                    },
                   ),
 
                   const SizedBox(height: 15),
 
                   // Password
                   CustomTextFormField(
-                    validator: (String? value) {
-                      return validInput(value!, 5, 50, "password");
-                    },
                     focusNode: signInController.passwordFocusNode,
                     isPassword: true,
                     label: "20".tr,
@@ -128,6 +125,9 @@ class SignInForm extends StatelessWidget {
                     // هنا بنستخدم
                     hint: "21",
                     textcontroller: signInController.passwordCont,
+                    validator: (String? value) {
+                      return validInput(value!, 5, 30, "password");
+                    },
                   ),
 
                   ForgotPasswordText(),
@@ -147,7 +147,6 @@ class SignInForm extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 15),
             Center(child: Text("23".tr)),
             const SizedBox(height: 15),

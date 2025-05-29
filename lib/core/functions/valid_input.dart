@@ -1,36 +1,43 @@
-import 'package:get/get_utils/src/get_utils/get_utils.dart';
+import 'package:get/get.dart';
+import 'package:get/get_utils/get_utils.dart';
 
-validInput(String value, int min, int max, String type) {
-  if (type == "userName") {
-    // GetUtils
-    // هي مكتبة من حزمة
-    //GetX
-    // توفر طرق جاهزة للتحقق من صحة البيانات مثل البريد الإلكتروني،
-    // اسم المستخدم، الأرقام، وغيرها.
-    // هنا نستخدم
-    // isUsername
-    // للتحقق إذا كانت القيمة المُدخلة صالحة
-    // كاسم مستخدم (تحتوي على حروف، أرقام، و_ فقط وطولها مناسب).
-
-    if (!GetUtils.isUsername(value)) {
-      return "Not a valid username";
+String? validInput(String input, int min, int max, String type) {
+  if (input.isEmpty) {
+    return "53".tr;
+  }
+  if (type == "otp") {
+    if (!RegExp(r'^[0-9]+$').hasMatch(input)) {
+      return "OTP code must contain only numbers";
     }
   }
+  if (type == "password") {
+    // تحقق من الحروف الكبيرة
+    bool hasUppercase = input.contains(RegExp(r'[A-Z]'));
+    // تحقق من الحروف الصغيرة
+    bool hasLowercase = input.contains(RegExp(r'[a-z]'));
+    // تحقق من الأرقام
+    bool hasNumber = input.contains(RegExp(r'[0-9]'));
+    // تحقق من الرموز
+    bool hasSymbol = input.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
+    if (!hasUppercase || !hasLowercase || !hasNumber || !hasSymbol) {
+      return "57".tr; // رسالة كلمة مرور ضعيفة
+    }
+  }
+
   if (type == "email") {
-    // هنا نستخدم isEmail للتحقق إذا كانت القيمة المُدخلة صالحة
-    // كبريد إلكتروني.
-    if (!GetUtils.isEmail(value)) {
-      return "Not a valid email";
+    if (!GetUtils.isEmail(input)) {
+      return "54".tr;
     }
   }
 
-  if (value.length < min) {
-    return "This field must be at least $min characters";
+  if (input.length < min) {
+    return "55".trParams({"min": min.toString()});
   }
-  if (value.length > max) {
-    return "This field must be at most $max characters";
+
+  if (input.length > max) {
+    return "56".trParams({"max": max.toString()});
   }
-  if (value.isEmpty) {
-    return "This field must not be empty";
-  }
+
+  return null;
 }
