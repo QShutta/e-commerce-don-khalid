@@ -122,6 +122,13 @@ class MyTranslation extends Translations {
       "50": "Your Account Has Been Created Successfully",
       "51": "Welcome! You can now shop and enjoy our services.",
       "52": "Skip",
+      "53": "This field is required",
+      "54": "Please enter a valid email address",
+      "55": "Please enter at least @min characters",
+      "56": "Please enter no more than @max characters",
+      "57": "Password must contain uppercase, lowercase, number, and symbol",
+      "58": "Error",
+      "59": "Password and Confirm Password do not match",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -180,6 +187,13 @@ class MyTranslation extends Translations {
       "50": "تم إنشاء حسابك بنجاح",
       "51": "يمكنك الآن التسوق والاستمتاع بخدماتنا",
       "52": "تخطي",
+      "53": "هذا الحقل مطلوب",
+      "54": "الرجاء إدخال بريد إلكتروني صالح",
+      "55": "الرجاء إدخال على الأقل @min حروف",
+      "56": "الرجاء عدم إدخال أكثر من @max حروف",
+      "57": "يجب أن تحتوي كلمة المرور على حرف كبير وصغير\n ورقم ورمز",
+      "58": "خطأ",
+      "59": "كلمة المرور وتأكيد كلمة المرور غير متطابقين",
     },
   };
 }

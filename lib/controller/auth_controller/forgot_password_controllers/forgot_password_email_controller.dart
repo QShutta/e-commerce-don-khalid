@@ -3,13 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 abstract class ForgotPasswordEmailController extends GetxController {
-  sendVarficationCode();
   goToVerficationCodePage();
   goToSignInPage();
 }
 
 class ForgotPasswordEmailControllerImp extends ForgotPasswordEmailController {
   late TextEditingController textEmailCont;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -24,9 +24,6 @@ class ForgotPasswordEmailControllerImp extends ForgotPasswordEmailController {
   }
 
   @override
-  void sendVarficationCode() {}
-
-  @override
   goToSignInPage() {
     // TODO: implement goToSignInPage
     throw UnimplementedError();
@@ -34,9 +31,14 @@ class ForgotPasswordEmailControllerImp extends ForgotPasswordEmailController {
 
   @override
   goToVerficationCodePage() {
-    Get.toNamed(
-      AppRoutes.forgotPasswordOtp,
-      arguments: {"email": textEmailCont.text},
-    );
+    if (formKey.currentState!.validate()) {
+      Get.toNamed(
+        AppRoutes.forgotPasswordOtp,
+        arguments: {"email": textEmailCont.text},
+      );
+      print("valid");
+    } else {
+      print("not valid");
+    }
   }
 }

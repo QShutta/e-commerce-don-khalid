@@ -23,6 +23,7 @@ class SignUpControllerImp extends SignUpController {
   late FocusNode emailFocusNode;
   late FocusNode nameFocusNode;
   late FocusNode confirmPassword;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   late TextEditingController emailCont;
   late TextEditingController passwordCont;
@@ -47,7 +48,26 @@ class SignUpControllerImp extends SignUpController {
 
   @override
   signUp() {
-    // TODO: implement signUp logic
+    if (formKey.currentState!.validate()) {
+      if (passwordCont.text != confirmPasswordCont.text) {
+        Get.snackbar(
+          "58".tr,
+          "59".tr,
+          snackPosition: SnackPosition.BOTTOM, // تظهر في أسفل الشاشة
+          backgroundColor: Colors.red, // خلفية حمراء شفافة شوي
+          colorText: Colors.white, // نص أبيض واضح
+          margin: const EdgeInsets.all(10), // مسافة من حدود الشاشة
+          borderRadius: 8, // زوايا دائرية للنافذة
+          duration: const Duration(seconds: 3), // تظهر 3 ثواني ثم تختفي
+        );
+
+        return;
+      } else {
+        goToVerfyCode();
+      }
+    } else {
+      print("not valide");
+    }
   }
 
   @override

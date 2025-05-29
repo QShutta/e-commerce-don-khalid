@@ -20,7 +20,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.hint,
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
-    this.validator,
+    required this.validator,
     required this.textcontroller,
     this.focusNode,
     this.onFieldSubmitted,

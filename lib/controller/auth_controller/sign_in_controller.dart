@@ -29,7 +29,7 @@ class SignInControllerImp extends SignInController {
   late FocusNode emailFocusNode;
   late TextEditingController emailCont;
   late TextEditingController passwordCont;
-
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void onInit() {
     passwordFocusNode = FocusNode();
@@ -48,7 +48,13 @@ class SignInControllerImp extends SignInController {
   goToSignUp() {}
 
   @override
-  signIn() {}
+  signIn() {
+    if (formKey.currentState!.validate()) {
+      print("Valid");
+    } else {
+      print("Invalie");
+    }
+  }
 
   @override
   signInWithFacebook() {

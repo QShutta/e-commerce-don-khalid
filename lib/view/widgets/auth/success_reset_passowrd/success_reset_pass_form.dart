@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SuccessResetPassForm extends StatelessWidget {
-  SuccessResetPassForm({super.key});
-  final ResetPasswordController resetCont = Get.put(ResetPasswordController());
-
+  const SuccessResetPassForm({super.key});
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -52,7 +50,7 @@ class SuccessResetPassForm extends StatelessWidget {
                   text: "13".tr,
                   onPressed: () {
                     FocusScope.of(context).unfocus();
-                    Get.toNamed(AppRoutes.signIn);
+                    Get.offAllNamed(AppRoutes.signIn);
                   },
                 ),
               ],
