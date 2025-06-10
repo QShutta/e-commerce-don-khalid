@@ -3,8 +3,6 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/data/data_source/static_data_source/static.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 // GetView<OnBoardingControllerImp> is a shortcut for using Get.find()

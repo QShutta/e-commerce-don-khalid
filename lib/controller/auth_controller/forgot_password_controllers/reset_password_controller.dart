@@ -1,8 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 abstract class ResetPasswordController extends GetxController {
   resetPassword();

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SuccessSignUpForm extends StatelessWidget {
-  SuccessSignUpForm({super.key});
+  const SuccessSignUpForm({super.key});
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

@@ -12,12 +12,24 @@ class InitMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     bool? isFirstTime = myServices.sharedPreferences.getBool("isFirstTime");
+    bool? isLoggedIn = myServices.sharedPreferences.getBool("isLoggedIn");
 
-    if (isFirstTime != null || isFirstTime == false) {
+    // First-time app open: No isFirstTime flag set yet
+    if (isFirstTime == null) {
+      return const RouteSettings(name: AppRoutes.languageSelection);
+    }
+
+    // After language and onboarding, isFirstTime is false, go to sign-in
+    if (isFirstTime == false && isLoggedIn == null) {
       return const RouteSettings(name: AppRoutes.signIn);
     }
 
-    // مش أول مرة، نوديه لتسجيل الدخول
-    return null; // Return null if no other condition is met
+    // Already signed in, go to home
+    if (isLoggedIn == true) {
+      return const RouteSettings(name: AppRoutes.home);
+    }
+
+    // Default to sign-in if no other condition is met
+    return const RouteSettings(name: AppRoutes.signIn);
   }
 }

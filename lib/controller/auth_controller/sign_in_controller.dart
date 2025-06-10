@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // ✅ استخدمنا
@@ -48,10 +49,15 @@ class SignInControllerImp extends SignInController {
   goToSignUp() {}
 
   @override
-  signIn() {
+  signIn() async {
     var formData = formKey.currentState;
     if (formData!.validate()) {
-      print("Valid");
+      // ✅ لو التحقق تم بنجاح
+      MyServices myServices = Get.find();
+      await myServices.sharedPreferences.setBool("isLoggedIn", true);
+
+      // ✅ يروح على الهوم
+      Get.offAllNamed(AppRoutes.home);
     } else {
       print("Form is not valid");
     }

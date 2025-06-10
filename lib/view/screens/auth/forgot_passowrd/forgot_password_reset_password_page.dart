@@ -5,7 +5,6 @@ import 'package:e_commerce_halfa/view/widgets/auth/reset_password_header/reset_p
 import 'package:e_commerce_halfa/view/widgets/auth/reset_password_header/reset_password_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ForgotPasswordResetPassowrdPage extends StatelessWidget {
   const ForgotPasswordResetPassowrdPage({super.key});

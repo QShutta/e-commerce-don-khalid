@@ -129,6 +129,10 @@ class MyTranslation extends Translations {
       "57": "Password must contain uppercase, lowercase, number, and symbol",
       "58": "Error",
       "59": "Password and Confirm Password do not match",
+      "60": "Alert",
+      "61": "Are you sure you want to exit?",
+      "62": "Yes, Exit",
+      "63": "Cancel",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -194,6 +198,10 @@ class MyTranslation extends Translations {
       "57": "يجب أن تحتوي كلمة المرور على حرف كبير وصغير\n ورقم ورمز",
       "58": "خطأ",
       "59": "كلمة المرور وتأكيد كلمة المرور غير متطابقين",
+      "60": "تنبيه",
+      "61": "هل أنت متأكد أنك تريد الخروج؟",
+      "62": "نعم، أخرج",
+      "63": "إلغاء",
     },
   };
 }
