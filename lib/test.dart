@@ -11,26 +11,27 @@ class Test extends StatefulWidget {
 
 class _TestState extends State<Test> {
   var res;
-  initlization() async {
+  initlizeVar() async {
     res = await checkInternet();
-    print("-----------------------------------------------------------");
-    print("The internet connection status is: $res");
-    print("-----------------------------------------------------------");
+    print("------------------------------------------------------");
+    print("Internet status: $res");
+    print("------------------------------------------------------");
   }
 
   @override
   void initState() {
     super.initState();
-    initlization();
+    initlizeVar();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text("Test Page")),
       body: Center(
         child: Text(
-          'Test Page',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          "This is a test page",
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
     );
