@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/bindings/inital_binding.dart';
 import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
@@ -5,7 +6,7 @@ import 'package:e_commerce_halfa/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//befoer of 35
+//befoer of 37
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initlizeServices();
@@ -28,6 +29,7 @@ class MainApp extends StatelessWidget {
       locale: langCont.lang,
       // locale: Locale("en"),
       translations: MyTranslation(),
+      initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
       home: Test(),
       // getPages: appPages,
