@@ -1,38 +1,38 @@
-import 'package:e_commerce_halfa/core/functions/check_internet.dart';
+import 'package:e_commerce_halfa/controller/test_controller.dart';
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
-class Test extends StatefulWidget {
+class Test extends StatelessWidget {
   const Test({super.key});
 
   @override
-  State<Test> createState() => _TestState();
-}
-
-class _TestState extends State<Test> {
-  var res;
-  initlizeVar() async {
-    res = await checkInternet();
-    print("------------------------------------------------------");
-    print("Internet status: $res");
-    print("------------------------------------------------------");
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initlizeVar();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    TestController testCont = Get.put(
+      TestController(),
+    ); // Initialize the controller
     return Scaffold(
-      appBar: AppBar(title: const Text("Test Page")),
-      body: Center(
-        child: Text(
-          "This is a test page",
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
+      appBar: AppBar(title: const Text('Test Page')),
+      body: GetBuilder<TestController>(
+        init: TestController(),
+        builder: (_) {
+          if (testCont.statusRequest == StautusRequest.loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (testCont.statusRequest == StautusRequest.offlineFailure) {
+            return Center(child: Text("Offline failure"));
+          } else if (testCont.statusRequest == StautusRequest.serverFailure) {
+            return Center(child: Text("Server failure"));
+          } else {
+            return ListView.builder(
+              itemCount: testCont.data.length,
+              itemBuilder: (context, index) {
+                return Text("${testCont.data[index]['user_name']}");
+              },
+            );
+          }
+        },
       ),
     );
   }

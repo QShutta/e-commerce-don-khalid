@@ -4,33 +4,34 @@ import 'package:e_commerce_halfa/data/data_source/remote/test_data.dart';
 import 'package:get/get.dart';
 
 class TestController extends GetxController {
-  TestData testData = TestData(Get.find());
-  //حنعمل متغير من نوعList
-  //عشان نخن البيناات جوهاهو.
-  List data = [];
-  late StautusRequest statusRequest;
-  getData() async {
-    //The inital value for the statusRequest is loading.
-    //So the value of the statusRequest before the request is made is loading.
-    //And when finish getting the data, we will change the value of the statusRequest to success or failure.
-    statusRequest = StautusRequest.loading;
-    //We have to be careful that the getData function that we means here is the getData
-    //that exist in the data folder that contain TestData class.
-    //And the getData function that we means here is the getData function that exist in the TestData class.
-    var response = await testData.getData();
-    //After getting the data we have to change the value of the statusRequest
-    //So we have method called handleStatusRequest that will handle the statusRequest
-    statusRequest = hanldingStatusRequest(response);
-    if (statusRequest == StautusRequest.success) {
-      data.addAll(response['data']);
-    }
-    update(); //This will update the UI
+  onInit() {
+    // دالة تنفذ عند تهيئة الكلاس
+    getData(); // نجيب البيانات من السيرفر
+    super.onInit(); // ننادي الدالة الأساسية من الكلاس الأب
   }
 
-  @override
-  void onInit() {
-    //This will be called when the controller is initialized
-    getData(); //Call the getData function when the controller is initialized
-    super.onInit();
+  // كلاس مسؤول عن التحكم في بيانات الشاشة
+  TestData testData = TestData(
+    Get.find(),
+  ); // جايب بيانات عن طريق خدمة جاهزة (dependency injection)
+  late StautusRequest
+  statusRequest; // متغير يخزن حالة العملية (هل جاري تحميل، نجح أو فشل)
+  List data = []; // قائمة لتخزين البيانات اللي جايه من السيرفر
+  getData() async {
+    // دالة تجيب البيانات من السيرفر بشكل غير متزامن
+    statusRequest = StautusRequest.loading; // نعلن إنو جاري تحميل البيانات
+    update(); // نحدث واجهة المستخدم عشان تظهر حالة التحميل
+    var response = await testData.getData(); // ننتظر الرد من السيرفر (البيانات)
+    statusRequest = handlingStatusRequest(
+      response,
+    ); // نفحص حالة الرد هل نجاح أو فشل
+    update();
+    if (statusRequest == StautusRequest.success) {
+      // لو الرد نجح
+      data.addAll(response['data']); // نضيف البيانات اللي جت في قائمة البيانات
+      print("-----------------------------------------------");
+      print("my data is :${data}");
+      print("-----------------------------------------------");
+    }
   }
 }
