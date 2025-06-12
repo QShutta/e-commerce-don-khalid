@@ -10,25 +10,24 @@ class Test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TestController testCont = Get.put(
-      TestController(),
-    ); // Initialize the controller
+    TestController testController = Get.put(TestController());
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Test Page')),
       body: GetBuilder<TestController>(
-        init: TestController(),
-        builder: (_) {
-          if (testCont.statusRequest == StautusRequest.loading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (testCont.statusRequest == StautusRequest.offlineFailure) {
-            return Center(child: Text("Offline failure"));
-          } else if (testCont.statusRequest == StautusRequest.serverFailure) {
-            return Center(child: Text("Server failure"));
+        builder: (controller) {
+          if (testController.statusRequest == StautusRequest.loading) {
+            return Center(child: CircularProgressIndicator());
+          } else if (testController.statusRequest ==
+              StautusRequest.offlineFailure) {
+            return Center(child: Text("Offline Failure"));
+          } else if (testController.statusRequest ==
+              StautusRequest.serverFailure) {
+            return Center(child: Text("Server Failure"));
           } else {
             return ListView.builder(
-              itemCount: testCont.data.length,
+              itemCount: testController.data.length,
               itemBuilder: (context, index) {
-                return Text("${testCont.data[index]['user_name']}");
+                return Text("${testController.data[index]["user_name"]}");
               },
             );
           }
