@@ -25,7 +25,11 @@ class TestController extends GetxController {
     //So we have method called handleStatusRequest that will handle the statusRequest
     statusRequest = handlingStatusRequest(response);
     if (statusRequest == StautusRequest.success) {
-      data.addAll(response['data']);
+      if (response["status"] == "success") {
+        data.addAll(response['data']);
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
     }
     update(); //This will update the UI
   }
