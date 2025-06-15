@@ -1,5 +1,7 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HnadlingDataView extends StatelessWidget {
   const HnadlingDataView({
@@ -13,6 +15,10 @@ class HnadlingDataView extends StatelessWidget {
   Widget build(BuildContext context) {
     return stautusRequest == StautusRequest.loading
         ? Center(child: CircularProgressIndicator())
+        // ? Center(
+        //   child: // Load a Lottie file from your assets
+        //       Lottie.asset(ImageAssets.loading),
+        // )
         : stautusRequest == StautusRequest.offlineFailure
         ? Center(child: Text("Offline Failure"))
         : stautusRequest == StautusRequest.failure
