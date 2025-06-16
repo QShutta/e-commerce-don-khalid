@@ -14,17 +14,29 @@ class HnadlingDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return stautusRequest == StautusRequest.loading
-        ? Center(child: CircularProgressIndicator())
-        // ? Center(
-        //   child: // Load a Lottie file from your assets
-        //       Lottie.asset(ImageAssets.loading),
-        // )
+        // ? Center(child: CircularProgressIndicator())
+        ? Center(
+          child: // Load a Lottie file from your assets
+              Lottie.asset(ImageAssets.loading, width: 120, height: 120),
+        )
         : stautusRequest == StautusRequest.offlineFailure
-        ? Center(child: Text("Offline Failure"))
+        // ? Center(child: Text("Offline Failure"))
+        ? Center(
+          child: // Load a Lottie file from your assets
+              Lottie.asset(ImageAssets.offline, width: 350, height: 350),
+        )
         : stautusRequest == StautusRequest.failure
-        ? Center(child: Text("No Data"))
+        // ? Center(child: Text("No Data"))
+        ? Center(
+          child: // Load a Lottie file from your assets
+              Lottie.asset(ImageAssets.noDataFound, width: 350, height: 350),
+        )
         : stautusRequest == StautusRequest.serverFailure
-        ? Center(child: Text("Server Failure"))
+        // ? Center(child: Text("Server Failure"))
+        ? Center(
+          child: // Load a Lottie file from your assets
+              Lottie.asset(ImageAssets.serverFailure, width: 350, height: 350),
+        )
         : widget;
   }
 }

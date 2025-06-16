@@ -9,7 +9,11 @@
 
 class ImageAssets {
   static const String loading = 'assets/images/data_states/loading.json';
-
+  static const String noDataFound =
+      'assets/images/data_states/no_data_found.json';
+  static const String offline = 'assets/images/data_states/offline.json';
+  static const String serverFailure =
+      'assets/images/data_states/server_failure.json';
   static const String onBoarding1 = 'assets/images/onboarding/on_board1.svg';
   static const String onBoarding2 = 'assets/images/onboarding/on_board2.svg';
   static const String onBoarding3 = 'assets/images/onboarding/on_board3.svg';

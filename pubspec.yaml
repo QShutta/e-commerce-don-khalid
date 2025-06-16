@@ -41,7 +41,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    # - assets/images/data_states/loading.json
+    - assets/images/data_states/
     - assets/images/onboarding/on_board1.svg
     - assets/images/onboarding/on_board2.svg
     - assets/images/onboarding/on_board3.svg
