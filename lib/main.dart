@@ -2,6 +2,7 @@ import 'package:e_commerce_halfa/bindings/inital_binding.dart';
 import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
+import 'package:e_commerce_halfa/routest.dart';
 import 'package:e_commerce_halfa/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,8 +32,8 @@ class MainApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
-      home: Test(),
-      // getPages: appPages,
+      // home: Test(),
+      getPages: appPages,
     );
   }
 }
