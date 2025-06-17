@@ -24,6 +24,9 @@ class Crud {
         if (res.statusCode == 200 || res.statusCode == 201) {
           // If the request is successful
           Map resBody = json.decode(res.body);
+          print(
+            " -------------------------------$resBody---------------------------",
+          );
           return Right(resBody);
         } else {
           // If the request fails, return a failure status
@@ -37,7 +40,7 @@ class Crud {
         return Left(StautusRequest.offlineFailure);
       }
     } catch (_) {
-      return Left(StautusRequest.serverFailure);
+      return Left(StautusRequest.serverException);
     }
   }
 }

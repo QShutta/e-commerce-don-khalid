@@ -7,4 +7,5 @@ enum StautusRequest {
   loading,
   offlineFailure,
   serverFailure, // فشل بسبب مشكلة في السيرفر نفسه (مثل تعطل السيرفر أو خطأ داخلي)
+  serverException,
 }

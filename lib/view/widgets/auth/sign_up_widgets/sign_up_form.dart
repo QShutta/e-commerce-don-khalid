@@ -179,6 +179,9 @@ class SignUpForm extends StatelessWidget {
                     SignButton(
                       text: "15".tr,
                       onPressed: () {
+                        print(
+                          "The button click........................................",
+                        );
                         // هنا بنستخدم
                         // FocusScope.of(context).unfocus()
                         // عشان نقفل الكيبورد لما نضغط على زر تسجيل الدخول.

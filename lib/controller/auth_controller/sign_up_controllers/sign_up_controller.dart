@@ -1,4 +1,7 @@
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/auth/sign_up_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,12 +27,13 @@ class SignUpControllerImp extends SignUpController {
   late FocusNode nameFocusNode;
   late FocusNode confirmPassword;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  List data = [];
+  SignUpData signUpData = SignUpData(Get.find());
   late TextEditingController emailCont;
   late TextEditingController passwordCont;
   late TextEditingController nameCont;
   late TextEditingController confirmPasswordCont;
-
+  late StautusRequest stautusRequest;
   @override
   void onInit() {
     // ✅ تهيئة المتغيرات هنا عشان تكون جاهزة أول ما يتم إنشاء الكلاس
@@ -47,9 +51,15 @@ class SignUpControllerImp extends SignUpController {
   }
 
   @override
-  signUp() {
+  signUp() async {
     if (formKey.currentState!.validate()) {
+      print("--------------------------validation------------------------");
+      //This to handle the case of that the password and the confirmation of the password
+      //is not matching each other.
       if (passwordCont.text != confirmPasswordCont.text) {
+        print(
+          "------------------------password mismatch conditon-------------------",
+        );
         Get.snackbar(
           "58".tr,
           "59".tr,
@@ -63,7 +73,37 @@ class SignUpControllerImp extends SignUpController {
 
         return;
       } else {
-        goToVerfyCode();
+        print(
+          "-------------------------enter the secound condition before of loading---------------",
+        );
+        stautusRequest = StautusRequest.loading;
+        update();
+        print(
+          "-------------------------enter the secound condition after of loading---------------",
+        );
+        var response = await signUpData.postData(
+          nameCont.text,
+          emailCont.text,
+          passwordCont.text,
+        );
+        print(
+          "-------------------------after signupdata.postdata---------------",
+        );
+        stautusRequest = handlingStatusRequest(response);
+        update();
+        if (stautusRequest == StautusRequest.success) {
+          if (response["status"] == "success") {
+            data.add(response['data']);
+            goToVerfyCode();
+          } else {
+            stautusRequest = StautusRequest.failure;
+            //الفشل بحصل فقط في حال انو الايميل هو كانمسجل مسبقا .
+            Get.defaultDialog(
+              title: "Warning",
+              middleText: "The email is already exist",
+            );
+          }
+        }
       }
     } else {
       print("not valide");

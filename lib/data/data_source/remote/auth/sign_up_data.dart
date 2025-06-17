@@ -5,9 +5,12 @@ class SignUpData {
   Crud crud;
   SignUpData(this.crud);
 
-  Future postData(String userName, String email, String password) async {
-    var response = await crud.postData(AppLinkApi.signUp, {
-      "user_name": userName,
+  Future postData(String name, String email, String password) async {
+    print(
+      "-------------------------inside the post data method---------------",
+    );
+    var response = await crud.postData(AppLinkApi.signUpLink, {
+      "user_name": name,
       "user_email": email,
       "user_password": password,
     });
