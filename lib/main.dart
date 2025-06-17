@@ -3,11 +3,10 @@ import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/routest.dart';
-import 'package:e_commerce_halfa/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//befoer of 37
+//befoer of 43
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initlizeServices();

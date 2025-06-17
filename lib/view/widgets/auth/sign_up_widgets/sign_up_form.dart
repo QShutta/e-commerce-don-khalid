@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/valid_input.dart';
 
@@ -18,6 +19,11 @@ class SignUpForm extends StatelessWidget {
   final SignUpControllerImp signUpController = Get.put(SignUpControllerImp());
   @override
   Widget build(BuildContext context) {
+    // TODO: handle loading state here after watching the next lesson
+
+    // if (signUpController.stautusRequest == StautusRequest.loading) {
+    //   return Center(child: CircularProgressIndicator());
+    // }
     return // الجزء السفلي (نموذج تسجيل الدخول)
     // استخدمنا
     //ClipRRect
@@ -200,3 +206,7 @@ class SignUpForm extends StatelessWidget {
     );
   }
 }
+
+
+
+// Widget buildSignUpFormContent(BuildContext context,SignUpControllerImp controller){}

@@ -33,6 +33,7 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController passwordCont;
   late TextEditingController nameCont;
   late TextEditingController confirmPasswordCont;
+  //When did this is going to be initlized?xxxxx
   late StautusRequest stautusRequest;
   @override
   void onInit() {
@@ -73,27 +74,32 @@ class SignUpControllerImp extends SignUpController {
 
         return;
       } else {
-        print(
-          "-------------------------enter the secound condition before of loading---------------",
-        );
         stautusRequest = StautusRequest.loading;
         update();
-        print(
-          "-------------------------enter the secound condition after of loading---------------",
-        );
         var response = await signUpData.postData(
           nameCont.text,
           emailCont.text,
           passwordCont.text,
         );
-        print(
-          "-------------------------after signupdata.postdata---------------",
-        );
         stautusRequest = handlingStatusRequest(response);
         update();
         if (stautusRequest == StautusRequest.success) {
           if (response["status"] == "success") {
+            // ✅ استخدمنا
+            //`add` بدل `addAll`
+            //لأن البيانات الراجعة هنا عبارة عن عنصر واحد
+            //(Map) وليس List.
+            // لو استخدمنا
+            //`addAll`
+            // حيحصل خطأ لأن
+            //`addAll`
+            // بتحتاج
+            //List أو Iterable،
+            // لكن إحنا بنضيف عنصر واحد فقط.
+            // 👨‍💻 تذكير للمستقبل: لو كنت بتتعامل مع List من العناصر، ساعتها تستخدم
+            // `addAll(response['data'])`.
             data.add(response['data']);
+
             goToVerfyCode();
           } else {
             stautusRequest = StautusRequest.failure;
