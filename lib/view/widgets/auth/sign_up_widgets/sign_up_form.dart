@@ -2,7 +2,6 @@ import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/valid_input.dart';
-
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/text_form_field_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +15,11 @@ class SignUpForm extends StatelessWidget {
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final SignUpControllerImp signUpController = Get.put(SignUpControllerImp());
+  final SignUpControllerImp signUpController = Get.find();
   @override
   Widget build(BuildContext context) {
     // TODO: handle loading state here after watching the next lesson
 
-    // if (signUpController.stautusRequest == StautusRequest.loading) {
-    //   return Center(child: CircularProgressIndicator());
-    // }
     return // الجزء السفلي (نموذج تسجيل الدخول)
     // استخدمنا
     //ClipRRect

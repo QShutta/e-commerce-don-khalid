@@ -34,9 +34,10 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController nameCont;
   late TextEditingController confirmPasswordCont;
   //When did this is going to be initlized?xxxxx
-  late StautusRequest stautusRequest;
+  StautusRequest? stautusRequest;
   @override
   void onInit() {
+    stautusRequest = StautusRequest.none;
     // ✅ تهيئة المتغيرات هنا عشان تكون جاهزة أول ما يتم إنشاء الكلاس
     emailCont = TextEditingController();
     passwordCont = TextEditingController();
@@ -75,7 +76,9 @@ class SignUpControllerImp extends SignUpController {
         return;
       } else {
         stautusRequest = StautusRequest.loading;
+
         update();
+
         var response = await signUpData.postData(
           nameCont.text,
           emailCont.text,
@@ -102,8 +105,10 @@ class SignUpControllerImp extends SignUpController {
 
             goToVerfyCode();
           } else {
-            stautusRequest = StautusRequest.failure;
-            //الفشل بحصل فقط في حال انو الايميل هو كانمسجل مسبقا .
+            // ✅ رجعنا الحالة إلى none علشان ما نعرض شاشة الخطأ (لوتي)
+            // ونخلي المستخدم يفضل في صفحة التسجيل بعد ما نظهر ليه التحذير
+            stautusRequest = StautusRequest.none;
+
             Get.defaultDialog(
               title: "Warning",
               middleText: "The email is already exist",

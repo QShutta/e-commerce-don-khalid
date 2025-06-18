@@ -1,3 +1,6 @@
+import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
+import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
@@ -11,34 +14,42 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SignUpControllerImp signUpController = Get.put(SignUpControllerImp());
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColor.primaryColor, // Match top Container's color
       body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Column(
-              children: [
-                // الجزء العلوي (الخلفية الملونة)
-                SignHeader(
-                  imagePath: ImageAssets.signUpImage,
-                  title: "27".tr,
+        child: GetBuilder<SignUpControllerImp>(
+          builder: (controller) {
+            return HnadlingDataView(
+              stautusRequest: signUpController.stautusRequest!,
+              widget: ListView(
+                shrinkWrap: true,
+                children: [
+                  Column(
+                    children: [
+                      // الجزء العلوي (الخلفية الملونة)
+                      SignHeader(
+                        imagePath: ImageAssets.signUpImage,
+                        title: "27".tr,
 
-                  subtitle: "28".tr,
-                  buttonText: "22".tr,
-                  onPressed: () {
-                    Get.offAllNamed(AppRoutes.signIn);
-                  },
-                  backgroundColor: AppColor.primaryColor,
-                  height: 300,
-                ),
+                        subtitle: "28".tr,
+                        buttonText: "22".tr,
+                        onPressed: () {
+                          Get.offAllNamed(AppRoutes.signIn);
+                        },
+                        backgroundColor: AppColor.primaryColor,
+                        height: 300,
+                      ),
 
-                // الجزء السفلي (نموذج تسجيل الدخول)
-                SignUpForm(),
-              ],
-            ),
-          ],
+                      // الجزء السفلي (نموذج تسجيل الدخول)
+                      SignUpForm(),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

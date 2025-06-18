@@ -1,4 +1,5 @@
 enum StautusRequest {
+  none,
   success,
   failure, //نحننا هنا قاصدين بالفشل انو هو قدر يصل للصفحة لوكن
   //بفشل لمهمة محددة
