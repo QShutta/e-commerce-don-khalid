@@ -35,8 +35,10 @@ class SignUpOtp extends StatelessWidget {
 
                     // الجزء السفلي (نموذج تسجيل الدخول)
                     OtpForm(
-                      onSubmit: (String) {
-                        otpControllerImp.goToSuccessSignUpPage();
+                      onSubmit: (String verfyCode) {
+                        otpControllerImp.varfyCode = verfyCode;
+
+                        otpControllerImp.checkCode();
                       },
                     ),
                   ],

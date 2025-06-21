@@ -13,7 +13,7 @@ class OtpForm extends StatelessWidget {
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final EmailOtpControllerImp otpCont = Get.put(EmailOtpControllerImp());
+  final EmailOtpControllerImp otpCont = Get.find();
   @override
   Widget build(BuildContext context) {
     return // الجزء السفلي (نموذج تسجيل الدخول)

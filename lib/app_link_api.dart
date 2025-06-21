@@ -5,4 +5,5 @@ class AppLinkApi {
 
   //--------------------------------Auth======================================
   static const String signUpLink = "$serverUrl/auth/signup.php";
+  static const String signUpOtpLink = "$serverUrl/auth/varfy_code.php";
 }
