@@ -17,7 +17,7 @@ class HnadlingDataView extends StatelessWidget {
         // ? Center(child: CircularProgressIndicator())
         ? Center(
           child: // Load a Lottie file from your assets
-              Lottie.asset(ImageAssets.loading, width: 120, height: 120),
+              Lottie.asset(ImageAssets.loading, width: 100, height: 100),
         )
         : stautusRequest == StautusRequest.offlineFailure
         // ? Center(child: Text("Offline Failure"))

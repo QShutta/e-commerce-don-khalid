@@ -1,5 +1,4 @@
 import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
-import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/valid_input.dart';
 
@@ -16,7 +15,7 @@ class SignUpForm extends StatelessWidget {
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final SignUpControllerImp signUpController = Get.put(SignUpControllerImp());
+  final SignUpControllerImp signUpController = Get.find();
   @override
   Widget build(BuildContext context) {
     // TODO: handle loading state here after watching the next lesson

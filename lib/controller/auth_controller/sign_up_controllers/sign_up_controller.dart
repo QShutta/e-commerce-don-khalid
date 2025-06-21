@@ -34,9 +34,10 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController nameCont;
   late TextEditingController confirmPasswordCont;
   //When did this is going to be initlized?xxxxx
-  late StautusRequest stautusRequest;
+  StautusRequest? stautusRequest;
   @override
   void onInit() {
+    stautusRequest = StautusRequest.none;
     // ✅ تهيئة المتغيرات هنا عشان تكون جاهزة أول ما يتم إنشاء الكلاس
     emailCont = TextEditingController();
     passwordCont = TextEditingController();
@@ -99,7 +100,6 @@ class SignUpControllerImp extends SignUpController {
             // 👨‍💻 تذكير للمستقبل: لو كنت بتتعامل مع List من العناصر، ساعتها تستخدم
             // `addAll(response['data'])`.
             data.add(response['data']);
-
             goToVerfyCode();
           } else {
             stautusRequest = StautusRequest.failure;

@@ -5,6 +5,7 @@ enum StautusRequest {
   //علي سبيل المثال نحننننننا حاولنا ننشئ حساب وادخلنا بريد إلكتروني
   //موجود مسبقا
   loading,
+  none,
   offlineFailure,
   serverFailure, // فشل بسبب مشكلة في السيرفر نفسه (مثل تعطل السيرفر أو خطأ داخلي)
   serverException,
