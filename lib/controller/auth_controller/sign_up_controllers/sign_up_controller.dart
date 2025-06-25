@@ -102,7 +102,6 @@ class SignUpControllerImp extends SignUpController {
             // 👨‍💻 تذكير للمستقبل: لو كنت بتتعامل مع List من العناصر، ساعتها تستخدم
             // `addAll(response['data'])`.
             data.add(response['data']);
-
             goToVerfyCode();
           } else {
             // ✅ رجعنا الحالة إلى none علشان ما نعرض شاشة الخطأ (لوتي)

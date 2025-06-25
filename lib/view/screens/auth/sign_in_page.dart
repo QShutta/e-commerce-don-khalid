@@ -1,3 +1,5 @@
+import 'package:e_commerce_halfa/controller/auth_controller/sign_in_controller.dart';
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
@@ -6,10 +8,12 @@ import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_form.
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+  SignInPage({super.key});
 
+  final SignInControllerImp signInController = Get.put(SignInControllerImp());
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -44,33 +48,63 @@ class SignInPage extends StatelessWidget {
         resizeToAvoidBottomInset: true,
         backgroundColor: AppColor.primaryColor, // Match top Container's color
         body: SafeArea(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Column(
+          child: GetBuilder<SignInControllerImp>(
+            builder: (controller) {
+              return Stack(
                 children: [
-                  // الجزء العلوي (الخلفية الملونة)
-                  SignHeader(
-                    imagePath: ImageAssets.signInImage,
-                    title: "13".tr,
-                    subtitle: "14".tr,
-                    buttonText: "15".tr,
-                    onPressed: () {
-                      // مثلاً تنقل لصفحة التسجيل
-                      Get.toNamed(
-                        AppRoutes.signUp,
-                        // مدة التحريك (0.5 ثانية)
-                      );
-                    },
-                    backgroundColor: AppColor.primaryColor,
-                    height: 300,
-                  ),
+                  ListView(
+                    shrinkWrap: true,
+                    children: [
+                      Column(
+                        children: [
+                          // الجزء العلوي (الخلفية الملونة)
+                          SignHeader(
+                            imagePath: ImageAssets.signInImage,
+                            title: "13".tr,
+                            subtitle: "14".tr,
+                            buttonText: "15".tr,
+                            onPressed: () {
+                              // مثلاً تنقل لصفحة التسجيل
+                              Get.toNamed(
+                                AppRoutes.signUp,
+                                // مدة التحريك (0.5 ثانية)
+                              );
+                            },
+                            backgroundColor: AppColor.primaryColor,
+                            height: 300,
+                          ),
 
-                  // الجزء السفلي (نموذج تسجيل الدخول)
-                  SignInForm(),
+                          // الجزء السفلي (نموذج تسجيل الدخول)
+                          SignInForm(),
+                        ],
+                      ),
+                    ],
+                  ),
+                  if (signInController.stautusRequest == StautusRequest.loading)
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white, // لون خلفية اللودينق
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Lottie.asset(
+                          ImageAssets.loading,
+                          width: 100,
+                          height: 100,
+                        ),
+                      ),
+                    ),
                 ],
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),
