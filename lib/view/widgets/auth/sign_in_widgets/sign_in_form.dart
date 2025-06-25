@@ -16,7 +16,7 @@ class SignInForm extends StatelessWidget {
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final SignInControllerImp signInController = Get.put(SignInControllerImp());
+  final SignInControllerImp signInController = Get.find();
   @override
   Widget build(BuildContext context) {
     return // الجزء السفلي (نموذج تسجيل الدخول)
