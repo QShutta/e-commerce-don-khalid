@@ -3,8 +3,10 @@ import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/auth/signin_data.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class SignInController extends GetxController {
   signIn();
@@ -20,11 +22,17 @@ class SignInControllerImp extends SignInController {
 
   late TextEditingController emailCont;
   late TextEditingController passwordCont;
-  StautusRequest? stautusRequest; //When did this ver will be initlized?
+  StautusRequest stautusRequest = StautusRequest.none;
+  MyServices myServices = Get.find();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   SignInData signInData = SignInData(Get.find());
   @override
   void onInit() {
+    FirebaseMessaging.instance.getToken().then((token) {
+      print("----------------------------------------");
+      print("Firebase Token: $token");
+      print("----------------------------------------");
+    });
     passwordFocusNode = FocusNode();
     emailFocusNode = FocusNode();
 
@@ -56,15 +64,42 @@ class SignInControllerImp extends SignInController {
       update();
       if (stautusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
-          MyServices myServices = Get.find();
           await myServices.sharedPreferences.setBool("isLoggedIn", true);
+          myServices.sharedPreferences.setString(
+            "user_id",
+            response["data"]["user_id"].toString(),
+          );
+          myServices.sharedPreferences.setString(
+            "user_name",
+            response["data"]["user_name"].toString(),
+          );
+          myServices.sharedPreferences.setString(
+            "user_email",
+            response["data"]["user_email"].toString(),
+          );
+
           Get.offAllNamed(AppRoutes.home);
         } else {
           stautusRequest = StautusRequest.failure;
-          //الفشل بحصل فقط في حال انو الايميل هو كانمسجل مسبقا .
           Get.defaultDialog(
-            title: "Warning",
-            middleText: "The email or password is incorrect",
+            title: "65".tr, // "تحذير" أو "Warning"
+            titleStyle: const TextStyle(
+              color: Colors.red,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            middleText: "64".tr, // "البريد الإلكتروني أو كلمة المرور غير صحيحة"
+            middleTextStyle: const TextStyle(
+              fontSize: 16,
+              color: Colors.black87,
+            ),
+            backgroundColor: Colors.white,
+            radius: 10,
+            confirm: ElevatedButton(
+              onPressed: () => Get.back(),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              child: Text("OK"),
+            ),
           );
         }
       }
@@ -79,7 +114,50 @@ class SignInControllerImp extends SignInController {
   }
 
   @override
-  signInWithGoogle() {
-    throw UnimplementedError();
+  signInWithGoogle() async {
+    try {
+      stautusRequest = StautusRequest.loading;
+      update();
+
+      final GoogleSignIn signIn = GoogleSignIn.instance;
+      await signIn.initialize(
+        clientId: 'YOUR_WEB_CLIENT_ID', // استبدلها بـ clientId للويب
+        // serverClientId: 'YOUR_SERVER_CLIENT_ID', // إذا كنت تستخدم خادم
+      );
+
+      // محاولة تسجيل الدخول التلقائي
+      GoogleSignInAccount? user =
+          await signIn.attemptLightweightAuthentication();
+
+      // إذا لم ينجح التسجيل التلقائي، نفّذ تسجيل يدوي
+      user ??= await signIn.authenticate();
+
+      await myServices.sharedPreferences.setBool("isLoggedIn", true);
+
+      await myServices.sharedPreferences.setString("google_id", user.id);
+      await myServices.sharedPreferences.setString(
+        "google_name",
+        user.displayName ?? "No Name",
+      );
+      await myServices.sharedPreferences.setString("google_email", user.email);
+
+      stautusRequest = StautusRequest.success;
+      Get.offAllNamed(AppRoutes.home);
+    } catch (e) {
+      stautusRequest = StautusRequest.failure;
+      Get.defaultDialog(
+        title: "66".tr, // "خطأ" أو "Error"
+        titleStyle: const TextStyle(
+          color: Colors.red,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+        middleText: "67".trParams({"error": e.toString()}),
+        middleTextStyle: const TextStyle(fontSize: 16, color: Colors.black87),
+        backgroundColor: Colors.white,
+        radius: 10,
+      );
+    }
+    update();
   }
 }

@@ -55,7 +55,7 @@ class OnBoardingControllerImp extends OnBoardingController {
       // This condition checks if the current page index is greater than the last page index.
       // If it is, it means the user has reached the end of the onboarding process.
       // In this case, we can navigate to the sign-in page or any other desired action.
-      Get.offAllNamed("/signIn");
+      Get.offAllNamed(AppRoutes.signIn);
       myServices.sharedPreferences.setBool("isFirstTime", false);
       // This line saves a boolean value in shared preferences to indicate that the onboarding process has been completed.
       // It uses the 'myServices' instance to access the shared preferences and set the value.

@@ -1,10 +1,12 @@
+import 'package:e_commerce_halfa/controller/auth_controller/sign_in_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class SocialMediaSignIn extends StatelessWidget {
-  const SocialMediaSignIn({super.key});
+  SocialMediaSignIn({super.key});
 
+  final SignInControllerImp signInController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,7 +14,9 @@ class SocialMediaSignIn extends StatelessWidget {
       children: [
         Expanded(
           child: OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () async {
+              await signInController.signInWithGoogle();
+            },
             icon: const Icon(FontAwesomeIcons.google, color: Colors.blue),
             label: Text("25".tr),
             style: OutlinedButton.styleFrom(
@@ -26,7 +30,9 @@ class SocialMediaSignIn extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () async {
+              await signInController.signInWithFacebook();
+            },
             icon: const Icon(FontAwesomeIcons.facebook, color: Colors.blue),
             label: Text("26".tr),
             style: OutlinedButton.styleFrom(

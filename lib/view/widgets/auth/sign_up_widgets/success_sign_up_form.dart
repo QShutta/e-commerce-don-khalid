@@ -49,7 +49,7 @@ class SuccessSignUpForm extends StatelessWidget {
                   text: "13".tr,
                   onPressed: () {
                     FocusScope.of(context).unfocus();
-                    Get.toNamed(AppRoutes.signIn);
+                    Get.offAllNamed(AppRoutes.signIn);
                   },
                 ),
               ],

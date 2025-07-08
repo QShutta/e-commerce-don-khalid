@@ -1,8 +1,11 @@
 import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_email_controller.dart';
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/forgot_passord_email_page_widgets/email_header.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/forgot_passord_email_page_widgets/forgot_password_form.dart';
+import 'package:e_commerce_halfa/view/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,30 +21,38 @@ class EmailPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColor.primaryColor, // Match top Container's color
       body: SafeArea(
-        child: ListView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          children: [
-            Column(
-              children: [
-                // الجزء العلوي (الخلفية الملونة)
-                EmailHeader(
-                  imagePath: ImageAssets.forgotPasswordEmailImage,
-                  height: 350,
-                  imageHight: 300,
-                  imageWidth: 300,
-                  backgroundColor: AppColor.primaryColor,
-                ),
+        child: GetBuilder<ForgotPasswordEmailControllerImp>(
+          builder: (_) {
+            return HandlingDataRequest(
+              stautusRequest: emailController.statusRequest,
+              widget: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                children: [
+                  Column(
+                    children: [
+                      // الجزء العلوي (الخلفية الملونة)
+                      EmailHeader(
+                        imagePath: ImageAssets.forgotPasswordEmailImage,
+                        height: 350,
+                        imageHight: 300,
+                        imageWidth: 300,
+                        backgroundColor: AppColor.primaryColor,
+                      ),
 
-                // الجزء السفلي (نموذج تسجيل الدخول)
-                EmailForm(
-                  onPressed: () {
-                    emailController.goToVerficationCodePage();
-                  },
-                  textEmailCont: emailController.textEmailCont,
-                ),
-              ],
-            ),
-          ],
+                      // الجزء السفلي (نموذج تسجيل الدخول)
+                      EmailForm(
+                        onPressed: () {
+                          emailController.sendCodeAndGoToOtp();
+                        },
+                        textEmailCont: emailController.textEmailCont,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

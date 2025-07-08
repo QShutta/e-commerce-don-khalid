@@ -27,4 +27,23 @@ class ImageAssets {
 
   static const String forgotPasswordVerifiedImage =
       'assets/images/auth/verified.svg';
+
+  static const String bannerMaknaZitFoulDon =
+      'assets/images/home/banner_slider_images/مكنة_زيت_فول_الدون.png';
+  static const String bannerJazmaDon =
+      'assets/images/home/banner_slider_images/جزمة_الدون.png';
+  static const String bannerDonTop2 =
+      'assets/images/home/banner_slider_images/don_top2_gpt.png';
+  static const String bannerDonTop1 =
+      'assets/images/home/banner_slider_images/don_top1_gpt.png';
+  static const String bannerDonSuite =
+      'assets/images/home/banner_slider_images/don_suite.png';
+  static const String bannerDonSdyre =
+      'assets/images/home/banner_slider_images/don_sdyre.png';
+  static const String bannerDonSandale =
+      'assets/images/home/banner_slider_images/don_sandale.png';
+  static const String bannerDonPerfume =
+      'assets/images/home/banner_slider_images/don_perfume_gpt.png';
+  static const String bannerDonJalabye =
+      'assets/images/home/banner_slider_images/don_jalabye_gpt.png';
 }

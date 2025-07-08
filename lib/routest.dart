@@ -83,7 +83,7 @@ List<GetPage> appPages = [
   ),
   GetPage(
     name: AppRoutes.home,
-    page: () => Home(),
+    page: () => HomePage(),
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),

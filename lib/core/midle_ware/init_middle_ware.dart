@@ -14,22 +14,38 @@ class InitMiddleware extends GetMiddleware {
     bool? isFirstTime = myServices.sharedPreferences.getBool("isFirstTime");
     bool? isLoggedIn = myServices.sharedPreferences.getBool("isLoggedIn");
 
-    // First-time app open: No isFirstTime flag set yet
-    if (isFirstTime == null) {
+    // ✋ أول مرة يفتح المستخدم التطبيق، قيمة
+    //isFirstTime بتكون null.
+    // لازم نوجه المستخدم لصفحة اختيار اللغة.
+    // لكن لو المستخدم حالياً في صفحة اختيار اللغة نفسها، بدون الشرط الثاني، حتكون دالة
+    //redirect
+    // ترجع توجيه لنفس الصفحة باستمرار.
+    // هذا يسبب حلقة توجيه لا نهائية
+    //(redirect loop).
+    // النتيجة: يظهر الخطأ التالي في سجل
+    // GETX:
+    // [GETX] Redirect to RouteSettings("/", null)
+    // عشان كدا نضيف الشرط الثاني
+    //(route != AppRoutes.languageSelection)
+    // عشان نمنع إعادة التوجيه للصفحة نفسها ونكسر الحلقة.
+    // ✅ أول مرة يفتح التطبيق
+    if (isFirstTime == null && route != AppRoutes.languageSelection) {
       return const RouteSettings(name: AppRoutes.languageSelection);
     }
 
-    // After language and onboarding, isFirstTime is false, go to sign-in
-    if (isFirstTime == false && isLoggedIn == null) {
+    // ✅ خلص اختيار اللغة والـ onboarding ولسه ما سجل دخول
+    if (isFirstTime == false &&
+        isLoggedIn != true &&
+        route != AppRoutes.signIn) {
       return const RouteSettings(name: AppRoutes.signIn);
     }
 
-    // Already signed in, go to home
-    if (isLoggedIn == true) {
+    // ✅ لو مسجل دخول قبل كدا
+    if (isLoggedIn == true && route != AppRoutes.home) {
       return const RouteSettings(name: AppRoutes.home);
     }
 
-    // Default to sign-in if no other condition is met
-    return const RouteSettings(name: AppRoutes.signIn);
+    // ❌ ما تعمل redirect لنفس الصفحة
+    return null;
   }
 }

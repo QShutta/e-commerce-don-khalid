@@ -34,10 +34,9 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController nameCont;
   late TextEditingController confirmPasswordCont;
   //When did this is going to be initlized?xxxxx
-  StautusRequest? stautusRequest;
+  StautusRequest stautusRequest = StautusRequest.none;
   @override
   void onInit() {
-    stautusRequest = StautusRequest.none;
     // ✅ تهيئة المتغيرات هنا عشان تكون جاهزة أول ما يتم إنشاء الكلاس
     emailCont = TextEditingController();
     passwordCont = TextEditingController();
@@ -109,8 +108,22 @@ class SignUpControllerImp extends SignUpController {
             stautusRequest = StautusRequest.none;
 
             Get.defaultDialog(
-              title: "Warning",
-              middleText: "The email is already exist",
+              title: "65".tr,
+              middleText: "70".tr,
+              titleStyle: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.redAccent,
+              ),
+              middleTextStyle: TextStyle(fontSize: 16, color: Colors.black87),
+              backgroundColor: Colors.white,
+              radius: 15,
+              textConfirm: "62".tr,
+              confirmTextColor: Colors.white,
+              onConfirm: () {
+                Get.back();
+              },
+              buttonColor: Colors.redAccent,
             );
           }
         }
@@ -127,7 +140,7 @@ class SignUpControllerImp extends SignUpController {
 
   @override
   goToVerfyCode() {
-    Get.offAllNamed(AppRoutes.signUpOtp, arguments: {"email": emailCont.text});
+    Get.toNamed(AppRoutes.signUpOtp, arguments: {"email": emailCont.text});
   }
 
   @override

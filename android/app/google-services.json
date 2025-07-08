@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1080261248566",
+    "project_id": "e-commerce-halfa",
+    "storage_bucket": "e-commerce-halfa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080261248566:android:ec28ecf39c21d117f8ba97",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_halfa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080261248566-r4rl0ic5o7lnalegi1po31lcpacs4t3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_commerce_halfa",
+            "certificate_hash": "f0ed1d1330852f0949722462dc19846bf0008d0f"
+          }
+        },
+        {
+          "client_id": "1080261248566-va2hrv6lg1rnbh78npdgbgl5hlm2mbbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzk36ZzBpoUva68LoKfflDcJS5YpIgTLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080261248566-va2hrv6lg1rnbh78npdgbgl5hlm2mbbg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1080261248566-mj71b73h8cs59135ec1m69n4se9cdcj2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eCommerceHalfa"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

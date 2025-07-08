@@ -13,7 +13,8 @@ class OtpForm extends StatelessWidget {
   //signInController
   //يتم إنشاؤه مرة واحدة فقط
   // وما يتغير لاحقًا، وده بيساعد في حماية الكود من الأخطاء
-  final EmailOtpControllerImp otpCont = Get.find();
+  EmailOtpControllerImp otpControllerImp =
+      Get.find(); // Initialize the controller
   @override
   Widget build(BuildContext context) {
     return // الجزء السفلي (نموذج تسجيل الدخول)
@@ -95,7 +96,7 @@ class OtpForm extends StatelessWidget {
                 // "تم إرسال رمز التحقق إلى بريدك:
                 // @email."
                 Text(
-                  "42".trParams({"email": otpCont.email}),
+                  "42".trParams({"email": otpControllerImp.email}),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 20),

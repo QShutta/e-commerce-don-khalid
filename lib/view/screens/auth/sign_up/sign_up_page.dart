@@ -1,17 +1,14 @@
 import 'package:e_commerce_halfa/controller/auth_controller/sign_up_controllers/sign_up_controller.dart';
-<<<<<<< HEAD
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
-=======
->>>>>>> mytry45
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_up_widgets/sign_up_form.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_header.dart';
+import 'package:e_commerce_halfa/view/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -22,14 +19,12 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColor.primaryColor, // Match top Container's color
-<<<<<<< HEAD
-      body: SafeArea(
-        child: GetBuilder<SignUpControllerImp>(
-          builder: (controller) {
-            return HnadlingDataView(
-              stautusRequest: signUpController.stautusRequest!,
+      body: GetBuilder<SignUpControllerImp>(
+        builder: (controller) {
+          return SafeArea(
+            child: HandlingDataRequest(
+              stautusRequest: signUpController.stautusRequest,
               widget: ListView(
-                shrinkWrap: true,
                 children: [
                   Column(
                     children: [
@@ -37,7 +32,6 @@ class SignUpPage extends StatelessWidget {
                       SignHeader(
                         imagePath: ImageAssets.signUpImage,
                         title: "27".tr,
-
                         subtitle: "28".tr,
                         buttonText: "22".tr,
                         onPressed: () {
@@ -53,47 +47,9 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          },
-        ),
-=======
-      body: GetBuilder<SignUpControllerImp>(
-        builder: (controller) {
-          return signUpController.stautusRequest == StautusRequest.loading
-              ? SizedBox(
-                child: Center(child: Lottie.asset(ImageAssets.loading)),
-                width: 120,
-                height: 120,
-              )
-              : SafeArea(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Column(
-                      children: [
-                        // الجزء العلوي (الخلفية الملونة)
-                        SignHeader(
-                          imagePath: ImageAssets.signUpImage,
-                          title: "27".tr,
-
-                          subtitle: "28".tr,
-                          buttonText: "22".tr,
-                          onPressed: () {
-                            Get.offAllNamed(AppRoutes.signIn);
-                          },
-                          backgroundColor: AppColor.primaryColor,
-                          height: 300,
-                        ),
-
-                        // الجزء السفلي (نموذج تسجيل الدخول)
-                        SignUpForm(),
-                      ],
-                    ),
-                  ],
-                ),
-              );
+            ),
+          );
         },
->>>>>>> mytry45
       ),
     );
   }

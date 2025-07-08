@@ -1,14 +1,19 @@
 import 'package:e_commerce_halfa/bindings/inital_binding.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/routest.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //befoer of 43
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ✅ تهيئة Firebase
+  await Firebase.initializeApp(); // Use default config from google-services.json
   await initlizeServices();
 
   // Put LocaleController after services are ready
@@ -32,6 +37,7 @@ class MainApp extends StatelessWidget {
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
       // home: Test(),
+      initialRoute: AppRoutes.languageSelection,
       getPages: appPages,
     );
   }

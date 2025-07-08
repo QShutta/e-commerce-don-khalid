@@ -34,7 +34,7 @@ class Onboarding extends StatelessWidget {
         body: Column(
           children: [
             OnBoardingItem(),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             DotsIndicator(),
             SizedBox(height: 25),
             NextButton(
