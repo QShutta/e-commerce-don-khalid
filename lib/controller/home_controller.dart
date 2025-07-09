@@ -4,22 +4,21 @@ import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/home_data.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 abstract class HomeController extends GetxController {
   goToProfile();
   goToSettings();
   logOut();
   getData();
+  // This function is used to get the data from the server.
 }
 
 class HomeControllerImp extends HomeController {
   MyServices myServices = Get.find();
   StautusRequest statusRequest = StautusRequest.none;
-  String? userName;
   HomeData homeData = HomeData(Get.find());
-  List data = [];
+  String? userName;
+  List categories = [];
   initalData() {
     userName = myServices.sharedPreferences.getString("google_name");
     userName ??= "Guest";
@@ -28,6 +27,7 @@ class HomeControllerImp extends HomeController {
 
   @override
   void onInit() {
+    getData();
     initalData();
     getData();
     super.onInit();
@@ -65,10 +65,10 @@ class HomeControllerImp extends HomeController {
     statusRequest = handlingStatusRequest(response);
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-        data.addAll(response['catogeries']);
-        print("-----------------------------------------\n");
-        print("Data: $data");
-        print("-----------------------------------------");
+        categories.addAll(response['catogeries']);
+        print("-------------------------------------");
+        print("Categories: $categories");
+        print("-------------------------------------");
       } else {
         statusRequest = StautusRequest.failure;
       }
