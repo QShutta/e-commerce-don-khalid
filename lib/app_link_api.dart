@@ -13,4 +13,5 @@ class AppLinkApi {
       "$serverUrl/auth/forgot_password/verfy_code_reset.php";
   static const String resetPassword =
       "$serverUrl/auth/forgot_password/reset_password.php";
+  static const String home = "$serverUrl/home.php";
 }
