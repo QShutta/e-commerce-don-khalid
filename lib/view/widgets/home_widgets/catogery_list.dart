@@ -5,21 +5,20 @@ import 'package:get/get.dart';
 
 class CategoryList extends StatelessWidget {
   CategoryList({super.key});
-  final HomeControllerImp homeCont = Get.find();
-
+  final HomeControllerImp homeControllerImp = Get.find<HomeControllerImp>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 110, // ثبّت ارتفاع السكروول أفقي
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: homeCont.categories.length,
+        itemCount: homeControllerImp.categories.length,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         itemBuilder: (context, index) {
           return CategoryItem(
-            title: homeCont.categories[index]["catogeries_name_ar"],
+            title: homeControllerImp.categories[index]["catogeries_name_ar"],
             imageUrl:
-                "${AppLinkApi.catogeriesImage}/${homeCont.categories[index]["catogeries_image"]}",
+                "${AppLinkApi.imageLink}/${homeControllerImp.categories[index]["catogeries_image"]}",
           );
         },
       ),

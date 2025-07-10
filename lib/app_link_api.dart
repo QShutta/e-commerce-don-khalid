@@ -1,11 +1,8 @@
 class AppLinkApi {
   static const String serverUrl =
       "https://qasimshutta.shop/2test/e-commerce-halfa";
-  static const String catogeriesImage =
+  static const String imageLink =
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/catogeries";
-  static const String productsImage =
-      "https://qasimshutta.shop/2test/e-commerce-halfa/upload/products";
-
   static const String test = "$serverUrl/test.php";
 
   //--------------------------------Auth======================================

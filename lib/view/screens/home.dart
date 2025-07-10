@@ -39,9 +39,6 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   CategoryList(),
-                  //طبعا the text that inisde of this widget now it's dynamic
-                  //and it will be changed in the future
-                  //But now I just want to test the UI
                   EmpowerSection(),
                 ],
               ),
