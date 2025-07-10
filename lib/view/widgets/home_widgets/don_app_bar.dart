@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const DonAppBar({Key? key}) : super(key: key);
+  const DonAppBar({super.key});
   // ✅ We implement PreferredSizeWidget because the Scaffold's appBar property
   //    only accepts widgets that implement this interface.
   // 📏 The PreferredSizeWidget requires us to define the preferredSize,

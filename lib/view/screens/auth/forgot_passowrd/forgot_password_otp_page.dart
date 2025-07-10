@@ -1,11 +1,9 @@
 import 'package:e_commerce_halfa/controller/auth_controller/forgot_password_controllers/forgot_password_verfy_code_controller.dart';
-import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/forgot_passord_email_page_widgets/otp_form_forgot.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/forgot_passord_email_page_widgets/otp_header.dart';
-import 'package:e_commerce_halfa/view/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

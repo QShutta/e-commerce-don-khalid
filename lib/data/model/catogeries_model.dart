@@ -22,12 +22,12 @@ class Catogeries {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['catogeries_id'] = this.catogeriesId;
-    data['catogeries_name_ar'] = this.catogeriesNameAr;
-    data['catogeries_name_en'] = this.catogeriesNameEn;
-    data['catogeries_image'] = this.catogeriesImage;
-    data['catogeries_date_of_create'] = this.catogeriesDateOfCreate;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['catogeries_id'] = catogeriesId;
+    data['catogeries_name_ar'] = catogeriesNameAr;
+    data['catogeries_name_en'] = catogeriesNameEn;
+    data['catogeries_image'] = catogeriesImage;
+    data['catogeries_date_of_create'] = catogeriesDateOfCreate;
     return data;
   }
 }
