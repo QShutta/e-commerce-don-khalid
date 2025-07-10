@@ -1,10 +1,11 @@
-import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryList extends StatelessWidget {
-  const CategoryList({super.key});
-
+  CategoryList({super.key});
+  final HomeControllerImp homeControllerImp = Get.find<HomeControllerImp>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -14,27 +15,11 @@ class CategoryList extends StatelessWidget {
         itemCount: 8,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         itemBuilder: (context, index) {
-          final titles = [
-            '101'.tr,
-            '102'.tr,
-            '103'.tr,
-            '104'.tr,
-            '105'.tr,
-            '106'.tr,
-            '107'.tr,
-            '108'.tr,
-          ];
-          final images = [
-            ImageAssets.bannerDonJalabye,
-            ImageAssets.bannerDonTop1,
-            ImageAssets.bannerDonSdyre,
-            ImageAssets.bannerDonPerfume,
-            ImageAssets.bannerDonSandale,
-            ImageAssets.bannerDonSuite,
-            ImageAssets.bannerJazmaDon,
-            ImageAssets.bannerMaknaZitFoulDon,
-          ];
-          return CategoryItem(title: titles[index], imageUrl: images[index]);
+          return CategoryItem(
+            title: homeControllerImp.categories[index]["catogeries_name_ar"],
+            imageUrl:
+                "${AppLinkApi.imageLink}/${homeControllerImp.categories[index]["catogeries_image"]}",
+          );
         },
       ),
     );
@@ -73,7 +58,7 @@ class CategoryItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(40), // صورة دائرية
-              child: Image.asset(
+              child: Image.network(
                 imageUrl,
                 width: 50,
                 height: 50,
