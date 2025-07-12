@@ -4,6 +4,8 @@ import 'package:e_commerce_halfa/view/widgets/home_widgets/banner_slider.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/catogery_list.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/empower_section.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/home_text.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/top_proudcts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,24 +24,11 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   BannerSlider(),
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 16.0,
-                      horizontal: 20.0,
-                    ),
-                    child: Text(
-                      "الأصناف",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
+                  HomeText(text: "الأصناف"),
                   CategoryList(),
                   EmpowerSection(),
+                  HomeText(text: "المنتجات الظابطة"),
+                  TopProducts(),
                 ],
               ),
             ),

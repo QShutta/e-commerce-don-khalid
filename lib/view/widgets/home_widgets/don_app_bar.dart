@@ -1,7 +1,6 @@
 import 'package:e_commerce_halfa/view/widgets/home_widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DonAppBar({super.key});

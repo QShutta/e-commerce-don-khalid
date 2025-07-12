@@ -29,7 +29,6 @@ class HomeControllerImp extends HomeController {
   void onInit() {
     getData();
     initalData();
-    getData();
     super.onInit();
   }
 
