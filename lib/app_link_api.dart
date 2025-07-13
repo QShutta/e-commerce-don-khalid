@@ -1,7 +1,7 @@
 class AppLinkApi {
   static const String serverUrl =
       "https://qasimshutta.shop/2test/e-commerce-halfa";
-  static const String imageLink =
+  static const String catogeriesImageLink =
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/catogeries";
   static const String productsImageLink =
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/products";

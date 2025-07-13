@@ -71,7 +71,7 @@ class HomeControllerImp extends HomeController {
         print("-------------------------------------");
         products.addAll(response['products']);
         print("-------------------------------------");
-        print("Categories: $products");
+        print("Products: $products");
         print("-------------------------------------");
       } else {
         statusRequest = StautusRequest.failure;

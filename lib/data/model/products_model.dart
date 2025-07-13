@@ -11,7 +11,6 @@ class Products {
   int? productDiscount;
   String? productDataCreate;
   int? productCatogery;
-  String? catogeriesNameAr;
 
   Products({
     this.productsId,
@@ -26,7 +25,6 @@ class Products {
     this.productDiscount,
     this.productDataCreate,
     this.productCatogery,
-    this.catogeriesNameAr,
   });
 
   Products.fromJson(Map<String, dynamic> json) {
@@ -42,7 +40,6 @@ class Products {
     productDiscount = json['product_discount'];
     productDataCreate = json['product_data_create'];
     productCatogery = json['product_catogery'];
-    catogeriesNameAr = json['catogeries_name_ar'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,7 +56,6 @@ class Products {
     data['product_discount'] = this.productDiscount;
     data['product_data_create'] = this.productDataCreate;
     data['product_catogery'] = this.productCatogery;
-    data['catogeries_name_ar'] = this.catogeriesNameAr;
     return data;
   }
 }

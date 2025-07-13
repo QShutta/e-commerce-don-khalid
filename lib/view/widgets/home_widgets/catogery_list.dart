@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
+import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class CategoryList extends StatelessWidget {
   CategoryList({super.key});
@@ -18,7 +21,7 @@ class CategoryList extends StatelessWidget {
           return CategoryItem(
             title: homeControllerImp.categories[index]["catogeries_name_ar"],
             imageUrl:
-                "${AppLinkApi.imageLink}/${homeControllerImp.categories[index]["catogeries_image"]}",
+                "${AppLinkApi.catogeriesImageLink}/${homeControllerImp.categories[index]["catogeries_image"]}",
           );
         },
       ),
@@ -58,11 +61,22 @@ class CategoryItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(40), // صورة دائرية
-              child: Image.network(
-                imageUrl,
+              child:
+              // Image.network(
+              //   imageUrl,
+              //   width: 50,
+              //   height: 50,
+              //   fit: BoxFit.cover,
+              // ),
+              CachedNetworkImage(
+                fit: BoxFit.cover,
                 width: 50,
                 height: 50,
-                fit: BoxFit.cover,
+                placeholder:
+                    (context, url) =>
+                        Center(child: Lottie.asset(ImageAssets.loading)),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                imageUrl: imageUrl,
               ),
             ),
             const SizedBox(height: 8),

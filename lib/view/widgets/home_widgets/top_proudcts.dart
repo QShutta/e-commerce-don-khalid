@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
@@ -6,47 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lottie/lottie.dart';
 
 class TopProducts extends StatelessWidget {
-  final HomeControllerImp homeCont = Get.find();
+  final HomeControllerImp homeControllerImp = Get.find();
   TopProducts({super.key});
-  final List productsImages = [
-    ImageAssets.bannerDonJalabye,
-    ImageAssets.bannerDonTop1,
-    ImageAssets.bannerDonTop2,
-    ImageAssets.bannerDonSdyre,
-    ImageAssets.bannerDonSandale,
-    ImageAssets.bannerDonSuite,
-    ImageAssets.bannerDonPerfume,
-    ImageAssets.bannerMaknaZitFoulDon,
-    ImageAssets.bannerJazmaDon,
-  ];
-  final List productsNames = [
-    "جلاليب الدون",
-    "توب الدون",
-    "توب الدون",
-    "سديري الدون",
-    "شبشب الدون",
-    "بدلة الدون",
-    "عطر الدون",
-    "مكنة زيت فول الدون",
-    "جزمة الدون",
-  ];
-  final List productsPrices = [
-    "1000",
-    "800",
-    "900",
-    "700",
-    "600",
-    "1200",
-    "1500",
-    "500",
-    "400",
-  ];
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: homeCont.products.length,
+      itemCount: homeControllerImp.products.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -64,14 +34,20 @@ class TopProducts extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 150,
-                  child: Image.network(
-                    "${AppLinkApi.productsImageLink}/${homeCont.products[index]['product_image']}",
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "${AppLinkApi.productsImageLink}/${homeControllerImp.products[index]["product_image"]}",
                     fit: BoxFit.cover,
+                    placeholder:
+                        (context, url) =>
+                            Center(child: Lottie.asset(ImageAssets.loading)),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
+
                 SizedBox(height: 8.0),
                 Text(
-                  (homeCont.products[index]["product_name_ar"]),
+                  homeControllerImp.products[index]["product_name_ar"],
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -80,7 +56,7 @@ class TopProducts extends StatelessWidget {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  "\$${(homeCont.products[index]["product_price"])}",
+                  homeControllerImp.products[index]["product_price"].toString(),
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 14,
                     color: Colors.grey[700],
