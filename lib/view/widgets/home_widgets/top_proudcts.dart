@@ -1,8 +1,14 @@
+import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class TopProducts extends StatelessWidget {
+  final HomeControllerImp homeCont = Get.find();
   TopProducts({super.key});
   final List productsImages = [
     ImageAssets.bannerDonJalabye,
@@ -40,7 +46,7 @@ class TopProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: productsImages.length,
+      itemCount: homeCont.products.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -58,11 +64,14 @@ class TopProducts extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 150,
-                  child: Image.asset(productsImages[index], fit: BoxFit.cover),
+                  child: Image.network(
+                    "${AppLinkApi.productsImageLink}/${homeCont.products[index]['product_image']}",
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  productsNames[index],
+                  (homeCont.products[index]["product_name_ar"]),
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -71,7 +80,7 @@ class TopProducts extends StatelessWidget {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  "\$${productsPrices[index]}",
+                  "\$${(homeCont.products[index]["product_price"])}",
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 14,
                     color: Colors.grey[700],

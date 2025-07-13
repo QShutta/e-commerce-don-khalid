@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                   HomeText(text: "الأصناف"),
                   CategoryList(),
                   EmpowerSection(),
-                  HomeText(text: "المنتجات الظابطة"),
+                  HomeText(text: "الحاجات الميريا"),
                   TopProducts(),
                 ],
               ),

@@ -19,6 +19,7 @@ class HomeControllerImp extends HomeController {
   HomeData homeData = HomeData(Get.find());
   String? userName;
   List categories = [];
+  List products = [];
   initalData() {
     userName = myServices.sharedPreferences.getString("google_name");
     userName ??= "Guest";
@@ -67,6 +68,10 @@ class HomeControllerImp extends HomeController {
         categories.addAll(response['catogeries']);
         print("-------------------------------------");
         print("Categories: $categories");
+        print("-------------------------------------");
+        products.addAll(response['products']);
+        print("-------------------------------------");
+        print("Categories: $products");
         print("-------------------------------------");
       } else {
         statusRequest = StautusRequest.failure;
