@@ -3,6 +3,8 @@ import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/home_data.dart';
+import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
+import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:get/get.dart';
 
 abstract class HomeController extends GetxController {
@@ -18,8 +20,9 @@ class HomeControllerImp extends HomeController {
   StautusRequest statusRequest = StautusRequest.none;
   HomeData homeData = HomeData(Get.find());
   String? userName;
-  List categories = [];
-  List products = [];
+  List<Catogeries> categories = [];
+  // List products = [];
+  List<Products> products = [];
   initalData() {
     userName = myServices.sharedPreferences.getString("google_name");
     userName ??= "Guest";
@@ -65,11 +68,60 @@ class HomeControllerImp extends HomeController {
     statusRequest = handlingStatusRequest(response);
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-        categories.addAll(response['catogeries']);
+        // categories.addAll(response['catogeries']);
+        // هنا بنحول البيانات الجاية من السيرفر
+        //(اللي هي عبارة عن List of Map)
+        // إلى
+        //List of Catogeries objects باستخدام fromJson
+        // الخطوات:
+        // 1. نأكد إنو
+        //response['catogeries']
+        //هي فعلاً
+        //List
+        //باستخدام
+        //(as List)
+        // 2. نستخدم
+        //.map
+        //عشان نلف على كل عنصر
+        //(اللي هو Map)
+        //ونسميهو
+        //catogery
+        // 3. نمررو على
+        //Catogeries.fromJson
+        //عشان نحولو من
+        //Map
+        //إلى كائن حقيقي من نوع
+        //Catogeries
+        // 4. بعد التحويل نرجع النتيجة على شكل
+        //List
+        //باستخدام .toList()
+        categories =
+            //✅ as List
+            // نقول لـ
+            //Dart:
+            // "يا زول اعتبرها List عادية" عشان نقدر نلف عليها.
+            (response['catogeries'] as List)
+                // طيب شنو هو .fromJson()؟
+                // هي دالة جوّا الـ
+                //Model Class،
+                // مهمتها تاخد
+                //Map
+                // وتحوّلو إلى كائن
+                //(Object) مرتب.
+                .map((catogery) => Catogeries.fromJson(catogery))
+                .toList();
         print("-------------------------------------");
         print("Categories: $categories");
         print("-------------------------------------");
-        products.addAll(response['products']);
+        // products.addAll(response['products']);
+        products =
+            //Why did we say "as List"
+            //عشان نقدر نتعامل نتسخدم كلمة
+            //map so we can itreate in every element in the list.
+            (response['products'] as List)
+                //.fromJson will convert the map to object model.
+                .map((product) => Products.fromJson(product))
+                .toList();
         print("-------------------------------------");
         print("Products: $products");
         print("-------------------------------------");

@@ -3,26 +3,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class BannerSlider extends StatelessWidget {
-  BannerSlider({super.key});
-  HomeControllerImp homeControllerImp = Get.find();
-  final List<String> bannerImages = [
-    ImageAssets.bannerDonJalabye,
-    ImageAssets.bannerDonTop2,
-    ImageAssets.bannerDonTop1,
+  BannerSlider({super.key, required productList});
+  final HomeControllerImp homeControllerImp = Get.find();
+  final List<Products> productList = [];
 
-    ImageAssets.bannerDonSdyre,
-    ImageAssets.bannerDonPerfume,
-
-    ImageAssets.bannerDonSandale,
-    ImageAssets.bannerDonSuite,
-    ImageAssets.bannerMaknaZitFoulDon,
-    ImageAssets.bannerJazmaDon,
-  ];
   @override
   Widget build(BuildContext context) {
     // CarouselSlider
@@ -34,7 +24,7 @@ class BannerSlider extends StatelessWidget {
     // لازم تستوردها عشان تستخدمه.
     return CarouselSlider(
       options: CarouselOptions(
-        height: 300,
+        height: 250,
         autoPlay: true,
         //لو عندك مثلا 3 صور جمب بعض الصورة البتكون موجودة في المنتصف بتكون اكبر من الباقي
         enlargeCenterPage: true,
@@ -67,7 +57,7 @@ class BannerSlider extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
                 imageUrl:
-                    "${AppLinkApi.productsImageLink}/${product['product_image']}",
+                    "${AppLinkApi.productsImageLink}/${product.productImage}",
                 fit: BoxFit.cover,
                 width: double.infinity,
                 placeholder:

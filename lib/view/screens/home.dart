@@ -1,4 +1,3 @@
-import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/banner_slider.dart';
@@ -28,16 +27,16 @@ class HomePage extends StatelessWidget {
             widget: SingleChildScrollView(
               child: Column(
                 children: [
-                  BannerSlider(),
+                  BannerSlider(productList: homeControllerImp.products),
                   HomeText(text: "الأصناف"),
-                  CategoryList(),
+                  CategoryList(catogeriesList: homeControllerImp.categories),
                   EmpowerSection(
                     title: "200".tr,
                     subTitle: "201".tr,
                     body: "202".tr,
                   ),
                   HomeText(text: "الحاجات الميريا"),
-                  TopProducts(),
+                  TopProducts(productsList: homeControllerImp.products),
                 ],
               ),
             ),

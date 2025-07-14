@@ -2,12 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class CategoryList extends StatelessWidget {
-  CategoryList({super.key});
+  CategoryList({super.key, required this.catogeriesList});
+  final List<Catogeries> catogeriesList;
   final HomeControllerImp homeControllerImp = Get.find<HomeControllerImp>();
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,17 @@ class CategoryList extends StatelessWidget {
       height: 110, // ثبّت ارتفاع السكروول أفقي
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: homeControllerImp.categories.length,
+        itemCount: catogeriesList.length,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         itemBuilder: (context, index) {
+          final catogeries = catogeriesList[index];
           return CategoryItem(
-            title: homeControllerImp.categories[index]["catogeries_name_ar"],
+            // title: homeControllerImp.categories[index]["catogeries_name_ar"],
+            // imageUrl:
+            // "${AppLinkApi.catogeriesImageLink}/${homeControllerImp.categories[index]["catogeries_image"]}",
+            title: catogeries.catogeriesNameAr!,
             imageUrl:
-                "${AppLinkApi.catogeriesImageLink}/${homeControllerImp.categories[index]["catogeries_image"]}",
+                "${AppLinkApi.catogeriesImageLink}/${catogeries.catogeriesImage}",
           );
         },
       ),
@@ -55,20 +61,14 @@ class CategoryItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         onTap: () {
           // هنا ممكن تضيف وظيفة عند الضغط
+          print("The user click on the catogery called:${title}");
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(40), // صورة دائرية
-              child:
-              // Image.network(
-              //   imageUrl,
-              //   width: 50,
-              //   height: 50,
-              //   fit: BoxFit.cover,
-              // ),
-              CachedNetworkImage(
+              child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 width: 50,
                 height: 50,
