@@ -76,8 +76,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EmpowerSection extends StatelessWidget {
-  const EmpowerSection({super.key});
-
+  const EmpowerSection({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.body,
+  });
+  final String title;
+  final String subTitle;
+  final String body;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -110,7 +117,8 @@ class EmpowerSection extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     Text(
-                      "202".tr,
+                      body,
+
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade600,
                         fontSize: 14,

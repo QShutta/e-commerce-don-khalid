@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/banner_slider.dart';
@@ -15,7 +16,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DonAppBar(),
+      appBar: DonAppBar(
+        title: 'Don Shop',
+        onNotificationIconButtonClicked: () {},
+        onChangeWhenSearh: (String text) {},
+      ),
       body: GetBuilder<HomeControllerImp>(
         builder: (controller) {
           return HnadlingDataView(
@@ -26,7 +31,11 @@ class HomePage extends StatelessWidget {
                   BannerSlider(),
                   HomeText(text: "الأصناف"),
                   CategoryList(),
-                  EmpowerSection(),
+                  EmpowerSection(
+                    title: "200".tr,
+                    subTitle: "201".tr,
+                    body: "202".tr,
+                  ),
                   HomeText(text: "الحاجات الميريا"),
                   TopProducts(),
                 ],
