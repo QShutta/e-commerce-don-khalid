@@ -13,7 +13,7 @@ class HomeWithBottomNav extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             onPressed: () {},
             child: Icon(Icons.add_shopping_cart_outlined, color: Colors.black),
           ),
