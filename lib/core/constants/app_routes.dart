@@ -15,4 +15,7 @@ class AppRoutes {
 
   //Home
   static const String home = '/home';
+  //HomeWithBottomNav
+
+  static const String homeWithBottomNav = '/homeWithBottomNav';
 }
