@@ -36,7 +36,7 @@ class CustomBottomAppBar extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  homeWithBottomNavBarController.changePage(0);
+                  homeWithBottomNavBarController.changeCurrentPage(0);
                 },
                 child: Column(
                   // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
@@ -48,7 +48,7 @@ class CustomBottomAppBar extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  homeWithBottomNavBarController.changePage(1);
+                  homeWithBottomNavBarController.changeCurrentPage(1);
                 },
                 child: Column(
                   // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
@@ -66,7 +66,7 @@ class CustomBottomAppBar extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  homeWithBottomNavBarController.changePage(2);
+                  homeWithBottomNavBarController.changeCurrentPage(2);
                 },
                 child: Column(
                   // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
@@ -78,7 +78,7 @@ class CustomBottomAppBar extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  homeWithBottomNavBarController.changePage(3);
+                  homeWithBottomNavBarController.changeCurrentPage(3);
                 },
                 child: Column(
                   // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
