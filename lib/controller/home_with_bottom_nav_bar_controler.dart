@@ -5,7 +5,11 @@ import 'package:e_commerce_halfa/view/screens/profile.dart';
 import 'package:e_commerce_halfa/view/screens/settings.dart';
 import 'package:get/get.dart';
 
-class HomeWithBottomNavBarController extends GetxController {
+abstract class HomeWithBottomNavBarController extends GetxController {
+  changeCurrentPage(int i);
+}
+
+class HomeWithBottomNavBarControllerImp extends HomeWithBottomNavBarController {
   final List pages = [
     HomePage(),
     SettingsPage(),
@@ -15,4 +19,10 @@ class HomeWithBottomNavBarController extends GetxController {
   ];
 
   int selectedItem = 0;
+
+  @override
+  changeCurrentPage(int i) {
+    selectedItem = i;
+    update();
+  }
 }
