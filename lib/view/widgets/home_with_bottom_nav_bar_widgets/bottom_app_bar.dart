@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.dart';
+import 'package:e_commerce_halfa/view/widgets/home_with_bottom_nav_bar_widgets/custome_button_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -34,28 +35,21 @@ class CustomBottomAppBar extends StatelessWidget {
           Row(
             spacing: 20.0,
             children: [
-              InkWell(
+              CustomeButtonBottomNavBar(
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(0);
                 },
-                child: Column(
-                  // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
-                  // أو ياخد مساحة على قد المحتوى فقط (min)
-                  mainAxisSize: MainAxisSize.min,
-                  children: [Icon(Icons.home_outlined), Text("Home")],
-                ),
+                icon: Icons.home_outlined,
+                title: 'Home',
+                active: homeWithBottomNavBarController.selectedItem == 0,
               ),
-
-              InkWell(
+              CustomeButtonBottomNavBar(
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(1);
                 },
-                child: Column(
-                  // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
-                  // أو ياخد مساحة على قد المحتوى فقط (min)
-                  mainAxisSize: MainAxisSize.min,
-                  children: [Icon(Icons.person_outline), Text("Profile")],
-                ),
+                icon: Icons.person_outline,
+                title: 'Profile',
+                active: homeWithBottomNavBarController.selectedItem == 1,
               ),
             ],
           ),
@@ -64,31 +58,21 @@ class CustomBottomAppBar extends StatelessWidget {
           Row(
             spacing: 20.0,
             children: [
-              InkWell(
+              CustomeButtonBottomNavBar(
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(2);
                 },
-                child: Column(
-                  // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
-                  // أو ياخد مساحة على قد المحتوى فقط (min)
-                  mainAxisSize: MainAxisSize.min,
-                  children: [Icon(Icons.settings_outlined), Text("Settings")],
-                ),
+                icon: Icons.favorite_border_outlined,
+                title: 'Favorite',
+                active: homeWithBottomNavBarController.selectedItem == 2,
               ),
-
-              InkWell(
+              CustomeButtonBottomNavBar(
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(3);
                 },
-                child: Column(
-                  // mainAxisSize: تحدد إذا كان الـ Column أو Row ياخد كل المساحة المتاحة (max)
-                  // أو ياخد مساحة على قد المحتوى فقط (min)
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.favorite_border_outlined),
-                    Text("Favorite"),
-                  ],
-                ),
+                icon: Icons.settings_outlined,
+                title: 'Settings',
+                active: homeWithBottomNavBarController.selectedItem == 3,
               ),
             ],
           ),
