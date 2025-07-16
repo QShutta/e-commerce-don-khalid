@@ -8,7 +8,7 @@ class HomeWithBottomNav extends StatelessWidget {
   HomeWithBottomNav({super.key});
   final HomeWithBottomNavBarControllerImp homeWithBottomNavBarController =
       Get.put(HomeWithBottomNavBarControllerImp());
-  //before of 66
+  //before of 67
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeWithBottomNavBarControllerImp>(
