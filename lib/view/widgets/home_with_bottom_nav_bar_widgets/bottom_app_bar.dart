@@ -40,22 +40,15 @@ class CustomBottomAppBar extends StatelessWidget {
                 },
                 icon: Icons.home_outlined,
                 title: 'Home',
-                active:
-                    homeWithBottomNavBarController.selectedItem == 0
-                        ? true
-                        : false,
+                active: homeWithBottomNavBarController.selectedItem == 0,
               ),
-
               CustomeButtonBottomNavBar(
-                active:
-                    homeWithBottomNavBarController.selectedItem == 1
-                        ? true
-                        : false,
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(1);
                 },
                 icon: Icons.person_outline,
                 title: 'Profile',
+                active: homeWithBottomNavBarController.selectedItem == 1,
               ),
             ],
           ),
@@ -65,27 +58,20 @@ class CustomBottomAppBar extends StatelessWidget {
             spacing: 20.0,
             children: [
               CustomeButtonBottomNavBar(
-                active:
-                    homeWithBottomNavBarController.selectedItem == 2
-                        ? true
-                        : false,
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(2);
                 },
-                icon: Icons.favorite_outline,
+                icon: Icons.favorite_border_outlined,
                 title: 'Favorite',
+                active: homeWithBottomNavBarController.selectedItem == 2,
               ),
-
               CustomeButtonBottomNavBar(
-                active:
-                    homeWithBottomNavBarController.selectedItem == 3
-                        ? true
-                        : false,
                 onTap: () {
                   homeWithBottomNavBarController.changeCurrentPage(3);
                 },
                 icon: Icons.settings_outlined,
                 title: 'Settings',
+                active: homeWithBottomNavBarController.selectedItem == 3,
               ),
             ],
           ),

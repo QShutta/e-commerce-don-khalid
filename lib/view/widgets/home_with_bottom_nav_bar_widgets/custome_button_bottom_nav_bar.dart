@@ -12,7 +12,7 @@ class CustomeButtonBottomNavBar extends StatelessWidget {
   final void Function()? onTap;
   final IconData? icon;
   final String title;
-  final bool? active;
+  final bool active;
   @override
   Widget build(BuildContext context) {
     return InkWell(
