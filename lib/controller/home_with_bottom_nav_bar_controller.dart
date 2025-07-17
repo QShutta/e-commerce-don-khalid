@@ -17,7 +17,7 @@ class HomeWithBottomNavBarControllerImp extends HomeWithBottomNavBarController {
     FavoritePage(),
     SettingsPage(),
   ];
-  List titleBottomAppBar = ["Home", "Profile", "Favorite", "Settings"];
+  List titleBottomAppBar = ["203".tr, "204".tr, "205".tr, "206".tr];
   List iconBottomNavBar = [
     Icons.home_outlined,
     Icons.person_outline,
@@ -26,6 +26,7 @@ class HomeWithBottomNavBarControllerImp extends HomeWithBottomNavBarController {
   ];
   int selectedItem = 0;
 
+  @override
   changeCurrentPage(int i) {
     selectedItem = i;
     update();

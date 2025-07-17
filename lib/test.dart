@@ -1,7 +1,4 @@
-import 'package:e_commerce_halfa/controller/test_controller.dart';
-import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 //before of 39S
 class Test extends StatefulWidget {

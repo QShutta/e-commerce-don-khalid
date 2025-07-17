@@ -24,12 +24,12 @@ class CustomeButtonBottomNavBar extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: active == true ? AppColor.primaryColor : Colors.black,
+            color: active == true ? AppColor.primaryColor : AppColor.grey800,
           ),
           Text(
             title,
             style: TextStyle(
-              color: active == true ? AppColor.primaryColor : Colors.black,
+              color: active == true ? AppColor.primaryColor : AppColor.grey800,
             ),
           ),
         ],

@@ -159,6 +159,10 @@ class MyTranslation extends Translations {
       "200": "Support Locale",
       "201": "Empower Local Prdoucts",
       "202": "Start you'r own business with us",
+      "203": "Home",
+      "204": "Profile",
+      "205": "Favorite",
+      "206": "Settings",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -254,6 +258,10 @@ class MyTranslation extends Translations {
       "200": "ادعم منتج بلدك",
       "201": "تمكين الإنتاج المحلي",
       "202": "ابدأ عملك الخاص معانا",
+      "203": "الرئيسية",
+      "204": "بياناتك",
+      "205": "المفضلة",
+      "206": "الضبط",
     },
   };
 }

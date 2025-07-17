@@ -61,7 +61,7 @@ class CategoryItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         onTap: () {
           // هنا ممكن تضيف وظيفة عند الضغط
-          print("The user click on the catogery called:${title}");
+          print("The user click on the catogery called:$title");
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

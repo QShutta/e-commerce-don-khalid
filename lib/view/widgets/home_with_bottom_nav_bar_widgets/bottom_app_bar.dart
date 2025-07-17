@@ -10,6 +10,8 @@ class CustomBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      color: Colors.white,
+      elevation: 30,
       //هذه الخاصية تستخدم لتحديد شكل الحافة العلوية للـ
       //BottomAppBar
       // فائدة: لو عندك
@@ -58,7 +60,6 @@ class CustomBottomAppBar extends StatelessWidget {
             // index = 0 أو 1 → نستخدمه كما هو
             // index = 3 → لازم نطرحه 1 عشان نصل للعنصر رقم 2
             // index = 4 → نطرحه 1 عشان نصل للعنصر رقم 3
-
             int i = index > 2 ? index - 1 : index;
             //قلنا ليهو انتة لو وصلتة العنصر رقم 2 ختي لينا شنو ?
             //spacer
@@ -81,51 +82,6 @@ class CustomBottomAppBar extends StatelessWidget {
                   ),
                 );
           }),
-          //Why did he use row inside another row?
-          // Row(
-          //   spacing: 20.0,
-          //   children: [
-          //     CustomeButtonBottomNavBar(
-          //       onTap: () {
-          //         homeWithBottomNavBarController.changeCurrentPage(0);
-          //       },
-          //       icon: Icons.home_outlined,
-          //       title: 'Home',
-          //       active: homeWithBottomNavBarController.selectedItem == 0,
-          //     ),
-          //     CustomeButtonBottomNavBar(
-          //       onTap: () {
-          //         homeWithBottomNavBarController.changeCurrentPage(1);
-          //       },
-          //       icon: Icons.person_outline,
-          //       title: 'Profile',
-          //       active: homeWithBottomNavBarController.selectedItem == 1,
-          //     ),
-          //   ],
-          // ),
-          // Spacer() يضيف فراغ مرن بين المجموعتين، ويدفع كل مجموعة لأطراف الشاشة
-          // Spacer(),
-          // Row(
-          //   spacing: 20.0,
-          //   children: [
-          //     CustomeButtonBottomNavBar(
-          //       onTap: () {
-          //         homeWithBottomNavBarController.changeCurrentPage(2);
-          //       },
-          //       icon: Icons.favorite_border_outlined,
-          //       title: 'Favorite',
-          //       active: homeWithBottomNavBarController.selectedItem == 2,
-          //     ),
-          //     CustomeButtonBottomNavBar(
-          //       onTap: () {
-          //         homeWithBottomNavBarController.changeCurrentPage(3);
-          //       },
-          //       icon: Icons.settings_outlined,
-          //       title: 'Settings',
-          //       active: homeWithBottomNavBarController.selectedItem == 3,
-          //     ),
-          //   ],
-          // ),
         ],
       ),
     );

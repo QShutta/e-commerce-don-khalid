@@ -20,7 +20,10 @@ class HomeWithBottomNav extends StatelessWidget {
             onChangeWhenSearh: (String value) {},
           ),
           floatingActionButton: FloatingActionButton(
-            // backgroundColor: Colors.white,
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
             onPressed: () {},
             child: Icon(Icons.add_shopping_cart_outlined, color: Colors.black),
           ),
