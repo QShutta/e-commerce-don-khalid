@@ -12,6 +12,7 @@ abstract class HomeController extends GetxController {
   goToSettings();
   logOut();
   getData();
+  goToProductPage(List catogeries, int selectedCat);
   // This function is used to get the data from the server.
 }
 
@@ -130,5 +131,13 @@ class HomeControllerImp extends HomeController {
       }
     }
     update(); //This will update the UI
+  }
+
+  @override
+  goToProductPage(catogeries, selectedCat) {
+    Get.toNamed(
+      AppRoutes.productsRoot,
+      arguments: {"catogeries": catogeries, "selecedCatogery": selectedCat},
+    );
   }
 }

@@ -12,6 +12,7 @@ import 'package:e_commerce_halfa/view/screens/auth/sign_up/success_sign_up_page.
 import 'package:e_commerce_halfa/view/screens/home_with_bottom_nav.dart';
 import 'package:e_commerce_halfa/view/screens/language_selection.dart';
 import 'package:e_commerce_halfa/view/screens/onboarding.dart';
+import 'package:e_commerce_halfa/view/screens/products.dart';
 import 'package:get/get.dart';
 
 List<GetPage> appPages = [
@@ -87,10 +88,10 @@ List<GetPage> appPages = [
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),
-  // GetPage(
-  //   name: AppRoutes.homeWithBottomNav,
-  //   page: () => HomeWithBottomNav(),
-  //   transition: Transition.rightToLeft,
-  //   transitionDuration: const Duration(milliseconds: 400),
-  // ),
+  GetPage(
+    name: AppRoutes.productsRoot,
+    page: () => ProductsPage(),
+    transition: Transition.rightToLeft,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
 ];
