@@ -1,4 +1,4 @@
-import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controler.dart';
+import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.dart';
 import 'package:e_commerce_halfa/view/widgets/Home_with_bottom_nav_bar/custome_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
