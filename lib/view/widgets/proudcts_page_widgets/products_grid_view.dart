@@ -9,7 +9,7 @@ import 'package:lottie/lottie.dart';
 
 class ProductsGridView extends StatelessWidget {
   final HomeControllerImp homeControllerImp = Get.find();
-  final List<Products> productsList;
+  final List<ProductsModel> productsList;
   ProductsGridView({super.key, required this.productsList});
 
   @override

@@ -1,4 +1,4 @@
-class Products {
+class ProductsModel {
   int? productsId;
   String? productNameAr;
   String? proudctNameEn;
@@ -12,7 +12,7 @@ class Products {
   String? productDataCreate;
   int? productCatogery;
 
-  Products({
+  ProductsModel({
     this.productsId,
     this.productNameAr,
     this.proudctNameEn,
@@ -27,7 +27,7 @@ class Products {
     this.productCatogery,
   });
 
-  Products.fromJson(Map<String, dynamic> json) {
+  ProductsModel.fromJson(Map<String, dynamic> json) {
     productsId = json['products_id'];
     productNameAr = json['product_name_ar'];
     proudctNameEn = json['proudct_name_en'];

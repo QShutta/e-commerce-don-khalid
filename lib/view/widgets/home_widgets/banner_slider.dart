@@ -2,14 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
+import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class BannerSlider extends StatelessWidget {
   BannerSlider({super.key, required productList});
   final HomeControllerImp homeControllerImp = Get.find();
-  final List<Products> productList = [];
+  final List<ProductsModel> productList = [];
 
   @override
   Widget build(BuildContext context) {

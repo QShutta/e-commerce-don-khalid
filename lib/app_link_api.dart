@@ -18,14 +18,5 @@ class AppLinkApi {
   static const String resetPassword =
       "$serverUrl/auth/forgot_password/reset_password.php";
   static const String home = "$serverUrl/home.php";
-
-  // static const String makenZitfoulLink =
-  //     "$catogeriesImage/مكنة_زيت_فول_الدون.png";
-  // static const String donJazmaLink = "$catogeriesImage/جزمة_الدون.png";
-  // static const String donTopeLink = "$catogeriesImage/don_top1_gpt.png";
-  // static const String donSuiteLink = "$catogeriesImage/don_suite.png";
-  // static const String donSdyreLink = "$catogeriesImage/don_sdyre.png";
-  // static const String donSandaleLink = "$catogeriesImage/don_sandale.png";
-  // static const String donPerfumeLink = "$catogeriesImage/don_perfume_gpt.png";
-  // static const String donJalabyLink = "$catogeriesImage/don_jalabye_gpt.png";
+  static const String products = "$serverUrl/products/products.php";
 }
