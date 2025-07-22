@@ -21,7 +21,9 @@ class Crud {
     try {
       if (await checkInternet()) {
         var res = await http.post(Uri.parse(linkUrl), body: data);
+
         if (res.statusCode == 200 || res.statusCode == 201) {
+          print("Response status code: ${res.statusCode}");
           // If the request is successful
           Map resBody = json.decode(res.body);
           print(
@@ -39,7 +41,8 @@ class Crud {
         // so we return a Left with the StautusRequest.offlineFailure
         return Left(StautusRequest.offlineFailure);
       }
-    } catch (_) {
+    } catch (e) {
+      print("Error occurred: $e");
       return Left(StautusRequest.serverException);
     }
   }
