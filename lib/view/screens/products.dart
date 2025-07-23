@@ -2,7 +2,7 @@ import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/proudcts_page_widgets/products_catogeries_list.dart';
-import 'package:e_commerce_halfa/view/widgets/proudcts_page_widgets/products_grid.dart';
+import 'package:e_commerce_halfa/view/widgets/proudcts_page_widgets/products_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +28,9 @@ class ProductsPage extends StatelessWidget {
                 ProductCatogeryList(
                   catogeriesList: productsController.catogeriesList!,
                 ),
-                ProductsGrid(product: productsController.products),
+                ProductsGridWidget(
+                  productList: productsController.producstsLis!,
+                ),
               ],
             );
           },

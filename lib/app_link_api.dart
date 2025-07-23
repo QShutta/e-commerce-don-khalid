@@ -18,5 +18,7 @@ class AppLinkApi {
   static const String resetPassword =
       "$serverUrl/auth/forgot_password/reset_password.php";
   static const String home = "$serverUrl/home.php";
+
+  //--------------------------------Products===================================
   static const String products = "$serverUrl/products/products.php";
 }
