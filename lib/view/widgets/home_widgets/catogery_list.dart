@@ -28,6 +28,7 @@ class CategoryList extends StatelessWidget {
                 "${AppLinkApi.catogeriesImageLink}/${catogeries.catogeriesImage}",
             selectedCat: index,
             catogeries: catogeriesList,
+            catogeryId: catogeries.catogeriesId.toString(),
           );
         },
       ),

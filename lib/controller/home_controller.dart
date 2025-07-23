@@ -12,7 +12,7 @@ abstract class HomeController extends GetxController {
   goToSettings();
   logOut();
   getData();
-  goToProductPage(List catogeries, int selectedCat);
+  goToProductPage(List catogeries, int selectedCat, String productCat);
   // This function is used to get the data from the server.
 }
 
@@ -90,10 +90,14 @@ class HomeControllerImp extends HomeController {
   }
 
   @override
-  goToProductPage(catogeries, selectedCat) {
+  goToProductPage(catogeries, selectedCat, productCat) {
     Get.toNamed(
       AppRoutes.productsRoot,
-      arguments: {"catogeries": catogeries, "selecedCatogery": selectedCat},
+      arguments: {
+        "catogeries": catogeries,
+        "selecedCatogery": selectedCat,
+        "product_catogery": productCat,
+      },
     );
   }
 }

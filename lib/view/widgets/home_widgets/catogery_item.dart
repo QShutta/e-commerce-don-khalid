@@ -10,12 +10,14 @@ class CategoryItem extends GetView<HomeControllerImp> {
   final String imageUrl;
   final int selectedCat;
   final List catogeries;
+  final String catogeryId;
 
   CategoryItem({
     required this.title,
     required this.imageUrl,
     required this.selectedCat,
     required this.catogeries,
+    required this.catogeryId,
     super.key,
   });
 
@@ -40,7 +42,7 @@ class CategoryItem extends GetView<HomeControllerImp> {
         onTap: () {
           // هنا ممكن تضيف وظيفة عند الضغط
           print("The user click on the catogery called:$title");
-          controller.goToProductPage(catogeries, selectedCat);
+          controller.goToProductPage(catogeries, selectedCat, catogeryId);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

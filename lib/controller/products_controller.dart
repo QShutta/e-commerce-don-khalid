@@ -15,6 +15,7 @@ abstract class ProductsController extends GetxController {
 class ProductsControllerImp extends ProductsController {
   List<Catogeries>? catogeriesList;
   int? selectedCat;
+  String? productCat;
   StautusRequest statusRequest = StautusRequest.none;
   ProductData productData = ProductData(Get.find());
   List<ProductsModel>? producstsLis = [];
@@ -25,7 +26,7 @@ class ProductsControllerImp extends ProductsController {
     );
     statusRequest = StautusRequest.loading;
     update();
-    var response = await productData.getData();
+    var response = await productData.getData(productCat!);
     statusRequest = handlingStatusRequest(response);
     print("you'r status request is : $statusRequest");
     if (statusRequest == StautusRequest.success) {
@@ -53,6 +54,7 @@ class ProductsControllerImp extends ProductsController {
   initVlues() {
     catogeriesList = Get.arguments["catogeries"];
     selectedCat = Get.arguments["selecedCatogery"];
+    productCat = Get.arguments["product_catogery"];
   }
 
   @override
