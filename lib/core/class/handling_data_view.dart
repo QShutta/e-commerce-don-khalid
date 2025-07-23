@@ -27,18 +27,22 @@ import 'package:lottie/lottie.dart';
 /// - لو الصفحة **فيها تنفيذ فقط بدون عرض بيانات** → استخدم `HandlingDataRequest`
 
 class HnadlingDataView extends StatelessWidget {
-  const HnadlingDataView({
+  HnadlingDataView({
     super.key,
     required this.stautusRequest,
     required this.widget,
+    this.optionalLoadingWidget,
   });
   final StautusRequest stautusRequest;
   final Widget widget;
+  Widget? optionalLoadingWidget;
   @override
   Widget build(BuildContext context) {
     return stautusRequest == StautusRequest.loading
         // ? Center(child: CircularProgressIndicator())
-        ? LoadingWidget()
+        ? optionalLoadingWidget == null
+            ? LoadingWidget()
+            : optionalLoadingWidget!
         : stautusRequest == StautusRequest.offlineFailure
         // ? Center(child: Text("Offline Failure"))
         ? Center(

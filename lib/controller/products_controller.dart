@@ -74,6 +74,8 @@ class ProductsControllerImp extends ProductsController {
   @override
   changeSelectedCat(int val, String catVal) {
     selectedCat = val; // ✅ هذا يحدد الزر الملون في الواجهة
+    //في حاجة مهمة لاحظها عشان ما تعمل ليك لخبطة لمن المستخدم يضغط علي الزر بيتم تمرير
+    //new catogeryid that he want to select
     productCat = catVal; // ✅ هذا يحدد التصنيف الذي سنرسل رقمه للسيرفر
     getData(); // ✅ نجيب البيانات الجديدة حسب التصنيف المختار
     update(); // ✅ نحدّث الواجهة بالبيانات الجديدة
