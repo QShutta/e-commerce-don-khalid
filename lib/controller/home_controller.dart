@@ -88,6 +88,12 @@ class HomeControllerImp extends HomeController {
       update();
     }
   }
+  //Why did we pass the productCat?
+  //Because we need to filter the products based on the selected category.
+  //🔥 ليه ما بنستخدم بس selectedCat؟
+  // لأنو:
+  // السيرفر ما بفهم index، هو عايز الـ ID عشان يرجّع المنتجات الخاصة بتصنيف معين.
+  // الـ index ممكن يتغير حسب طريقة العرض، لكن الـ ID ما بيتغير.
 
   @override
   goToProductPage(catogeries, selectedCat, productCat) {

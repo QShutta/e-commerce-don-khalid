@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 //Before of 70
 abstract class ProductsController extends GetxController {
   getData();
-  changeSelectedCat(int val);
+  changeSelectedCat(int val, String? catVal);
   initVlues();
 }
 
@@ -58,8 +58,9 @@ class ProductsControllerImp extends ProductsController {
   }
 
   @override
-  changeSelectedCat(int val) {
+  changeSelectedCat(int val, catVal) {
     selectedCat = val;
+    productCat = catVal;
     update();
   }
 }

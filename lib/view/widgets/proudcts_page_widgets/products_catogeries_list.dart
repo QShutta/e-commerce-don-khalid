@@ -27,7 +27,7 @@ class ProductCatogeryList extends StatelessWidget {
             imageUrl:
                 "${AppLinkApi.catogeriesImageLink}/${catogeries.catogeriesImage}",
             selectedCat: index,
-            catogeries: catogeriesList,
+            catogeryId: catogeries.catogeriesId.toString(),
           );
         },
       ),
@@ -39,13 +39,12 @@ class ProductCatogeryItem extends GetView<ProductsControllerImp> {
   final String title;
   final String imageUrl;
   final int selectedCat;
-  final List catogeries;
-
+  final String? catogeryId;
   ProductCatogeryItem({
+    required this.catogeryId,
     required this.title,
     required this.imageUrl,
     required this.selectedCat,
-    required this.catogeries,
     super.key,
   });
 
@@ -68,7 +67,7 @@ class ProductCatogeryItem extends GetView<ProductsControllerImp> {
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
         onTap: () {
-          controller.changeSelectedCat(selectedCat);
+          controller.changeSelectedCat(selectedCat, catogeryId);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
