@@ -8,7 +8,11 @@ import 'package:get/get.dart';
 //Before of 70
 abstract class ProductsController extends GetxController {
   getData();
-  changeSelectedCat(int val);
+  //Why did we add the catVal?
+  //Because we need to know which category the user selected
+  // and to filter the products based on that category.
+
+  changeSelectedCat(int val, String catVal);
   initVlues();
 }
 
@@ -56,10 +60,22 @@ class ProductsControllerImp extends ProductsController {
     selectedCat = Get.arguments["selecedCatogery"];
     productCat = Get.arguments["product_catogery"];
   }
+  /*
+🔁 فكرة التنقل بين التصنيفات في صفحة المنتجات:
+- عند فتح صفحة المنتجات، يتم تمرير كل التصنيفات + التصنيف المختار.
+- يتم عرض كل التصنيفات في شريط أفقي.
+- عند الضغط على تصنيف آخر:
+    1. نحفظ الـ index (selectedCat) لتمييز الزر المختار في الواجهة.
+    2. نحفظ الـ id الحقيقي (productCat) لاستخدامه في جلب المنتجات من السيرفر.
+    3. نستدعي getData() لجلب المنتجات المرتبطة بالتصنيف.
+    4. نقوم بـ update() لتحديث الواجهة بالمنتجات الجديدة.
+*/
 
   @override
-  changeSelectedCat(int val) {
-    selectedCat = val;
-    update();
+  changeSelectedCat(int val, String catVal) {
+    selectedCat = val; // ✅ هذا يحدد الزر الملون في الواجهة
+    productCat = catVal; // ✅ هذا يحدد التصنيف الذي سنرسل رقمه للسيرفر
+    getData(); // ✅ نجيب البيانات الجديدة حسب التصنيف المختار
+    update(); // ✅ نحدّث الواجهة بالبيانات الجديدة
   }
 }
