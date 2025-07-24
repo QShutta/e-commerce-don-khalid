@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -19,7 +20,7 @@ class ProductsGridWidget extends StatelessWidget {
 
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         //This to controll on the heigh of the card.
-        mainAxisExtent: 200,
+        mainAxisExtent: 210,
         crossAxisSpacing: 2.0,
         crossAxisCount: 2,
       ),
@@ -27,7 +28,10 @@ class ProductsGridWidget extends StatelessWidget {
         return ProductItem(
           imageUrl:
               "${AppLinkApi.productsImageLink}/${productList[index].productImage}",
-          productName: productList[index].productNameAr,
+          productName: translateDataBase(
+            productList[index].proudctNameEn,
+            productList[index].productNameAr,
+          ),
           productPrice: productList[index].productPrice.toString(),
         );
       },

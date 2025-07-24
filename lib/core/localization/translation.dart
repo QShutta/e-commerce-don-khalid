@@ -155,7 +155,7 @@ class MyTranslation extends Translations {
       "105": "Slippers",
       "106": "Suits",
       "107": "Shoes",
-      "108": "Production Machine",
+      "108": "Machine",
       "200": "Support Locale",
       "201": "Empower Local Prdoucts",
       "202": "Start you'r own business with us",
@@ -163,6 +163,7 @@ class MyTranslation extends Translations {
       "204": "Profile",
       "205": "Favorite",
       "206": "Settings",
+      "207": "Products For You",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -254,7 +255,7 @@ class MyTranslation extends Translations {
       "105": "شباشب",
       "106": "بدل",
       "107": "احذية",
-      "108": "مكن انتاج",
+      "108": "ماكينات",
       "200": "ادعم منتج بلدك",
       "201": "تمكين الإنتاج المحلي",
       "202": "ابدأ عملك الخاص معانا",
@@ -262,6 +263,7 @@ class MyTranslation extends Translations {
       "204": "بياناتك",
       "205": "المفضلة",
       "206": "الضبط",
+      "207": "الحاجات الميريا",
     },
   };
 }

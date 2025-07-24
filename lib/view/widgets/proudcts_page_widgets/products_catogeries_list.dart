@@ -1,5 +1,7 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/products_controller.dart';
+import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,7 @@ class ProductCatogeryList extends StatelessWidget {
   final List<Catogeries> catogeriesList;
   final ProductsControllerImp homeControllerImp =
       Get.find<ProductsControllerImp>();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,11 +22,14 @@ class ProductCatogeryList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: catogeriesList.length,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         itemBuilder: (context, index) {
           final catogeries = catogeriesList[index];
           return ProductCatogeryItem(
-            title: catogeries.catogeriesNameAr!,
+            title: translateDataBase(
+              catogeries.catogeriesNameEn,
+              catogeries.catogeriesNameAr,
+            ),
             imageUrl:
                 "${AppLinkApi.catogeriesImageLink}/${catogeries.catogeriesImage}",
             selectedCat: index,
@@ -42,7 +48,7 @@ class ProductCatogeryItem extends GetView<ProductsControllerImp> {
   final int selectedCat;
   final List catogeries;
   final String? catId;
-
+  MyServices myServices = Get.find();
   ProductCatogeryItem({
     required this.title,
     required this.catId,
@@ -56,7 +62,8 @@ class ProductCatogeryItem extends GetView<ProductsControllerImp> {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),

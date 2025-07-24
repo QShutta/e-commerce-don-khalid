@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:lottie/lottie.dart';
 
@@ -11,7 +14,7 @@ class CategoryItem extends GetView<HomeControllerImp> {
   final int selectedCat;
   final List catogeries;
   final String catogeryId;
-
+  MyServices myServices = Get.find();
   CategoryItem({
     required this.title,
     required this.imageUrl,
@@ -25,7 +28,9 @@ class CategoryItem extends GetView<HomeControllerImp> {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
+
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),

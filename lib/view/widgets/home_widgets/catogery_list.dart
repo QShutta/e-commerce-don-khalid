@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
+import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/catogery_item.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,10 @@ class CategoryList extends StatelessWidget {
         itemBuilder: (context, index) {
           final catogeries = catogeriesList[index];
           return CategoryItem(
-            title: catogeries.catogeriesNameAr!,
+            title: translateDataBase(
+              catogeries.catogeriesNameEn,
+              catogeries.catogeriesNameAr!,
+            ),
             imageUrl:
                 "${AppLinkApi.catogeriesImageLink}/${catogeries.catogeriesImage}",
             selectedCat: index,

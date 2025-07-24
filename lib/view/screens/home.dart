@@ -21,14 +21,14 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 BannerSlider(productList: homeControllerImp.products),
-                HomeText(text: "الأصناف"),
+                HomeText(text: "100".tr),
                 CategoryList(catogeriesList: homeControllerImp.categories),
                 EmpowerSection(
                   title: "200".tr,
                   subTitle: "201".tr,
                   body: "202".tr,
                 ),
-                HomeText(text: "الحاجات الميريا"),
+                HomeText(text: "207".tr),
                 TopProducts(productsList: homeControllerImp.products),
               ],
             ),

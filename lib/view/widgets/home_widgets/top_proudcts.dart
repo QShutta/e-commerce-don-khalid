@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class TopProducts extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.85,
+        childAspectRatio: 0.82,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
       ),
@@ -33,7 +34,7 @@ class TopProducts extends StatelessWidget {
             );
           },
           child: Container(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.all(4),
             child: Card(
               color: Colors.white,
               child: Column(
@@ -53,7 +54,7 @@ class TopProducts extends StatelessWidget {
 
                   SizedBox(height: 8.0),
                   Text(
-                    product.productNameAr!,
+                    "${translateDataBase(product.proudctNameEn, product.productNameAr!)}",
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -62,9 +63,9 @@ class TopProducts extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    product.productPrice.toString(),
+                    "\$${product.productPrice.toString()}",
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontSize: 14,
+                      fontSize: 15,
                       color: Colors.grey[700],
                     ),
                   ),
