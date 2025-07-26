@@ -19,7 +19,7 @@ List<GetPage> appPages = [
   GetPage(
     name: AppRoutes.languageSelection,
     page: () => LanguageSelection(),
-    middlewares: [InitMiddleware()],
+    // middlewares: [InitMiddleware()],
     transition: Transition.fadeIn,
     transitionDuration: const Duration(milliseconds: 500),
   ),
