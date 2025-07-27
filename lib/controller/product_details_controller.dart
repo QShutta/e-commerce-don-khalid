@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +22,14 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     Color.fromARGB(255, 238, 81, 146), // White
     Color(0xFF8B4513), // Brown (SaddleBrown)
   ];
+  ProductsModel productModel = Get.arguments["productDetails"];
+  @override
+  void onInit() {
+    print("--------------------------------------------------");
+    print(" The product details are ${productModel.productNameAr}");
+    super.onInit();
+  }
+
   @override
   void changeSelectedSize(String size) {
     selectedSize = size;

@@ -5,6 +5,8 @@ class AppLinkApi {
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/catogeries";
   static const String productsImageLink =
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/products";
+  static const String productsImageLinkWithoutBack =
+      "https://qasimshutta.shop/2test/e-commerce-halfa/upload/products/product_without_back";
   static const String test = "$serverUrl/test.php";
 
   //--------------------------------Auth======================================

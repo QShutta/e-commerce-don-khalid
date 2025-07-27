@@ -39,6 +39,7 @@ class ProductDetails extends StatelessWidget {
                       imageWidth: 300,
                       imageHeight: 300,
                       imageBottomSpace: 10,
+                      imageUrl: '',
                     ),
                     // Image.asset(ImageAssets.bannerDonJalabye),
                     // الجزء السفلي (نموذج تسجيل الدخول)

@@ -18,4 +18,5 @@ class AppRoutes {
   //HomeWithBottomNav
 
   static const String productsRoot = '/homeWithBottomNav';
+  static const String productDetails = '/productDetails';
 }

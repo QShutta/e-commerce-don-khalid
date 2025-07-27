@@ -38,9 +38,9 @@ class MainApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
-      home: ProductDetails(),
-      // initialRoute: AppRoutes.languageSelection,
-      // getPages: appPages,
+      // home: ProductDetails(),
+      initialRoute: AppRoutes.languageSelection,
+      getPages: appPages,
     );
   }
 }

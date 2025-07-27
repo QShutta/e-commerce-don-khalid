@@ -1,12 +1,15 @@
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
+import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_color_widgit.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_quantity_widget.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_size_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class ProductDetailsBody extends StatelessWidget {
+  final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
   ProductDetailsBody({super.key});
 
   @override
@@ -29,7 +32,10 @@ class ProductDetailsBody extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 textAlign: TextAlign.start,
-                "إسم المنتج",
+                translateDataBase(
+                  productDetailsControllerImp.productModel.proudctNameEn!,
+                  productDetailsControllerImp.productModel.productNameAr,
+                ),
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
@@ -38,7 +44,10 @@ class ProductDetailsBody extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 textAlign: TextAlign.start,
-                "دة وصف المنتج هنا. يمكنك إضافة تفاصيل حول المنتج، مثل المميزات والسعر وأي معلومات أخرى ذات صلة.",
+                translateDataBase(
+                  productDetailsControllerImp.productModel.productDescEn!,
+                  productDetailsControllerImp.productModel.productDescAr,
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.bodyMedium!.copyWith(color: AppColor.greyText),
@@ -49,7 +58,7 @@ class ProductDetailsBody extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 textAlign: TextAlign.start,
-                "\$100.00",
+                "\$${productDetailsControllerImp.productModel.productPrice}",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),

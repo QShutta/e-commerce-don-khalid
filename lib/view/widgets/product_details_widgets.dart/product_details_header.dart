@@ -1,6 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:lottie/lottie.dart';
 
 class ProductDetailsHeader extends StatelessWidget {
   final Color? backgroundColor;
@@ -9,8 +14,8 @@ class ProductDetailsHeader extends StatelessWidget {
   final double? imageWidth;
   final double? imageHeight;
   final double? imageBottomSpace;
-
-  const ProductDetailsHeader({
+  final String? imageUrl;
+  ProductDetailsHeader({
     super.key,
     required this.imagePath,
     required this.containerHight,
@@ -18,8 +23,10 @@ class ProductDetailsHeader extends StatelessWidget {
     required this.imageWidth,
     required this.imageHeight,
     required this.imageBottomSpace,
+    required this.imageUrl,
   });
 
+  final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -39,7 +46,16 @@ class ProductDetailsHeader extends StatelessWidget {
             bottom: imageBottomSpace,
             width: imageWidth,
             height: imageHeight,
-            child: SizedBox(child: Image.asset(imagePath!, fit: BoxFit.cover)),
+            // child: SizedBox(child: Image.asset(imagePath!, fit: BoxFit.cover)),
+            child: CachedNetworkImage(
+              imageUrl:
+                  "${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}",
+              fit: BoxFit.cover,
+              placeholder:
+                  (context, url) =>
+                      Center(child: Lottie.asset(ImageAssets.loading)),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
         ],
       ),

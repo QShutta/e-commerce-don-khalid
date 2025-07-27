@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/products_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
@@ -14,6 +15,7 @@ abstract class ProductsController extends GetxController {
 
   changeSelectedCat(int val, String catVal);
   initVlues();
+  goToProductDetails(productDetails);
 }
 
 class ProductsControllerImp extends ProductsController {
@@ -79,5 +81,13 @@ class ProductsControllerImp extends ProductsController {
     productCat = catVal; // ✅ هذا يحدد التصنيف الذي سنرسل رقمه للسيرفر
     getData(); // ✅ نجيب البيانات الجديدة حسب التصنيف المختار
     update(); // ✅ نحدّث الواجهة بالبيانات الجديدة
+  }
+
+  @override
+  goToProductDetails(productDetails) {
+    Get.toNamed(
+      AppRoutes.productDetails,
+      arguments: {"productDetails": productDetails},
+    );
   }
 }

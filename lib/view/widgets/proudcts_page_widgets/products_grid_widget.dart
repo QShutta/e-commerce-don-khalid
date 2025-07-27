@@ -1,13 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:lottie/lottie.dart';
 
-class ProductsGridWidget extends StatelessWidget {
+class ProductsGridWidget extends GetView<ProductsControllerImp> {
   final List<ProductsModel> productList;
   const ProductsGridWidget({super.key, required this.productList});
 
@@ -33,6 +35,15 @@ class ProductsGridWidget extends StatelessWidget {
             productList[index].productNameAr,
           ),
           productPrice: productList[index].productPrice.toString(),
+          onProductClicked: () {
+            //productList
+            //عبارة عن
+            //List<ProductsModel>،
+            // لذلك productList[index]
+            // هو عنصر من نوع
+            // ProductsModel
+            controller.goToProductDetails(productList[index]);
+          },
         );
       },
     );
@@ -43,8 +54,10 @@ class ProductItem extends StatelessWidget {
   final String? imageUrl;
   final String? productName;
   final String? productPrice;
+  final void Function()? onProductClicked;
   const ProductItem({
     super.key,
+    required this.onProductClicked,
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
@@ -55,6 +68,7 @@ class ProductItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
+        onTap: onProductClicked,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
