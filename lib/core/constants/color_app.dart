@@ -18,4 +18,6 @@ class AppColor {
   static const Color primaryColor = Color(0xFF407BFF);
   static Color? grey800 = Colors.grey[800]!;
   static const Color black = Colors.black;
+  static const Color begie = Color.fromARGB(255, 250, 234, 192);
+  static const Color darkGrey = Color(0xFF333333);
 }

@@ -164,6 +164,7 @@ class MyTranslation extends Translations {
       "205": "Favorite",
       "206": "Settings",
       "207": "Products For You",
+      "209": "Add To Cart",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -264,6 +265,7 @@ class MyTranslation extends Translations {
       "205": "المفضلة",
       "206": "الضبط",
       "207": "الحاجات الميريا",
+      "209": "إضافة إلي السلة",
     },
   };
 }

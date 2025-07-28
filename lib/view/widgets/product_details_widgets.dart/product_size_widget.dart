@@ -51,8 +51,7 @@ class ProductSizeWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     //Why to use this condition?
                     //عشان لمن المستخدم يختار حجم لازم يكون لون الحجم المختار مختلف عن الباقين
-                    color:
-                        isSelected ? AppColor.primaryColor : Color(0xFFF1EBEC),
+                    color: isSelected ? AppColor.begie : Color(0xFFF1EBEC),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Center(

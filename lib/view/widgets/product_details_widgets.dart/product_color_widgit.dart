@@ -44,7 +44,7 @@ class ProductColorsWidget extends StatelessWidget {
                     border: Border.all(
                       color:
                           isSelected == true
-                              ? AppColor.primaryColor
+                              ? const Color.fromARGB(255, 250, 206, 97)
                               : Colors.transparent,
                       width: 2,
                     ),

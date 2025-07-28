@@ -15,7 +15,8 @@ class ProductDetailsHeader extends StatelessWidget {
   ProductDetailsHeader({
     super.key,
     required this.containerHight,
-    this.backgroundColor = const Color(0xFF3B5998),
+    // this.backgroundColor = const Color(0xFF3B5998),
+    required this.backgroundColor,
     required this.imageWidth,
     required this.imageHeight,
     required this.imageBottomSpace,
