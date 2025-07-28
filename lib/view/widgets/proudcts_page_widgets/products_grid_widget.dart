@@ -44,6 +44,7 @@ class ProductsGridWidget extends GetView<ProductsControllerImp> {
             // ProductsModel
             controller.goToProductDetails(productList[index]);
           },
+          productId: productList[index].productsId!,
         );
       },
     );
@@ -55,12 +56,14 @@ class ProductItem extends StatelessWidget {
   final String? productName;
   final String? productPrice;
   final void Function()? onProductClicked;
+  final int productId;
   const ProductItem({
     super.key,
     required this.onProductClicked,
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
+    required this.productId,
   });
 
   @override
@@ -87,14 +90,18 @@ class ProductItem extends StatelessWidget {
                     height: 100,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: CachedNetworkImage(
-                        imageUrl: imageUrl!,
-                        fit: BoxFit.cover,
-                        placeholder:
-                            (context, url) => Center(
-                              child: Lottie.asset(ImageAssets.loading),
-                            ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      child: Hero(
+                        tag: productId,
+                        child: CachedNetworkImage(
+                          imageUrl: imageUrl!,
+                          fit: BoxFit.cover,
+                          placeholder:
+                              (context, url) => Center(
+                                child: Lottie.asset(ImageAssets.loading),
+                              ),
+                          errorWidget:
+                              (context, url, error) => Icon(Icons.error),
+                        ),
                       ),
                     ),
                   ),

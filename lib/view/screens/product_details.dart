@@ -33,13 +33,11 @@ class ProductDetails extends StatelessWidget {
                   children: [
                     // الجزء العلوي (الخلفية الملونة)
                     ProductDetailsHeader(
-                      imagePath: ImageAssets.bannerDonJalabye,
                       backgroundColor: AppColor.primaryColor,
                       containerHight: 300,
                       imageWidth: 300,
                       imageHeight: 300,
                       imageBottomSpace: 10,
-                      imageUrl: '',
                     ),
                     // Image.asset(ImageAssets.bannerDonJalabye),
                     // الجزء السفلي (نموذج تسجيل الدخول)
