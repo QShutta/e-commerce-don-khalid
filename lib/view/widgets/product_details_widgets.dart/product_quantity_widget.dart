@@ -36,7 +36,9 @@ class ProductQuantityWidget extends StatelessWidget {
                   ),
                   Text(
                     productDetailsControllerImp.quantity.toString(),
+
                     style: Theme.of(context).textTheme.bodyMedium,
+                    //            style: TextStyle(height: 3.0),
                   ),
                   IconButton(
                     onPressed: () {

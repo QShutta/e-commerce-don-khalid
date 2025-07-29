@@ -1,11 +1,6 @@
+import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
-import 'package:e_commerce_halfa/core/constants/color_app.dart';
-import 'package:e_commerce_halfa/core/constants/image_assets.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_form.dart';
-import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_header.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/add_to_cart__button.dart';
-import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_color_widgit.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_details_body.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_details_header.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +38,8 @@ class ProductDetails extends StatelessWidget {
                       imageWidth: 300,
                       imageHeight: 300,
                       imageBottomSpace: 10,
+                      imageUrl:
+                          '${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}',
                     ),
                     // Image.asset(ImageAssets.bannerDonJalabye),
                     // الجزء السفلي (نموذج تسجيل الدخول)

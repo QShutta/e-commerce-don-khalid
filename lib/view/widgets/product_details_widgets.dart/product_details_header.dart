@@ -12,6 +12,7 @@ class ProductDetailsHeader extends StatelessWidget {
   final double? imageWidth;
   final double? imageHeight;
   final double? imageBottomSpace;
+  final String? imageUrl;
   ProductDetailsHeader({
     super.key,
     required this.containerHight,
@@ -19,6 +20,7 @@ class ProductDetailsHeader extends StatelessWidget {
     required this.backgroundColor,
     required this.imageWidth,
     required this.imageHeight,
+    required this.imageUrl,
     required this.imageBottomSpace,
   });
 
@@ -43,17 +45,23 @@ class ProductDetailsHeader extends StatelessWidget {
             width: imageWidth,
             height: imageHeight,
             // child: SizedBox(child: Image.asset(imagePath!, fit: BoxFit.cover)),
-            child: Hero(
-              transitionOnUserGestures: true,
-              tag: productDetailsControllerImp.productModel.productsId!,
-              child: CachedNetworkImage(
-                imageUrl:
-                    "${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}",
-                fit: BoxFit.cover,
-                placeholder:
-                    (context, url) =>
-                        Center(child: Lottie.asset(ImageAssets.loading)),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+            child: InkWell(
+              onTap: () {
+                print(
+                  '${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}',
+                );
+              },
+              child: Hero(
+                transitionOnUserGestures: true,
+                tag: productDetailsControllerImp.productModel.productsId!,
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl!,
+                  fit: BoxFit.cover,
+                  placeholder:
+                      (context, url) =>
+                          Center(child: Lottie.asset(ImageAssets.loading)),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ),
           ),
