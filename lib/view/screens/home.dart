@@ -29,7 +29,10 @@ class HomePage extends StatelessWidget {
                   body: "202".tr,
                 ),
                 HomeText(text: "207".tr),
-                TopProducts(productsList: homeControllerImp.products),
+                TopProducts(
+                  productsList: homeControllerImp.products,
+                  isFav: false,
+                ),
               ],
             ),
           ),

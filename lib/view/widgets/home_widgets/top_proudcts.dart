@@ -11,7 +11,8 @@ import 'package:lottie/lottie.dart';
 class TopProducts extends StatelessWidget {
   final HomeControllerImp homeControllerImp = Get.find();
   final List<ProductsModel> productsList;
-  TopProducts({super.key, required this.productsList});
+  final bool isFav;
+  TopProducts({super.key, required this.productsList, required this.isFav});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class TopProducts extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.82,
+        childAspectRatio: 0.80,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
       ),
@@ -61,13 +62,29 @@ class TopProducts extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
-                    "\$${product.productPrice.toString()}",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontSize: 15,
-                      color: Colors.grey[700],
-                    ),
+                  // SizedBox(height: 4.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "\$${product.productPrice.toString()}",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 15,
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon:
+                            isFav
+                                ? Icon(Icons.favorite, color: Colors.blue)
+                                : Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.grey,
+                                ),
+                      ),
+                    ],
                   ),
                 ],
               ),
