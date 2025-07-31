@@ -45,7 +45,7 @@ class ProductsGridWidget extends GetView<ProductsControllerImp> {
             controller.goToProductDetails(productList[index]);
           },
           productId: productList[index].productsId!,
-          isFav: true,
+          fav: productList[index].fav.toString(),
         );
       },
     );
@@ -56,13 +56,13 @@ class ProductItem extends StatelessWidget {
   final String? imageUrl;
   final String? productName;
   final String? productPrice;
-  final bool isFav;
+  final String fav;
   final void Function()? onProductClicked;
   final int productId;
   const ProductItem({
     super.key,
     required this.onProductClicked,
-    required this.isFav,
+    required this.fav,
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
@@ -116,7 +116,7 @@ class ProductItem extends StatelessWidget {
                     IconButton(
                       onPressed: () {},
                       icon:
-                          isFav == true
+                          fav == "1"
                               ? Icon(
                                 Icons.favorite,
                                 color: AppColor.primaryColor,

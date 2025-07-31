@@ -1,6 +1,7 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/products_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
@@ -25,6 +26,8 @@ class ProductsControllerImp extends ProductsController {
   StautusRequest statusRequest = StautusRequest.none;
   ProductData productData = ProductData(Get.find());
   List<ProductsModel>? producstsLis = [];
+  MyServices myServices = Get.find();
+  String? userId;
   @override
   getData() async {
     print(
@@ -32,7 +35,7 @@ class ProductsControllerImp extends ProductsController {
     );
     statusRequest = StautusRequest.loading;
     update();
-    var response = await productData.getData(productCat!);
+    var response = await productData.getData(productCat!, userId!);
     statusRequest = handlingStatusRequest(response);
     print("you'r status request is : $statusRequest");
     if (statusRequest == StautusRequest.success) {
@@ -61,6 +64,7 @@ class ProductsControllerImp extends ProductsController {
     catogeriesList = Get.arguments["catogeries"];
     selectedCat = Get.arguments["selecedCatogery"];
     productCat = Get.arguments["product_catogery"];
+    userId = myServices.sharedPreferences.getString("user_id");
   }
   /*
 🔁 فكرة التنقل بين التصنيفات في صفحة المنتجات:
