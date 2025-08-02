@@ -135,7 +135,7 @@ class ProductItem extends StatelessWidget {
                             //What did i have to put in this line?
                             controller.setFav(
                               productId,
-                              controller.isFav[productId] == 1 ? 0 : 1,
+                              controller.isFav[productId] == "1" ? "0" : "1",
                             );
                           },
                           icon:
