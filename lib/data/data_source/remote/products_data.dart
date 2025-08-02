@@ -5,9 +5,10 @@ class ProductData {
   Crud crud;
   ProductData(this.crud);
 
-  Future getData(String productCat) async {
+  Future getData(String productCat, String userId) async {
     var response = await crud.postData(AppLinkApi.products, {
       "product_catogery": productCat,
+      "user_id": userId,
     });
     return response.fold((l) => l, (r) => r);
   }
