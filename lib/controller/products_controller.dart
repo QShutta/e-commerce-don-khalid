@@ -22,12 +22,13 @@ abstract class ProductsController extends GetxController {
 class ProductsControllerImp extends ProductsController {
   List<Catogeries>? catogeriesList;
   int? selectedCat;
+  MyServices myServices = Get.find();
   String? productCat;
+  String? userId;
   StautusRequest statusRequest = StautusRequest.none;
   ProductData productData = ProductData(Get.find());
   List<ProductsModel>? producstsLis = [];
-  MyServices myServices = Get.find();
-  String? userId;
+
   @override
   getData() async {
     print(

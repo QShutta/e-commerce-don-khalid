@@ -45,7 +45,7 @@ class ProductsGridWidget extends GetView<ProductsControllerImp> {
             controller.goToProductDetails(productList[index]);
           },
           productId: productList[index].productsId!,
-          fav: productList[index].fav.toString(),
+          fav: productList[index].fav.toString(), // Assuming fav is a string
         );
       },
     );

@@ -8,6 +8,7 @@ import 'package:e_commerce_halfa/view/widgets/proudcts_page_widgets/products_gri
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Before of 83.
 class ProductsPage extends StatelessWidget {
   ProductsPage({super.key});
   //Before of 69

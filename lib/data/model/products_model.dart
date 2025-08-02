@@ -11,10 +11,11 @@ class ProductsModel {
   int? productDiscount;
   String? productDataCreate;
   int? productCatogery;
-  int? fav;
+  String? fav;
 
   ProductsModel({
     this.productsId,
+    this.fav,
     this.productNameAr,
     this.proudctNameEn,
     this.productDescAr,
@@ -26,7 +27,6 @@ class ProductsModel {
     this.productDiscount,
     this.productDataCreate,
     this.productCatogery,
-    this.fav,
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
@@ -42,12 +42,13 @@ class ProductsModel {
     productDiscount = json['product_discount'];
     productDataCreate = json['product_data_create'];
     productCatogery = json['product_catogery'];
-    fav = json['fav'];
+    fav = json['fav'].toString();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['products_id'] = productsId;
+    data['fav'] = fav;
     data['product_name_ar'] = productNameAr;
     data['proudct_name_en'] = proudctNameEn;
     data['product_desc_ar'] = productDescAr;
