@@ -1,18 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/fav_controller.dart';
 import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:lottie/lottie.dart';
 
-class ProductsGridWidget extends GetView<ProductsControllerImp> {
+class ProductsGridWidget extends StatelessWidget {
   final List<ProductsModel> productList;
-  const ProductsGridWidget({super.key, required this.productList});
+  ProductsGridWidget({super.key, required this.productList});
 
+  ProductsControllerImp productsControllerImp = Get.put(
+    ProductsControllerImp(),
+  );
+
+  FavController favController = Get.put(FavController());
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -27,6 +35,13 @@ class ProductsGridWidget extends GetView<ProductsControllerImp> {
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
+        //Why did the course instructor fill the map "isFav" here?why in this line?xxxxxxxxxxxxxxxxxxxxxx
+        //هو ال isFav will be fill here مش مفتررض تكون في oninit why did he filled it here in this location?
+        favController.isFav[productsControllerImp
+                .producstsLis![index]
+                .productsId] =
+            productsControllerImp.producstsLis![index].fav;
+
         return ProductItem(
           imageUrl:
               "${AppLinkApi.productsImageLink}/${productList[index].productImage}",
@@ -42,7 +57,7 @@ class ProductsGridWidget extends GetView<ProductsControllerImp> {
             // لذلك productList[index]
             // هو عنصر من نوع
             // ProductsModel
-            controller.goToProductDetails(productList[index]);
+            productsControllerImp.goToProductDetails(productList[index]);
           },
           productId: productList[index].productsId!,
           fav: productList[index].fav.toString(), // Assuming fav is a string
@@ -113,18 +128,31 @@ class ProductItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon:
-                          fav == "1"
-                              ? Icon(
-                                Icons.favorite,
-                                color: AppColor.primaryColor,
-                              )
-                              : Icon(
-                                Icons.favorite_outline,
-                                color: Colors.grey,
-                              ),
+                    GetBuilder<FavController>(
+                      builder: (controller) {
+                        return IconButton(
+                          onPressed: () {
+                            //What did i have to put in this line?
+                            controller.setFav(
+                              productId,
+                              controller.isFav[productId] == 1 ? 0 : 1,
+                            );
+                          },
+                          icon:
+                              //Why did this not work?xxxxxxxxxxxxxxxxxxxx
+                              //Why did the color is not blue?xxxxxxxxxxxxxx
+                              //It work when i wrap the 1 with "" why before of that doesn't work?xxx
+                              controller.isFav[productId] == "1"
+                                  ? Icon(
+                                    Icons.favorite,
+                                    color: AppColor.primaryColor,
+                                  )
+                                  : Icon(
+                                    Icons.favorite_outline,
+                                    color: Colors.grey,
+                                  ),
+                        );
+                      },
                     ),
                     Text(
                       "\$${productPrice!}",
