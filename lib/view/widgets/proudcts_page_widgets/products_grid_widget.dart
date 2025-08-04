@@ -134,11 +134,20 @@ class ProductItem extends StatelessWidget {
                           onPressed: () {
                             if (controller.isFav[productId] == "1") {
                               controller.setFav(productId, "0");
+<<<<<<< HEAD
                               controller.deleteFav(productId.toString());
                             } else {
                               controller.setFav(productId, "1");
                               controller.addFav(productId.toString());
                             }
+=======
+                              controller.deleteFromFav(productId.toString());
+                            } else {
+                              controller.setFav(productId, "1");
+                              controller.addToFav(productId.toString());
+                            }
+                            // //What did i have to put in this line?
+>>>>>>> my86
                             // controller.setFav(
                             //   productId,
                             //   controller.isFav[productId] == "1" ? "0" : "1",

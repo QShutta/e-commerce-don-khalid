@@ -36,7 +36,9 @@ class FavController extends GetxController {
   // UI،
   // بدون ما نحتاج نحدث كل البيانات من قاعدة البيانات تاني.
   Map isFav = {};
-
+  StautusRequest statusRequest = StautusRequest.none;
+  FavData favData = FavData(Get.find());
+  MyServices myServices = Get.find();
   // وظيفة الدالة دي إنها تغير حالة الـ
   //Favorite للمنتج.
   // لما المستخدم يضغط على أيقونة الـ
@@ -54,10 +56,16 @@ class FavController extends GetxController {
     update();
   }
 
+<<<<<<< HEAD
   addFav(String productId) async {
     statusRequest = StautusRequest.loading;
     update();
     var response = await favData.addToFav(
+=======
+  addToFav(String productId) async {
+    statusRequest = StautusRequest.loading;
+    var response = await favData.addToFavorite(
+>>>>>>> my86
       myServices.sharedPreferences.getString("user_id"),
       productId,
     );
@@ -65,24 +73,40 @@ class FavController extends GetxController {
     print("you'r status request is : $statusRequest");
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
+<<<<<<< HEAD
         Get.rawSnackbar(
           title: "إشعار",
           messageText: Text("تم إضافة المنتج إلي المفضلة"),
         );
+=======
+        Get.snackbar(
+          "اشعار",
+          "تمت إضافة المنتج إلى المفضلة",
+          colorText: Colors.white,
+          backgroundColor: Colors.blue,
+        );
+        update();
+>>>>>>> my86
       } else {
         statusRequest = StautusRequest.failure;
       }
     }
   }
 
+<<<<<<< HEAD
   deleteFav(String productId) async {
     statusRequest = StautusRequest.loading;
     update();
     var response = await favData.deleteFromFav(
+=======
+  deleteFromFav(String productId) async {
+    var response = await favData.deleteFromFavorite(
+>>>>>>> my86
       myServices.sharedPreferences.getString("user_id"),
       productId,
     );
     statusRequest = handlingStatusRequest(response);
+<<<<<<< HEAD
     print("you'r status request is : $statusRequest");
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
@@ -90,6 +114,18 @@ class FavController extends GetxController {
           title: "إشعار",
           messageText: Text("تم حذف المنتج من المفضلة"),
         );
+=======
+
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        Get.snackbar(
+          "اشعار",
+          "تمت حذف المنتج من المفضلة",
+          colorText: Colors.white,
+          backgroundColor: Colors.blue,
+        );
+        update();
+>>>>>>> my86
       } else {
         statusRequest = StautusRequest.failure;
       }
