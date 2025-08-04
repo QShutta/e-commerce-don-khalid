@@ -5,7 +5,7 @@ import 'package:e_commerce_halfa/data/data_source/remote/favData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//Before of 86
+//after 86
 class FavController extends GetxController {
   FavData favData = FavData(Get.find());
   MyServices myServices = Get.find();
