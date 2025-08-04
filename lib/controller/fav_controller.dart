@@ -1,3 +1,8 @@
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/favData.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //Before of 86
@@ -28,7 +33,9 @@ class FavController extends GetxController {
   // UI،
   // بدون ما نحتاج نحدث كل البيانات من قاعدة البيانات تاني.
   Map isFav = {};
-
+  StautusRequest statusRequest = StautusRequest.none;
+  FavData favData = FavData(Get.find());
+  MyServices myServices = Get.find();
   // وظيفة الدالة دي إنها تغير حالة الـ
   //Favorite للمنتج.
   // لما المستخدم يضغط على أيقونة الـ
@@ -44,6 +51,51 @@ class FavController extends GetxController {
     // بنعمل update() عشان نقول لـ GetX إن في تغيير حصل في الـ controller دا،
     // وبالتالي أي GetBuilder بيعتمد على الـ FavController دا هيعمل rebuild للجزء بتاعه.
     update();
+  }
+
+  addToFav(String productId) async {
+    statusRequest = StautusRequest.loading;
+    var response = await favData.addToFavorite(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+    print("you'r status request is : $statusRequest");
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        Get.snackbar(
+          "اشعار",
+          "تمت إضافة المنتج إلى المفضلة",
+          colorText: Colors.white,
+          backgroundColor: Colors.blue,
+        );
+        update();
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+  }
+
+  deleteFromFav(String productId) async {
+    var response = await favData.deleteFromFavorite(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        Get.snackbar(
+          "اشعار",
+          "تمت حذف المنتج من المفضلة",
+          colorText: Colors.white,
+          backgroundColor: Colors.blue,
+        );
+        update();
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
   }
 }
 
