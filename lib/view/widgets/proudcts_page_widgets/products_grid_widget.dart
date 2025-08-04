@@ -132,11 +132,17 @@ class ProductItem extends StatelessWidget {
                       builder: (controller) {
                         return IconButton(
                           onPressed: () {
-                            //What did i have to put in this line?
-                            controller.setFav(
-                              productId,
-                              controller.isFav[productId] == "1" ? "0" : "1",
-                            );
+                            if (controller.isFav[productId] == "1") {
+                              controller.setFav(productId, "0");
+                              controller.deleteFav(productId.toString());
+                            } else {
+                              controller.setFav(productId, "1");
+                              controller.addFav(productId.toString());
+                            }
+                            // controller.setFav(
+                            //   productId,
+                            //   controller.isFav[productId] == "1" ? "0" : "1",
+                            // );
                           },
                           icon:
                               //Why did this not work?xxxxxxxxxxxxxxxxxxxx

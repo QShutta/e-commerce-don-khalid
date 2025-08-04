@@ -5,7 +5,7 @@ class FavData {
   Crud crud;
   FavData(this.crud);
 
-  Future getData(userId, productId) async {
+  Future addToFav(userId, productId) async {
     var response = await crud.postData(AppLinkApi.addToFav, {
       "user_id": userId,
       "product_id": productId,
@@ -13,7 +13,7 @@ class FavData {
     return response.fold((l) => l, (r) => r);
   }
 
-  Future deleteFav(userId, productId) async {
+  Future deleteFromFav(userId, productId) async {
     var response = await crud.postData(AppLinkApi.deleteFav, {
       "user_id": userId,
       "product_id": productId,

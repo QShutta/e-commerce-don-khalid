@@ -1,7 +1,15 @@
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/favData.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //Before of 86
 class FavController extends GetxController {
+  FavData favData = FavData(Get.find());
+  MyServices myServices = Get.find();
+  StautusRequest statusRequest = StautusRequest.none;
   // هنا بنسوي
   //Map
   // اسمها
@@ -44,6 +52,48 @@ class FavController extends GetxController {
     // بنعمل update() عشان نقول لـ GetX إن في تغيير حصل في الـ controller دا،
     // وبالتالي أي GetBuilder بيعتمد على الـ FavController دا هيعمل rebuild للجزء بتاعه.
     update();
+  }
+
+  addFav(String productId) async {
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await favData.addToFav(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+    print("you'r status request is : $statusRequest");
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        Get.rawSnackbar(
+          title: "إشعار",
+          messageText: Text("تم إضافة المنتج إلي المفضلة"),
+        );
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+  }
+
+  deleteFav(String productId) async {
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await favData.deleteFromFav(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+    print("you'r status request is : $statusRequest");
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        Get.rawSnackbar(
+          title: "إشعار",
+          messageText: Text("تم حذف المنتج من المفضلة"),
+        );
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
   }
 }
 
