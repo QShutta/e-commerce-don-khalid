@@ -5,11 +5,8 @@ import 'package:e_commerce_halfa/data/data_source/remote/favData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//after 86
+//Before of 87
 class FavController extends GetxController {
-  FavData favData = FavData(Get.find());
-  MyServices myServices = Get.find();
-  StautusRequest statusRequest = StautusRequest.none;
   // هنا بنسوي
   //Map
   // اسمها
@@ -56,16 +53,9 @@ class FavController extends GetxController {
     update();
   }
 
-<<<<<<< HEAD
-  addFav(String productId) async {
-    statusRequest = StautusRequest.loading;
-    update();
-    var response = await favData.addToFav(
-=======
   addToFav(String productId) async {
     statusRequest = StautusRequest.loading;
     var response = await favData.addToFavorite(
->>>>>>> my86
       myServices.sharedPreferences.getString("user_id"),
       productId,
     );
@@ -73,48 +63,25 @@ class FavController extends GetxController {
     print("you'r status request is : $statusRequest");
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-<<<<<<< HEAD
-        Get.rawSnackbar(
-          title: "إشعار",
-          messageText: Text("تم إضافة المنتج إلي المفضلة"),
-        );
-=======
         Get.snackbar(
           "اشعار",
           "تمت إضافة المنتج إلى المفضلة",
           colorText: Colors.white,
           backgroundColor: Colors.blue,
+          snackPosition: SnackPosition.BOTTOM,
         );
-        update();
->>>>>>> my86
       } else {
         statusRequest = StautusRequest.failure;
       }
     }
   }
 
-<<<<<<< HEAD
-  deleteFav(String productId) async {
-    statusRequest = StautusRequest.loading;
-    update();
-    var response = await favData.deleteFromFav(
-=======
   deleteFromFav(String productId) async {
     var response = await favData.deleteFromFavorite(
->>>>>>> my86
       myServices.sharedPreferences.getString("user_id"),
       productId,
     );
     statusRequest = handlingStatusRequest(response);
-<<<<<<< HEAD
-    print("you'r status request is : $statusRequest");
-    if (statusRequest == StautusRequest.success) {
-      if (response["status"] == "success") {
-        Get.rawSnackbar(
-          title: "إشعار",
-          messageText: Text("تم حذف المنتج من المفضلة"),
-        );
-=======
 
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
@@ -123,9 +90,9 @@ class FavController extends GetxController {
           "تمت حذف المنتج من المفضلة",
           colorText: Colors.white,
           backgroundColor: Colors.blue,
+          snackPosition: SnackPosition.BOTTOM,
         );
         update();
->>>>>>> my86
       } else {
         statusRequest = StautusRequest.failure;
       }
