@@ -1,6 +1,5 @@
 import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
-import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/loading_widget.dart';
 import 'package:e_commerce_halfa/view/widgets/proudcts_page_widgets/products_catogeries_list.dart';
@@ -22,6 +21,7 @@ class ProductsPage extends StatelessWidget {
         title: 'Products',
         onNotificationIconButtonClicked: () {},
         onChangeWhenSearh: (String) {},
+        onFavoriteButtonPressed: () {},
       ),
       body: Scaffold(
         body: GetBuilder<ProductsControllerImp>(

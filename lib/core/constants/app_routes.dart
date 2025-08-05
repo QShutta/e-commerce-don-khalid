@@ -19,4 +19,5 @@ class AppRoutes {
 
   static const String productsRoot = '/homeWithBottomNav';
   static const String productDetails = '/productDetails';
+  static const String favorite = '/favirute';
 }
