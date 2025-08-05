@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatelessWidget {
@@ -5,10 +6,15 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [Text("Favorite Page")],
+    return Scaffold(
+      appBar: DonAppBar(
+        title: 'Favorites',
+        onNotificationIconButtonClicked: () {},
+        onChangeWhenSearh: (String) {},
+        showNotificationAndFavorite: false,
+        showSearch: false,
+      ),
+      body: ListView(children: [Center(child: Text("Favorite Page"))]),
     );
   }
 }
