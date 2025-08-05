@@ -4,19 +4,19 @@ import 'package:get/get.dart';
 
 class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final bool showNotificationAndFavorite;
   final bool showSearch;
-  final bool showNotification;
   void Function(String)? onChangeWhenSearh;
   final void Function()? onFavoriteButtonPressed;
   final void Function()? onNotificationIconButtonClicked;
   DonAppBar({
     super.key,
     required this.title,
-    required this.onFavoriteButtonPressed,
+    this.showNotificationAndFavorite = true,
     this.showSearch = true,
-    this.showNotification = true,
     required this.onNotificationIconButtonClicked,
     required this.onChangeWhenSearh,
+    required this.onFavoriteButtonPressed,
   });
 
   @override
@@ -36,7 +36,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       leading:
-          showNotification
+          showSearch
               ? IconButton(
                 onPressed: () {
                   Get.to(SearchPage(onChangeWhenSearh: onChangeWhenSearh));
@@ -45,10 +45,10 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
               )
               : null,
       actions:
-          showSearch
+          showNotificationAndFavorite
               ? [
                 IconButton(
-                  onPressed: onFavoriteButtonPressed,
+                  onPressed: onNotificationIconButtonClicked,
                   icon: const Icon(Icons.favorite_border_outlined, size: 30),
                 ),
                 IconButton(

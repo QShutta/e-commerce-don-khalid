@@ -38,7 +38,7 @@ class MainApp extends StatelessWidget {
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
       home: FavoritePage(),
-      initialRoute: AppRoutes.languageSelection,
+      // initialRoute: AppRoutes.languageSelection,
       // getPages: appPages,
     );
   }
