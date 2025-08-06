@@ -25,4 +25,5 @@ class AppLinkApi {
   static const String products = "$serverUrl/products/products.php";
   static const String addToFav = "$serverUrl/favorite/add.php";
   static const String deleteFav = "$serverUrl/favorite/delete.php";
+  static const String viewFavProducts = "$serverUrl/favorite/view.php";
 }

@@ -37,9 +37,7 @@ class ProductSizeWidget extends StatelessWidget {
                   productDetailsControllerImp.sizes[index];
               return InkWell(
                 onTap: () {
-                  print(
-                    "user select  ${productDetailsControllerImp.sizes[index]}..",
-                  );
+                  // print removed
                   productDetailsControllerImp.changeSelectedSize(
                     productDetailsControllerImp.sizes[index],
                   );

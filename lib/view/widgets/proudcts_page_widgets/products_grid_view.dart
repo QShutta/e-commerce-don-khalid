@@ -31,10 +31,9 @@ class ProductsGridView extends StatelessWidget {
             print(
               "The user clcik on spacfic proudct...Test.and the product is/n:${product.productNameAr}",
             );
-          },
-          child: Container(
-            margin: EdgeInsets.all(5),
-            child: Card(
+            // print removed
+            child:
+            Card(
               color: Colors.white,
               child: Column(
                 children: [
@@ -70,8 +69,8 @@ class ProductsGridView extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );

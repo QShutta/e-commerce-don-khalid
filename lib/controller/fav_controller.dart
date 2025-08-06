@@ -2,6 +2,7 @@ import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/favData.dart';
+import 'package:e_commerce_halfa/data/model/favorite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,9 +34,27 @@ class FavController extends GetxController {
   // UI،
   // بدون ما نحتاج نحدث كل البيانات من قاعدة البيانات تاني.
   Map isFav = {};
+  List<FavoriteModel> favProductList = [];
+  String? userId;
   StautusRequest statusRequest = StautusRequest.none;
   FavData favData = FavData(Get.find());
   MyServices myServices = Get.find();
+  @override
+  void onInit() {
+    initValue();
+    getFavProducts();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+  void initValue() {
+    userId = myServices.sharedPreferences.getString("user_id");
+  }
+
   // وظيفة الدالة دي إنها تغير حالة الـ
   //Favorite للمنتج.
   // لما المستخدم يضغط على أيقونة الـ
@@ -60,7 +79,7 @@ class FavController extends GetxController {
       productId,
     );
     statusRequest = handlingStatusRequest(response);
-    print("you'r status request is : $statusRequest");
+
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
         Get.snackbar(
@@ -97,6 +116,33 @@ class FavController extends GetxController {
         statusRequest = StautusRequest.failure;
       }
     }
+  }
+
+  getFavProducts() async {
+    // print removed
+    print("----------------------------------------------------------------");
+    print("inside of the getFavProducts method...");
+    print("----------------------------------------------------------------");
+    // print removed
+    favProductList.clear();
+
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await favData.getData(userId!);
+    statusRequest = handlingStatusRequest(response);
+    // print removed
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        favProductList =
+            (response['data'] as List)
+                //.fromJson will convert the map to object model.
+                .map((product) => FavoriteModel.fromJson(product))
+                .toList();
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+    update(); //This will update the UI
   }
 }
 

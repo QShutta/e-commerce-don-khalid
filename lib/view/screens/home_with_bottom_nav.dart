@@ -18,7 +18,9 @@ class HomeWithBottomNav extends StatelessWidget {
             title: "Don Shop",
             onNotificationIconButtonClicked: () {},
             onChangeWhenSearh: (String value) {},
-            onFavoriteButtonPressed: () {},
+            onFavoriteButtonPressed: () {
+              homeWithBottomNavBarController.goToFavoritePage();
+            },
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.white,

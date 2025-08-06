@@ -46,7 +46,7 @@ class CategoryItem extends GetView<HomeControllerImp> {
         borderRadius: BorderRadius.circular(15),
         onTap: () {
           // هنا ممكن تضيف وظيفة عند الضغط
-          print("The user click on the catogery called:$title");
+          // print removed
           controller.goToProductPage(catogeries, selectedCat, catogeryId);
         },
         child: Column(

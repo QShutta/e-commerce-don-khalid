@@ -47,9 +47,7 @@ class ProductDetailsHeader extends StatelessWidget {
             // child: SizedBox(child: Image.asset(imagePath!, fit: BoxFit.cover)),
             child: InkWell(
               onTap: () {
-                print(
-                  '${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}',
-                );
+                // print removed
               },
               child: Hero(
                 transitionOnUserGestures: true,

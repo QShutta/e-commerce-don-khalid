@@ -67,16 +67,12 @@ class HomeControllerImp extends HomeController {
               (response['catogeries'] as List)
                   .map((catogery) => Catogeries.fromJson(catogery))
                   .toList();
-          print("-------------------------------------");
-          print("Categories: $categories");
-          print("-------------------------------------");
+          // print removed
           products =
               (response['products'] as List)
                   .map((product) => ProductsModel.fromJson(product))
                   .toList();
-          print("-------------------------------------");
-          print("Products: $products");
-          print("-------------------------------------");
+          // print removed
         } else {
           statusRequest = StautusRequest.failure;
         }

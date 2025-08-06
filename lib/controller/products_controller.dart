@@ -17,6 +17,7 @@ abstract class ProductsController extends GetxController {
   changeSelectedCat(int val, String catVal);
   initVlues();
   goToProductDetails(productDetails);
+  goToFavoritePage();
 }
 
 class ProductsControllerImp extends ProductsController {
@@ -31,14 +32,12 @@ class ProductsControllerImp extends ProductsController {
 
   @override
   getData() async {
-    print(
-      '--------------------------inside of the getData()--------------------------',
-    );
+    // print removed
     statusRequest = StautusRequest.loading;
     update();
     var response = await productData.getData(productCat!, userId!);
     statusRequest = handlingStatusRequest(response);
-    print("you'r status request is : $statusRequest");
+    // print removed
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
         producstsLis =
@@ -51,6 +50,11 @@ class ProductsControllerImp extends ProductsController {
       }
     }
     update(); //This will update the UI
+  }
+
+  @override
+  goToFavoritePage() {
+    Get.toNamed(AppRoutes.favorite);
   }
 
   @override

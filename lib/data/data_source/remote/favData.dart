@@ -20,4 +20,11 @@ class FavData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future getData(userId) async {
+    var response = await crud.postData(AppLinkApi.viewFavProducts, {
+      "user_id": userId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

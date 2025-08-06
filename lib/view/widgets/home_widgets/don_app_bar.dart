@@ -48,7 +48,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
           showNotificationAndFavorite
               ? [
                 IconButton(
-                  onPressed: onNotificationIconButtonClicked,
+                  onPressed: onFavoriteButtonPressed,
                   icon: const Icon(Icons.favorite_border_outlined, size: 30),
                 ),
                 IconButton(
