@@ -1,4 +1,3 @@
-import 'package:e_commerce_halfa/controller/fav_controller.dart';
 import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
@@ -12,11 +11,14 @@ import 'package:get/get.dart';
 class ProductsPage extends StatelessWidget {
   ProductsPage({super.key});
   //Before of 69
-  final ProductsControllerImp productsController = Get.put(
-    ProductsControllerImp(),
-  );
+  // final ProductsControllerImp productsController = Get.put(
+  //   ProductsControllerImp(),
+  // );
+
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut<ProductsControllerImp>(() => ProductsControllerImp());
+    var productsController = Get.find<ProductsControllerImp>();
     return Scaffold(
       appBar: DonAppBar(
         title: 'Products',

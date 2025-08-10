@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/controller/auth_controller/fav_product_details_controller.dart';
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
@@ -8,9 +9,11 @@ import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/produ
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductDetailsBody extends StatelessWidget {
-  final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
-  ProductDetailsBody({super.key});
+class FavProductDetailsBody extends StatelessWidget {
+  FavProductDetailsControllerImp favProductDetailsControllerImp = Get.put(
+    FavProductDetailsControllerImp(),
+  );
+  FavProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -29,8 +32,8 @@ class ProductDetailsBody extends StatelessWidget {
             ProductDetailsText(
               textStyle: Theme.of(context).textTheme.headlineMedium,
               text: translateDataBase(
-                productDetailsControllerImp.productModel.proudctNameEn!,
-                productDetailsControllerImp.productModel.productNameAr,
+                favProductDetailsControllerImp.favoriteModel.proudctNameEn!,
+                favProductDetailsControllerImp.favoriteModel.productNameAr,
               ),
             ),
             SizedBox(height: 20),
@@ -39,8 +42,8 @@ class ProductDetailsBody extends StatelessWidget {
                 color: AppColor.greyText,
               ), //Description
               text: translateDataBase(
-                productDetailsControllerImp.productModel.productDescEn!,
-                productDetailsControllerImp.productModel.productDescAr,
+                favProductDetailsControllerImp.favoriteModel.productDescEn!,
+                favProductDetailsControllerImp.favoriteModel.productDescAr,
               ),
             ),
 
@@ -48,25 +51,28 @@ class ProductDetailsBody extends StatelessWidget {
             ProductDetailsText(
               textStyle: Theme.of(context).textTheme.headlineMedium,
               text:
-                  "\$${productDetailsControllerImp.productModel.productPrice}",
+                  "\$${favProductDetailsControllerImp.favoriteModel.productPrice}",
             ),
             SizedBox(height: 20),
             //Why did we add this condition?
             // Because some products don't have size or color options
             //So we display the data according to the product category.
-            (productDetailsControllerImp.productModel.productCatogery == 22 ||
-                    productDetailsControllerImp.productModel.productCatogery ==
-                        26)
-                ? ProductQuantityWidget()
-                : Column(
-                  children: [
-                    ProductSizeWidget(),
-                    SizedBox(height: 20),
-                    ProductColorsWidget(),
-                    SizedBox(height: 20),
-                    ProductQuantityWidget(),
-                  ],
-                ),
+            // (favProductDetailsControllerImp.favoriteModel.productCatogery ==
+            //             22 ||
+            //         favProductDetailsControllerImp
+            //                 .favoriteModel
+            //                 .productCatogery ==
+            //             26)
+            //     ? ProductQuantityWidget()
+            //     : Column(
+            //       children: [
+            // ProductSizeWidget(),
+            // SizedBox(height: 20),
+            // ProductColorsWidget(),
+            // SizedBox(height: 20),
+            // ProductQuantityWidget(),
+            // ],
+            // ),
           ],
         ),
       ),

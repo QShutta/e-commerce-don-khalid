@@ -1,20 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_halfa/app_link_api.dart';
-import 'package:e_commerce_halfa/controller/fav_controller.dart';
+import 'package:e_commerce_halfa/controller/myFavController.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/data/model/favorite_model.dart';
 import 'package:e_commerce_halfa/view/widgets/favoritePageWidgets/favorite_page_product_widget.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
-import 'package:e_commerce_halfa/view/widgets/proudcts_page_widgets/products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
 class FavoritePage extends StatelessWidget {
   FavoritePage({super.key});
-  final favController = Get.lazyPut<FavController>(
-    () => FavController(),
+  final favController = Get.lazyPut<Myfavcontroller>(
+    () => Myfavcontroller(),
     fenix: true,
   );
   @override
@@ -28,7 +27,7 @@ class FavoritePage extends StatelessWidget {
         showSearch: false,
         onFavoriteButtonPressed: () {},
       ),
-      body: GetBuilder<FavController>(
+      body: GetBuilder<Myfavcontroller>(
         builder: (controller) {
           return HnadlingDataView(
             stautusRequest: controller.statusRequest,
@@ -44,7 +43,7 @@ class FavoritePage extends StatelessWidget {
                 crossAxisCount: 2,
               ),
               itemBuilder: (context, index) {
-                var favPoroduct = controller.favProductList[index];
+                FavoriteModel favPoroduct = controller.favProductList[index];
                 return FavoriteProductItem(
                   index: index,
                   images: CachedNetworkImage(
@@ -58,8 +57,12 @@ class FavoritePage extends StatelessWidget {
                   ),
                   texts: favPoroduct.productNameAr!,
                   prices: favPoroduct.productPrice!.toString(),
-                  onUserClickOnProduct: () {},
-                  onFavButtonClicked: () {},
+                  onUserClickOnProduct: () {
+                    controller.goToProductDetails(favPoroduct);
+                  },
+                  onDeleteIconButtonClicked: () {
+                    controller.removeFromFav(favPoroduct.favoriteId.toString());
+                  },
                 );
               },
             ),

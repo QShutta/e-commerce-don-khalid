@@ -53,8 +53,16 @@ class ProductsControllerImp extends ProductsController {
   }
 
   @override
-  goToFavoritePage() {
-    Get.toNamed(AppRoutes.favorite);
+  goToFavoritePage() async {
+    //await
+    //هنا معناها: "افتح صفحة المفضلة وانتظر لحد ما تتقفل، بعدين روح للسطر اللي بعده
+    //(getData())."
+    // لو ما كان في
+    //await،
+    // البرنامج كان حيفتح صفحة المفضلة وفي نفس اللحظة يروح ينفذ
+    //getData() حتى قبل ما ترجع من الصفحة.
+    await Get.toNamed(AppRoutes.favorite);
+    getData();
   }
 
   @override

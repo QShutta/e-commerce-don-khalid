@@ -8,7 +8,6 @@ import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
 class ProductsGridWidget extends StatelessWidget {
@@ -18,8 +17,7 @@ class ProductsGridWidget extends StatelessWidget {
   ProductsControllerImp productsControllerImp = Get.put(
     ProductsControllerImp(),
   );
-
-  FavController favController = Get.put(FavController());
+  var favController = Get.put<FavController>(FavController());
   @override
   Widget build(BuildContext context) {
     return GridView.builder(

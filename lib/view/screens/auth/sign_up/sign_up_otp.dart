@@ -45,6 +45,7 @@ class SignUpOtp extends StatelessWidget {
                               otpControllerImp.varfyCode = verfyCode;
                               otpControllerImp.checkCode();
                             },
+                            resendVerfyCode: () {},
                           ),
                         ],
                       ),

@@ -26,4 +26,8 @@ class AppLinkApi {
   static const String addToFav = "$serverUrl/favorite/add.php";
   static const String deleteFav = "$serverUrl/favorite/delete.php";
   static const String viewFavProducts = "$serverUrl/favorite/view.php";
+  //الفرق بين ال deleteFav and removeFav that when you want to use the deleteFav in the product page
+  //There we just have the product_id and user_id so we use the delteFav
+  //But in the favorite page we know the favoriteId so we use the removeFromFavoiret backend file.
+  static const String removeFromFavorite = "$serverUrl/favorite/remove.php";
 }

@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 
 class OtpForm extends StatelessWidget {
   final void Function(String)? onSubmit;
-  OtpForm({super.key, required this.onSubmit});
+  final void Function()? resendVerfyCode;
+  OtpForm({super.key, required this.onSubmit, required this.resendVerfyCode});
   // استخدمنا
   //'final'
   // عشان نضمن إنو
@@ -102,7 +103,7 @@ class OtpForm extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 InkWell(
-                  onTap: () {},
+                  onTap: resendVerfyCode,
                   child: Text(
                     "44".tr,
                     style: TextStyle(

@@ -10,7 +10,7 @@ import 'package:lottie/lottie.dart';
 
 class ProductsGrid extends GetView<ProductsControllerImp> {
   final List<ProductsModel>? product;
-  ProductsGrid({super.key, required this.product});
+  const ProductsGrid({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class ProductItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$${prices}",
+                      "\$$prices",
                       style: TextStyle(
                         color: AppColor.primaryColor,
                         fontWeight: FontWeight.bold,

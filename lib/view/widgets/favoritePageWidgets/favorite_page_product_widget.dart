@@ -5,17 +5,21 @@ class FavoriteProductItem extends StatelessWidget {
   final Widget images;
   final String texts;
   final String prices;
+
+  final void Function()? onDeleteIconButtonClicked;
+
   final void Function()? onUserClickOnProduct;
   final void Function()? onFavButtonClicked;
   final int? index;
   const FavoriteProductItem({
     super.key,
     required this.index,
+    required this.onDeleteIconButtonClicked,
     required this.images,
     required this.texts,
     required this.prices,
-    required this.onUserClickOnProduct,
-    required this.onFavButtonClicked,
+    this.onUserClickOnProduct,
+    this.onFavButtonClicked,
   });
 
   @override
@@ -46,12 +50,21 @@ class FavoriteProductItem extends StatelessWidget {
                 ),
                 Text(style: TextStyle(color: AppColor.greyText), texts),
                 SizedBox(height: 10),
-                Text(
-                  "\$${prices}",
-                  style: TextStyle(
-                    color: AppColor.primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: onDeleteIconButtonClicked,
+                      icon: Icon(Icons.delete_outline),
+                    ),
+                    Text(
+                      "\$$prices",
+                      style: TextStyle(
+                        color: AppColor.primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

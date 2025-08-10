@@ -1,8 +1,8 @@
-import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:e_commerce_halfa/data/model/favorite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class ProductDetailsController extends GetxController {
+abstract class FavProductDetailsController extends GetxController {
   void changeSelectedSize(String size);
   void changeSelctedColor(Color color);
   void increaseQuantity();
@@ -10,7 +10,7 @@ abstract class ProductDetailsController extends GetxController {
   void addToCart();
 }
 
-class ProductDetailsControllerImp extends ProductDetailsController {
+class FavProductDetailsControllerImp extends FavProductDetailsController {
   String selectedSize = '';
   Color selectedColor = Colors.black;
   int quantity = 1;
@@ -28,11 +28,13 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     {"name": "brown", "id": "3", "active": "0"},
   ];
 
-  ProductsModel productModel = Get.arguments["productDetails"];
+  FavoriteModel favoriteModel = Get.arguments["favProductDetails"];
   @override
   void onInit() {
-    print("--------------------------------------------------");
-    print(" The product details are ${productModel.productNameAr}");
+    print(
+      "------------------------inside of the favProductDetails--------------------------",
+    );
+    print(" The product details are ${favoriteModel.productNameAr}");
     super.onInit();
   }
 

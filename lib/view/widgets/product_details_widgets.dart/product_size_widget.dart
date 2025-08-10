@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class ProductSizeWidget extends StatelessWidget {
   ProductSizeWidget({super.key});
+
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
   @override
   Widget build(BuildContext context) {

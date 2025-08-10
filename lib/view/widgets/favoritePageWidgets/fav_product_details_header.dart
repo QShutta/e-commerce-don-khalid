@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class ProductDetailsHeader extends StatelessWidget {
+class FavProductDetailsHeader extends StatelessWidget {
   final Color? backgroundColor;
   final double containerHight;
   final double? imageWidth;
   final double? imageHeight;
   final double? imageBottomSpace;
   final String? imageUrl;
-  ProductDetailsHeader({
+  FavProductDetailsHeader({
     super.key,
     required this.containerHight,
     // this.backgroundColor = const Color(0xFF3B5998),
@@ -24,7 +24,7 @@ class ProductDetailsHeader extends StatelessWidget {
     required this.imageBottomSpace,
   });
 
-  final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
+  final FavProductDetailsControllerImp productDetailsControllerImp = Get.find();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -51,7 +51,7 @@ class ProductDetailsHeader extends StatelessWidget {
               },
               child: Hero(
                 transitionOnUserGestures: true,
-                tag: productDetailsControllerImp.productModel.productsId!,
+                tag: productDetailsControllerImp.favoriteModel.productId!,
                 child: CachedNetworkImage(
                   imageUrl: imageUrl!,
                   fit: BoxFit.cover,
