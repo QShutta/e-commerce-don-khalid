@@ -165,6 +165,11 @@ class MyTranslation extends Translations {
       "206": "Settings",
       "207": "Products For You",
       "209": "Add To Cart",
+      "210": "Price:",
+      "211": "Total:",
+      "212": "Checkout",
+      "213": "Cart",
+      "214": "Shpping",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -266,6 +271,11 @@ class MyTranslation extends Translations {
       "206": "الضبط",
       "207": "الحاجات الميريا",
       "209": "إضافة إلي السلة",
+      "210": "السعر",
+      "211": "الإجمالي:",
+      "212": "إتمام الشراء",
+      "213": "سلة المشتريات",
+      "214": "رسوم التوصيل",
     },
   };
 }

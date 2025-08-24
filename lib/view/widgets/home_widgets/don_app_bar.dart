@@ -6,17 +6,21 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showNotificationAndFavorite;
   final bool showSearch;
+  final Color? textColor;
+  final Color? myColor;
   void Function(String)? onChangeWhenSearh;
   final void Function()? onFavoriteButtonPressed;
   final void Function()? onNotificationIconButtonClicked;
   DonAppBar({
     super.key,
     required this.title,
+    this.textColor,
+    this.myColor,
     this.showNotificationAndFavorite = true,
     this.showSearch = true,
-    required this.onNotificationIconButtonClicked,
-    required this.onChangeWhenSearh,
-    required this.onFavoriteButtonPressed,
+    this.onNotificationIconButtonClicked,
+    this.onChangeWhenSearh,
+    this.onFavoriteButtonPressed,
   });
 
   @override
@@ -25,11 +29,13 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      titleTextStyle: TextStyle(color: Colors.white),
+      backgroundColor: myColor,
       title: Center(
         child: Text(
           title,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-            color: Colors.black,
+            color: textColor,
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),

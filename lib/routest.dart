@@ -9,6 +9,7 @@ import 'package:e_commerce_halfa/view/screens/auth/sign_in_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_otp.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/success_sign_up_page.dart';
+import 'package:e_commerce_halfa/view/screens/cart.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite_product_details.dart';
 import 'package:e_commerce_halfa/view/screens/home_with_bottom_nav.dart';
@@ -112,6 +113,12 @@ List<GetPage> appPages = [
   GetPage(
     name: AppRoutes.favoriteProductDetails,
     page: () => FavProductDetails(),
+    transition: Transition.rightToLeft,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
+  GetPage(
+    name: AppRoutes.cart,
+    page: () => CartPage(),
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),

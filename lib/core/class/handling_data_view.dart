@@ -65,6 +65,7 @@ class HnadlingDataView extends StatelessWidget {
   }
 }
 
+// 📌 Shows loading covering the entire screen
 class HandlingDataRequest extends StatelessWidget {
   const HandlingDataRequest({
     super.key,
@@ -91,5 +92,40 @@ class HandlingDataRequest extends StatelessWidget {
               Lottie.asset(ImageAssets.serverFailure, width: 350, height: 350),
         )
         : widget;
+  }
+}
+
+// 📌 Shows loading as an overlay so the screen is still visible behind it
+class HandlingDataRequestOverlay extends StatelessWidget {
+  const HandlingDataRequestOverlay({
+    super.key,
+    required this.stautusRequest,
+    required this.widget,
+  });
+
+  final StautusRequest stautusRequest;
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        widget, // Main screen content
+        if (stautusRequest == StautusRequest.loading)
+          const Center(child: LoadingWidget()),
+        if (stautusRequest == StautusRequest.offlineFailure)
+          Center(
+            child: Lottie.asset(ImageAssets.offline, width: 350, height: 350),
+          ),
+        if (stautusRequest == StautusRequest.serverFailure)
+          Center(
+            child: Lottie.asset(
+              ImageAssets.serverFailure,
+              width: 350,
+              height: 350,
+            ),
+          ),
+      ],
+    );
   }
 }

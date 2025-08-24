@@ -4,6 +4,7 @@ import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/routest.dart';
+import 'package:e_commerce_halfa/view/screens/cart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,14 +32,14 @@ class MainApp extends StatelessWidget {
 
     return GetMaterialApp(
       theme: langCont.appTheme,
-      locale: langCont.lang,
-      // locale: Locale("en"),
+      // locale: langCont.lang,
+      locale: Locale("ar"),
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
-      // home: FavoritePage(),
-      initialRoute: AppRoutes.languageSelection,
-      getPages: appPages,
+      home: CartPage(),
+      // initialRoute: AppRoutes.languageSelection,
+      // getPages: appPages,
     );
   }
 }

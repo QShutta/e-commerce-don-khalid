@@ -5,6 +5,8 @@ class AppLinkApi {
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/catogeries";
   static const String productsImageLink =
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/products";
+  static const String usersImage =
+      "https://qasimshutta.shop/2test/e-commerce-halfa/upload/users_images";
   static const String productsImageLinkWithoutBack =
       "https://qasimshutta.shop/2test/e-commerce-halfa/upload/products/product_without_back";
   static const String test = "$serverUrl/test.php";
@@ -30,4 +32,7 @@ class AppLinkApi {
   //There we just have the product_id and user_id so we use the delteFav
   //But in the favorite page we know the favoriteId so we use the removeFromFavoiret backend file.
   static const String removeFromFavorite = "$serverUrl/favorite/remove.php";
+  static const String resendVerficationCode =
+      "$serverUrl/auth/resend_verfy_code.php";
+  static const String users = "$serverUrl/users.php";
 }

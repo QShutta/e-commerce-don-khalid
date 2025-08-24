@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 //Before of 83.
 class ProductsPage extends StatelessWidget {
-  ProductsPage({super.key});
+  const ProductsPage({super.key});
   //Before of 69
   // final ProductsControllerImp productsController = Get.put(
   //   ProductsControllerImp(),

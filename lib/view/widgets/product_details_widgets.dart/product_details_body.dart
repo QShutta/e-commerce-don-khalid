@@ -54,19 +54,22 @@ class ProductDetailsBody extends StatelessWidget {
             //Why did we add this condition?
             // Because some products don't have size or color options
             //So we display the data according to the product category.
-            (productDetailsControllerImp.productModel.productCatogery == 22 ||
-                    productDetailsControllerImp.productModel.productCatogery ==
-                        26)
-                ? ProductQuantityWidget()
-                : Column(
-                  children: [
-                    ProductSizeWidget(),
-                    SizedBox(height: 20),
-                    ProductColorsWidget(),
-                    SizedBox(height: 20),
-                    ProductQuantityWidget(),
-                  ],
-                ),
+            //--------------------------------------------------------------
+            //حاوقف موضوع ال subitems
+            //عشان اقدر افهم كيف السلة بتشتغل.
+            // (productDetailsControllerImp.productModel.productCatogery == 22 ||
+            //         productDetailsControllerImp.productModel.productCatogery ==
+            //             26)
+            //     ? ProductQuantityWidget()
+            //     : Column(
+            //       children: [
+            //         ProductSizeWidget(),
+            //         SizedBox(height: 20),
+            //         ProductColorsWidget(),
+            //         SizedBox(height: 20),
+            //         ProductQuantityWidget(),
+            //       ],
+            //     ),
           ],
         ),
       ),

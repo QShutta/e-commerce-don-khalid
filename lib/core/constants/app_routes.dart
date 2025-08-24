@@ -21,4 +21,5 @@ class AppRoutes {
   static const String productDetails = '/productDetails';
   static const String favorite = '/favirute';
   static const String favoriteProductDetails = '/favoriteProductDetails';
+  static const String cart = '/cart';
 }

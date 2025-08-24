@@ -1,11 +1,8 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/auth_controller/fav_product_details_controller.dart';
-import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/view/widgets/favoritePageWidgets/fav_product_details_header.dart';
 import 'package:e_commerce_halfa/view/widgets/favoritePageWidgets/favorite_product_details_body.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/add_to_cart__button.dart';
-import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_details_body.dart';
-import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_details_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -16,6 +16,7 @@ class HomeWithBottomNav extends StatelessWidget {
         return Scaffold(
           appBar: DonAppBar(
             title: "Don Shop",
+            textColor: Colors.black,
             onNotificationIconButtonClicked: () {},
             onChangeWhenSearh: (String value) {},
             onFavoriteButtonPressed: () {

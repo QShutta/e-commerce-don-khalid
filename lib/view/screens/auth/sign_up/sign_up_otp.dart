@@ -21,7 +21,7 @@ class SignUpOtp extends StatelessWidget {
       body: SafeArea(
         child: GetBuilder<EmailOtpControllerImp>(
           builder: (controller) {
-            return HandlingDataRequest(
+            return HandlingDataRequestOverlay(
               stautusRequest: otpControllerImp.stautusRequest,
               widget: ListView(
                 children: [
@@ -45,7 +45,12 @@ class SignUpOtp extends StatelessWidget {
                               otpControllerImp.varfyCode = verfyCode;
                               otpControllerImp.checkCode();
                             },
-                            resendVerfyCode: () {},
+                            resendVerfyCode: () {
+                              print(
+                                "------------------------inside of resend otp code-----------------------------",
+                              );
+                              otpControllerImp.resendCode();
+                            },
                           ),
                         ],
                       ),
