@@ -1,11 +1,14 @@
+import 'package:e_commerce_halfa/controller/cart_controller.dart';
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductQuantityWidget extends StatelessWidget {
-  ProductQuantityWidget({super.key});
+  ProductQuantityWidget({super.key, required this.productId});
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
+  final CartController cartCont = Get.find();
+  final String? productId;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductDetailsControllerImp>(
@@ -31,6 +34,7 @@ class ProductQuantityWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       productDetailsControllerImp.decreaseQuantity();
+                      cartCont.deleteFromCart(productId!);
                     },
                     icon: Icon(Icons.remove),
                   ),
@@ -43,6 +47,7 @@ class ProductQuantityWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       productDetailsControllerImp.increaseQuantity();
+                      cartCont.addToCart(productId!);
                     },
                     icon: Icon(Icons.add),
                   ),

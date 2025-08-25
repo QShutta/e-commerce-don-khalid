@@ -35,4 +35,7 @@ class AppLinkApi {
   static const String resendVerficationCode =
       "$serverUrl/auth/resend_verfy_code.php";
   static const String users = "$serverUrl/users.php";
+  static const String addToCart = "$serverUrl/cart/add_cart.php";
+  static const String deleteFromCart = "$serverUrl/cart/delete_cart.php";
+  static const String cartView = "$serverUrl/cart/view_cart.php";
 }

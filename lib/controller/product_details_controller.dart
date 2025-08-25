@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/controller/cart_controller.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,9 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   Color selectedColor = Colors.black;
   int quantity = 1;
   List<String> sizes = ["S", "M", "L", "XL"];
+  //We will initlize the cartController here why?
+  //Because of we need to add,remove product to the cart.
+  CartController cartCont = Get.put(CartController());
   List<Color> colors = [
     Color.fromARGB(255, 0, 0, 0), // Black
     Color.fromARGB(255, 238, 81, 146), // White

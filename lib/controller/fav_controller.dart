@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //what is the job of this controller?
-//This controller will be used in the products page.It's job is just to add product to the favorite
+//This controller will be used in the products page.
+//It's job is just to add product to the favorite
 //and remove product from the favorite table.
 //Selecting wither this product is fav or not.
 class FavController extends GetxController {

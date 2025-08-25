@@ -1,4 +1,8 @@
+import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
+import 'package:e_commerce_halfa/core/services/services.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -18,6 +22,11 @@ class CartController extends GetxController {
       "image": ImageAssets.bannerDonTop1,
     },
   ];
+
+  StautusRequest statusRequest = StautusRequest.none;
+  CartData cartData = CartData(Get.find());
+  MyServices myServices = Get.find();
+
   void removeItemFromCart(int index) {
     cartItems.removeAt(index);
     update();
@@ -29,9 +38,43 @@ class CartController extends GetxController {
   }
 
   void decrementItem(int index) {
-    if (cartItems[index]["count"] > 0) {
+    if (cartItems[index]["count"] > 1) {
       cartItems[index]["count"]--;
       update();
+    }
+  }
+
+  addToCart(String productId) async {
+    statusRequest = StautusRequest.loading;
+    var response = await cartData.addToCart(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        // Get.snackbar("Success", "The product is added to the cart");
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+  }
+
+  deleteFromCart(String productId) async {
+    statusRequest = StautusRequest.loading;
+    var response = await cartData.deleteFromCart(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        // Get.snackbar("Success", "The product is deleted from  the cart");
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
     }
   }
 }
