@@ -1,4 +1,6 @@
+import 'package:e_commerce_halfa/controller/cart_controller.dart';
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
+import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/productDetailsText.dart';
@@ -8,76 +10,90 @@ import 'package:get/get.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
+
+  final CartController cartController = Get.find();
   ProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(50),
-        topRight: Radius.circular(50),
-      ),
-      child: Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height - 250,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ProductDetailsText(
-              textStyle: Theme.of(context).textTheme.headlineMedium,
-              text: translateDataBase(
-                productDetailsControllerImp.productModel.proudctNameEn!,
-                productDetailsControllerImp.productModel.productNameAr,
-              ),
+    return HnadlingDataView(
+      stautusRequest: productDetailsControllerImp.statusRequest,
+      widget: GetBuilder<ProductDetailsControllerImp>(
+        builder: (controller) {
+          return ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
             ),
-            SizedBox(height: 20),
-            ProductDetailsText(
-              textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: AppColor.greyText,
-              ), //Description
-              text: translateDataBase(
-                productDetailsControllerImp.productModel.productDescEn!,
-                productDetailsControllerImp.productModel.productDescAr,
-              ),
-            ),
-
-            SizedBox(height: 10),
-            ProductDetailsText(
-              textStyle: Theme.of(context).textTheme.headlineMedium,
-              text:
-                  "\$${productDetailsControllerImp.productModel.productPrice}",
-            ),
-            SizedBox(height: 20),
-            //Why did we add this condition?
-            // Because some products don't have size or color options
-            //So we display the data according to the product category.
-            //--------------------------------------------------------------
-            //حاوقف موضوع ال subitems
-            //عشان اقدر افهم كيف السلة بتشتغل.
-            (productDetailsControllerImp.productModel.productCatogery == 22 ||
-                    productDetailsControllerImp.productModel.productCatogery ==
-                        26)
-                ? ProductQuantityWidget(
-                  productId:
-                      productDetailsControllerImp.productModel.productsId
-                          .toString(),
-                )
-                : Column(
-                  children: [
-                    // ProductSizeWidget(),
-                    // SizedBox(height: 20),
-                    // ProductColorsWidget(),
-                    // SizedBox(height: 20),
-                    ProductQuantityWidget(
-                      productId:
-                          productDetailsControllerImp.productModel.productsId
-                              .toString(),
+            child: Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height - 250,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ProductDetailsText(
+                    textStyle: Theme.of(context).textTheme.headlineMedium,
+                    text: translateDataBase(
+                      productDetailsControllerImp.productModel.proudctNameEn!,
+                      productDetailsControllerImp.productModel.productNameAr,
                     ),
-                  ],
-                ),
-          ],
-        ),
+                  ),
+                  SizedBox(height: 20),
+                  ProductDetailsText(
+                    textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: AppColor.greyText,
+                    ), //Description
+                    text: translateDataBase(
+                      productDetailsControllerImp.productModel.productDescEn!,
+                      productDetailsControllerImp.productModel.productDescAr,
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+                  ProductDetailsText(
+                    textStyle: Theme.of(context).textTheme.headlineMedium,
+                    text:
+                        "\$${productDetailsControllerImp.productModel.productPrice}",
+                  ),
+                  SizedBox(height: 20),
+                  //Why did we add this condition?
+                  // Because some products don't have size or color options
+                  //So we display the data according to the product category.
+                  //--------------------------------------------------------------
+                  //حاوقف موضوع ال subitems
+                  //عشان اقدر افهم كيف السلة بتشتغل.
+                  (productDetailsControllerImp.productModel.productCatogery ==
+                              22 ||
+                          productDetailsControllerImp
+                                  .productModel
+                                  .productCatogery ==
+                              26)
+                      ? ProductQuantityWidget(
+                        productId:
+                            productDetailsControllerImp.productModel.productsId
+                                .toString(),
+                      )
+                      : Column(
+                        children: [
+                          // ProductSizeWidget(),
+                          // SizedBox(height: 20),
+                          // ProductColorsWidget(),
+                          // SizedBox(height: 20),
+                          ProductQuantityWidget(
+                            productId:
+                                productDetailsControllerImp
+                                    .productModel
+                                    .productsId
+                                    .toString(),
+                          ),
+                        ],
+                      ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

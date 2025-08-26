@@ -23,9 +23,15 @@ class CartController extends GetxController {
     },
   ];
 
+  int productCount = 0;
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   void removeItemFromCart(int index) {
     cartItems.removeAt(index);
@@ -71,7 +77,28 @@ class CartController extends GetxController {
 
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-        // Get.snackbar("Success", "The product is deleted from  the cart");
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+  }
+
+  getProductCount(String productId) async {
+    statusRequest = StautusRequest.loading;
+    var response = await cartData.getProductCount(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+    );
+    statusRequest = handlingStatusRequest(response);
+
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        productCount = response['data'];
+        print("------------------------------------------------------");
+        print("The product count is $productCount");
+        print("---------------------------------------------------------");
+        update();
+        return productCount;
       } else {
         statusRequest = StautusRequest.failure;
       }

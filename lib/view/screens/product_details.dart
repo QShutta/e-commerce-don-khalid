@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/cart_controller.dart';
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/add_to_cart__button.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_details_body.dart';
@@ -12,6 +13,8 @@ class ProductDetails extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.put(
     ProductDetailsControllerImp(),
   );
+  final CartController cartCont = Get.put(CartController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,31 +27,27 @@ class ProductDetails extends StatelessWidget {
         200,
       ), // Match top Container's color
       body: SafeArea(
-        child: GetBuilder<ProductDetailsControllerImp>(
-          builder: (controller) {
-            return ListView(
-              shrinkWrap: true,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Column(
               children: [
-                Column(
-                  children: [
-                    // الجزء العلوي (الخلفية الملونة)
-                    ProductDetailsHeader(
-                      backgroundColor: const Color.fromARGB(255, 253, 233, 184),
-                      containerHight: 300,
-                      imageWidth: 300,
-                      imageHeight: 300,
-                      imageBottomSpace: 10,
-                      imageUrl:
-                          '${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}',
-                    ),
-                    // Image.asset(ImageAssets.bannerDonJalabye),
-                    // الجزء السفلي (نموذج تسجيل الدخول)
-                    ProductDetailsBody(),
-                  ],
+                // الجزء العلوي (الخلفية الملونة)
+                ProductDetailsHeader(
+                  backgroundColor: const Color.fromARGB(255, 253, 233, 184),
+                  containerHight: 300,
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageBottomSpace: 10,
+                  imageUrl:
+                      '${AppLinkApi.productsImageLinkWithoutBack}/${productDetailsControllerImp.productModel.productImage}',
                 ),
+                // Image.asset(ImageAssets.bannerDonJalabye),
+                // الجزء السفلي (نموذج تسجيل الدخول)
+                ProductDetailsBody(),
               ],
-            );
-          },
+            ),
+          ],
         ),
       ),
     );

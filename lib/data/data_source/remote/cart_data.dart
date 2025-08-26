@@ -20,4 +20,12 @@ class CartData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future getProductCount(userId, productId) async {
+    var response = await crud.postData(AppLinkApi.getProductCount, {
+      "cart_user_id": userId,
+      "cart_product_id": productId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

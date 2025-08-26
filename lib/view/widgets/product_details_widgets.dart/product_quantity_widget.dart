@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 class ProductQuantityWidget extends StatelessWidget {
   ProductQuantityWidget({super.key, required this.productId});
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
-  final CartController cartCont = Get.find();
+
+  final CartController cartController = Get.find();
   final String? productId;
   @override
   Widget build(BuildContext context) {
@@ -34,20 +35,20 @@ class ProductQuantityWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       productDetailsControllerImp.decreaseQuantity();
-                      cartCont.deleteFromCart(productId!);
+                      cartController.deleteFromCart(productId!);
                     },
                     icon: Icon(Icons.remove),
                   ),
                   Text(
-                    productDetailsControllerImp.quantity.toString(),
-
+                    // productDetailsControllerImp.quantity.toString(),
+                    cartController.productCount.toString(),
                     style: Theme.of(context).textTheme.bodyMedium,
                     //            style: TextStyle(height: 3.0),
                   ),
                   IconButton(
                     onPressed: () {
                       productDetailsControllerImp.increaseQuantity();
-                      cartCont.addToCart(productId!);
+                      cartController.addToCart(productId!);
                     },
                     icon: Icon(Icons.add),
                   ),
