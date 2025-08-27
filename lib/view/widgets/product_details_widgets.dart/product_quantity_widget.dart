@@ -35,7 +35,7 @@ class ProductQuantityWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       productDetailsControllerImp.decreaseQuantity();
-                      cartController.deleteFromCart(productId!);
+                      // cartController.deleteFromCart(productId!);
                     },
                     icon: Icon(Icons.remove),
                   ),
@@ -48,7 +48,7 @@ class ProductQuantityWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       productDetailsControllerImp.increaseQuantity();
-                      cartController.addToCart(productId!);
+                      // cartController.addToCart(productId!);
                     },
                     icon: Icon(Icons.add),
                   ),

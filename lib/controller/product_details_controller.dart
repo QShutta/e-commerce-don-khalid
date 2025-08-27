@@ -72,7 +72,8 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   @override
   void increaseQuantity() {
-    quantity++;
+    cartCont.addToCart(productModel.productsId.toString());
+    productCount++;
     update();
   }
 
@@ -81,8 +82,9 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     // Prevent quantity from going below 1
     // لأنو ما منطقي المستخدم يختار 0 أو قيمة سالبة،
     // ولو حصلت حتعمل مشاكل في السلة وحساب السعر.
-    if (quantity > 1) {
-      quantity--;
+    if (productCount > 0) {
+      cartCont.deleteFromCart(productModel.productsId.toString());
+      productCount--;
       update();
     }
   }
