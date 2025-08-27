@@ -15,11 +15,11 @@ class ProductDetailsBody extends StatelessWidget {
   ProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return HnadlingDataView(
-      stautusRequest: productDetailsControllerImp.statusRequest,
-      widget: GetBuilder<ProductDetailsControllerImp>(
-        builder: (controller) {
-          return ClipRRect(
+    return GetBuilder<ProductDetailsControllerImp>(
+      builder: (controller) {
+        return HnadlingDataView(
+          stautusRequest: productDetailsControllerImp.statusRequest,
+          widget: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(50),
               topRight: Radius.circular(50),
@@ -92,9 +92,9 @@ class ProductDetailsBody extends StatelessWidget {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

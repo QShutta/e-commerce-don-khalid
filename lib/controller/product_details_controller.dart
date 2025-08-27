@@ -15,6 +15,7 @@ abstract class ProductDetailsController extends GetxController {
 class ProductDetailsControllerImp extends ProductDetailsController {
   String selectedSize = '';
   Color selectedColor = Colors.black;
+  int productCount = 0;
   int quantity = 1;
   List<String> sizes = ["S", "M", "L", "XL"];
   StautusRequest statusRequest = StautusRequest.none;
@@ -50,7 +51,9 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   initalValues() async {
     statusRequest = StautusRequest.loading;
     update();
-    await cartCont.getProductCount(productModel.productsId.toString());
+    productCount = await cartCont.getProductCount(
+      productModel.productsId.toString(),
+    );
     statusRequest = StautusRequest.success;
     update();
   }
