@@ -16,7 +16,8 @@ class AddToCartButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.begie, // Use primary color for the button
+          // backgroundColor: AppColor.begie, // Use primary color for the button
+          backgroundColor: Color.fromARGB(255, 208, 230, 247),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(17),
           ),

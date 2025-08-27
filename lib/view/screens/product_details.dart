@@ -20,12 +20,13 @@ class ProductDetails extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: AddToCartButton(),
       resizeToAvoidBottomInset: true,
-      backgroundColor: const Color.fromARGB(
-        255,
-        248,
-        235,
-        200,
-      ), // Match top Container's color
+      // backgroundColor: const Color.fromARGB(
+      //   255,
+      //   248,
+      //   235,
+      //   200,
+      // ),
+      backgroundColor: Color.fromARGB(255, 208, 230, 247),
       body: SafeArea(
         child: ListView(
           shrinkWrap: true,
@@ -34,7 +35,8 @@ class ProductDetails extends StatelessWidget {
               children: [
                 // الجزء العلوي (الخلفية الملونة)
                 ProductDetailsHeader(
-                  backgroundColor: const Color.fromARGB(255, 253, 233, 184),
+                  // backgroundColor: const Color.fromARGB(255, 253, 233, 184),
+                  backgroundColor: Color.fromARGB(255, 208, 230, 247),
                   containerHight: 300,
                   imageWidth: 300,
                   imageHeight: 300,
