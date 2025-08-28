@@ -14,6 +14,13 @@ class AppColor {
   static const Color whiteBackground = Color(0xFFF5F5F5);
   static const Color onboardingImageColor = Color(0xFF407BFF);
   static const Color whiteText = Colors.white;
+  static const Color productImageBackgroundColor = Color.fromARGB(
+    255,
+    208,
+    230,
+    247,
+  );
+
   static const Color greyText = Color(0xFF7A7A7A);
   static const Color primaryColor = Color(0xFF407BFF);
   static Color? grey800 = Colors.grey[800]!;
