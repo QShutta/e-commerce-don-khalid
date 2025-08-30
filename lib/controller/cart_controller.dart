@@ -142,10 +142,10 @@ class CartController extends GetxController {
         subTotalPrice = double.parse(
           dataResponseCountPrice['subTotal'].toString(),
         );
-        update();
       } else {
         statusRequest = StautusRequest.failure;
       }
     }
+    update();
   }
 }
