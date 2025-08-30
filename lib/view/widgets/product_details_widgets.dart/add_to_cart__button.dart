@@ -3,6 +3,7 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Before of 106
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({super.key});
 
