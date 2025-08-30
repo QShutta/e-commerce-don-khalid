@@ -1,4 +1,6 @@
+import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/home_with_bottom_nav_bar_widgets/bottom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,9 @@ class HomeWithBottomNav extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.cart);
+            },
             child: Icon(Icons.add_shopping_cart_outlined, color: Colors.black),
           ),
           floatingActionButtonLocation:

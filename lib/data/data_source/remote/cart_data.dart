@@ -28,4 +28,11 @@ class CartData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future getCartData(userId) async {
+    var response = await crud.postData(AppLinkApi.viewCart, {
+      "cart_user_id": userId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

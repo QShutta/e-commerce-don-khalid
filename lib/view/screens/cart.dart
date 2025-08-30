@@ -23,13 +23,7 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: 10),
-          Expanded(
-            child: GetBuilder<CartController>(
-              builder: (cartCont) {
-                return CartItemList(cartCont: cartCont);
-              },
-            ),
-          ),
+          Expanded(child: CartItemList()),
 
           CartSummery(),
           SizedBox(height: 20),

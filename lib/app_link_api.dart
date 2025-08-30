@@ -39,4 +39,5 @@ class AppLinkApi {
   static const String deleteFromCart = "$serverUrl/cart/delete_cart.php";
   static const String cartView = "$serverUrl/cart/view_cart.php";
   static const String getProductCount = "$serverUrl/cart/get_product_count.php";
+  static const String viewCart = "$serverUrl/cart/view_cart.php";
 }

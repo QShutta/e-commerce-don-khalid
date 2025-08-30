@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 class ProductDetailsBody extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
 
-  final CartController cartController = Get.find();
   ProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {

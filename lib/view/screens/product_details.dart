@@ -13,7 +13,6 @@ class ProductDetails extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.put(
     ProductDetailsControllerImp(),
   );
-  final CartController cartCont = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,6 @@ class ProductQuantityWidget extends StatelessWidget {
   ProductQuantityWidget({super.key, required this.productId});
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
 
-  final CartController cartController = Get.find();
   final String? productId;
   @override
   Widget build(BuildContext context) {
