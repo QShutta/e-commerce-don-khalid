@@ -6,6 +6,7 @@ import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
 import 'package:e_commerce_halfa/data/model/cart_model.dart';
 import 'package:get/get.dart';
 
+//mistake in commit106
 class CartController extends GetxController {
   //These are for test burpose //عشان نجرب موضوع حذف المنتج
   //When the user swap the element to the left side or to the righ side.
