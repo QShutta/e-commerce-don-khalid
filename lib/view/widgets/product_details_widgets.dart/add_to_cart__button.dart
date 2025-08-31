@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 //Before of 106
 class AddToCartButton extends StatelessWidget {
   AddToCartButton({super.key});
-  final ProductDetailsControllerImp productDetailsControllerImp =
-      Get.find<ProductDetailsControllerImp>();
+  final ProductDetailsControllerImp productCont = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,13 +18,22 @@ class AddToCartButton extends StatelessWidget {
       //Why did you put this white color?xxxxxxxxxxxxxxxxxxxxxx
       color: Colors.white,
       child: ElevatedButton(
-        onPressed: () {
-          //Why did we put this line?
-          //عشان لمن المستخدم ينتقل لي صفحة الcart
-          //يمشي يجيب ليانا اخر بيانات قاعدة في قاعدة البيانات بالنسبة لل
-          //Cart.
-          productDetailsControllerImp.cartCont.refreshView();
-          Get.toNamed(AppRoutes.cart);
+        onPressed: () async {
+          //مفترض اول ما نفتح صفحة ال
+          //cart
+          // لازم
+          //نجيب اخر بيانات قاعدة في الصفحة بتاعت ال
+          //cart.
+          productCont.cartCont.refreshView();
+          await Get.toNamed(AppRoutes.cart);
+          //لمن المستخدم يمشي صفحة ال
+          //cart and make some changes like increase the quantity of the product in the cart or remove the product
+          //from the cart when the user navigatee back these changes that he made should be reflected in the
+          //Ui so we call the initalValues again.
+          productCont.initalValues();
+          //after the user go to the cart page it may do somechanges ther so we have to refresh the ui so that the changes
+          //Will be reflected.
+          productCont.initalValues();
         },
         style: ElevatedButton.styleFrom(
           // backgroundColor: AppColor.begie, // Use primary color for the button

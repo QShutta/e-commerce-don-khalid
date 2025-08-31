@@ -89,6 +89,7 @@ class CartController extends GetxController {
 
   deleteFromCart(String productId) async {
     statusRequest = StautusRequest.loading;
+    update();
     var response = await cartData.deleteFromCart(
       myServices.sharedPreferences.getString("user_id"),
       productId,
@@ -101,10 +102,12 @@ class CartController extends GetxController {
         statusRequest = StautusRequest.failure;
       }
     }
+    update();
   }
 
   getProductCount(String productId) async {
     statusRequest = StautusRequest.loading;
+    update();
     var response = await cartData.getProductCount(
       myServices.sharedPreferences.getString("user_id"),
       productId,
@@ -123,6 +126,7 @@ class CartController extends GetxController {
         statusRequest = StautusRequest.failure;
       }
     }
+    update();
   }
 
   //بعد كل عملية حذف او اواضافة لمنتج من السلة يجب علينا تحديث ال
@@ -139,9 +143,10 @@ class CartController extends GetxController {
   }
 
   viewCart() async {
-    statusRequest = StautusRequest.loading;
     cartDetails!.clear();
+    statusRequest = StautusRequest.loading;
     update();
+
     var response = await cartData.getCartData(
       myServices.sharedPreferences.getString("user_id"),
     );
@@ -169,6 +174,7 @@ class CartController extends GetxController {
             dataResponseCountPrice['subTotal'].toString(),
           );
         }
+        update();
       } else {
         statusRequest = StautusRequest.failure;
       }
