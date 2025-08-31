@@ -38,6 +38,9 @@ class CartController extends GetxController {
   // productCount:
   // العدد الخاص بمنتج واحد معين ضافو المستخدم للسلة.
   // يعني مثلاً منتج "قميص" ممكن المستخدم يضيف منو 2 أو 5.
+  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  //هنا حانا المتغير دة مستخدمنو في صفحة ال cart?
+  //شنو فايدة المتغير دة ؟
   int productCount = 0;
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
@@ -66,6 +69,7 @@ class CartController extends GetxController {
     }
   }
 
+  //This will be used to add product to the cart
   addToCart(String productId) async {
     statusRequest = StautusRequest.loading;
     var response = await cartData.addToCart(
@@ -121,8 +125,23 @@ class CartController extends GetxController {
     }
   }
 
+  //بعد كل عملية حذف او اواضافة لمنتج من السلة يجب علينا تحديث ال
+  //ui
+  //بناء علي عملية الحذف او الاضافة .
+  resetVar() {
+    subTotalPrice = 0.0;
+    totalProductCount = 0;
+  }
+
+  refreshView() {
+    resetVar();
+    viewCart();
+  }
+
   viewCart() async {
     statusRequest = StautusRequest.loading;
+    cartDetails!.clear();
+    update();
     var response = await cartData.getCartData(
       myServices.sharedPreferences.getString("user_id"),
     );
@@ -130,18 +149,26 @@ class CartController extends GetxController {
     update();
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-        cartDetails =
-            response['data']
+        //By this condition we want to handle the case of that there is no product in the cart
+        //نحنا حنجيب بيانات ونخزنها في اللست فقط في حال كان ال
+        //the staus is sucess.other wise that means there is no data returned from the backend.
+        if (response['data']['status'] == "success") {
+          cartDetails!.clear();
+          cartDetails!.addAll(
+            response['data']['data']
                 .map<CartModel>((item) => CartModel.fromJson(item))
-                .toList();
-        Map dataResponseCountPrice = response['count_price'];
-
-        //The data will came to us in string for so we will convert it to (int,double) to do
-        //SUM,DIV,MULT operation.
-        totalProductCount = int.parse(dataResponseCountPrice['product_count']);
-        subTotalPrice = double.parse(
-          dataResponseCountPrice['subTotal'].toString(),
-        );
+                .toList(),
+          );
+          Map dataResponseCountPrice = response['count_price'];
+          //The data will came to us in string for so we will convert it to (int,double) to do
+          //SUM,DIV,MULT operation.
+          totalProductCount = int.parse(
+            dataResponseCountPrice['product_count'],
+          );
+          subTotalPrice = double.parse(
+            dataResponseCountPrice['subTotal'].toString(),
+          );
+        }
       } else {
         statusRequest = StautusRequest.failure;
       }

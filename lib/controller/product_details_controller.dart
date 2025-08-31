@@ -9,7 +9,6 @@ abstract class ProductDetailsController extends GetxController {
   void changeSelctedColor(Color color);
   void increaseQuantity();
   void decreaseQuantity();
-  void addToCart();
 }
 
 class ProductDetailsControllerImp extends ProductDetailsController {
@@ -51,6 +50,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   initalValues() async {
     statusRequest = StautusRequest.loading;
     update();
+    //دة بورينا المتنج المعين مضاف كم مرة .
     productCount = await cartCont.getProductCount(
       productModel.productsId.toString(),
     );
@@ -87,15 +87,5 @@ class ProductDetailsControllerImp extends ProductDetailsController {
       productCount--;
       update();
     }
-  }
-
-  @override
-  void addToCart() {
-    // Logic to add the product to the cart
-    // This could involve calling a service or updating a cart model
-    print(
-      'Product added to cart with size: $selectedSize, color: $selectedColor, quantity: $quantity',
-    );
-    update();
   }
 }

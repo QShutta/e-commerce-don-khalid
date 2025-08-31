@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,9 @@ import 'package:get/get.dart';
 
 //Before of 106
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({super.key});
-
+  AddToCartButton({super.key});
+  final ProductDetailsControllerImp productDetailsControllerImp =
+      Get.find<ProductDetailsControllerImp>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,6 +19,11 @@ class AddToCartButton extends StatelessWidget {
       color: Colors.white,
       child: ElevatedButton(
         onPressed: () {
+          //Why did we put this line?
+          //عشان لمن المستخدم ينتقل لي صفحة الcart
+          //يمشي يجيب ليانا اخر بيانات قاعدة في قاعدة البيانات بالنسبة لل
+          //Cart.
+          productDetailsControllerImp.cartCont.refreshView();
           Get.toNamed(AppRoutes.cart);
         },
         style: ElevatedButton.styleFrom(

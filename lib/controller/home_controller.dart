@@ -64,12 +64,12 @@ class HomeControllerImp extends HomeController {
       if (statusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
           categories =
-              (response['catogeries'] as List)
+              (response['catogeries']['data'] as List)
                   .map((catogery) => Catogeries.fromJson(catogery))
                   .toList();
           // print removed
           products =
-              (response['products'] as List)
+              (response['products']['data'] as List)
                   .map((product) => ProductsModel.fromJson(product))
                   .toList();
           // print removed

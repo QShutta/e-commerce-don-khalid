@@ -71,11 +71,17 @@ class CartItemList extends StatelessWidget {
                         "${AppLinkApi.productsImageLink}/${product.productImage}",
                   ),
                   count: product.productCount,
-                  onAdd: () {
-                    cartCont.incrementItem(index);
+                  onAdd: () async {
+                    // cartCont.incrementItem(index);
+                    await cartCont.addToCart(product.productsId!.toString());
+                    cartCont.refreshView();
                   },
-                  onRemove: () {
-                    cartCont.decrementItem(index);
+                  onRemove: () async {
+                    // cartCont.decrementItem(index);
+                    await cartCont.deleteFromCart(
+                      product.productsId!.toString(),
+                    );
+                    cartCont.refreshView();
                   },
                 ),
               );
