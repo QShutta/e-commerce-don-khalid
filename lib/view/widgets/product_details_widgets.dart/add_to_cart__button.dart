@@ -24,15 +24,12 @@ class AddToCartButton extends StatelessWidget {
           // لازم
           //نجيب اخر بيانات قاعدة في الصفحة بتاعت ال
           //cart.
-          productCont.cartCont.refreshView();
+          // productCont.cartCont.refreshView();
           await Get.toNamed(AppRoutes.cart);
           //لمن المستخدم يمشي صفحة ال
           //cart and make some changes like increase the quantity of the product in the cart or remove the product
           //from the cart when the user navigatee back these changes that he made should be reflected in the
           //Ui so we call the initalValues again.
-          productCont.initalValues();
-          //after the user go to the cart page it may do somechanges ther so we have to refresh the ui so that the changes
-          //Will be reflected.
           productCont.initalValues();
         },
         style: ElevatedButton.styleFrom(

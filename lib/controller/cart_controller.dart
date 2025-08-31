@@ -1,5 +1,4 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
-import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
@@ -8,22 +7,7 @@ import 'package:get/get.dart';
 
 //mistake in commit106
 class CartController extends GetxController {
-  //These are for test burpose //عشان نجرب موضوع حذف المنتج
-  //When the user swap the element to the left side or to the righ side.
-  List<Map<String, dynamic>> cartItems = [
-    {
-      "title": "جلابية الدون",
-      "price": 600,
-      "count": 1,
-      "image": ImageAssets.bannerDonJalabye,
-    },
-    {
-      "title": "توب الدون",
-      "price": 400,
-      "count": 2,
-      "image": ImageAssets.bannerDonTop1,
-    },
-  ];
+  // ];
   //دة بحتوي ليك علي كل المنتجات القاعدة في السلة بي تفاصيلها .
   List<CartModel>? cartDetails = [];
   // subTotalPrice:
@@ -35,13 +19,6 @@ class CartController extends GetxController {
   // يعني لو ضفت (2 قميص + 3 بنطلون) → الناتج 5.
   int totalProductCount = 0;
 
-  // productCount:
-  // العدد الخاص بمنتج واحد معين ضافو المستخدم للسلة.
-  // يعني مثلاً منتج "قميص" ممكن المستخدم يضيف منو 2 أو 5.
-  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  //هنا حانا المتغير دة مستخدمنو في صفحة ال cart?
-  //شنو فايدة المتغير دة ؟
-  int productCount = 0;
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
@@ -50,23 +27,6 @@ class CartController extends GetxController {
   void onInit() {
     viewCart();
     super.onInit();
-  }
-
-  void removeItemFromCart(int index) {
-    cartItems.removeAt(index);
-    update();
-  }
-
-  void incrementItem(int index) {
-    cartItems[index]["count"]++;
-    update(); // تحدث الـ UI
-  }
-
-  void decrementItem(int index) {
-    if (cartItems[index]["count"] > 1) {
-      cartItems[index]["count"]--;
-      update();
-    }
   }
 
   //This will be used to add product to the cart
@@ -105,30 +65,6 @@ class CartController extends GetxController {
     update();
   }
 
-  getProductCount(String productId) async {
-    statusRequest = StautusRequest.loading;
-    update();
-    var response = await cartData.getProductCount(
-      myServices.sharedPreferences.getString("user_id"),
-      productId,
-    );
-    statusRequest = handlingStatusRequest(response);
-
-    if (statusRequest == StautusRequest.success) {
-      if (response["status"] == "success") {
-        productCount = response['data'];
-        print("------------------------------------------------------");
-        print("The product count is $productCount");
-        print("---------------------------------------------------------");
-        update();
-        return productCount;
-      } else {
-        statusRequest = StautusRequest.failure;
-      }
-    }
-    update();
-  }
-
   //بعد كل عملية حذف او اواضافة لمنتج من السلة يجب علينا تحديث ال
   //ui
   //بناء علي عملية الحذف او الاضافة .
@@ -142,17 +78,31 @@ class CartController extends GetxController {
     viewCart();
   }
 
+  //I will use this method to get all of the products that the user put in the cart.
   viewCart() async {
+    //The first thing that i will do is to clear the list why?
+    //Every time i add or remove an elment from the cart i have fill the list with the newDATA
+    //So i will make it empty then fill it again.
     cartDetails!.clear();
     statusRequest = StautusRequest.loading;
     update();
-
+    //Why did we here just pass the userid?
+    //we will bring all of the products that the user addedd to the cart.
     var response = await cartData.getCartData(
       myServices.sharedPreferences.getString("user_id"),
     );
     statusRequest = handlingStatusRequest(response);
     update();
+    //This condition to check if the response is successful from the server or not
     if (statusRequest == StautusRequest.success) {
+      //After response came to us the json look like this:
+      /*status": "success",
+    "data": {
+        "status": "success",
+        "data": [
+            {
+                "total_price_per_product": 2000,
+                "productCount": 2, */
       if (response["status"] == "success") {
         //By this condition we want to handle the case of that there is no product in the cart
         //نحنا حنجيب بيانات ونخزنها في اللست فقط في حال كان ال
@@ -164,6 +114,14 @@ class CartController extends GetxController {
                 .map<CartModel>((item) => CartModel.fromJson(item))
                 .toList(),
           );
+          // Here we take the "count_price" object from the response JSON.
+          // This object is different from the product list; it is a summary of the cart.
+          // It contains overall values like:
+          //   - "subTotal": the total price of all products in the cart.
+          //   - "product_count": the total number of products in the cart.
+          // We will later convert these string values into int/double
+          // so we can use them in calculations (sum, multiply, divide).
+
           Map dataResponseCountPrice = response['count_price'];
           //The data will came to us in string for so we will convert it to (int,double) to do
           //SUM,DIV,MULT operation.

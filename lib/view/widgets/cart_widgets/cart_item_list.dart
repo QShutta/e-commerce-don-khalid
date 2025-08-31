@@ -38,7 +38,6 @@ class CartItemList extends StatelessWidget {
                 key: UniqueKey(), // لازم Key مختلف
                 direction: DismissDirection.horizontal, // يمين أو يسار
                 onDismissed: (direction) {
-                  cartCont.removeItemFromCart(index);
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
