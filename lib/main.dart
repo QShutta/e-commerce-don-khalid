@@ -8,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//befoer of 85
+//befoer of 111
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
