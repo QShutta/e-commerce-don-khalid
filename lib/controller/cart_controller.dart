@@ -3,6 +3,7 @@ import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
 import 'package:e_commerce_halfa/data/model/cart_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //mistake in commit106
@@ -22,9 +23,10 @@ class CartController extends GetxController {
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
-
+  TextEditingController? searchController;
   @override
   void onInit() {
+    searchController = TextEditingController();
     viewCart();
     super.onInit();
   }

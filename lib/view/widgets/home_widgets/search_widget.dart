@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key, required this.onChangeWhenSearh});
-  final void Function(String)? onChangeWhenSearh;
+  SearchPage({
+    super.key,
+    this.onChangeWhenSearh,
+    this.searchController,
+    this.onFinalSearchButtonClicked,
+  });
+  void Function(String)? onChangeWhenSearh;
+  void Function()? onFinalSearchButtonClicked;
+  TextEditingController? searchController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +44,17 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
               child: TextField(
+                controller: searchController,
                 style: TextStyle(
                   color: Colors.black, // 👈 لون النص اللي المستخدم بيكتبه
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
                   hintText: 'اكتب اسم المنتج...',
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: IconButton(
+                    onPressed: onFinalSearchButtonClicked,
+                    icon: Icon(Icons.search),
+                  ),
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 16,

@@ -19,6 +19,7 @@ class CartPage extends StatelessWidget {
         showNotificationAndFavorite: false,
         showSearch: false,
         textColor: AppColor.primaryColor,
+        searchController: cartCont.searchController!,
       ),
       body: Column(
         children: [

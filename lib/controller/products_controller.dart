@@ -5,6 +5,7 @@ import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/products_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //Before of 70
@@ -23,6 +24,7 @@ abstract class ProductsController extends GetxController {
 class ProductsControllerImp extends ProductsController {
   List<Catogeries>? catogeriesList;
   int? selectedCat;
+  TextEditingController? searchController;
   MyServices myServices = Get.find();
   String? productCat;
   String? userId;
@@ -67,6 +69,7 @@ class ProductsControllerImp extends ProductsController {
 
   @override
   void onInit() {
+    searchController = TextEditingController();
     initVlues();
     getData();
     super.onInit();

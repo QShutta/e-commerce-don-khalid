@@ -19,14 +19,14 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DonAppBar(
-        title: 'Favorites',
-        onNotificationIconButtonClicked: () {},
-        onChangeWhenSearh: (String) {},
-        showNotificationAndFavorite: false,
-        showSearch: false,
-        onFavoriteButtonPressed: () {},
-      ),
+      // appBar: DonAppBar(
+      //   title: 'Favorites',
+      //   onNotificationIconButtonClicked: () {},
+      //   onChangeWhenSearh: (String) {},
+      //   showNotificationAndFavorite: false,
+      //   showSearch: false,
+      //   onFavoriteButtonPressed: () {},
+      // ),
       body: GetBuilder<Myfavcontroller>(
         builder: (controller) {
           return HnadlingDataView(

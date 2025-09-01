@@ -9,4 +9,13 @@ class HomeData {
     var response = await crud.postData(AppLinkApi.home, {});
     return response.fold((l) => l, (r) => r);
   }
+
+  //The searchData will be here why?عشان البحث  حيكون في صفحتين في صفحة ال
+  //home and in the products page.
+  Future searchData(String searchText) async {
+    var response = await crud.postData(AppLinkApi.search, {
+      "search_text": searchText,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

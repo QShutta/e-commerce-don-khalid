@@ -17,6 +17,7 @@ import 'package:e_commerce_halfa/view/screens/language_selection.dart';
 import 'package:e_commerce_halfa/view/screens/onboarding.dart';
 import 'package:e_commerce_halfa/view/screens/product_details.dart';
 import 'package:e_commerce_halfa/view/screens/products.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/search_widget.dart';
 import 'package:get/get.dart';
 
 List<GetPage> appPages = [
@@ -119,6 +120,12 @@ List<GetPage> appPages = [
   GetPage(
     name: AppRoutes.cart,
     page: () => CartPage(),
+    transition: Transition.rightToLeft,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
+  GetPage(
+    name: AppRoutes.search,
+    page: () => SearchPage(),
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),

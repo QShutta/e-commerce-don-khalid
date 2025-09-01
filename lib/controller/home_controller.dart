@@ -5,6 +5,7 @@ import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/home_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class HomeController extends GetxController {
@@ -22,6 +23,7 @@ class HomeControllerImp extends HomeController {
   HomeData homeData = HomeData(Get.find());
   String? userName;
   List<Catogeries> categories = [];
+  TextEditingController searchController = TextEditingController();
   // List products = [];
   List<ProductsModel> products = [];
   initalData() {
@@ -101,5 +103,36 @@ class HomeControllerImp extends HomeController {
         "product_catogery": productCat,
       },
     );
+  }
+
+  search() async {
+    try {
+      //The inital value for the statusRequest is loading.
+      statusRequest = StautusRequest.loading;
+      update();
+      var response = await homeData.getData();
+      statusRequest = handlingStatusRequest(response);
+      if (statusRequest == StautusRequest.success) {
+        if (response["status"] == "success") {
+          categories =
+              (response['catogeries']['data'] as List)
+                  .map((catogery) => Catogeries.fromJson(catogery))
+                  .toList();
+          // print removed
+          products =
+              (response['products']['data'] as List)
+                  .map((product) => ProductsModel.fromJson(product))
+                  .toList();
+          // print removed
+        } else {
+          statusRequest = StautusRequest.failure;
+        }
+      }
+      update(); //This will update the UI
+    } catch (e) {
+      print('Error in HomeControllerImp.getData: $e');
+
+      update();
+    }
   }
 }

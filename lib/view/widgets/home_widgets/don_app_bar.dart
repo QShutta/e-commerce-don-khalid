@@ -1,6 +1,4 @@
-import 'package:e_commerce_halfa/view/widgets/home_widgets/search_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -8,9 +6,12 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showSearch;
   final Color? textColor;
   final Color? myColor;
+  final TextEditingController searchController;
   void Function(String)? onChangeWhenSearh;
   final void Function()? onFavoriteButtonPressed;
   final void Function()? onNotificationIconButtonClicked;
+
+  final void Function()? onFirstSearchButtonClicked;
   DonAppBar({
     super.key,
     required this.title,
@@ -21,6 +22,8 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onNotificationIconButtonClicked,
     this.onChangeWhenSearh,
     this.onFavoriteButtonPressed,
+    required this.searchController,
+    this.onFirstSearchButtonClicked,
   });
 
   @override
@@ -44,9 +47,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading:
           showSearch
               ? IconButton(
-                onPressed: () {
-                  Get.to(SearchPage(onChangeWhenSearh: onChangeWhenSearh));
-                },
+                onPressed: onFirstSearchButtonClicked,
                 icon: const Icon(Icons.search_outlined, size: 30),
               )
               : null,

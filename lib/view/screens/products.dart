@@ -27,6 +27,7 @@ class ProductsPage extends StatelessWidget {
         onFavoriteButtonPressed: () {
           productsController.goToFavoritePage();
         },
+        searchController: productsController.searchController!,
       ),
       body: Scaffold(
         body: GetBuilder<ProductsControllerImp>(
