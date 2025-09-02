@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key, required this.onChangeWhenSearh});
+  const SearchPage({
+    super.key,
+    required this.onChangeWhenSearh,
+    this.onFinalSearchButtonClicked,
+  });
   final void Function(String)? onChangeWhenSearh;
+  final void Function()? onFinalSearchButtonClicked;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +46,10 @@ class SearchPage extends StatelessWidget {
                 ),
                 decoration: InputDecoration(
                   hintText: 'اكتب اسم المنتج...',
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: IconButton(
+                    onPressed: onFinalSearchButtonClicked,
+                    icon: Icon(Icons.search),
+                  ),
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 16,

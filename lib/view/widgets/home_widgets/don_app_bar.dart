@@ -10,12 +10,15 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? myColor;
   void Function(String)? onChangeWhenSearh;
   final void Function()? onFavoriteButtonPressed;
+  final void Function()? onFinalSearchButtonClicked;
   final void Function()? onNotificationIconButtonClicked;
+
   DonAppBar({
     super.key,
     required this.title,
     this.textColor,
     this.myColor,
+    this.onFinalSearchButtonClicked,
     this.showNotificationAndFavorite = true,
     this.showSearch = true,
     this.onNotificationIconButtonClicked,
@@ -45,7 +48,12 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
           showSearch
               ? IconButton(
                 onPressed: () {
-                  Get.to(SearchPage(onChangeWhenSearh: onChangeWhenSearh));
+                  Get.to(
+                    SearchPage(
+                      onChangeWhenSearh: onChangeWhenSearh,
+                      onFinalSearchButtonClicked: onFinalSearchButtonClicked,
+                    ),
+                  );
                 },
                 icon: const Icon(Icons.search_outlined, size: 30),
               )

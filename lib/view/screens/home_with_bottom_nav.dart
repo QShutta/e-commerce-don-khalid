@@ -1,5 +1,5 @@
-import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.dart';
+import 'package:e_commerce_halfa/controller/search_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/home_with_bottom_nav_bar_widgets/bottom_app_bar.dart';
@@ -10,6 +10,7 @@ class HomeWithBottomNav extends StatelessWidget {
   HomeWithBottomNav({super.key});
   final HomeWithBottomNavBarControllerImp homeWithBottomNavBarController =
       Get.put(HomeWithBottomNavBarControllerImp());
+  final MySearchCont mySearchCont = Get.put(MySearchCont());
   //before of 67
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,14 @@ class HomeWithBottomNav extends StatelessWidget {
           appBar: DonAppBar(
             title: "Don Shop",
             textColor: Colors.black,
+            onFinalSearchButtonClicked: () {
+              print("-------------------------------------------------------");
+              print("the final search button clicked ");
+            },
             onNotificationIconButtonClicked: () {},
-            onChangeWhenSearh: (String value) {},
+            onChangeWhenSearh: (String value) {
+              mySearchCont.checkSearch(value);
+            },
             onFavoriteButtonPressed: () {
               homeWithBottomNavBarController.goToFavoritePage();
             },
