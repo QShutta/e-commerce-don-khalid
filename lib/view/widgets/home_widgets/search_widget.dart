@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
-  SearchPage({
+  const SearchPage({
     super.key,
-    this.onChangeWhenSearh,
-    this.searchController,
+    required this.onChangeWhenSearh,
     this.onFinalSearchButtonClicked,
+    required this.searchController,
   });
-  void Function(String)? onChangeWhenSearh;
-  void Function()? onFinalSearchButtonClicked;
-  TextEditingController? searchController;
-
+  final void Function(String)? onChangeWhenSearh;
+  final void Function()? onFinalSearchButtonClicked;
+  final TextEditingController? searchController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

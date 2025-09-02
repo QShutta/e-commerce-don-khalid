@@ -7,11 +7,11 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? textColor;
   final Color? myColor;
   final TextEditingController searchController;
-  void Function(String)? onChangeWhenSearh;
   final void Function()? onFavoriteButtonPressed;
   final void Function()? onNotificationIconButtonClicked;
 
   final void Function()? onFirstSearchButtonClicked;
+
   DonAppBar({
     super.key,
     required this.title,
@@ -20,7 +20,6 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showNotificationAndFavorite = true,
     this.showSearch = true,
     this.onNotificationIconButtonClicked,
-    this.onChangeWhenSearh,
     this.onFavoriteButtonPressed,
     required this.searchController,
     this.onFirstSearchButtonClicked,

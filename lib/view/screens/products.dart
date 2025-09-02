@@ -23,7 +23,6 @@ class ProductsPage extends StatelessWidget {
       appBar: DonAppBar(
         title: 'Products',
         onNotificationIconButtonClicked: () {},
-        onChangeWhenSearh: (String) {},
         onFavoriteButtonPressed: () {
           productsController.goToFavoritePage();
         },
