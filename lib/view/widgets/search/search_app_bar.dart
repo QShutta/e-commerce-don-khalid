@@ -14,8 +14,9 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.arrow_back),
         onPressed: () => Navigator.pop(context),
       ),
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
+      backgroundColor: Colors.white, // لون خلفية الـ Scaffold (الخلفية)
+      foregroundColor:
+          Colors.black, // اللون الافتراضي للنصوص والأيقونات فوق الخلفية
       elevation: 1,
     );
   }

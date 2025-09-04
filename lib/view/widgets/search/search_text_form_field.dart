@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchTextFormField extends StatelessWidget {
   const SearchTextFormField({
@@ -27,7 +28,7 @@ class SearchTextFormField extends StatelessWidget {
           fontSize: 16,
         ),
         decoration: InputDecoration(
-          hintText: 'اكتب اسم المنتج...',
+          hintText: '216'.tr,
           prefixIcon: IconButton(
             // onPressed: onFinalSearchButtonClicked,
             icon: Icon(Icons.search),

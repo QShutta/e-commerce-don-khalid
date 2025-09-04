@@ -2,7 +2,7 @@ import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.
 import 'package:e_commerce_halfa/controller/search_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
-import 'package:e_commerce_halfa/view/widgets/home_widgets/search_widget.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/search_page.dart';
 import 'package:e_commerce_halfa/view/widgets/home_with_bottom_nav_bar_widgets/bottom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,11 @@ class HomeWithBottomNav extends StatelessWidget {
         return Scaffold(
           appBar: DonAppBar(
             title: "Don Shop",
+            //This is the color of the title in the appBar.
             textColor: Colors.black,
+            //There are tow search icon:
+            //1-The first one her job is just to take you to the search page.
+            //2-The secound search icon will implement the real search job.
             onFirstSearchButtonClicked: () {
               Get.to(() => SearchPage());
             },

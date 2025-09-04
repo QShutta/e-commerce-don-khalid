@@ -14,7 +14,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100], // خلفية خفيفة
-      appBar: SearchAppBar(searchTextTitle: "بحث المنتجات"),
+      appBar: SearchAppBar(searchTextTitle: "215".tr),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -22,6 +22,10 @@ class SearchPage extends StatelessWidget {
             // 🔍 حقل البحث
             SearchTextFormField(
               mySearchCont: mySearchCont.searchController!,
+              // Can you clarify what you mean by onFinalSearchButtonClicked?
+              // As I explained earlier, I have two search buttons:
+              // 1. The first button navigates to the search page.
+              // 2. The second button (inside the search page) actually performs the search.
               onFinalSearchButtonClicked: () {
                 mySearchCont.search(mySearchCont.searchController!.text);
                 //   //Why did you add this line?
@@ -31,10 +35,13 @@ class SearchPage extends StatelessWidget {
                 FocusScope.of(context).unfocus();
               },
               onChange: (value) {
+                //What is the job of the checkSearch method?
+                //the job of the checksearch method here is very simple it will just make that when the user
+                //remove the textfrom the textfromfield will make the listreult empty
                 mySearchCont.checkSearch(value);
               },
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 14),
             SearchResult(),
           ],
         ),

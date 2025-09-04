@@ -169,7 +169,10 @@ class MyTranslation extends Translations {
       "211": "Total:",
       "212": "Checkout",
       "213": "Cart",
-      "214": "Shpping",
+      "214": "Shpping", "215": "Search Products",
+
+      "216": "Write the product name...",
+      "217": "What did you are looking for?",
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -276,6 +279,9 @@ class MyTranslation extends Translations {
       "212": "إتمام الشراء",
       "213": "سلة المشتريات",
       "214": "رسوم التوصيل",
+      "215": "بحث المنتجات",
+      "216": "اكتب اسم المنتج...",
+      "217": "بتفتش في شنو ؟",
     },
   };
 }
