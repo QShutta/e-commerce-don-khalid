@@ -22,11 +22,14 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: DonAppBar(
         title: 'Products',
+        textColor: Colors.black,
         onNotificationIconButtonClicked: () {},
         onFavoriteButtonPressed: () {
           productsController.goToFavoritePage();
         },
-        searchController: productsController.searchController!,
+        onFirstSearchButtonClicked: () {
+          productsController.goToSearchPage();
+        },
       ),
       body: Scaffold(
         body: GetBuilder<ProductsControllerImp>(

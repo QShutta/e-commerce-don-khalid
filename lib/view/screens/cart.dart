@@ -3,6 +3,7 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/cart_widgets/cart_item_list.dart';
 import 'package:e_commerce_halfa/view/widgets/cart_widgets/cart_summery.dart';
 import 'package:e_commerce_halfa/view/widgets/cart_widgets/checkout_button.dart';
+import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,12 +15,9 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DonAppBar(
-        title: "213".tr,
-        showNotificationAndFavorite: false,
-        showSearch: false,
+      appBar: CustomeAppBar(
+        searchTextTitle: "213".tr,
         textColor: AppColor.primaryColor,
-        searchController: cartCont.searchController!,
       ),
       body: Column(
         children: [

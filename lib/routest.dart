@@ -123,10 +123,4 @@ List<GetPage> appPages = [
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),
-  GetPage(
-    name: AppRoutes.search,
-    page: () => SearchPage(),
-    transition: Transition.rightToLeft,
-    transitionDuration: const Duration(milliseconds: 400),
-  ),
 ];

@@ -6,7 +6,6 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showSearch;
   final Color? textColor;
   final Color? myColor;
-  final TextEditingController searchController;
   final void Function()? onFavoriteButtonPressed;
   final void Function()? onNotificationIconButtonClicked;
 
@@ -21,7 +20,6 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showSearch = true,
     this.onNotificationIconButtonClicked,
     this.onFavoriteButtonPressed,
-    required this.searchController,
     this.onFirstSearchButtonClicked,
   });
 
@@ -31,6 +29,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: true,
       titleTextStyle: TextStyle(color: Colors.white),
       backgroundColor: myColor,
       title: Center(
@@ -47,7 +46,11 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
           showSearch
               ? IconButton(
                 onPressed: onFirstSearchButtonClicked,
-                icon: const Icon(Icons.search_outlined, size: 30),
+                icon: const Icon(
+                  Icons.search_outlined,
+                  size: 30,
+                  color: Colors.black,
+                ),
               )
               : null,
       actions:

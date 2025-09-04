@@ -1,69 +1,41 @@
+import 'package:e_commerce_halfa/controller/search_controller.dart';
+import 'package:e_commerce_halfa/view/widgets/search/search_app_bar.dart';
+import 'package:e_commerce_halfa/view/widgets/search/search_result.dart';
+import 'package:e_commerce_halfa/view/widgets/search/search_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
-  const SearchPage({
-    super.key,
-    required this.onChangeWhenSearh,
-    this.onFinalSearchButtonClicked,
-    required this.searchController,
-  });
-  final void Function(String)? onChangeWhenSearh;
-  final void Function()? onFinalSearchButtonClicked;
-  final TextEditingController? searchController;
+  SearchPage({super.key});
+
+  final MySearchCont mySearchCont = Get.put(MySearchCont());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100], // خلفية خفيفة
-      appBar: AppBar(
-        title: const Text('بحث المنتجات'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 1,
-      ),
+      appBar: SearchAppBar(searchTextTitle: "بحث المنتجات"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: ListView(
           children: [
             // 🔍 حقل البحث
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: TextField(
-                controller: searchController,
-                style: TextStyle(
-                  color: Colors.black, // 👈 لون النص اللي المستخدم بيكتبه
-                  fontSize: 16,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'اكتب اسم المنتج...',
-                  prefixIcon: IconButton(
-                    onPressed: onFinalSearchButtonClicked,
-                    icon: Icon(Icons.search),
-                  ),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 14,
-                  ),
-                ),
-                onChanged: onChangeWhenSearh,
-              ),
+            SearchTextFormField(
+              mySearchCont: mySearchCont.searchController!,
+              onFinalSearchButtonClicked: () {
+                mySearchCont.search(mySearchCont.searchController!.text);
+                //   //Why did you add this line?
+                //   // 👇 إخفاء الكيبورد قبل عرض نتائج البحث
+                //   // الهدف: عشان نمنع مشكلة RenderFlex overflow
+                //   // لما الكيبورد يكون ظاهر ويغطي جزء من الشاشة
+                FocusScope.of(context).unfocus();
+              },
+              onChange: (value) {
+                mySearchCont.checkSearch(value);
+              },
             ),
             const SizedBox(height: 24),
+            SearchResult(),
           ],
         ),
       ),

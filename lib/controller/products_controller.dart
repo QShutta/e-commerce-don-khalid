@@ -5,6 +5,7 @@ import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/products_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -109,5 +110,9 @@ class ProductsControllerImp extends ProductsController {
       AppRoutes.productDetails,
       arguments: {"productDetails": productDetails},
     );
+  }
+
+  goToSearchPage() {
+    Get.to(() => SearchPage());
   }
 }

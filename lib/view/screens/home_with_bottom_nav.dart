@@ -11,7 +11,6 @@ class HomeWithBottomNav extends StatelessWidget {
   HomeWithBottomNav({super.key});
   final HomeWithBottomNavBarControllerImp homeWithBottomNavBarController =
       Get.put(HomeWithBottomNavBarControllerImp());
-  final MySearchCont mySearchCont = Get.put(MySearchCont());
   //before of 67
   @override
   Widget build(BuildContext context) {
@@ -22,21 +21,12 @@ class HomeWithBottomNav extends StatelessWidget {
             title: "Don Shop",
             textColor: Colors.black,
             onFirstSearchButtonClicked: () {
-              Get.to(
-                () => SearchPage(
-                  onChangeWhenSearh: (val) {
-                    mySearchCont.checkSearch(val);
-                  },
-                  searchController: mySearchCont.searchController,
-                ),
-              );
+              Get.to(() => SearchPage());
             },
             onNotificationIconButtonClicked: () {},
-
             onFavoriteButtonPressed: () {
               homeWithBottomNavBarController.goToFavoritePage();
             },
-            searchController: mySearchCont.searchController!,
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.white,

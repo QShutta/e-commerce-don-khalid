@@ -4,6 +4,7 @@ import 'package:e_commerce_halfa/controller/myFavController.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/favorite_model.dart';
+import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/favoritePageWidgets/favorite_page_product_widget.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -19,14 +20,11 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: DonAppBar(
-      //   title: 'Favorites',
-      //   onNotificationIconButtonClicked: () {},
-      //   onChangeWhenSearh: (String) {},
-      //   showNotificationAndFavorite: false,
-      //   showSearch: false,
-      //   onFavoriteButtonPressed: () {},
-      // ),
+      appBar: CustomeAppBar(
+        searchTextTitle: 'Favorites',
+        textColor: Colors.black,
+      ),
+
       body: GetBuilder<Myfavcontroller>(
         builder: (controller) {
           return HnadlingDataView(
