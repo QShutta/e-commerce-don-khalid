@@ -13,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ✅ تهيئة Firebase
+
   await Firebase.initializeApp(); // Use default config from google-services.json
   await initlizeServices();
 

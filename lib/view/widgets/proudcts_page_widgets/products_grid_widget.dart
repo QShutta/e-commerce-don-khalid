@@ -24,7 +24,6 @@ class ProductsGridWidget extends StatelessWidget {
       itemCount: productList.length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         //This to controll on the heigh of the card.
         mainAxisExtent: 210,
@@ -46,7 +45,7 @@ class ProductsGridWidget extends StatelessWidget {
             productList[index].proudctNameEn,
             productList[index].productNameAr,
           ),
-          productPrice: productList[index].productPrice.toString(),
+          productPrice: productList[index].priceAfterDiscount.toString(),
           onProductClicked: () {
             //productList
             //عبارة عن

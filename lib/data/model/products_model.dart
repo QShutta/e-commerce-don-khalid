@@ -12,6 +12,7 @@ class ProductsModel {
   String? productDataCreate;
   int? productCatogery;
   String? fav;
+  int? priceAfterDiscount;
 
   ProductsModel({
     this.productsId,
@@ -27,6 +28,7 @@ class ProductsModel {
     this.productDiscount,
     this.productDataCreate,
     this.productCatogery,
+    this.priceAfterDiscount,
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
@@ -43,11 +45,13 @@ class ProductsModel {
     productDataCreate = json['product_data_create'];
     productCatogery = json['product_catogery'];
     fav = json['fav'].toString();
+    priceAfterDiscount = json['priceAfterDiscount'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['products_id'] = productsId;
+    data['priceAfterDiscount'] = priceAfterDiscount;
     data['fav'] = fav;
     data['product_name_ar'] = productNameAr;
     data['proudct_name_en'] = proudctNameEn;
