@@ -64,7 +64,7 @@ class CartItemList extends StatelessWidget {
                 ),
                 child: CartItem(
                   productTitle: product.productNameAr,
-                  productPrice: "\$${product.productPriceOriginal}",
+                  productPrice: "\$${product.productPriceAfterDiscount}",
                   productImage: MyCachedImage(
                     imageUrl:
                         "${AppLinkApi.productsImageLink}/${product.productImage}",

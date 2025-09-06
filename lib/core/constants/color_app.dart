@@ -27,4 +27,7 @@ class AppColor {
   static const Color black = Colors.black;
   static const Color begie = Color.fromARGB(255, 250, 234, 192);
   static const Color darkGrey = Color(0xFF333333);
+  static const Color skyBlue = Color.fromARGB(255, 208, 230, 247); //سماوي
+  //دة لون سماوي للنص.طبعا النص مدنو لون براو عشان مفترض يكون اغمق من اللون العادي عشان يكون واضح
+  static const Color skyBlueForText = Color.fromARGB(255, 116, 189, 245);
 }

@@ -1,6 +1,7 @@
 class CartModel {
   final int? totalPricePerProduct;
   final int? productCount;
+  final int? productPriceAfterDiscount;
   final int? cartId;
   final int? cartUserId;
   final int? cartProductId;
@@ -21,6 +22,7 @@ class CartModel {
     this.productCount,
     this.cartId,
     this.cartUserId,
+    this.productPriceAfterDiscount,
     this.cartProductId,
     this.productsId,
     this.productNameAr,
@@ -40,6 +42,8 @@ class CartModel {
     return CartModel(
       totalPricePerProduct: json['total_price_per_product'] as int?,
       productCount: json['productCount'] as int?,
+      productPriceAfterDiscount: json['product_price_after_discount'] as int?,
+
       cartId: json['cart_id'] as int?,
       cartUserId: json['cart_user_id'] as int?,
       cartProductId: json['cart_product_id'] as int?,
@@ -62,6 +66,7 @@ class CartModel {
     return {
       'total_price_per_product': totalPricePerProduct,
       'productCount': productCount,
+      'product_price_after_discount': productPriceAfterDiscount,
       'cart_id': cartId,
       'cart_user_id': cartUserId,
       'cart_product_id': cartProductId,

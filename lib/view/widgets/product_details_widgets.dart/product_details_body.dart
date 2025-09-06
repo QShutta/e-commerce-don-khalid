@@ -50,11 +50,44 @@ class ProductDetailsBody extends StatelessWidget {
                   ),
 
                   SizedBox(height: 10),
-                  ProductDetailsText(
-                    textStyle: Theme.of(context).textTheme.headlineMedium,
-                    text:
-                        "\$${productDetailsControllerImp.productModel.productPrice}",
-                  ),
+                  // ProductDetailsText(
+                  //   textStyle: Theme.of(context).textTheme.headlineMedium,
+                  //   text:
+                  //       "\$${productDetailsControllerImp.productModel.productPrice}",
+                  // ),
+                  productDetailsControllerImp.productModel.productDiscount == 0
+                      ? Text(
+                        "\$${productDetailsControllerImp.productModel.productPrice!}",
+                        style: TextStyle(
+                          color: AppColor.skyBlueForText,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      )
+                      : Row(
+                        children: [
+                          Text(
+                            "\$${productDetailsControllerImp.productModel.priceAfterDiscount!}",
+                            style: TextStyle(
+                              color: AppColor.skyBlueForText,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          const SizedBox(width: 270),
+                          Text(
+                            "\$${productDetailsControllerImp.productModel.productPrice!}",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              decoration:
+                                  TextDecoration
+                                      .lineThrough, // 👈 السعر الأصلي مشطوب
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
                   SizedBox(height: 20),
                   //Why did we add this condition?
                   // Because some products don't have size or color options

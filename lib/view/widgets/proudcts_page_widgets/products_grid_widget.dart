@@ -14,10 +14,10 @@ class ProductsGridWidget extends StatelessWidget {
   final List<ProductsModel> productList;
   ProductsGridWidget({super.key, required this.productList});
 
-  ProductsControllerImp productsControllerImp = Get.put(
+  final ProductsControllerImp productsControllerImp = Get.put(
     ProductsControllerImp(),
   );
-  var favController = Get.put<FavController>(FavController());
+  final favController = Get.put<FavController>(FavController());
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -45,7 +45,7 @@ class ProductsGridWidget extends StatelessWidget {
             productList[index].proudctNameEn,
             productList[index].productNameAr,
           ),
-          productPrice: productList[index].priceAfterDiscount.toString(),
+          productPrice: productList[index].productPrice.toString(),
           onProductClicked: () {
             //productList
             //عبارة عن
@@ -56,7 +56,11 @@ class ProductsGridWidget extends StatelessWidget {
             productsControllerImp.goToProductDetails(productList[index]);
           },
           productId: productList[index].productsId!,
-          fav: productList[index].fav.toString(), // Assuming fav is a string
+          fav: productList[index].fav.toString(),
+          productPriceAfterDiscount:
+              productList[index].priceAfterDiscount!.toString(),
+          discount:
+              productList[index].productDiscount, // Assuming fav is a string
         );
       },
     );
@@ -67,17 +71,21 @@ class ProductItem extends StatelessWidget {
   final String? imageUrl;
   final String? productName;
   final String? productPrice;
+  final int? discount;
+  final String? productPriceAfterDiscount;
   final String fav;
   final void Function()? onProductClicked;
   final int productId;
   const ProductItem({
     super.key,
     required this.onProductClicked,
+    required this.productPriceAfterDiscount,
     required this.fav,
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
     required this.productId,
+    required this.discount,
   });
 
   @override
@@ -157,13 +165,39 @@ class ProductItem extends StatelessWidget {
                         );
                       },
                     ),
-                    Text(
-                      "\$${productPrice!}",
-                      style: TextStyle(
-                        color: AppColor.primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    discount == 0
+                        ? Text(
+                          "\$${productPrice!}",
+                          style: TextStyle(
+                            color: AppColor.primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        )
+                        : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "\$${productPrice!}",
+                              style: TextStyle(
+                                color: Colors.red,
+                                decoration:
+                                    TextDecoration.lineThrough, // 👈 هنا الخط
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              "\$${productPriceAfterDiscount!}",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                   ],
                 ),
               ],
