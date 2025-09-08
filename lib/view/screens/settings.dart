@@ -43,6 +43,13 @@ class SettingsPage extends StatelessWidget {
             leadingIcon: Icons.info_outline,
             onListTileClicked: () {},
           ),
+          CustomeListTile(
+            titleText: "Address",
+            leadingIcon: Icons.location_on_outlined,
+            onListTileClicked: () {
+              Get.toNamed(AppRoutes.viewAddress);
+            },
+          ),
           SizedBox(height: 10),
           CustomeListTile(
             titleText: 'Contact Us',

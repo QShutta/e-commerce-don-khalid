@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -26,8 +27,8 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.arrow_back),
         onPressed: () => Navigator.pop(context),
       ),
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
+      backgroundColor: AppColor.skyBlue,
+      foregroundColor: Colors.white,
       elevation: 1,
     );
   }

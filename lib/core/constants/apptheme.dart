@@ -11,9 +11,11 @@
 //(UX)
 //عند التبديل بين اللغتين.
 
+import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 ThemeData englishTheme = ThemeData(
+  appBarTheme: AppBarTheme(color: AppColor.primaryColor),
   fontFamily: "playFair",
   textTheme: const TextTheme(
     headlineLarge: TextStyle(
@@ -38,6 +40,7 @@ ThemeData englishTheme = ThemeData(
 );
 
 ThemeData arabicTheme = ThemeData(
+  appBarTheme: AppBarTheme(color: AppColor.primaryColor),
   fontFamily: "cairo",
   textTheme: const TextTheme(
     headlineLarge: TextStyle(

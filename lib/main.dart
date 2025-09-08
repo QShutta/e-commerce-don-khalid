@@ -4,11 +4,12 @@ import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/routest.dart';
+import 'package:e_commerce_halfa/view/screens/address/view_address.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//befoer of 115
+//befoer of 117
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -37,7 +38,7 @@ class MainApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
-      // home: CartPage(),
+      // home: ViewAddress(),
       initialRoute: AppRoutes.languageSelection,
       getPages: appPages,
     );
