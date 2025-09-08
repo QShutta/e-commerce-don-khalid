@@ -31,7 +31,7 @@ class Onboarding extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
-        body: Column(
+        body: ListView(
           children: [
             OnBoardingItem(),
             SizedBox(height: 20),
