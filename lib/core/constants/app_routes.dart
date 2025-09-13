@@ -28,4 +28,5 @@ class AppRoutes {
 
   static const String viewAddress = '/view';
   static const String addAddress = '/add';
+  static const String addAddressDetails = '/addressDetails';
 }

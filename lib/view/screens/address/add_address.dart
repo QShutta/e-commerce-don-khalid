@@ -1,5 +1,7 @@
-import 'package:e_commerce_halfa/controller/add_address_controller.dart';
+import 'package:e_commerce_halfa/controller/address_controller/add_address_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +36,8 @@ class AddAddress extends StatelessWidget {
                 //empty sized box.
                 addAddressCont.userLocation == null
                     ? SizedBox()
-                    : Column(
+                    : Stack(
+                      alignment: Alignment.center,
                       children: [
                         // Why did we add Expanded widget here?
                         // Because FlutterMap needs a **finite height** to display the map correctly.
@@ -42,7 +45,7 @@ class AddAddress extends StatelessWidget {
                         // which causes errors like "Infinity or NaN toInt".
                         // Expanded tells Flutter: "Take all the remaining vertical space available in the Column",
                         // so the map knows exactly how much space it has and can render tiles properly.
-                        Expanded(
+                        Positioned.fill(
                           child: FlutterMap(
                             mapController: addAddressCont.mapController,
                             options: MapOptions(
@@ -98,7 +101,7 @@ class AddAddress extends StatelessWidget {
                                   // Also add images...
                                 ],
                               ),
-                              // ✅ نعرض العلامات هنا
+                              // ✅ نعرض العلامة المستخدم ضغط عليها هنا
                               GetBuilder<AddAddressController>(
                                 builder:
                                     (controller) => MarkerLayer(
@@ -120,6 +123,36 @@ class AddAddress extends StatelessWidget {
                               //   ],
                               // ),
                             ],
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 50,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              addAddressCont.goToAddressDetailsPage();
+                            },
+                            icon: Icon(
+                              Icons.edit_location_alt,
+                              color: Colors.white,
+                            ),
+                            label: Text(
+                              "Add Details",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  AppColor.primaryColor, // لون الزر
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 12,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  30,
+                                ), // استدارة الحواف
+                              ),
+                              elevation: 5, // ظل خفيف
+                            ),
                           ),
                         ),
                       ],

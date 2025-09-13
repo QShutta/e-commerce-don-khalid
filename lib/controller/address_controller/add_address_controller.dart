@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -12,9 +13,20 @@ class AddAddressController extends GetxController {
   LatLng? userLocation;
   StautusRequest stautusRequest = StautusRequest.none;
   List<Marker> markerList = [];
+  //شوف يا مكتب السان دة عمل شنو ؟
+  //عرف متغيرين lat,long
+  //بس شنو ما اداهم قيمة ؟طيب القيمة حتجي بتين ؟
+  //when the user click on any place in the map the are going to be initlized
+  //with there values.
+  //Where did we are going to use these var?
+  //We are going to use them in the addAddressDetails page.we will pass them as arguments to the
+  //next page
+  double? lat;
+  double? long;
 
   @override
   void onInit() async {
+    //Once the page open will display the user current location.
     await getUserLocation();
     super.onInit();
   }
@@ -29,7 +41,17 @@ class AddAddressController extends GetxController {
         child: Icon(Icons.location_on, color: Colors.red, size: 40),
       ),
     );
+    //When the user click on any place in the map these var will be initlized.
+    lat = point.latitude;
+    long = point.longitude;
     update();
+  }
+
+  goToAddressDetailsPage() {
+    Get.toNamed(
+      AppRoutes.addAddressDetails,
+      arguments: {"lat": lat.toString(), "long": long.toString()},
+    );
   }
 
   getUserLocation() async {
