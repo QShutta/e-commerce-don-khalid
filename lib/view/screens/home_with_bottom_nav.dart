@@ -20,7 +20,8 @@ class HomeWithBottomNav extends StatelessWidget {
           appBar: DonAppBar(
             title: "Don Shop",
             //This is the color of the title in the appBar.
-            textColor: Colors.black,
+            textColor: Colors.white,
+
             //There are tow search icon:
             //1-The first one her job is just to take you to the search page.
             //2-The secound search icon will implement the real search job.

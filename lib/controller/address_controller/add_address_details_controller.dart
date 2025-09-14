@@ -1,5 +1,5 @@
-import 'package:e_commerce_halfa/controller/search_controller.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/address_details_data.dart';
@@ -62,9 +62,9 @@ class AddAddressDetailsController extends GetxController {
 
       stautusRequest = handlingStatusRequest(response);
       update();
-
       if (stautusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
+          Get.offAllNamed(AppRoutes.home);
         } else {
           Get.defaultDialog(
             title: "Error",

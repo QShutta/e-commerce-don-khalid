@@ -30,7 +30,7 @@ class AddAddressDetails extends StatelessWidget {
                   children: [
                     CustomTextFormField(
                       suffixIcon: Icon(Icons.abc),
-                      label: 'Enter the name',
+                      label: 'Enter the Name',
                       focusNode: addAddressDetailsController.nameFocus,
                       onFieldSubmitted: (value) {
                         FocusScope.of(

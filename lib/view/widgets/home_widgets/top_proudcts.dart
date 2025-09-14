@@ -22,9 +22,9 @@ class TopProducts extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.80,
+        childAspectRatio: 0.75,
         crossAxisSpacing: 5,
-        mainAxisSpacing: 5,
+        mainAxisSpacing: 7,
       ),
       itemBuilder: (context, index) {
         final product = productsList[index];
