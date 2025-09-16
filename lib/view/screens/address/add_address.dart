@@ -1,17 +1,11 @@
 import 'package:e_commerce_halfa/controller/address_controller/add_address_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
-import 'package:e_commerce_halfa/core/constants/color_app.dart';
+import 'package:e_commerce_halfa/view/screens/address/map_button.dart';
+import 'package:e_commerce_halfa/view/widgets/address/add_address/address_map.dart';
 import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
-import 'package:e_commerce_halfa/view/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/instance_manager.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AddAddress extends StatelessWidget {
   AddAddress({super.key});
@@ -39,120 +33,14 @@ class AddAddress extends StatelessWidget {
                     : Stack(
                       alignment: Alignment.center,
                       children: [
-                        // Why did we add Expanded widget here?
-                        // Because FlutterMap needs a **finite height** to display the map correctly.
-                        // Without Expanded (or a fixed height), FlutterMap gets **infinite height** inside the Column,
-                        // which causes errors like "Infinity or NaN toInt".
-                        // Expanded tells Flutter: "Take all the remaining vertical space available in the Column",
-                        // so the map knows exactly how much space it has and can render tiles properly.
-                        Positioned.fill(
-                          child: FlutterMap(
-                            mapController: addAddressCont.mapController,
-                            options: MapOptions(
-                              onTap: (tapPosition, latLang) {
-                                addAddressCont.addMarker(latLang);
-                              },
-                              initialCenter:
-                                  addAddressCont
-                                      .userLocation!, // Center the map over London
-                              initialZoom: 14,
-                            ),
-                            children: [
-                              //1️⃣ Tile = البلاطة
-                              // الخريطة الكبيرة ما بتنزل كاملة في صورة واحدة، لأن دا حيكون تقيل على التطبيق والموبايل.
-                              // عشان كدا، الخريطة بتتقسم لمربعات صغيرة اسمها Tiles (يعني بلاطات).
-                              // كل Tile
-                              //هو جزء صغير من الخريطة.
-                              // التطبيق بيجيب كل البلاطات دي من السيرفر ويجمعها عشان تظهر ليك الخريطة كاملة على الشاشة
-                              TileLayer(
-                                // Bring your own tiles
-                                //هنا انت بتحدد السيرفر اللي حيجيب منه البلاطات.
-
-                                // {z} = مستوى الزوم (Zoom level)
-                                // {x} = رقم البلاطة أفقياً
-                                // {y} = رقم البلاطة عمودياً
-                                // يعني التطبيق يعرف من وين يجيب كل بلاطة عشان يعمل الخريطة الكبيرة.
-                                urlTemplate:
-                                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // For demonstration only
-                                userAgentPackageName:
-                                    'com.e_commerce_halfa', // Add your app identifier
-                                // And many more recommended properties!
-                              ),
-                              //القوانين بتاعة الخرائط
-                              //(زي OpenStreetMap)
-                              // بتقول:
-                              // لو إنت استخدمت خريطتهم في تطبيقك لازم تكتب مصدر الخريطة
-                              //(Attribution) في مكان واضح.
-                              //So this widget "RichAttributionWidget" will do that job it will
-                              //Dispaly the the text "OpenStreetMap" contributors in the middle of the screen as a link when click
-                              //on it will take you to there website.
-                              RichAttributionWidget(
-                                // Include a stylish prebuilt attribution widget that meets all requirments
-                                attributions: [
-                                  TextSourceAttribution(
-                                    'OpenStreetMap contributors',
-                                    onTap:
-                                        () => launchUrl(
-                                          Uri.parse(
-                                            'https://openstreetmap.org/copyright',
-                                          ),
-                                        ), // (external)
-                                  ),
-                                  // Also add images...
-                                ],
-                              ),
-                              // ✅ نعرض العلامة المستخدم ضغط عليها هنا
-                              GetBuilder<AddAddressController>(
-                                builder:
-                                    (controller) => MarkerLayer(
-                                      markers: controller.markerList,
-                                    ),
-                              ),
-                              //دة عشان يحط علامة حمرا في الموقع الحالي للمستخدم.
-                              // MarkerLayer(
-                              //   markers: [
-                              //     Marker(
-                              //       width: 80,
-                              //       height: 80,
-                              //       point: addAddressCont.userLocation!,
-                              //       child: Icon(
-                              //         Icons.location_on_outlined,
-                              //         color: Colors.red,
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
-                            ],
-                          ),
-                        ),
+                        Positioned.fill(child: AddressMap()),
                         Positioned(
                           bottom: 50,
-                          child: ElevatedButton.icon(
-                            onPressed: () {
+                          child: MapButton(
+                            onButtonClick: () {
                               addAddressCont.goToAddressDetailsPage();
                             },
-                            icon: Icon(
-                              Icons.edit_location_alt,
-                              color: Colors.white,
-                            ),
-                            label: Text(
-                              "Add Details",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  AppColor.primaryColor, // لون الزر
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 12,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  30,
-                                ), // استدارة الحواف
-                              ),
-                              elevation: 5, // ظل خفيف
-                            ),
+                            buttonText: "Add Details",
                           ),
                         ),
                       ],

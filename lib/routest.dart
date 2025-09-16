@@ -2,6 +2,8 @@ import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/midle_ware/init_middle_ware.dart';
 import 'package:e_commerce_halfa/view/screens/address/add_address.dart';
 import 'package:e_commerce_halfa/view/screens/address/add_address_details.dart';
+import 'package:e_commerce_halfa/view/screens/address/update_address_details.dart';
+import 'package:e_commerce_halfa/view/screens/address/update_address_details_map.dart';
 import 'package:e_commerce_halfa/view/screens/address/view_address.dart';
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_passord_reset_password_success_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_password_email_page.dart';
@@ -39,6 +41,7 @@ List<GetPage> appPages = [
   GetPage(
     name: AppRoutes.signUpOtp,
     page: () => SignUpOtp(),
+
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 500),
   ),
@@ -141,6 +144,18 @@ List<GetPage> appPages = [
   GetPage(
     name: AppRoutes.addAddressDetails,
     page: () => AddAddressDetails(),
+    transition: Transition.rightToLeft,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
+  GetPage(
+    name: AppRoutes.updateAddressDetails,
+    page: () => UpdateAddressDetails(),
+    transition: Transition.rightToLeft,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
+  GetPage(
+    name: AppRoutes.updateAddressDetailsMap,
+    page: () => UpdateAddressDetailsMap(),
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),

@@ -32,7 +32,9 @@ class Myfavcontroller extends GetxController {
     //       element.userId.toString() ==
     //           myServices.sharedPreferences.getString("user_id"),
     // );
+    //ب د حذفهناهو من ال db
     favData.removeFromFavorite(favoriteId);
+    //بي دة حذفناهو من ال ui
     favProductList.removeWhere(
       (element) => element.favoriteId.toString() == favoriteId.toString(),
     );

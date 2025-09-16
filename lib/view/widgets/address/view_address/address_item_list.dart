@@ -76,12 +76,12 @@ class AddressItem extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                icon: Icon(Icons.edit, color: AppColor.primaryColor),
+                icon: Icon(Icons.edit_outlined, color: AppColor.primaryColor),
                 onPressed: onEdit,
                 tooltip: 'Edit Address',
               ),
               IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
+                icon: Icon(Icons.delete_outline, color: Colors.red),
                 onPressed: onDelete,
                 tooltip: 'Delete Address',
               ),

@@ -6,9 +6,11 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.searchTextTitle,
     required this.textColor,
+    this.showBackButton,
   });
   final String searchTextTitle;
   final Color? textColor;
+  final bool? showBackButton;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   @override
@@ -23,10 +25,14 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontSize: 25.0,
         ),
       ),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () => Navigator.pop(context),
-      ),
+
+      leading:
+          showBackButton == true
+              ? IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.pop(context),
+              )
+              : null,
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
       elevation: 1,

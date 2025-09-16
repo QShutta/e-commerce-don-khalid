@@ -40,4 +40,15 @@ class ViewAddressController extends GetxController {
     }
     update();
   }
+
+  deleteAddress(String addressId) {
+    //اول شي بنحذو من قاعدة لبيانات .ثم نحذفو من واجهة المستخدم.
+    addressDetailsData.deleteAddressDetailsData(addressId);
+    //بي دة حذفناهو من ال ui
+    addressList.removeWhere(
+      (element) => element.addressId.toString() == addressId,
+    );
+
+    update();
+  }
 }
