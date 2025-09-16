@@ -19,7 +19,7 @@ class CartController extends GetxController {
   // العدد الكلي لكل المنتجات المضافة في السلة.
   // يعني لو ضفت (2 قميص + 3 بنطلون) → الناتج 5.
   int totalProductCount = 0;
-
+  TextEditingController? couponController;
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
@@ -27,6 +27,7 @@ class CartController extends GetxController {
   @override
   void onInit() {
     searchController = TextEditingController();
+    couponController = TextEditingController();
     viewCart();
     super.onInit();
   }

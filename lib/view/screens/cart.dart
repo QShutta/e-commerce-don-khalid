@@ -19,15 +19,21 @@ class CartPage extends StatelessWidget {
         searchTextTitle: "213".tr,
         textColor: AppColor.primaryColor,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 10),
-          Expanded(child: CartItemList()),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Column(
+          children: [
+            SizedBox(height: 10),
+            Expanded(child: CartItemList()),
 
-          CartSummery(),
-          SizedBox(height: 20),
-          CheckoutButton(buttonText: '212'.tr, onButtonPressed: () {}),
-        ],
+            CartSummery(),
+            SizedBox(height: 20),
+            CheckoutButton(buttonText: '212'.tr, onButtonPressed: () {}),
+            SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:e_commerce_halfa/controller/address_controller/add_address_contr
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AddressMap extends StatelessWidget {
@@ -19,7 +18,9 @@ class AddressMap extends StatelessWidget {
           addAddressCont.addMarker(latLang);
         },
         initialCenter:
-            addAddressCont.userLocation!, // Center the map over London
+            addAddressCont
+                .userLocation!, // Once the page open for the firs time the map will display
+        //The user current location.
         initialZoom: 14,
       ),
       children: [
@@ -69,6 +70,7 @@ class AddressMap extends StatelessWidget {
           builder: (controller) => MarkerLayer(markers: controller.markerList),
         ),
         //دة عشان يحط علامة حمرا في الموقع الحالي للمستخدم.
+        //وانا في الاضافة ما عاوزو يخت علامة حمرا في موقع المستخدم احلالي
         // MarkerLayer(
         //   markers: [
         //     Marker(

@@ -12,6 +12,7 @@ class AddAddressController extends GetxController {
   //لتخزين موقع المستخدم
   LatLng? userLocation;
   StautusRequest stautusRequest = StautusRequest.none;
+  //This list contains the locations that the user select.
   List<Marker> markerList = [];
   //شوف يا مكتب السان دة عمل شنو ؟
   //عرف متغيرين lat,long
