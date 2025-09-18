@@ -2,7 +2,6 @@ import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
-import 'package:e_commerce_halfa/data/data_source/remote/coupon_data.dart';
 import 'package:e_commerce_halfa/data/model/cart_model.dart';
 import 'package:e_commerce_halfa/data/model/coupon_model.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +9,8 @@ import 'package:get/get.dart';
 
 //mistake in commit106
 class CartController extends GetxController {
-  CouponData couponData = CouponData(Get.find());
   //دة بحتوي ليك علي كل المنتجات القاعدة في السلة بي تفاصيلها .
   List<CartModel>? cartDetails = [];
-  CouponModel couponModel = CouponModel();
   // subTotalPrice:
   // المجموع الفرعي لأسعار كل المنتجات في السلة (من غير سعر الشحن).
   // يعني لو عندك 3 منتجات بسعر 100, 200, 300 → المجموع = 600.
@@ -23,6 +20,7 @@ class CartController extends GetxController {
   // يعني لو ضفت (2 قميص + 3 بنطلون) → الناتج 5.
   int totalProductCount = 0;
 
+  CouponModel couponModel = CouponModel();
   TextEditingController? couponController;
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
@@ -65,7 +63,27 @@ class CartController extends GetxController {
     }
   }
 
+  checkCoupon() async {
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await cartData.getCouponData(couponController!.text);
+    statusRequest = handlingStatusRequest(response);
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        couponModel = CouponModel.fromJson(response["data"]);
+        discountCoupon = couponModel.couponDiscount!;
+        update();
+      } else {
+        statusRequest = StautusRequest.failure;
+        update();
+      }
+    }
+  }
+
   //This method is used to get the total price بعد تطبيق الكوبون علية .
+  //🔹 داخل الدالة:
+  // (subTotalPrice * discountCoupon / 100)
+  // ده بيحسب قيمة الخصم نفسها (مثلاً 1000 × 10 ÷ 100 = 100).
   getTotalPrice() {
     return (subTotalPrice - (subTotalPrice * discountCoupon / 100));
   }
@@ -81,41 +99,6 @@ class CartController extends GetxController {
 
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-      } else {
-        statusRequest = StautusRequest.failure;
-      }
-    }
-    update();
-  }
-
-  checkCupon() async {
-    statusRequest = StautusRequest.loading;
-    update();
-    var response = await couponData.getData(couponController!.text);
-    statusRequest = handlingStatusRequest(response);
-
-    if (statusRequest == StautusRequest.success) {
-      if (response["status"] == "success") {
-        // هنا بنأخذ البيانات القادمة من السيرفر (الجزء الخاص بالكوبون)
-        // ونخزنها في متغير اسمه
-        //couponMap (بيكون Map عادي)
-        var couponMap = response['data'];
-
-        // هنا بنحوّل الـ
-        //Map
-        // اللي فوق إلى
-        //Object من نوع CouponModel
-        // باستخدام الـ
-        //constructor fromJson
-        // علشان نقدر نتعامل معه كموديل بدلاً من
-        // Map
-        couponModel = CouponModel.fromJson(couponMap);
-        discountCoupon = couponModel.couponDiscount!;
-        print("--------------------------------------------");
-        print(
-          "------------------${couponModel.couponName}--------------------------",
-        );
-        print("--------------------------------------------");
       } else {
         statusRequest = StautusRequest.failure;
       }

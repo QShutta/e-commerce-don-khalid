@@ -58,7 +58,7 @@ class CuponButtonAndForm extends StatelessWidget {
         // the button
         ElevatedButton(
           onPressed: () {
-            cartCont.checkCupon();
+            cartCont.checkCoupon();
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColor.primaryColor,

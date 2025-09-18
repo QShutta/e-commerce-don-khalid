@@ -35,4 +35,11 @@ class CartData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future getCouponData(String couponName) async {
+    var response = await crud.postData(AppLinkApi.getValidCoupon, {
+      "coupon_name": couponName,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }
