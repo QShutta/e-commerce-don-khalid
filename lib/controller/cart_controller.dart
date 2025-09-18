@@ -34,7 +34,7 @@ class CartController extends GetxController {
   //Why did the course instrucotr make this as nullable and the prevois one is not null?
   //Because of the discountCoupon will be display in the UI so it should not be null once the page open
   //and the discountName will be use in the back yard.
-  String? discountName;
+  String? couponName;
 
   @override
   void onInit() {
@@ -71,11 +71,17 @@ class CartController extends GetxController {
       if (response["status"] == "success") {
         couponModel = CouponModel.fromJson(response["data"]);
         discountCoupon = couponModel.couponDiscount!;
-        update();
+        couponName = couponModel.couponName;
       } else {
-        statusRequest = StautusRequest.failure;
-        update();
+        //في الصفحة دي نحن في كل الحالات لازم نخلي
+        //StatusRequest.sucess
+        //لية ؟عشان لو خليناها
+        //failure in the ui will apear no data and we don't want this to happen.
+        statusRequest = StautusRequest.success;
+        couponName = null;
+        discountCoupon = 0;
       }
+      update();
     }
   }
 

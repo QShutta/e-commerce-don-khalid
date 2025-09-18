@@ -15,16 +15,48 @@ class CartSummery extends StatelessWidget {
       builder: (controller) {
         return Column(
           children: [
-            Container(
-              height: 70,
-              padding: const EdgeInsets.only(
-                left: 12,
-                right: 25,
-                top: 12,
-                bottom: 12,
-              ),
-              child: CuponButtonAndForm(),
-            ),
+            controller.couponName != null
+                ? Container(
+                  padding: const EdgeInsets.all(12),
+
+                  margin: EdgeInsets.symmetric(horizontal: 25),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.blue),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'تم تطبيق الكوبون:',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                      Text(
+                        controller.couponName!,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                : Container(
+                  height: 70,
+                  padding: const EdgeInsets.only(
+                    left: 12,
+                    right: 25,
+                    top: 12,
+                    bottom: 12,
+                  ),
+                  child: CuponButtonAndForm(),
+                ),
             SizedBox(height: 20),
             TotalText(
               text: "210".tr,
