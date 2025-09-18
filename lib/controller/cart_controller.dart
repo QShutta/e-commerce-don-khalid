@@ -7,7 +7,7 @@ import 'package:e_commerce_halfa/data/model/coupon_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//mistake in commit106
+//mistake in commit128
 class CartController extends GetxController {
   //دة بحتوي ليك علي كل المنتجات القاعدة في السلة بي تفاصيلها .
   List<CartModel>? cartDetails = [];
@@ -19,7 +19,6 @@ class CartController extends GetxController {
   // العدد الكلي لكل المنتجات المضافة في السلة.
   // يعني لو ضفت (2 قميص + 3 بنطلون) → الناتج 5.
   int totalProductCount = 0;
-
   CouponModel couponModel = CouponModel();
   TextEditingController? couponController;
   StautusRequest statusRequest = StautusRequest.none;
@@ -80,7 +79,8 @@ class CartController extends GetxController {
     }
   }
 
-  //This method is used to get the total price بعد تطبيق الكوبون علية .
+  //This method is used to get the total price
+  //بعد تطبيق الكوبون علية .
   //🔹 داخل الدالة:
   // (subTotalPrice * discountCoupon / 100)
   // ده بيحسب قيمة الخصم نفسها (مثلاً 1000 × 10 ÷ 100 = 100).
