@@ -2,15 +2,18 @@ import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/coupon_data.dart';
 import 'package:e_commerce_halfa/data/model/cart_model.dart';
+import 'package:e_commerce_halfa/data/model/coupon_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //mistake in commit106
 class CartController extends GetxController {
-  // ];
+  CouponData couponData = CouponData(Get.find());
   //دة بحتوي ليك علي كل المنتجات القاعدة في السلة بي تفاصيلها .
   List<CartModel>? cartDetails = [];
+  CouponModel couponModel = CouponModel();
   // subTotalPrice:
   // المجموع الفرعي لأسعار كل المنتجات في السلة (من غير سعر الشحن).
   // يعني لو عندك 3 منتجات بسعر 100, 200, 300 → المجموع = 600.
@@ -19,11 +22,23 @@ class CartController extends GetxController {
   // العدد الكلي لكل المنتجات المضافة في السلة.
   // يعني لو ضفت (2 قميص + 3 بنطلون) → الناتج 5.
   int totalProductCount = 0;
+
   TextEditingController? couponController;
   StautusRequest statusRequest = StautusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
   TextEditingController? searchController;
+  //طبعا قبل ما المستخدم يضغط علي الزر بتاع
+  //applay the coupon discount value will become null
+  //عشان ما يحصل خطا لازم نخزن القيمة في متغير قيمتو الابتدائية فاضي مش
+  //null
+  //because of null will cause error.
+  int discountCoupon = 0;
+  //Why did the course instrucotr make this as nullable and the prevois one is not null?
+  //Because of the discountCoupon will be display in the UI so it should not be null once the page open
+  //and the discountName will be use in the back yard.
+  String? discountName;
+
   @override
   void onInit() {
     searchController = TextEditingController();
@@ -50,6 +65,11 @@ class CartController extends GetxController {
     }
   }
 
+  //This method is used to get the total price بعد تطبيق الكوبون علية .
+  getTotalPrice() {
+    return (subTotalPrice - (subTotalPrice * discountCoupon / 100));
+  }
+
   deleteFromCart(String productId) async {
     statusRequest = StautusRequest.loading;
     update();
@@ -61,6 +81,41 @@ class CartController extends GetxController {
 
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+    update();
+  }
+
+  checkCupon() async {
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await couponData.getData(couponController!.text);
+    statusRequest = handlingStatusRequest(response);
+
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        // هنا بنأخذ البيانات القادمة من السيرفر (الجزء الخاص بالكوبون)
+        // ونخزنها في متغير اسمه
+        //couponMap (بيكون Map عادي)
+        var couponMap = response['data'];
+
+        // هنا بنحوّل الـ
+        //Map
+        // اللي فوق إلى
+        //Object من نوع CouponModel
+        // باستخدام الـ
+        //constructor fromJson
+        // علشان نقدر نتعامل معه كموديل بدلاً من
+        // Map
+        couponModel = CouponModel.fromJson(couponMap);
+        discountCoupon = couponModel.couponDiscount!;
+        print("--------------------------------------------");
+        print(
+          "------------------${couponModel.couponName}--------------------------",
+        );
+        print("--------------------------------------------");
       } else {
         statusRequest = StautusRequest.failure;
       }

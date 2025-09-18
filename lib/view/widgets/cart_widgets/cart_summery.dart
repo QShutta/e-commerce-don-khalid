@@ -32,7 +32,18 @@ class CartSummery extends StatelessWidget {
               color: AppColor.greyText,
             ),
             SizedBox(height: 10),
-            TotalText(text: "الخصم".tr, price: "10%", color: AppColor.greyText),
+            TotalText(
+              text: "الخصم".tr,
+              price: "%${cartCont.discountCoupon}",
+              color: AppColor.greyText,
+            ),
+            SizedBox(height: 10),
+            SizedBox(height: 10),
+            TotalText(
+              text: "سعر التوصيل".tr,
+              price: "\$500",
+              color: AppColor.greyText,
+            ),
             SizedBox(height: 10),
             Divider(
               thickness: 1,
@@ -43,7 +54,7 @@ class CartSummery extends StatelessWidget {
             SizedBox(height: 10),
             TotalText(
               text: "211".tr,
-              price: "\$610.00",
+              price: "\$${cartCont.getTotalPrice()}",
               color: AppColor.primaryColor,
             ),
           ],

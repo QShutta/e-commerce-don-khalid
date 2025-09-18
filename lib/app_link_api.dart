@@ -46,4 +46,6 @@ class AppLinkApi {
   static const String deleteAddress = "$serverUrl/address/delete.php";
   static const String updateAddress = "$serverUrl/address/update.php";
   static const String viewAddress = "$serverUrl/address/view.php";
+  //----------------------------coupon---------------------------------
+  static const String getValidCoupon = "$serverUrl/cupon/checkcupon.php";
 }
