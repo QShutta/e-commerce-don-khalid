@@ -1,6 +1,8 @@
 import 'package:e_commerce_halfa/controller/checkout_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
+import 'package:e_commerce_halfa/view/widgets/checkout/address_item_card.dart';
+import 'package:e_commerce_halfa/view/widgets/checkout/custome_text_checkout.dart';
 import 'package:e_commerce_halfa/view/widgets/checkout/delivery_option.dart';
 import 'package:e_commerce_halfa/view/widgets/checkout/payment_option.dart';
 import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
@@ -28,16 +30,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: ListView(
         children: [
           const SizedBox(height: 10),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              "Choose Payment Method",
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+          CustomeTextCheckout(text: 'Choose Payment Method'),
           GetBuilder<CheckoutController>(
             builder: (myInCon) {
               return Row(
@@ -45,6 +38,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   PaymentOption(
                     title: "Cash",
                     icon: Icons.money_rounded,
+                    //كيف يعني ؟
+                    //the defult value of the selecdpayment is 0 if the user click on cards it will become
+                    //1 and if he click on 0 again it will become 0.
+                    //so if 0=0 will return true and that means the item is selected other wise it's not seleced
                     isSelected: myInCon.selectedPayment == 0,
                     onTap: myInCon.onCashSelected,
                   ),
@@ -58,18 +55,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
               );
             },
           ),
-
           const SizedBox(height: 30),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              "Choose Delivery Type",
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+          CustomeTextCheckout(text: "Choose Delivery Type"),
           GetBuilder<CheckoutController>(
             builder: (myInCon) {
               return Row(
@@ -88,6 +75,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               );
+            },
+          ),
+          const SizedBox(height: 30),
+          CustomeTextCheckout(text: "Shipping Address"),
+          GetBuilder<CheckoutController>(
+            builder: (controller) {
+              return controller.selectedDelivery == 0
+                  ? ListView.builder(
+                    itemCount: controller.addressesList.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final address = controller.addressesList[index];
+                      //دة عشان نحدد العنصر الاحنا حاليا واقفين علية .
+                      //طبعا هنا نحن استخدمنا اسلوب مختلف لية ؟عشان هنا عندنا  اكتر من عنصرين
+                      final isSelected = controller.selectedAddress == index;
+                      return AddressItemCard(
+                        onTap: () {
+                          controller.setSelectedAddress(index);
+                        },
+                        isSelected: isSelected,
+                        title: address['title'],
+                        subTitle: address['subtitle'],
+                      );
+                    },
+                  )
+                  : Container();
             },
           ),
         ],
