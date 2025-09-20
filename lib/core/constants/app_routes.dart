@@ -31,4 +31,6 @@ class AppRoutes {
   static const String addAddressDetails = '/addressDetails';
   static const String updateAddressDetails = '/updateAddressDetails';
   static const String updateAddressDetailsMap = '/updateAddressDetailsMap';
+  //--------------------------
+  static const String checkout = '/checkout';
 }

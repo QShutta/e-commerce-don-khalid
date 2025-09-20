@@ -46,6 +46,7 @@ class ImageAssets {
       'assets/images/home/banner_slider_images/don_perfume_gpt.png';
   static const String bannerDonJalabye =
       'assets/images/home/banner_slider_images/don_jalabye_gpt.png';
-  // static const String bannerDonJalabye2 =
-  //     'assets/images/home/banner_slider_images/don_jalabye_gpt2.png';
+  static const String reciveOnShop =
+      'assets/images/delivery/recive_on_shop.png';
+  static const String deliveryMan = 'assets/images/delivery/delivery_man.png';
 }

@@ -1,4 +1,3 @@
-import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,9 +16,21 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
+      //لو عايز شكل الـ
+      //AppBar
+      // يندمج تمامًا مع الصفحة بدون أي حدود سفلية، أضف
+      //surfaceTintColor: Colors.transparent
+      surfaceTintColor: Colors.transparent,
       title: Text(
         searchTextTitle,
         style: TextStyle(
+          shadows: [
+            Shadow(
+              offset: Offset(1, 1), // اتجاه الظل (يمين وتحت)
+              blurRadius: 2.0, // درجة الضبابية
+              color: Colors.black.withOpacity(0.5), // لون الظل
+            ),
+          ],
           color: textColor,
           fontWeight: FontWeight.bold,
           fontSize: 25.0,

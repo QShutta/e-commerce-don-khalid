@@ -11,7 +11,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final void Function()? onFirstSearchButtonClicked;
 
-  DonAppBar({
+  const DonAppBar({
     super.key,
     required this.title,
     this.textColor,

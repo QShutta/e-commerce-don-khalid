@@ -3,7 +3,6 @@ import 'package:e_commerce_halfa/core/functions/valid_input.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/text_form_field_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class UpdateDetailsForm extends StatelessWidget {
   UpdateDetailsForm({super.key});

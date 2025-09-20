@@ -1,5 +1,4 @@
 import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.dart';
-import 'package:e_commerce_halfa/controller/search_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/search_page.dart';

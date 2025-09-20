@@ -44,7 +44,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
     initalValues();
     print("--------------------------------------------------");
-    print(" The statusreques is ${statusRequest} }");
+    print(" The statusreques is $statusRequest }");
     super.onInit();
   }
 

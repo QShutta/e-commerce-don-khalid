@@ -47,9 +47,7 @@ class UpdateAddressDetailsController extends GetxController {
     addressId = addressModel!.addressId;
 
     print("---------------------------------------------------------------");
-    print(
-      "the address before of the update is :${lat} and the long is ${long}",
-    );
+    print("the address before of the update is :$lat and the long is $long");
     print("---------------------------------------------------------------");
     super.onInit();
   }
@@ -63,7 +61,7 @@ class UpdateAddressDetailsController extends GetxController {
     lat = result['lat'].toString();
     long = result['long'].toString();
     print("---------------------------------------------------------------");
-    print("the address after of the update is :${lat} and the long is ${long}");
+    print("the address after of the update is :$lat and the long is $long");
     print("---------------------------------------------------------------");
   }
 

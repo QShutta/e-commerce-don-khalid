@@ -6,7 +6,6 @@ import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/favorite_model.dart';
 import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/favoritePageWidgets/favorite_page_product_widget.dart';
-import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

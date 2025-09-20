@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
@@ -9,12 +8,8 @@ import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/user_data.dart';
 import 'package:e_commerce_halfa/data/model/users_model.dart';
-import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/change_language_button.dart';
-import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/disable_notification_switch.dart';
-import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/ligh_dark_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 

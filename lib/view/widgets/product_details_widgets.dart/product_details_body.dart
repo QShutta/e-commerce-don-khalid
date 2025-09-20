@@ -1,4 +1,3 @@
-import 'package:e_commerce_halfa/controller/cart_controller.dart';
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';

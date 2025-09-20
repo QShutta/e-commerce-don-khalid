@@ -5,6 +5,7 @@ import 'package:e_commerce_halfa/view/widgets/cart_widgets/total_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Before of 129
 class CartSummery extends StatelessWidget {
   CartSummery({super.key});
 
@@ -18,7 +19,6 @@ class CartSummery extends StatelessWidget {
             controller.couponName != null
                 ? Container(
                   padding: const EdgeInsets.all(12),
-
                   margin: EdgeInsets.symmetric(horizontal: 25),
                   decoration: BoxDecoration(
                     color: Colors.blue.withOpacity(0.1),
@@ -26,8 +26,10 @@ class CartSummery extends StatelessWidget {
                     border: Border.all(color: Colors.blue),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Icon(Icons.check_circle_outline, color: Colors.blue),
+                      SizedBox(width: 5),
                       Text(
                         'تم تطبيق الكوبون:',
                         style: TextStyle(
@@ -36,6 +38,7 @@ class CartSummery extends StatelessWidget {
                           color: AppColor.primaryColor,
                         ),
                       ),
+                      SizedBox(width: 85),
                       Text(
                         controller.couponName!,
                         style: TextStyle(
