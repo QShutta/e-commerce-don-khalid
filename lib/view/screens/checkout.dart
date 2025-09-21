@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/controller/checkout_controller.dart';
+import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/view/widgets/checkout/address_item_card.dart';
@@ -84,25 +85,30 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     children: [
                       const SizedBox(height: 30),
                       CustomeTextCheckout(text: "Shipping Address"),
-                      ListView.builder(
-                        itemCount: controller.addressesList.length,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final address = controller.addressesList[index];
-                          //دة عشان نحدد العنصر الاحنا حاليا واقفين علية .
-                          //طبعا هنا نحن استخدمنا اسلوب مختلف لية ؟عشان هنا عندنا  اكتر من عنصرين
-                          final isSelected =
-                              controller.selectedAddress == index;
-                          return AddressItemCard(
-                            onTap: () {
-                              controller.setSelectedAddress(index);
-                            },
-                            isSelected: isSelected,
-                            title: address['title'],
-                            subTitle: address['subtitle'],
-                          );
-                        },
+                      SizedBox(height: 10),
+                      HnadlingDataView(
+                        stautusRequest: controller.statusRequest,
+                        widget: ListView.builder(
+                          itemCount: controller.addressesList.length,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            final address = controller.addressesList[index];
+                            //دة عشان نحدد العنصر الاحنا حاليا واقفين علية .
+                            //طبعا هنا نحن استخدمنا اسلوب مختلف لية ؟عشان هنا عندنا  اكتر من عنصرين
+                            final isSelected =
+                                controller.selectedAddress == index;
+                            return AddressItemCard(
+                              onTap: () {
+                                controller.setSelectedAddress(index);
+                              },
+                              isSelected: isSelected,
+                              title: address.addressName,
+                              subTitle:
+                                  "${address.addressCity},${address.addressStreet}",
+                            );
+                          },
+                        ),
                       ),
                     ],
                   )
