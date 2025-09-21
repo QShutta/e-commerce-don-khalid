@@ -77,29 +77,34 @@ class _CheckoutPageState extends State<CheckoutPage> {
               );
             },
           ),
-          const SizedBox(height: 30),
-          CustomeTextCheckout(text: "Shipping Address"),
           GetBuilder<CheckoutController>(
             builder: (controller) {
               return controller.selectedDelivery == 0
-                  ? ListView.builder(
-                    itemCount: controller.addressesList.length,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      final address = controller.addressesList[index];
-                      //دة عشان نحدد العنصر الاحنا حاليا واقفين علية .
-                      //طبعا هنا نحن استخدمنا اسلوب مختلف لية ؟عشان هنا عندنا  اكتر من عنصرين
-                      final isSelected = controller.selectedAddress == index;
-                      return AddressItemCard(
-                        onTap: () {
-                          controller.setSelectedAddress(index);
+                  ? Column(
+                    children: [
+                      const SizedBox(height: 30),
+                      CustomeTextCheckout(text: "Shipping Address"),
+                      ListView.builder(
+                        itemCount: controller.addressesList.length,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final address = controller.addressesList[index];
+                          //دة عشان نحدد العنصر الاحنا حاليا واقفين علية .
+                          //طبعا هنا نحن استخدمنا اسلوب مختلف لية ؟عشان هنا عندنا  اكتر من عنصرين
+                          final isSelected =
+                              controller.selectedAddress == index;
+                          return AddressItemCard(
+                            onTap: () {
+                              controller.setSelectedAddress(index);
+                            },
+                            isSelected: isSelected,
+                            title: address['title'],
+                            subTitle: address['subtitle'],
+                          );
                         },
-                        isSelected: isSelected,
-                        title: address['title'],
-                        subTitle: address['subtitle'],
-                      );
-                    },
+                      ),
+                    ],
                   )
                   : Container();
             },
