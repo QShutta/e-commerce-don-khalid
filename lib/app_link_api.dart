@@ -38,7 +38,7 @@ class AppLinkApi {
   static const String addToCart = "$serverUrl/cart/add_cart.php";
   static const String deleteFromCart = "$serverUrl/cart/delete_cart.php";
   static const String cartView = "$serverUrl/cart/view_cart.php";
-  static const String getProductCount = "$serverUrl/cart/get_product_count.php";
+  static const String getProductCount = "$serverUrl/cart/get_count_product.php";
   static const String viewCart = "$serverUrl/cart/view_cart.php";
   static const String search = "$serverUrl/products/search.php";
   //----------------------------Address----------------------------
