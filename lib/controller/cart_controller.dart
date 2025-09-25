@@ -181,6 +181,11 @@ class CartController extends GetxController {
                 .map<CartModel>((item) => CartModel.fromJson(item))
                 .toList(),
           );
+          print("-------------------------------------------------");
+          print(
+            "the price of one product is ${cartDetails![0].totalPricePerProduct}",
+          );
+          print("------------------------------------------------");
           // Here we take the "count_price" object from the response JSON.
           // This object is different from the product list; it is a summary of the cart.
           // It contains overall values like:

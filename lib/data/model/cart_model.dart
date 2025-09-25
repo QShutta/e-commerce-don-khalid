@@ -40,9 +40,9 @@ class CartModel {
   // This is a factory constructor to create a Dart object from a JSON map (for decoding data from an API)
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
-      totalPricePerProduct: json['total_price_per_product'] as int?,
+      totalPricePerProduct: json['productPrice'] as int?,
       productCount: json['productCount'] as int?,
-      productPriceAfterDiscount: json['product_price_after_discount'] as int?,
+      productPriceAfterDiscount: json['productPriceAfterDiscopunt'] as int?,
 
       cartId: json['cart_id'] as int?,
       cartUserId: json['cart_user_id'] as int?,
@@ -64,9 +64,9 @@ class CartModel {
   // This method converts a Dart object back into a JSON map (for sending data to an API)
   Map<String, dynamic> toJson() {
     return {
-      'total_price_per_product': totalPricePerProduct,
+      'productPrice': totalPricePerProduct,
       'productCount': productCount,
-      'product_price_after_discount': productPriceAfterDiscount,
+      'productPriceAfterDiscopunt': productPriceAfterDiscount,
       'cart_id': cartId,
       'cart_user_id': cartUserId,
       'cart_product_id': cartProductId,
