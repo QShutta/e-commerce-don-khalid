@@ -34,7 +34,7 @@ class CartPage extends StatelessWidget {
             CheckoutButton(
               buttonText: '212'.tr,
               onButtonPressed: () {
-                Get.toNamed(AppRoutes.checkout);
+                cartCont.goToCheckOutPage();
               },
             ),
             SizedBox(height: 20),

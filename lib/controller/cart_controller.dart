@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
@@ -19,6 +20,23 @@ class CartController extends GetxController {
   // العدد الكلي لكل المنتجات المضافة في السلة.
   // يعني لو ضفت (2 قميص + 3 بنطلون) → الناتج 5.
   int totalProductCount = 0;
+
+  // couponId:
+  // هذا
+  // المتغير يحمل الـID
+  //الخاص بالكوبون المستخدم.
+  // في حالة عدم وجود كوبون نتركه
+  //null وليس 0:
+  //  - null
+  //توضح أنه لا يوجد كوبون مُستخدم
+  //(no value at all).
+  //  - 0
+  //قد يُسبب لبس في المستقبل إذا ظهر كوبون
+  //ID=0
+  // أو إذا أرسلناه للباك-إند.
+  // لذلك نستخدم null لتمييز "عدم وجود كوبون" بشكل واضح وآمن.
+  int? couponId;
+
   CouponModel couponModel = CouponModel();
   TextEditingController? couponController;
   StautusRequest statusRequest = StautusRequest.none;
@@ -72,6 +90,7 @@ class CartController extends GetxController {
         couponModel = CouponModel.fromJson(response["data"]);
         discountCoupon = couponModel.couponDiscount!;
         couponName = couponModel.couponName;
+        couponId = couponModel.couponId!;
       } else {
         //في الصفحة دي نحن في كل الحالات لازم نخلي
         //StatusRequest.sucess
@@ -80,6 +99,7 @@ class CartController extends GetxController {
         statusRequest = StautusRequest.success;
         couponName = null;
         discountCoupon = 0;
+        couponId = null;
       }
       update();
     }
@@ -185,5 +205,28 @@ class CartController extends GetxController {
       }
     }
     update();
+  }
+
+  goToCheckOutPage() {
+    if (cartDetails!.isEmpty) {
+      Get.snackbar(
+        "Cart is empty",
+        "You need to add products to the cart before checking out.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        margin: const EdgeInsets.all(10),
+        borderRadius: 8,
+        duration: const Duration(seconds: 3),
+      );
+      //The jo of the return keyiword is that is to ge  ouf the method if the condition is righ
+      //That means it will go out of the method and will not execute the code that is after it.
+      return; // هنا لازم ترجع عشان ما يروحش لصفحة الـcheckout
+    }
+
+    Get.toNamed(
+      AppRoutes.checkout,
+      arguments: {"subTotalPrice": subTotalPrice, "couponId": couponId ?? "0"},
+    );
   }
 }

@@ -9,6 +9,8 @@ class CheckoutController extends GetxController {
   //سالب واحد معناها المستخدم لسة ما اختار ولا حاجة .
   int selectedDelivery = -1;
   int selectedPayment = -1;
+  int? subTotoalPrice;
+  int? couponId;
 
   /// `-1` means no address is selected yet.
   /// If we set this to `0`, it will auto-select the first address by default.
@@ -19,6 +21,14 @@ class CheckoutController extends GetxController {
   StautusRequest statusRequest = StautusRequest.none;
   AddressDetailsData addressDetailsData = AddressDetailsData(Get.find());
   List<AddressModel> addressesList = [];
+
+  @override
+  void onInit() {
+    subTotoalPrice = Get.arguments['subTotalPrice'];
+    couponId = Get.arguments['couponId'];
+    super.onInit();
+  }
+
   //الدالة دي حتستلم القيمة بتاعت ال index
   //the user selct in the list and set it as the selectedaddress.
   void setSelectedAddress(int index) {
