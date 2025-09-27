@@ -17,6 +17,8 @@ class CheckoutController extends GetxController {
   //If it's 0 that means the user chose to pay by cash
   //If it's 1 that means the user chose to pay by card
   int selectedPayment = -1;
+  //This represetn the price of the products that the user select
+  //Without any addition like the  shipping cost
   double? subTotoalPrice;
   //This to store the coupon id that the user chose it in the coupon page
   //If it's null that means the user did n't choose any coupon
@@ -25,8 +27,9 @@ class CheckoutController extends GetxController {
   CheckoutData checkoutData = CheckoutData(Get.find());
 
   /// `-1` means no address is selected yet.
-  /// If we set this to `0`, it will auto-select the first address by default.
+  /// If we set this to `0`, it will auto-select the first address by default.and this is wrong
   /// Use `-1` when you want the user to explicitly choose an address.
+  //دة بنستعملو فقط في ال UI
   int selectedAddressIndex = -1;
   //There is a diff between of the selectedAddress and the selectedAddressId
   //The selectedAddressIndex is the index of the address in the list we use it
@@ -34,13 +37,25 @@ class CheckoutController extends GetxController {
   //The selectedAddressId is the id of the address in the database we use it to send it to the server
   //to know to which address we will deliver the product ?Wither it will be the address of the home,job,caffee...
   int? selectedAddressId = -1;
+  //This is the be able to access to the shared preferences.from it we can access to the user id
   MyServices myServices = Get.find();
 
   StautusRequest statusRequest = StautusRequest.none;
   AddressDetailsData addressDetailsData = AddressDetailsData(Get.find());
+  //What is this list?
+  //If the user select the delivery method to be diliverd to his address
+  //The user could have more than one address one for home,job,caffer,jim...
+  //So we will store the user addresses in this list
   List<AddressModel> addressesList = [];
 
+  //This function will be called when the user press the place order button
+  //This function will check if the user selected the payment method and the delivery method
+  //If the user did n't select any of them we will show him a message to select one of them
+
   addOrder() async {
+    //Why did you add these two conditions?
+    //To make sure that the user selected a payment method
+    //Otherwise the the user can't place the order(يتم عملية الشراء) without selecting a payment method
     if (selectedPayment == -1) {
       Get.snackbar(
         "اشعار",
@@ -51,6 +66,8 @@ class CheckoutController extends GetxController {
       );
       return;
     }
+    //This to make sure that the user selected a delivery method
+    //Otherwise the the user can't place the order(يتم عملية الشراء) without selecting
     if (selectedDelivery == -1) {
       Get.snackbar(
         "اشعار",
@@ -61,6 +78,13 @@ class CheckoutController extends GetxController {
       );
       return;
     }
+    //What is the difference between this condition and the previous one?
+    //The previous condition is to make sure that the user selected a delivery method
+    //This condition is to make sure if the user select the delivery type method to dilivery to him
+    //We have to inforce him to select one of the addresses that we have
+    //Because if he did n't select any address and he try to add the order
+    //We will show him a message to select one of the addresses
+
     //Why did you add this condition?
     //To make sure if the user select the delivery type is to be deliverd to him not to recive on store
     //That he should select one of the addresses that we have
@@ -78,6 +102,7 @@ class CheckoutController extends GetxController {
       return;
     }
     statusRequest = StautusRequest.loading;
+    update();
     //Why did you make all of them .toString()?
     //to avoid the eror of type mismatch
     var response = await checkoutData.addToOrder(
@@ -90,11 +115,9 @@ class CheckoutController extends GetxController {
       couponId.toString(),
     );
     statusRequest = handlingStatusRequest(response);
-
+    update();
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
-        print("-------------------------------");
-
         Get.snackbar(
           "اشعار",
           "تمت إضافة الطلب بنجاح",
@@ -105,28 +128,40 @@ class CheckoutController extends GetxController {
         Get.offAllNamed(AppRoutes.home);
       } else {
         statusRequest = StautusRequest.failure;
+        Get.snackbar(
+          "اشعار",
+          "حدث خطأ مااثناء محاولة اضافة المنتج لجدول الطلبات .",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          snackPosition: SnackPosition.BOTTOM,
+        );
       }
     } else {
       Get.snackbar(
         "اشعار",
-        "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+        "حدث خطأاثناء محاولة الإتصال بالسيرفر ",
         colorText: Colors.white,
         backgroundColor: Colors.red,
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+    update();
   }
 
   @override
   void onInit() {
+    //Here we will get the subTotalPrice and the couponId from the previous page
+    //We will use them in the addOrder function
     subTotoalPrice = Get.arguments['subTotalPrice'];
     couponId = int.parse(Get.arguments['couponId']);
-
     super.onInit();
   }
 
-  //I think there is an error here?
-  //we want the id of the address not the index of the address
+  //why did we add the index as parameter to this function?
+  //To distinguish between the address that the user select and the other addresses
+  //So we will use this index to change the color of the selected address in the UI
+  //Why did we pass the idOfSelectedAddress as parameter to this function?
+  //Because we will use this id to send it to the server when the user place the order
   void setSelectedAddress(index, idOfSelectedAddress) {
     selectedAddressIndex = index;
     selectedAddressId = idOfSelectedAddress;
