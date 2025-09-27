@@ -25,6 +25,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //دة عشان يخلي الزر قاعد في النص تحت  معناها
+      //: خليه في المنتصف تحت (متمركز أسفل الشاشة)، الـ BottomAppBar.
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12.0),
+        child: ElevatedButton(
+          onPressed: () {
+            checkoutController.addOrder();
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColor.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.symmetric(vertical: 15),
+          ),
+          child: Text(
+            "Place Order",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ),
       appBar: CustomeAppBar(
         searchTextTitle: 'Checkout',
         textColor: AppColor.primaryColor,
@@ -98,10 +125,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             //دة عشان نحدد العنصر الاحنا حاليا واقفين علية .
                             //طبعا هنا نحن استخدمنا اسلوب مختلف لية ؟عشان هنا عندنا  اكتر من عنصرين
                             final isSelected =
-                                controller.selectedAddress == index;
+                                controller.selectedAddressIndex == index;
                             return AddressItemCard(
                               onTap: () {
-                                controller.setSelectedAddress(index);
+                                controller.setSelectedAddress(
+                                  index,
+                                  address.addressId,
+                                );
                               },
                               isSelected: isSelected,
                               title: address.addressName,

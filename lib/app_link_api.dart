@@ -48,4 +48,6 @@ class AppLinkApi {
   static const String viewAddress = "$serverUrl/address/view.php";
   //----------------------------coupon---------------------------------
   static const String getValidCoupon = "$serverUrl/cupon/checkcupon.php";
+  //---------------------------Checkout-------------------------
+  static const String addOrder = "$serverUrl/order/add_order.php";
 }
