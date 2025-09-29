@@ -37,7 +37,7 @@ class CartPage extends StatelessWidget {
                 cartCont.goToCheckOutPage();
               },
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
           ],
         ),
       ),

@@ -13,6 +13,7 @@ class CheckoutData {
     paymentMethod,
     orderAddress,
     orderCoupon,
+    orderDiscount,
   ) async {
     var response = await crud.postData(AppLinkApi.addOrder, {
       "order_user_id": userId,
@@ -32,9 +33,12 @@ class CheckoutData {
       //otherwise if he chose to recive the order from the store
       //we will put 0
       "order_address": orderAddress,
-      //If the user applied a coupon the coupon code id will be here
+      //If the user applied a coupon the coupon  id will be here
       //otherwise if he didn't apply any coupon the value will be 0
       "order_coupon": orderCoupon,
+      //we will pass the discount to the server so we can calculate the total price
+      //totalprice==price of products - discount + shipping cost
+      "order_discount": orderDiscount,
     });
 
     return response.fold((l) => l, (r) => r);

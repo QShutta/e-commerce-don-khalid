@@ -35,7 +35,7 @@ class CartController extends GetxController {
   //ID=0
   // أو إذا أرسلناه للباك-إند.
   // لذلك نستخدم null لتمييز "عدم وجود كوبون" بشكل واضح وآمن.
-  int? couponId;
+  int? couponId = 0;
 
   CouponModel couponModel = CouponModel();
   TextEditingController? couponController;
@@ -100,6 +100,13 @@ class CartController extends GetxController {
         couponName = null;
         discountCoupon = 0;
         couponId = null;
+        Get.snackbar(
+          "اشعار",
+          "الكوبون الذي ادخلتة غير صحيح",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          snackPosition: SnackPosition.BOTTOM,
+        );
       }
       update();
     }
@@ -231,7 +238,11 @@ class CartController extends GetxController {
 
     Get.toNamed(
       AppRoutes.checkout,
-      arguments: {"subTotalPrice": subTotalPrice, "couponId": couponId ?? "0"},
+      arguments: {
+        "subTotalPrice": subTotalPrice,
+        "couponId": couponId.toString(),
+        "discountCoupon": discountCoupon,
+      },
     );
   }
 }

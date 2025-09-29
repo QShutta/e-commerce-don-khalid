@@ -39,7 +39,7 @@ class CheckoutController extends GetxController {
   int? selectedAddressId = -1;
   //This is the be able to access to the shared preferences.from it we can access to the user id
   MyServices myServices = Get.find();
-
+  String discountCoupon = "0";
   StautusRequest statusRequest = StautusRequest.none;
   AddressDetailsData addressDetailsData = AddressDetailsData(Get.find());
   //What is this list?
@@ -108,11 +108,12 @@ class CheckoutController extends GetxController {
     var response = await checkoutData.addToOrder(
       myServices.sharedPreferences.getString("user_id"),
       subTotoalPrice!.toString(),
-      "2323",
+      "500",
       selectedDelivery.toString(),
       selectedPayment.toString(),
       selectedAddressId.toString(),
       couponId.toString(),
+      discountCoupon.toString(),
     );
     statusRequest = handlingStatusRequest(response);
     update();
@@ -154,6 +155,7 @@ class CheckoutController extends GetxController {
     //We will use them in the addOrder function
     subTotoalPrice = Get.arguments['subTotalPrice'];
     couponId = int.parse(Get.arguments['couponId']);
+    discountCoupon = Get.arguments['discountCoupon'].toString();
     super.onInit();
   }
 
