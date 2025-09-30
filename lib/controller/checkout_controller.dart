@@ -8,6 +8,7 @@ import 'package:e_commerce_halfa/data/model/address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Before of 143
 class CheckoutController extends GetxController {
   //This to choose if it's -1 that means the user did n't select anythin yet
   //If it's 0 that means the user chose the delivery to home
