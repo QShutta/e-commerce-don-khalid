@@ -8,7 +8,7 @@ import 'package:e_commerce_halfa/data/model/coupon_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//mistake in commit128
+//mistake in commit143
 class CartController extends GetxController {
   //دة بحتوي ليك علي كل المنتجات القاعدة في السلة بي تفاصيلها .
   List<CartModel>? cartDetails = [];
