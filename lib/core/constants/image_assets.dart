@@ -49,4 +49,5 @@ class ImageAssets {
   static const String reciveOnShop =
       'assets/images/delivery/recive_on_shop.png';
   static const String deliveryMan = 'assets/images/delivery/delivery_man.png';
+  static const String orderImage = 'assets/images/order/order_image.png';
 }

@@ -1,5 +1,4 @@
 import 'package:e_commerce_halfa/controller/cart_controller.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/cart_widgets/cart_item_list.dart';
 import 'package:e_commerce_halfa/view/widgets/cart_widgets/cart_summery.dart';

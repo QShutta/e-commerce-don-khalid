@@ -73,6 +73,7 @@ flutter:
     - assets/images/home/banner_slider_images/don_jalabye_gpt.png
     - assets/images/delivery/delivery_man.png
     - assets/images/delivery/recive_on_shop.png
+    - assets/images/order/order_image.png
 
   fonts:
 

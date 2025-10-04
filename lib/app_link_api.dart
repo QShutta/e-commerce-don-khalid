@@ -50,4 +50,5 @@ class AppLinkApi {
   static const String getValidCoupon = "$serverUrl/cupon/checkcupon.php";
   //---------------------------Checkout-------------------------
   static const String addOrder = "$serverUrl/order/add_order.php";
+  static const String viewOrder = "$serverUrl/order/view_order.php";
 }
