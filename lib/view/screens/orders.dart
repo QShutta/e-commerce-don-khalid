@@ -6,6 +6,7 @@ import 'package:e_commerce_halfa/data/model/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Before of 147
 class MyOrdersPage extends StatelessWidget {
   MyOrdersPage({super.key});
   final OrderController orderController = Get.put(OrderController());
@@ -135,6 +136,8 @@ Widget buildOrderList(List<OrderModel> list) {
                         children: [
                           Expanded(
                             child: Text(
+                              //رمز #
+                              // ما عندو معنى برمجي، لكنه رمز بصري يخلي رقم الطلب واضح ومميز للمستخدم.
                               "Order #${order.orderId}",
                               style: const TextStyle(
                                 fontSize: 16,
