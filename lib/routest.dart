@@ -15,7 +15,7 @@ import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_otp.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/success_sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/cart.dart';
-import 'package:e_commerce_halfa/view/screens/checkout.dart';
+import 'package:e_commerce_halfa/view/screens/order/checkout.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite_product_details.dart';
 import 'package:e_commerce_halfa/view/screens/home_with_bottom_nav.dart';

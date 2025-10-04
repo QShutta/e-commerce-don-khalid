@@ -1,72 +1,11 @@
-import 'package:e_commerce_halfa/controller/order_controller.dart';
-import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
+import 'package:e_commerce_halfa/controller/order/order_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-//Before of 147
-class MyOrdersPage extends StatelessWidget {
-  MyOrdersPage({super.key});
-  final OrderController orderController = Get.put(OrderController());
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GetBuilder<OrderController>(
-            builder: (controller) {
-              return HnadlingDataView(
-                stautusRequest: orderController.stautusRequest,
-                widget: Column(
-                  children: [
-                    Container(
-                      height: 48,
-                      padding: const EdgeInsets.all(6),
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: TabBar(
-                        dividerColor: Colors.transparent,
-                        // indicator: BoxDecoration(
-                        //   color: AppColor.primaryColor,
-                        //   borderRadius: BorderRadius.circular(12),
-                        // ),
-                        labelColor: Colors.black,
-                        indicatorColor: AppColor.primaryColor,
-                        unselectedLabelColor: Colors.black87,
-                        tabs: const [
-                          Tab(text: "Archived"),
-                          Tab(text: "Active"),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 12),
-                    Expanded(
-                      child: TabBarView(
-                        children: [
-                          buildOrderList(orderController.archivedOrderList),
-                          buildOrderList(orderController.activeOrderList),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Widget buildOrderList(List<OrderModel> list) {
+Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
+  //In case of there is no orders will display this widget
   if (list.isEmpty) {
     return Center(
       child: Column(
@@ -155,8 +94,10 @@ Widget buildOrderList(List<OrderModel> list) {
                               color: Colors.green.withOpacity(0.12),
                               borderRadius: BorderRadius.circular(999),
                             ),
-                            child: const Text(
-                              "Paid",
+                            child: Text(
+                              orderController.printOrderStatus(
+                                order.orderStatus.toString(),
+                              ),
                               style: TextStyle(
                                 color: Colors.green,
                                 fontSize: 12,

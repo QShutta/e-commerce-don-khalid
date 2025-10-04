@@ -1,7 +1,7 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/screens/discounts_pages.dart';
 import 'package:e_commerce_halfa/view/screens/home.dart';
-import 'package:e_commerce_halfa/view/screens/orders.dart';
+import 'package:e_commerce_halfa/view/screens/order/orders.dart';
 import 'package:e_commerce_halfa/view/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

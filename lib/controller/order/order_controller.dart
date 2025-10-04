@@ -10,9 +10,14 @@ class OrderController extends GetxController {
   MyServices myServices = Get.find();
   StautusRequest stautusRequest = StautusRequest.none;
   ViewOrderData viewOrderData = ViewOrderData(Get.find());
+  //Here we will store all of the orders wither they are active or archived
   List<OrderModel> ordersList = [];
+  //Here we will store only the active orders
   List<OrderModel> activeOrderList = [];
+  //Here we will store only the archived orders
   List<OrderModel> archivedOrderList = [];
+
+  //Once the page open i have to displa the order
   @override
   void onInit() {
     userId = myServices.sharedPreferences.getString("user_id");
@@ -20,7 +25,27 @@ class OrderController extends GetxController {
     super.onInit();
   }
 
+  //This to specfy the order status in a human readable format
+  //Instead of showing 1,2,3,4 we will show pending,shipping,delivered,archived
+  String printOrderStatus(String value) {
+    switch (value) {
+      case "1":
+        return "Pending";
+      case "2":
+        return "Shipping";
+      case "3":
+        return "Delivered";
+      case "4":
+        return "Archived";
+      default:
+        return "Unknown";
+    }
+  }
+
+  //This method will be used to get all of the orders from the api
   getOrder() async {
+    //Before getting the orders we have to clear the lists
+    //To avoid duplicating the orders in the list
     activeOrderList.clear();
     archivedOrderList.clear();
     ordersList.clear();
