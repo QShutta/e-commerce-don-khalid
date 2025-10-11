@@ -68,11 +68,7 @@ class SettingsPage extends StatelessWidget {
             titleText: "Sign Out",
             leadingIcon: Icons.logout_outlined,
             onListTileClicked: () {
-              settingController.myServices.sharedPreferences.setBool(
-                "isLoggedIn",
-                false,
-              );
-              Get.offAllNamed(AppRoutes.signIn);
+            settingController.logout();
             },
           ),
         ],

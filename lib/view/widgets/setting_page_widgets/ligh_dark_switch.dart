@@ -37,7 +37,7 @@ class LighDarkSwitch extends StatelessWidget {
           title: Text("Ligh/Dark Mode"),
           trailing: Switch(
             activeTrackColor: AppColor.primaryColor,
-            activeColor: Colors.white,
+            activeThumbColor: Colors.white,
             inactiveTrackColor: Color(0xffDAE0E7),
             inactiveThumbColor: Colors.white,
             value: controller.switchDarkLigh,

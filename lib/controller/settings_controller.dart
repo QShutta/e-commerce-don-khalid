@@ -4,10 +4,12 @@ import 'dart:math';
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/core/class/crud.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/user_data.dart';
 import 'package:e_commerce_halfa/data/model/users_model.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -65,7 +67,24 @@ class SettingController extends GetxController {
       update();
     }
   }
+ logout()async{
+   myServices.sharedPreferences.setBool(
+                "isLoggedIn",
+                false,
+              );
 
+   Get.offAllNamed(AppRoutes.signIn);
+   String userId=myServices.sharedPreferences.getString("user_id").toString();
+  await   FirebaseMessaging.instance.unsubscribeFromTopic("users"); 
+  await   FirebaseMessaging.instance.unsubscribeFromTopic("users$userId");  
+  //Why did they use this?
+  //To ensure that all user-related data is removed upon logout, enhancing security and privacy.
+  //why?
+  // If we don't clear the shared preferences, sensitive information like user IDs, tokens, and settings could remain on the device after logout. This could lead to unauthorized access if someone else uses the app on the same device.
+  //By clearing the shared preferences, we ensure that all user-related data is removed, enhancing security and privacy.
+  myServices.sharedPreferences.clear();
+       
+ }
   // اختر صورة من المعرض
   addImageFromGallery() async {
     var gellaryPickedImage = await ImagePicker().pickImage(
