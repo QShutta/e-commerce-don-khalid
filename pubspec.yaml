@@ -21,6 +21,7 @@ dependencies:
   flutter_local_notifications: ^19.1.0
   flutter_map: ^8.2.1
   flutter_otp_text_field: ^1.5.1+1
+  flutter_ringtone_player: ^4.0.0+4
   flutter_svg: ^2.1.0
   font_awesome_flutter: ^10.8.0
   geolocator: ^14.0.2

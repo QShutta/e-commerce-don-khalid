@@ -1,8 +1,10 @@
 import 'package:e_commerce_halfa/core/constants/apptheme.dart';
+import 'package:e_commerce_halfa/core/functions/fcm_configuretion.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+//What is the LocaleController
+//اساسا قاعدين نستخدمها عشان شنو ؟نغير الثيم بتاع التبطيق حسب اللغة المستخدمها 
 class LocaleController extends GetxController {
   Locale? lang;
   MyServices myServices = Get.find();
@@ -25,6 +27,7 @@ class LocaleController extends GetxController {
 
   @override
   void onInit() {
+    
     print("------------------------------------------");
     print("The controller is initialized");
     String? sharedPrefLang = myServices.sharedPreferences.getString("lang");
@@ -40,6 +43,14 @@ class LocaleController extends GetxController {
         Get.deviceLocale!.countryCode,
       );
     }
+    //Why did the course instructor put these in the locale controller?
+    //Because of what?because of the local controller will be called just for the first time the app open then we will ask him 
+    //to give us permistion to  recive the notfication.
+    //also to start dirctly listhing to the notfication  ...fcmConfig();
+    //ما هو مش منطقي انو كل مرة التطبيق يفتح نسالو نقول ليهو يدين الاذن للاشعارات حنسالو مرة واحدة بس .اول مرة يفتح فيها  التطبيق .
+
+    requestPermistionNotification();
+    fcmConfig();
     super.onInit();
   }
 }
