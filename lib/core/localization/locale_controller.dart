@@ -27,7 +27,8 @@ class LocaleController extends GetxController {
 
   @override
   void onInit() {
-    
+    requestPermistionNotification();
+    fcmConfig();
     print("------------------------------------------");
     print("The controller is initialized");
     String? sharedPrefLang = myServices.sharedPreferences.getString("lang");
@@ -48,9 +49,6 @@ class LocaleController extends GetxController {
     //to give us permistion to  recive the notfication.
     //also to start dirctly listhing to the notfication  ...fcmConfig();
     //ما هو مش منطقي انو كل مرة التطبيق يفتح نسالو نقول ليهو يدين الاذن للاشعارات حنسالو مرة واحدة بس .اول مرة يفتح فيها  التطبيق .
-
-    requestPermistionNotification();
-    fcmConfig();
     super.onInit();
   }
 }
