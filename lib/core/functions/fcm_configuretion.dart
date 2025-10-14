@@ -12,6 +12,7 @@ requestPermistionNotification() async {
 
 
 fcmConfig() {
+  //دي شغلها تستمتمع لي الاشعارات كان في اي شعار جاي حتقوم تعرض لينا الاشعار داخل التطبيق بتاعنا .
   FirebaseMessaging.onMessage.listen((remoteMessage) {
     print("----------------------------------------------------");
     print("You'r message title is :${remoteMessage.notification!.title}");

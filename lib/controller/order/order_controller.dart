@@ -28,18 +28,21 @@ class OrderController extends GetxController {
   //This to specfy the order status in a human readable format
   //Instead of showing 1,2,3,4 we will show pending,shipping,delivered,archived
   String printOrderStatus(String value) {
-    switch (value) {
-      case "1":
-        return "Pending";
-      case "2":
-        return "Shipping";
-      case "3":
-        return "Delivered";
-      case "4":
-        return "Archived";
-      default:
-        return "Unknown";
-    }
+  switch (value) {
+    case "0":
+      return "Pending Approval"; // قيد انتظار الموافقة
+    case "1":
+      return "Preparing"; // قيد التحضير
+    case "2":
+      return "Shipping"; // قيد التوصيل
+    case "3":
+      return "Delivered"; // تم التوصيل
+    case "4":
+      return "Archived"; // أرشيف
+    default:
+      return "Unknown";
+  }
+
   }
 
   //This method will be used to get all of the orders from the api
