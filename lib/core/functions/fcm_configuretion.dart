@@ -1,11 +1,10 @@
-import 'package:e_commerce_halfa/controller/home_with_bottom_nav_bar_controller.dart';
+
 import 'package:e_commerce_halfa/controller/order/order_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 
 requestPermistionNotification() async {
@@ -80,11 +79,6 @@ Future.delayed(const Duration(milliseconds: 100), ...)
 //We have to do an action that when the message came and we are in the order page the ui should be refreshed when the 
 //admin approve the order. or generally the order status is change.
 refreshPageNotfication(data){
-  print("----------------------page id-------------------------");
-  print(data['pageid']);
-  print("--------------------------page name---------------------------------");
-  print(data['pagename']);
-  print("----------------------------------------------");
 //First we have to make sure that we are in the order tap.because if we are not in the 
 //order tap there will be no need for refreshing the ui
   //We have to make sure that the page
@@ -94,8 +88,6 @@ refreshPageNotfication(data){
    //So that we will just update the order tap not all of the taps in the UI.
    if(pageName=="order"){
   //To know which tap that we are currently on we have to use homewithBottomNavigationBarController.
-  final HomeWithBottomNavBarControllerImp homeWithBottomNavBarController=Get.find<HomeWithBottomNavBarControllerImp>();
- 
     /*the thing that i understand that if i didn't add this condtion if we are in another tap and there is
      a notfication arrive  without of thsi condtion the app will crash because of want to refresh the ui but
       wiht this condtion even if we are in another tap there is no error will occure?
@@ -107,6 +99,5 @@ refreshPageNotfication(data){
            OrderController orderController=Get.find<OrderController>();
            orderController.getOrder();
     }
-
    }
 }
