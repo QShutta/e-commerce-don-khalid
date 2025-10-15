@@ -23,7 +23,7 @@ class TabBarOrder extends StatelessWidget {
         labelColor: Colors.black,
         indicatorColor: AppColor.primaryColor,
         unselectedLabelColor: Colors.black87,
-        tabs: const [Tab(text: "Archived"), Tab(text: "Active")],
+        tabs: const [Tab(text: "Active"), Tab(text: "Archived")],
       ),
     );
   }

@@ -28,12 +28,12 @@ class MyOrdersPage extends StatelessWidget {
                     Expanded(
                       child: TabBarView(
                         children: [
-                          buildOrderList(
-                            orderController.archivedOrderList,
-                            orderController,
-                          ),
+                          
                           buildOrderList(
                             orderController.activeOrderList,
+                            orderController,
+                          ),buildOrderList(
+                            orderController.archivedOrderList,
                             orderController,
                           ),
                         ],

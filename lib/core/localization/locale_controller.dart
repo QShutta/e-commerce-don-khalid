@@ -3,6 +3,7 @@ import 'package:e_commerce_halfa/core/functions/fcm_configuretion.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 //What is the LocaleController
 //اساسا قاعدين نستخدمها عشان شنو ؟نغير الثيم بتاع التبطيق حسب اللغة المستخدمها 
 class LocaleController extends GetxController {
@@ -35,14 +36,17 @@ class LocaleController extends GetxController {
     if (sharedPrefLang == "ar") {
       lang = Locale("ar", "SA");
       appTheme = arabicTheme;
+      Jiffy.setLocale("ar");
     } else if (sharedPrefLang == "en") {
       lang = Locale("en", "US");
       appTheme = englishTheme;
+      Jiffy.setLocale("ar");
     } else {
       lang = Locale(
         Get.deviceLocale!.languageCode,
         Get.deviceLocale!.countryCode,
       );
+      Jiffy.setLocale(Get.deviceLocale!.countryCode!);
     }
     //Why did the course instructor put these in the locale controller?
     //Because of what?because of the local controller will be called just for the first time the app open then we will ask him 

@@ -3,6 +3,7 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
   //In case of there is no orders will display this widget
@@ -118,7 +119,7 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                           const SizedBox(width: 6),
                           Expanded(
                             child: Text(
-                              "${order.orderDateCreate}",
+                              Jiffy.parse(order.orderDateCreate!).fromNow(),
                               style: TextStyle(
                                 color: Colors.grey.shade700,
                                 fontSize: 12,
