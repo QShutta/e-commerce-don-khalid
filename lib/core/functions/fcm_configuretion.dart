@@ -1,5 +1,6 @@
 
 import 'package:e_commerce_halfa/controller/order/order_controller.dart';
+import 'package:e_commerce_halfa/controller/view_notfication_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -98,6 +99,10 @@ refreshPageNotfication(data){
     if(Get.isRegistered<OrderController>()){
            OrderController orderController=Get.find<OrderController>();
            orderController.getOrder();
+    }
+    if(Get.isRegistered<ViewNotificationControllerImp>()){
+           ViewNotificationControllerImp viewNotificationControllerImp=Get.find<ViewNotificationControllerImp>();
+           viewNotificationControllerImp.getData();
     }
    }
 }
