@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final bool showNotificationAndFavorite;
+  final bool showFavoirte;
   final bool showSearch;
   final Color? textColor;
   final Color? myColor;
@@ -16,7 +16,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.textColor,
     this.myColor,
-    this.showNotificationAndFavorite = true,
+    this.showFavoirte = true,
     this.showSearch = true,
     this.onNotificationIconButtonClicked,
     this.onFavoriteButtonPressed,
@@ -54,18 +54,18 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
               )
               : null,
       actions:
-          showNotificationAndFavorite
-              ? [
-                IconButton(
-                  onPressed: onFavoriteButtonPressed,
-                  icon: const Icon(Icons.favorite_border_outlined, size: 30),
-                ),
-                IconButton(
-                  onPressed: onNotificationIconButtonClicked,
-                  icon: const Icon(Icons.notifications_outlined, size: 30),
-                ),
+          
+               [
+             showFavoirte?   Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: IconButton(
+                    onPressed: onFavoriteButtonPressed,
+                    icon: const Icon(Icons.favorite_border_outlined, size: 30),
+                  ),
+             ):Container(),
+         
               ]
-              : null,
+              
     );
   }
 }

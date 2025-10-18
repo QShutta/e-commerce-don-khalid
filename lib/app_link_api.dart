@@ -51,4 +51,6 @@ class AppLinkApi {
   //---------------------------Checkout-------------------------
   static const String addOrder = "$serverUrl/order/add_order.php";
   static const String viewOrder = "$serverUrl/order/view_order.php";
+  //--------------------------nofication------------------------
+  static const String viewNotfication = "$serverUrl/view_notification.php";
 }

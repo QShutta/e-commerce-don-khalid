@@ -1,5 +1,5 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
-import 'package:e_commerce_halfa/view/screens/discounts_pages.dart';
+import 'package:e_commerce_halfa/view/screens/notification_page.dart';
 import 'package:e_commerce_halfa/view/screens/home.dart';
 import 'package:e_commerce_halfa/view/screens/order/orders.dart';
 import 'package:e_commerce_halfa/view/screens/settings.dart';
@@ -15,15 +15,15 @@ class HomeWithBottomNavBarControllerImp extends HomeWithBottomNavBarController {
   final List pages = [
     HomePage(),
     MyOrdersPage(),
-    DiscountsPages(),
+    NotficationPage(),
     SettingsPage(),
   ];
   TextEditingController searchController = TextEditingController();
-  List titleBottomAppBar = ["203".tr, "204".tr, "Discount", "206".tr];
+  List titleBottomAppBar = ["203".tr, "204".tr, "Notfication", "206".tr];
   List iconBottomNavBar = [
     Icons.home_outlined,
     Icons.shopping_bag_outlined,
-    Icons.discount_outlined,
+    Icons.notifications_outlined,
     Icons.settings_outlined,
   ];
   int selectedItem = 0;
