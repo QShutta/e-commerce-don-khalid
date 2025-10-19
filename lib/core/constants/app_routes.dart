@@ -33,4 +33,9 @@ class AppRoutes {
   static const String updateAddressDetailsMap = '/updateAddressDetailsMap';
   //--------------------------
   static const String checkout = '/checkout';
+  //------------------------------------orderDetails------------------------------
+  
+  static const String orderDetails= '/orderDetails';
+
+
 }

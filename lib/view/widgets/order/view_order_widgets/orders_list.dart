@@ -47,7 +47,7 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: () {},
+          onTap: () {orderController.goToOrderDetails(order);},
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
             child: Row(

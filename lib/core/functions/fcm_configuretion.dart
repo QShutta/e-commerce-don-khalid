@@ -77,7 +77,8 @@ Future.delayed(const Duration(milliseconds: 100), ...)
   });
 }
 
-//We have to do an action that when the message came and we are in the order page the ui should be refreshed when the 
+//We have to do an action that when the message came and we are in the order page ,or we are in the notfication page 
+//the ui should be refreshed when the 
 //admin approve the order. or generally the order status is change.
 refreshPageNotfication(data){
 //First we have to make sure that we are in the order tap.because if we are not in the 
@@ -95,7 +96,7 @@ refreshPageNotfication(data){
       “Is OrderController already active in memory?”
      ✅ If yes → refresh orders safely
      ❌ If not → skip, no crash, no problem. */
-   //make sure that the 
+   
     if(Get.isRegistered<OrderController>()){
            OrderController orderController=Get.find<OrderController>();
            orderController.getOrder();
