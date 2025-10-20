@@ -4,6 +4,7 @@ import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/view_order_data.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
@@ -29,21 +30,20 @@ class OrderController extends GetxController {
   //This to specfy the order status in a human readable format
   //Instead of showing 1,2,3,4 we will show pending,shipping,delivered,archived
   String printOrderStatus(String value) {
-  switch (value) {
-    case "0":
-      return "Pending Approval"; // قيد انتظار الموافقة
-    case "1":
-      return "Preparing"; // قيد التحضير
-    case "2":
-      return "Shipping"; // قيد التوصيل
-    case "3":
-      return "Delivered"; // تم التوصيل
-    case "4":
-      return "Archived"; // أرشيف
-    default:
-      return "Unknown";
-  }
-
+    switch (value) {
+      case "0":
+        return "Pending Approval"; // قيد انتظار الموافقة
+      case "1":
+        return "Preparing"; // قيد التحضير
+      case "2":
+        return "Shipping"; // قيد التوصيل
+      case "3":
+        return "Delivered"; // تم التوصيل
+      case "4":
+        return "Archived"; // أرشيف
+      default:
+        return "Unknown";
+    }
   }
 
   //This method will be used to get all of the orders from the api
@@ -79,9 +79,8 @@ class OrderController extends GetxController {
     }
     update(); //This will update the UI
   }
-  goToOrderDetails(orderModel){
-    Get.toNamed(AppRoutes.orderDetails,arguments: {
-      "orderModel":orderModel
-    });
+
+  goToOrderDetails(orderModel) {
+    Get.toNamed(AppRoutes.orderDetails, arguments: {"orderModel": orderModel});
   }
 }
