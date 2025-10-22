@@ -163,7 +163,9 @@ class OrderDetails extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   width: double.infinity,
                   child: Text(
-                    "Alhajyosif Street",
+                    orderController.orderModel!.addressName == null
+                        ? "No address data"
+                        : "${orderController.orderModel!.addressName}\n${orderController.orderModel!.addressCity}\n${orderController.orderModel!.addressStreet}\n",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       color: Colors.grey,
@@ -185,7 +187,14 @@ class OrderDetails extends StatelessWidget {
                 mapController: orderController.mapController,
                 options: MapOptions(
                   onTap: (tapPosition, latLang) {},
-                  initialCenter: LatLng(15.6071907, 32.6230972),
+                  initialCenter: LatLng(
+                    orderController.orderModel!.addressLat == null
+                        ? 15.6071907
+                        : orderController.orderModel!.addressLat!,
+                    orderController.orderModel!.addressLang == null
+                        ? 32.6230972
+                        : orderController.orderModel!.addressLang!,
+                  ),
                   initialZoom: 14,
                 ),
                 children: [
@@ -238,19 +247,28 @@ class OrderDetails extends StatelessWidget {
                   // ),
                   //دة عشان يحط علامة حمرا في الموقع الحالي للمستخدم.
                   //وانا في الاضافة ما عاوزو يخت علامة حمرا في موقع المستخدم احلالي
-                  // MarkerLayer(
-                  //   markers: [
-                  //     Marker(
-                  //       width: 80,
-                  //       height: 80,
-                  //       point: addAddressCont.userLocation!,
-                  //       child: Icon(
-                  //         Icons.location_on_outlined,
-                  //         color: Colors.red,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                  MarkerLayer(
+                    markers: [
+                      Marker(
+                        width: 100,
+                        height: 100,
+                        point: LatLng(
+                          //This to handle the case of the user chose to pickup from the store.
+                          //In that case ,will just display default location
+                          orderController.orderModel!.addressLat == null
+                              ? 15.6071907
+                              : orderController.orderModel!.addressLat!,
+                          orderController.orderModel!.addressLang == null
+                              ? 32.6230972
+                              : orderController.orderModel!.addressLang!,
+                        ),
+                        child: Icon(
+                          Icons.location_on_rounded,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

@@ -53,4 +53,6 @@ class AppLinkApi {
   static const String viewOrder = "$serverUrl/order/view_order.php";
   //--------------------------nofication------------------------
   static const String viewNotfication = "$serverUrl/view_notification.php";
+  //-------------------------orderDetails---------------------------
+  static const String orderDetails = "$serverUrl/order/order_details_view.php";
 }

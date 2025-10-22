@@ -4,7 +4,6 @@ import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/view_order_data.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
