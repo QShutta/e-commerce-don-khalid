@@ -7,16 +7,15 @@ import 'package:e_commerce_halfa/routest.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'firebase_options.dart'; 
+import 'firebase_options.dart';
 
+//Before of 159
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ✅ تهيئة Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
- // await Firebase.initializeApp(); // Use default config from google-services.json
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await Firebase.initializeApp(); // Use default config from google-services.json
   await initlizeServices();
 
   // Put LocaleController after services are ready
