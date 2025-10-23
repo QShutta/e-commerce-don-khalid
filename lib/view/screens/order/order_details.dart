@@ -188,11 +188,13 @@ class OrderDetails extends StatelessWidget {
                 options: MapOptions(
                   onTap: (tapPosition, latLang) {},
                   initialCenter: LatLng(
-                    orderController.orderModel!.addressLat == null
-                        ? 15.6071907
-                        : orderController.orderModel!.addressLat!,
-                    orderController.orderModel!.addressLang == null
-                        ? 32.6230972
+                    //This to handle the case of the user chose to pickup from the store.
+                    //In that case ,will just display default location
+                    orderController.orderModel!.orderDeliveryType == 1
+                        ? orderController.storeLat
+                        : orderController.orderModel!.addressLang!,
+                    orderController.orderModel!.orderDeliveryType == 1
+                        ? orderController.storeLang
                         : orderController.orderModel!.addressLang!,
                   ),
                   initialZoom: 14,
@@ -255,11 +257,11 @@ class OrderDetails extends StatelessWidget {
                         point: LatLng(
                           //This to handle the case of the user chose to pickup from the store.
                           //In that case ,will just display default location
-                          orderController.orderModel!.addressLat == null
-                              ? 15.6071907
-                              : orderController.orderModel!.addressLat!,
-                          orderController.orderModel!.addressLang == null
-                              ? 32.6230972
+                          orderController.orderModel!.orderDeliveryType == 1
+                              ? orderController.storeLat
+                              : orderController.orderModel!.addressLang!,
+                          orderController.orderModel!.orderDeliveryType == 1
+                              ? orderController.storeLang
                               : orderController.orderModel!.addressLang!,
                         ),
                         child: Icon(

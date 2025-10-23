@@ -10,7 +10,9 @@ import 'package:get/get.dart';
 class OrderDetailsController extends GetxController {
   OrderModel? orderModel;
   List<OrderDetailsModel> orderDetailsList = [];
-
+  //In case of the user choose to pick up the product from the store i want to display the store location in the map.
+  double storeLang = 32.625260;
+  double storeLat = 15.609445;
   OrderDetailsData orderDetailsData = OrderDetailsData(Get.find());
   late StautusRequest statusRequest;
   // للتحكم بالخريطة
