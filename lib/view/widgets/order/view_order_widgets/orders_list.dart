@@ -3,6 +3,8 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:jiffy/jiffy.dart';
 
 Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
@@ -54,21 +56,64 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
             child: Row(
               children: [
-                Container(
-                  height: 44,
-                  width: 44,
-                  decoration: BoxDecoration(
-                    color: AppColor.primaryColor.withOpacity(0.12),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      ImageAssets.orderImage,
-                      color: AppColor.primaryColor,
-                      height: 22,
+                order.orderStatus != 0
+                    ? Container(
+                      height: 44,
+                      width: 44,
+                      decoration: BoxDecoration(
+                        color: AppColor.primaryColor.withOpacity(0.12),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          ImageAssets.orderImage,
+                          color: AppColor.primaryColor,
+                          height: 22,
+                        ),
+                      ),
+                    )
+                    : Container(
+                      height: 44,
+                      width: 44,
+                      decoration: BoxDecoration(
+                        color: AppColor.primaryColor.withOpacity(0.12),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: IconButton(
+                          onPressed: () {
+                            Get.defaultDialog(
+                              title: "تأكيد الإلغاء",
+                              middleText:
+                                  "هل أنت متأكد أنك تريد إلغاء الطلب رقم #${order.orderId}؟",
+
+                              // زر الإلغاء
+                              onCancel: () {
+                                // لا يحدث شيء، يتم إغلاق مربع الحوار تلقائياً
+                              },
+                              textCancel: "إلغاء",
+                              cancelTextColor: Colors.grey,
+
+                              // زر التأكيد (الحذف)
+                              onConfirm: () {
+                                Get.back(); // إغلاق مربع الحوار
+                                orderController.deleteOrder(
+                                  order.orderId.toString(),
+                                ); // استدعاء دالة الحذف
+                              },
+                              textConfirm: "تأكيد الحذف",
+                              confirmTextColor: Colors.white,
+                              buttonColor: Colors.red, // لون أحمر للتنبيه
+                            );
+                          },
+                          icon: Icon(
+                            size: 18,
+                            Icons.delete_outline_rounded,
+                            color: AppColor.primaryColor,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(

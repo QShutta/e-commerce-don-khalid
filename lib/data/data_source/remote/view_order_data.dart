@@ -11,4 +11,12 @@ class ViewOrderData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future deleteOrder(String orderId, String userId) async {
+    var response = await crud.postData(AppLinkApi.deleteOrder, {
+      "order_id": orderId,
+      "user_id": userId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }
