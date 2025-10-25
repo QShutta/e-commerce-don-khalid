@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/controller/order_details_controller.dart';
+import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -20,101 +21,123 @@ class OrderDetails extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Card(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Table(
-                  children: [
-                    TableRow(
-                      children: [
-                        Text(
-                          "الصنف",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+          GetBuilder<OrderDetailsController>(
+            builder: (controller) {
+              return HnadlingDataView(
+                stautusRequest: orderController.statusRequest,
+                widget: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Table(
+                        children: [
+                          TableRow(
+                            children: [
+                              Text(
+                                "الصنف",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              Text(
+                                "العدد",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              Text(
+                                "السعر",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        Text(
-                          "العدد",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                          TableRow(
+                            children: [
+                              SizedBox(height: 10), // 👈 space between rows
+                              SizedBox(height: 10),
+                              SizedBox(height: 10),
+                            ],
                           ),
-                        ),
-                        Text(
-                          "السعر",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                          ...List.generate(
+                            orderController.orderDetailsList.length,
+                            (index) {
+                              return TableRow(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      orderController
+                                          .orderDetailsList[index]
+                                          .productNameAr!,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      orderController
+                                          .orderDetailsList[index]
+                                          .cartProductQuantity!
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      orderController
+                                          .orderDetailsList[index]
+                                          .productPriceAfterDiscopunt!
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
                           ),
-                        ),
-                      ],
+                          // TableRow(
+                          //   children: [
+                          //     Text(
+                          //       "توب الدون",
+                          //       textAlign: TextAlign.center,
+                          //       style: TextStyle(color: Colors.grey),
+                          //     ),
+                          //     Text(
+                          //       "6",
+                          //       textAlign: TextAlign.center,
+                          //       style: TextStyle(color: Colors.grey),
+                          //     ),
+                          //     Text(
+                          //       "5000",
+                          //       textAlign: TextAlign.center,
+                          //       style: TextStyle(color: Colors.grey),
+                          //     ),
+                          //   ],
+                          // ),
+                        ],
+                      ),
                     ),
-                    TableRow(
-                      children: [
-                        SizedBox(height: 10), // 👈 space between rows
-                        SizedBox(height: 10),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text(
-                          "جلابية الدون",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Text(
-                          "2",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Text(
-                          "3000",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        SizedBox(height: 10), // 👈 space between rows
-                        SizedBox(height: 10),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text(
-                          "توب الدون",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Text(
-                          "6",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Text(
-                          "5000",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
           SizedBox(height: 10),
           Container(
@@ -125,7 +148,7 @@ class OrderDetails extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Order Price:\$3500",
+                  "Order Price:\$${orderController.orderModel!.orderTotalPrice}",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColor.primaryColor,
@@ -192,7 +215,7 @@ class OrderDetails extends StatelessWidget {
                     //In that case ,will just display default location
                     orderController.orderModel!.orderDeliveryType == 1
                         ? orderController.storeLat
-                        : orderController.orderModel!.addressLang!,
+                        : orderController.orderModel!.addressLat!,
                     orderController.orderModel!.orderDeliveryType == 1
                         ? orderController.storeLang
                         : orderController.orderModel!.addressLang!,
@@ -259,7 +282,7 @@ class OrderDetails extends StatelessWidget {
                           //In that case ,will just display default location
                           orderController.orderModel!.orderDeliveryType == 1
                               ? orderController.storeLat
-                              : orderController.orderModel!.addressLang!,
+                              : orderController.orderModel!.addressLat!,
                           orderController.orderModel!.orderDeliveryType == 1
                               ? orderController.storeLang
                               : orderController.orderModel!.addressLang!,

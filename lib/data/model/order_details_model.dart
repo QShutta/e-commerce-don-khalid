@@ -82,30 +82,28 @@ class OrderDetailsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['productPrice'] =
-        this.cartItemPrice; // Using old key for cart item price
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['productPrice'] = cartItemPrice; // Using old key for cart item price
     data['productCount'] =
-        this.cartProductQuantity; // Using old key for cart item count
-    data['productPriceAfterDiscopunt'] = this.productPriceAfterDiscopunt;
-    data['cart_id'] = this.cartId;
-    data['cart_user_id'] = this.cartUserId;
-    data['cart_product_id'] = this.cartProductId;
-    data['cart_order'] = this.cartOrder;
-    data['products_id'] = this.productsId;
-    data['product_name_ar'] = this.productNameAr;
-    data['proudct_name_en'] = this.proudctNameEn;
-    data['product_desc_ar'] = this.productDescAr;
-    data['product_desc_en'] = this.productDescEn;
-    data['product_image'] = this.productImage;
+        cartProductQuantity; // Using old key for cart item count
+    data['productPriceAfterDiscopunt'] = productPriceAfterDiscopunt;
+    data['cart_id'] = cartId;
+    data['cart_user_id'] = cartUserId;
+    data['cart_product_id'] = cartProductId;
+    data['cart_order'] = cartOrder;
+    data['products_id'] = productsId;
+    data['product_name_ar'] = productNameAr;
+    data['proudct_name_en'] = proudctNameEn;
+    data['product_desc_ar'] = productDescAr;
+    data['product_desc_en'] = productDescEn;
+    data['product_image'] = productImage;
     data['product_count'] =
-        this.productStockQuantity; // Using old key for stock quantity
-    data['product_active'] = this.productActive;
-    data['product_price'] =
-        this.productUnitPrice; // Using old key for unit price
-    data['product_discount'] = this.productDiscount;
-    data['product_data_create'] = this.productDataCreate;
-    data['product_catogery'] = this.productCatogery;
+        productStockQuantity; // Using old key for stock quantity
+    data['product_active'] = productActive;
+    data['product_price'] = productUnitPrice; // Using old key for unit price
+    data['product_discount'] = productDiscount;
+    data['product_data_create'] = productDataCreate;
+    data['product_catogery'] = productCatogery;
     return data;
   }
 }

@@ -61,25 +61,25 @@ class OrderModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['order_id'] = this.orderId;
-    data['order_user_id'] = this.orderUserId;
-    data['order_price'] = this.orderPrice;
-    data['order_shiping_price'] = this.orderShipingPrice;
-    data['order_delivery_type'] = this.orderDeliveryType;
-    data['order_payment_method'] = this.orderPaymentMethod;
-    data['order_address'] = this.orderAddress;
-    data['order_coupon'] = this.orderCoupon;
-    data['order_date_create'] = this.orderDateCreate;
-    data['order_total_price'] = this.orderTotalPrice;
-    data['order_status'] = this.orderStatus;
-    data['address_id'] = this.addressId;
-    data['address_user_id'] = this.addressUserId;
-    data['address_name'] = this.addressName;
-    data['address_city'] = this.addressCity;
-    data['address_street'] = this.addressStreet;
-    data['address_lat'] = this.addressLat;
-    data['address_lang'] = this.addressLang;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['order_id'] = orderId;
+    data['order_user_id'] = orderUserId;
+    data['order_price'] = orderPrice;
+    data['order_shiping_price'] = orderShipingPrice;
+    data['order_delivery_type'] = orderDeliveryType;
+    data['order_payment_method'] = orderPaymentMethod;
+    data['order_address'] = orderAddress;
+    data['order_coupon'] = orderCoupon;
+    data['order_date_create'] = orderDateCreate;
+    data['order_total_price'] = orderTotalPrice;
+    data['order_status'] = orderStatus;
+    data['address_id'] = addressId;
+    data['address_user_id'] = addressUserId;
+    data['address_name'] = addressName;
+    data['address_city'] = addressCity;
+    data['address_street'] = addressStreet;
+    data['address_lat'] = addressLat;
+    data['address_lang'] = addressLang;
     return data;
   }
 }
