@@ -54,7 +54,9 @@ class SettingsPage extends StatelessWidget {
           CustomeListTile(
             titleText: 'Contact Us',
             leadingIcon: Icons.support_agent,
-            onListTileClicked: () {},
+            onListTileClicked: () {
+              settingController.callSupport();
+            },
           ),
           SizedBox(height: 10),
 
@@ -68,7 +70,7 @@ class SettingsPage extends StatelessWidget {
             titleText: "Sign Out",
             leadingIcon: Icons.logout_outlined,
             onListTileClicked: () {
-            settingController.logout();
+              settingController.logout();
             },
           ),
         ],

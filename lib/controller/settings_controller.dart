@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingController extends GetxController {
   Crud crud = Get.put(Crud());
@@ -67,24 +68,23 @@ class SettingController extends GetxController {
       update();
     }
   }
- logout()async{
-   myServices.sharedPreferences.setBool(
-                "isLoggedIn",
-                false,
-              );
 
-   Get.offAllNamed(AppRoutes.signIn);
-   String userId=myServices.sharedPreferences.getString("user_id").toString();
-  await   FirebaseMessaging.instance.unsubscribeFromTopic("users"); 
-  await   FirebaseMessaging.instance.unsubscribeFromTopic("users$userId");  
-  //Why did they use this?
-  //To ensure that all user-related data is removed upon logout, enhancing security and privacy.
-  //why?
-  // If we don't clear the shared preferences, sensitive information like user IDs, tokens, and settings could remain on the device after logout. This could lead to unauthorized access if someone else uses the app on the same device.
-  //By clearing the shared preferences, we ensure that all user-related data is removed, enhancing security and privacy.
-  myServices.sharedPreferences.clear();
-       
- }
+  logout() async {
+    myServices.sharedPreferences.setBool("isLoggedIn", false);
+
+    Get.offAllNamed(AppRoutes.signIn);
+    String userId =
+        myServices.sharedPreferences.getString("user_id").toString();
+    await FirebaseMessaging.instance.unsubscribeFromTopic("users");
+    await FirebaseMessaging.instance.unsubscribeFromTopic("users$userId");
+    //Why did they use this?
+    //To ensure that all user-related data is removed upon logout, enhancing security and privacy.
+    //why?
+    // If we don't clear the shared preferences, sensitive information like user IDs, tokens, and settings could remain on the device after logout. This could lead to unauthorized access if someone else uses the app on the same device.
+    //By clearing the shared preferences, we ensure that all user-related data is removed, enhancing security and privacy.
+    myServices.sharedPreferences.clear();
+  }
+
   // اختر صورة من المعرض
   addImageFromGallery() async {
     var gellaryPickedImage = await ImagePicker().pickImage(
@@ -171,5 +171,16 @@ class SettingController extends GetxController {
       }
     }
     update(); //This will update the UI
+  }
+
+  callSupport() async {
+    //In the path will put the number that we want to call there.
+    final Uri phoneNumber = Uri(scheme: 'tel', path: '0909054928');
+    //بنفحص اذا التطبيق بتعنا قادر يفتح التطبيق بتاع المكالامات او لا
+    if (await canLaunchUrl(phoneNumber)) {
+      await launchUrl(phoneNumber);
+    } else {
+      throw 'Could not launch $phoneNumber';
+    }
   }
 }
