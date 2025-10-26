@@ -50,11 +50,13 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
-</manifest>
-
+    
 <queries>
   <intent>
     <action android:name="android.intent.action.VIEW" />
     <data android:scheme="tel" />
   </intent>
 </queries>
+
+</manifest>
+

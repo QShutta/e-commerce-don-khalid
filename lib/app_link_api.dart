@@ -56,4 +56,6 @@ class AppLinkApi {
   //-------------------------orderDetails---------------------------
   static const String orderDetails = "$serverUrl/order/order_details_view.php";
   static const String deleteOrder = "$serverUrl/order/delete_order.php";
+  //---------------------------------------------------------------------
+  static const String offerPageLink = "$serverUrl/offers.php";
 }

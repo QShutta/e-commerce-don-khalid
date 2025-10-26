@@ -3,23 +3,29 @@ import 'package:flutter/material.dart';
 class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showFavoirte;
+  final bool showOffers;
+
   final bool showSearch;
   final Color? textColor;
   final Color? myColor;
+  final Color? offerButtonColor;
   final void Function()? onFavoriteButtonPressed;
   final void Function()? onNotificationIconButtonClicked;
-
+  final void Function()? onDiscountIconButtonClicked;
   final void Function()? onFirstSearchButtonClicked;
 
   const DonAppBar({
     super.key,
     required this.title,
     this.textColor,
+    this.offerButtonColor,
     this.myColor,
     this.showFavoirte = true,
+    this.showOffers = true,
     this.showSearch = true,
     this.onNotificationIconButtonClicked,
     this.onFavoriteButtonPressed,
+    this.onDiscountIconButtonClicked,
     this.onFirstSearchButtonClicked,
   });
 
@@ -53,19 +59,30 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               )
               : null,
-      actions:
-          
-               [
-             showFavoirte?   Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: IconButton(
-                    onPressed: onFavoriteButtonPressed,
-                    icon: const Icon(Icons.favorite_border_outlined, size: 30),
-                  ),
-             ):Container(),
-         
-              ]
-              
+      actions: [
+        showFavoirte
+            ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: onFavoriteButtonPressed,
+                icon: const Icon(Icons.favorite_border_outlined, size: 30),
+              ),
+            )
+            : Container(),
+        showOffers
+            ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: onDiscountIconButtonClicked,
+                icon: Icon(
+                  Icons.discount_outlined,
+                  size: 30,
+                  color: offerButtonColor,
+                ),
+              ),
+            )
+            : Container(),
+      ],
     );
   }
 }

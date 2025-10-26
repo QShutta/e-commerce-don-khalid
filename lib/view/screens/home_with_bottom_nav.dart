@@ -31,6 +31,9 @@ class HomeWithBottomNav extends StatelessWidget {
             onFavoriteButtonPressed: () {
               homeWithBottomNavBarController.goToFavoritePage();
             },
+            onDiscountIconButtonClicked: () {
+              Get.toNamed(AppRoutes.offersPageLink);
+            },
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.white,

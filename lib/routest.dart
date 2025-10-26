@@ -15,6 +15,7 @@ import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_otp.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/success_sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/cart.dart';
+import 'package:e_commerce_halfa/view/screens/offers_page.dart';
 import 'package:e_commerce_halfa/view/screens/order/checkout.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite_product_details.dart';
@@ -170,10 +171,18 @@ List<GetPage> appPages = [
     transitionDuration: const Duration(milliseconds: 400),
   ),
   //-----------------------------------orderDetails--------------------------------
-   GetPage(
+  GetPage(
     name: AppRoutes.orderDetails,
     page: () => OrderDetails(),
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),
+  //---------------------------------------------------------------------
+  GetPage(
+    name: AppRoutes.offersPageLink,
+    page: () => OffersPage(),
+    transition: Transition.rightToLeft,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
+  //----------------------------------------------------------------------
 ];
