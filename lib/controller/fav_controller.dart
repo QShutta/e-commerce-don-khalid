@@ -90,6 +90,7 @@ class FavController extends GetxController {
       } else {
         statusRequest = StautusRequest.failure;
       }
+      update();
     }
   }
 

@@ -150,9 +150,6 @@ class ProductItem extends StatelessWidget {
                             // );
                           },
                           icon:
-                              //Why did this not work?xxxxxxxxxxxxxxxxxxxx
-                              //Why did the color is not blue?xxxxxxxxxxxxxx
-                              //It work when i wrap the 1 with "" why before of that doesn't work?xxx
                               controller.isFav[productId] == "1"
                                   ? Icon(
                                     Icons.favorite,

@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
+import 'package:e_commerce_halfa/controller/fav_controller.dart';
 import 'package:e_commerce_halfa/controller/offers_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
@@ -11,15 +12,24 @@ class OffersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(OffersController());
+    FavController favController = Get.put<FavController>(FavController());
     return Scaffold(
       body: GetBuilder<OffersController>(
-        builder: (controller) {
+        builder: (offersController) {
           return HnadlingDataView(
-            stautusRequest: controller.statusRequest,
+            stautusRequest: offersController.statusRequest,
             widget: ListView.builder(
-              itemCount: controller.productList.length,
+              itemCount: offersController.productList.length,
               itemBuilder: (context, index) {
-                var product = controller.productList[index];
+                var product = offersController.productList[index];
+                //This to fill the isFav map.why to fill it ?
+                //The isFav map job is to speacfy wither the product is added to the fav table or not
+                //if it's added will be marked by 1.otherwise it will be marked by 0
+                favController.isFav[offersController
+                        .productList[index]
+                        .productsId] =
+                    product.fav.toString();
+
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
@@ -76,15 +86,47 @@ class OffersPage extends StatelessWidget {
                                 ),
                               ),
                               Spacer(),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 8),
-                                child: Icon(
-                                  product.fav == 0
-                                      ? Icons.favorite_border_outlined
-                                      : Icons.favorite,
-                                  size: 24,
-                                  color: AppColor.primaryColor,
-                                ),
+                              GetBuilder<FavController>(
+                                builder: (favController) {
+                                  return Container(
+                                    margin: EdgeInsets.only(bottom: 8),
+                                    child: IconButton(
+                                      onPressed: () {
+                                        if (favController.isFav[product
+                                                .productsId] ==
+                                            "1") {
+                                          favController.setFav(
+                                            product.productsId,
+                                            "0",
+                                          );
+                                          favController.deleteFromFav(
+                                            product.productsId.toString(),
+                                          );
+                                        } else {
+                                          favController.setFav(
+                                            product.productsId,
+                                            "1",
+                                          );
+                                          favController.addToFav(
+                                            product.productsId.toString(),
+                                          );
+                                        }
+                                      },
+                                      icon:
+                                          favController.isFav[product
+                                                      .productsId] ==
+                                                  "1"
+                                              ? Icon(
+                                                Icons.favorite,
+                                                color: AppColor.primaryColor,
+                                              )
+                                              : Icon(
+                                                Icons.favorite_outline,
+                                                color: Colors.grey,
+                                              ),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),
