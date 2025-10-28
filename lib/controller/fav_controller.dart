@@ -63,7 +63,9 @@ class FavController extends GetxController {
   setFav(id, val) {
     // هنا بنحدث قيمة المنتج في الـ isFav Map.
     isFav[id] = val;
-    // بنعمل update() عشان نقول لـ GetX إن في تغيير حصل في الـ controller دا،
+    // بنعمل
+    //update()
+    //عشان نقول لـ GetX إن في تغيير حصل في الـ controller دا،
     // وبالتالي أي GetBuilder بيعتمد على الـ FavController دا هيعمل rebuild للجزء بتاعه.
     update();
   }
