@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OffersPage extends StatelessWidget {
+  //Before of implement the search in the offer page.
   const OffersPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -92,6 +93,8 @@ class OffersPage extends StatelessWidget {
                                     margin: EdgeInsets.only(bottom: 8),
                                     child: IconButton(
                                       onPressed: () {
+                                        //When the user click on the button if the product is add to the fav already will be removed when click
+                                        //Otherwise it will be added to the fav.
                                         if (favController.isFav[product
                                                 .productsId] ==
                                             "1") {
@@ -112,6 +115,12 @@ class OffersPage extends StatelessWidget {
                                           );
                                         }
                                       },
+                                      //The icon shape will be taked fromt he isFav map.
+                                      //if the product is added to the fav table the value of the product in the
+                                      //isfav map will be 1 so his shape will be filled with blue.
+                                      //from where did that the value of the isFav map will caome?
+                                      //in the beging of the page when getting the products from the api we fill the isfav
+                                      //by it's values.
                                       icon:
                                           favController.isFav[product
                                                       .productsId] ==
