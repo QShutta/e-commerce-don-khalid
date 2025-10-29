@@ -1,0 +1,2 @@
+This folder will contain the widgets that will be used for search on 
+On products that threre is a discount over them .

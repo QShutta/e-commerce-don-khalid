@@ -11,4 +11,11 @@ class SearchData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future searchDiscountProducts(String searchText) async {
+    var response = await crud.postData(AppLinkApi.searchOverDiscount, {
+      "search_text": searchText,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

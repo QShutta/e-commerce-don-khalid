@@ -34,7 +34,13 @@ class OffersController extends GetxController {
                 .toList(),
           );
         } else {
+          print(
+            "-----------------------------------------noData------------------------------------",
+          );
           statusRequest = StautusRequest.failure;
+          print(
+            "-----------------------------------------End of noData------------------------------------",
+          );
         }
       }
       update(); //This will update the UI

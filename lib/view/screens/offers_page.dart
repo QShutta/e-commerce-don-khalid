@@ -3,6 +3,8 @@ import 'package:e_commerce_halfa/controller/fav_controller.dart';
 import 'package:e_commerce_halfa/controller/offers_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
+import 'package:e_commerce_halfa/view/screens/search_discount_products.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/don_app_bar.dart';
 import 'package:e_commerce_halfa/view/widgets/my_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,16 @@ class OffersPage extends StatelessWidget {
     Get.put(OffersController());
     FavController favController = Get.put<FavController>(FavController());
     return Scaffold(
+      appBar: DonAppBar(
+        title: 'Offers', //There are tow search icon:
+        //1-The first one her job is just to take you to the search page.
+        //2-The secound search icon will implement the real search job.
+        onFirstSearchButtonClicked: () {
+          Get.to(() => SearchDiscountProducts());
+        },
+        showFavoirte: false,
+        showOffers: false,
+      ),
       body: GetBuilder<OffersController>(
         builder: (offersController) {
           return HnadlingDataView(
@@ -49,7 +61,7 @@ class OffersPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            "Don Suite",
+                            product.productNameAr.toString(),
                             style: TextStyle(fontSize: 16),
                           ),
                         ),
