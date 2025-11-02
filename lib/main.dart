@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'firebase_options.dart';
 
-//Before of 159
+//Before of try to add rating to the product it self
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
