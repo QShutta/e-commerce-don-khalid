@@ -19,4 +19,19 @@ class ViewOrderData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  Future rateOrder(
+    String orderId,
+    String userId,
+    orderRatingValue,
+    orderRatingComment,
+  ) async {
+    var response = await crud.postData(AppLinkApi.rateOrder, {
+      "order_id": orderId,
+      "order_user_id": userId,
+      "order_rating_value": orderRatingValue,
+      "order_rating_comment": orderRatingComment,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

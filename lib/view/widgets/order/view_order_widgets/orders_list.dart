@@ -56,6 +56,10 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
             child: Row(
               children: [
+                //What is the benfit of this condtition?
+                //The benfit of this condtion is that if the order status is still waiting for approvel we give the
+                //user the ability to remove the order.but if the order status is prepering?or other status there is no way
+                //to remove the order.
                 order.orderStatus != 0
                     ? Container(
                       height: 44,

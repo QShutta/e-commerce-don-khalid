@@ -57,6 +57,10 @@ class HomeControllerImp extends HomeController {
 
   @override
   getData() async {
+    print("----------------------------------------------------");
+    print("inside of the getdata first line.");
+    print("----------------------------------------------------");
+
     try {
       //The inital value for the statusRequest is loading.
       statusRequest = StautusRequest.loading;
@@ -65,6 +69,13 @@ class HomeControllerImp extends HomeController {
       statusRequest = handlingStatusRequest(response);
       if (statusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
+          print("----------------------------------------------------");
+          print(
+            "inside of   if (response["
+            ")",
+          );
+          print("----------------------------------------------------");
+
           categories =
               (response['catogeries']['data'] as List)
                   .map((catogery) => Catogeries.fromJson(catogery))

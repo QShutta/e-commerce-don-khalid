@@ -10,8 +10,11 @@ import 'package:get/get.dart';
 class OrderController extends GetxController {
   String? userId;
   MyServices myServices = Get.find();
+  TextEditingController? ratingCommentController;
+  //This value is created to save the rating value on it.
+  double ratingValue = 0;
   StautusRequest stautusRequest = StautusRequest.none;
-  ViewOrderData viewOrderData = ViewOrderData(Get.find());
+  ViewOrderData orderData = ViewOrderData(Get.find());
   //Here we will store all of the orders wither they are active or archived
   List<OrderModel> ordersList = [];
   //Here we will store only the active orders
@@ -24,7 +27,13 @@ class OrderController extends GetxController {
   void onInit() {
     userId = myServices.sharedPreferences.getString("user_id");
     getOrder();
+    ratingCommentController = TextEditingController();
     super.onInit();
+  }
+
+  setRatingValue(val) {
+    ratingValue = val;
+    update();
   }
 
   //This to specfy the order status in a human readable format
@@ -55,7 +64,7 @@ class OrderController extends GetxController {
     ordersList.clear();
     stautusRequest = StautusRequest.loading;
     update();
-    var response = await viewOrderData.getData(userId!);
+    var response = await orderData.getData(userId!);
     stautusRequest = handlingStatusRequest(response);
     // print removed
     if (stautusRequest == StautusRequest.success) {
@@ -84,7 +93,7 @@ class OrderController extends GetxController {
     ordersList.clear();
     stautusRequest = StautusRequest.loading;
     update();
-    var response = await viewOrderData.deleteOrder(orderId, userId!);
+    var response = await orderData.deleteOrder(orderId, userId!);
     stautusRequest = handlingStatusRequest(response);
     // print removed
     if (stautusRequest == StautusRequest.success) {
@@ -123,5 +132,53 @@ class OrderController extends GetxController {
 
   goToOrderDetails(orderModel) {
     Get.toNamed(AppRoutes.orderDetails, arguments: {"orderModel": orderModel});
+  }
+
+  orderRating(orderId, ratingValue, ratingComment) async {
+    //The status will be loading because of the data will came from the server.
+    stautusRequest = StautusRequest.loading;
+    update();
+    var response = await orderData.rateOrder(
+      orderId,
+      myServices.sharedPreferences.getString("user_id")!,
+      ratingValue,
+      ratingComment,
+    );
+    stautusRequest = handlingStatusRequest(response);
+    update();
+    if (stautusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        //We clear the textform so that when the user submit and open it again it will be empty.
+        ratingCommentController!.clear();
+        Get.back();
+        Get.snackbar(
+          "نجاح",
+          "تم إرسال التقييم بنجاح.",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green.shade600, // درجة أخضر واضحة
+          colorText: Colors.white, // نص أبيض للوضوح على الخلفية الخضراء
+          icon: const Icon(
+            Icons.star_rate, // أيقونة نجمة بدل أيقونة الإلغاء
+            color: Colors.white,
+          ),
+          duration: const Duration(seconds: 3), // مدة العرض
+        );
+      } else if (response["status"] == "failure") {
+        ratingCommentController!.clear();
+
+        Get.back();
+        //In case of the status is faliure that means the user has rate this product before  with the same rating value
+        //and this is wrong behavior and we shuld just display a messsage to him
+        Get.snackbar(
+          "Duplicate Rating",
+          "You’ve already rated this order with the same value. Please change the rating or your comment before submitting again.",
+          icon: Icon(Icons.info_outline_rounded),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.orange.shade100,
+          colorText: Colors.black,
+        );
+      }
+    }
+    update();
   }
 }

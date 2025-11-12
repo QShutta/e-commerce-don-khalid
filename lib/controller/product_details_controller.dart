@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/products_data.dart';
+import 'package:e_commerce_halfa/data/data_source/remote/rating_data.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +16,9 @@ abstract class ProductDetailsController extends GetxController {
   void changeSelctedColor(Color color);
   void increaseQuantity();
   void decreaseQuantity();
+  //The rating is not neccery it's just chalnge that the coursee instructor give it to
+  //Me so that he make sure that i understand the prevous lessons very will and i ready to impelment real world tasks.
+  void rateProduct(productId, ratingValue);
 }
 
 class ProductDetailsControllerImp extends ProductDetailsController {
@@ -18,8 +26,13 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   Color selectedColor = Colors.black;
   int productCount = 0;
   CartData cartData = CartData(Get.find());
+  List<ProductsModel>? producstsLis = [];
+
+  //I will make an instance from the rating why?to rate the product.
+  RatingData ratingData = RatingData(Get.find());
   int quantity = 1;
   MyServices myServices = Get.find();
+
   List<String> sizes = ["S", "M", "L", "XL"];
   StautusRequest statusRequest = StautusRequest.none;
   List<Color> colors = [
@@ -34,14 +47,18 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     {"name": "beige", "id": "2", "active": "1"},
     {"name": "brown", "id": "3", "active": "0"},
   ];
+  ProductsControllerImp productsControllerImp =
+      Get.find<ProductsControllerImp>();
 
+  ProductData productData = ProductData(Get.find());
   ProductsModel productModel = Get.arguments["productDetails"];
+  double? productRatingValu;
   @override
   void onInit() {
     print("--------------------------------------------------");
     print("This is the product detailsControllerImp onInit method");
     print("--------------------------------------------------");
-
+    productRatingValu = productModel.productRating;
     initalValues();
     print("--------------------------------------------------");
     print(" The statusreques is $statusRequest }");
@@ -152,5 +169,70 @@ class ProductDetailsControllerImp extends ProductDetailsController {
       productCount--;
       update();
     }
+  }
+  //The rating for the product it self is not the righ behavior but i have do that just for practcing on how to do it
+  //why it's not the right behavoir ?
+  //Because of the goal of the shop owner or the store owner is to sell all of the products
+  //so when the customer see that one product have low rating he will never buy that product.
+  //So the righ place for the rating is in the order page .and it will not be displayed to the user
+  //no it will be only dislayed to the shop owner  so he will know if there is an issue and will try to fix it
+  //and make the user experince more better.
+
+  //This fucntion is use to rate the product.
+  //raingValue بتمثل ليك انو المنتج دة حنقيمو بي كم ؟0و1و2و3و4و5
+  @override
+  void rateProduct(productId, ratingValue) async {
+    //The status will be loading because of the data will came from the server.
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await ratingData.rateProduct(
+      myServices.sharedPreferences.getString("user_id"),
+      productId,
+      ratingValue,
+    );
+    statusRequest = handlingStatusRequest(response);
+    update();
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        //after the user rate the product we need to get the new rating value from the db.
+        //Because of the rating value will not be the raing of this user alone no we sumit the raing of all of the user and
+        //get the avg.that is the rating.
+        getOneProductData();
+      } else if (response["status"] == "failure") {
+        //In case of the status is faliure that means the user has rate this product before  with the same rating value
+        //and this is wrong behavior and we shuld just display a messsage to him
+        Get.snackbar(
+          "No change",
+          "You already rated this product with the same value.",
+          icon: Icon(Icons.info_outline_rounded),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.orange.shade100,
+          colorText: Colors.black,
+        );
+      }
+    }
+    update();
+  }
+
+  //Why ddi we get onlyy one productdata not all of the products?because of we only rate one
+  //product so there is no need to get the data of all of the products.
+  getOneProductData() async {
+    // print removed
+    statusRequest = StautusRequest.loading;
+    update();
+    var response = await ratingData.getOneProductData(
+      productModel.productsId.toString(),
+    );
+    statusRequest = handlingStatusRequest(response);
+    update();
+    if (statusRequest == StautusRequest.success) {
+      if (response["status"] == "success") {
+        productRatingValu =
+            (response['data']['product_rating'] as num).toDouble();
+      } else {
+        statusRequest = StautusRequest.failure;
+      }
+    }
+    update(); //This will update the UI
   }
 }

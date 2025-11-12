@@ -16,7 +16,9 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AddToCartButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: AddToCartButton(),
+      // bottomNavigationBar: AddToCartButton(),
       resizeToAvoidBottomInset: true,
       // backgroundColor: const Color.fromARGB(
       //   255,

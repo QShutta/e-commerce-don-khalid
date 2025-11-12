@@ -17,6 +17,8 @@ class OrderModel {
   String? addressStreet;
   double? addressLat;
   double? addressLang;
+  double? orderRatingValue;
+  String? orderRatingComment;
 
   OrderModel({
     this.orderId,
@@ -37,6 +39,8 @@ class OrderModel {
     this.addressStreet,
     this.addressLat,
     this.addressLang,
+    this.orderRatingValue,
+    this.orderRatingComment,
   });
 
   OrderModel.fromJson(Map<String, dynamic> json) {
@@ -58,6 +62,9 @@ class OrderModel {
     addressStreet = json['address_street'];
     addressLat = json['address_lat'];
     addressLang = json['address_lang'];
+
+    orderRatingValue = (json['order_rating_value'] as num?)?.toDouble();
+    orderRatingComment = json['order_rating_comment'];
   }
 
   Map<String, dynamic> toJson() {

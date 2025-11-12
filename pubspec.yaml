@@ -21,6 +21,7 @@ dependencies:
   flutter_local_notifications: ^19.1.0
   flutter_map: ^8.2.1
   flutter_otp_text_field: ^1.5.1+1
+  flutter_rating_bar: ^4.0.1
   flutter_ringtone_player: ^4.0.0+4
   flutter_svg: ^2.1.0
   font_awesome_flutter: ^10.8.0
@@ -36,6 +37,7 @@ dependencies:
   lottie: ^3.3.1
   path: ^1.9.1
   qr_flutter: ^4.1.0
+  rating_dialog: ^2.0.4
   shared_preferences: ^2.5.3
   show_up_animation: ^2.1.2
   url_launcher: ^6.3.2
@@ -49,6 +51,8 @@ flutter:
   uses-material-design: true
 
   assets:
+   
+    - assets/images/rating_icon_image.png
     - assets/images/data_states/
     - assets/images/onboarding/on_board1.svg
     - assets/images/onboarding/on_board2.svg

@@ -49,9 +49,10 @@ class AppLinkApi {
   static const String viewAddress = "$serverUrl/address/view.php";
   //----------------------------coupon---------------------------------
   static const String getValidCoupon = "$serverUrl/cupon/checkcupon.php";
-  //---------------------------Checkout-------------------------
+  //---------------------------Order-------------------------
   static const String addOrder = "$serverUrl/order/add_order.php";
   static const String viewOrder = "$serverUrl/order/view_order.php";
+  static const String rateOrder = "$serverUrl/order/order_rating.php";
   //--------------------------nofication------------------------
   static const String viewNotfication = "$serverUrl/view_notification.php";
   //-------------------------orderDetails---------------------------
@@ -59,4 +60,9 @@ class AppLinkApi {
   static const String deleteOrder = "$serverUrl/order/delete_order.php";
   //---------------------------------------------------------------------
   static const String offerPageLink = "$serverUrl/offers.php";
+  //-------------------------------Rating------------------------------------
+  static const String ratingLink = "$serverUrl/rating/add_rating.php";
+  static const String getOneProductDataLink =
+      "$serverUrl/products/get_one_product_data.php";
+  //-----------------------------
 }

@@ -13,6 +13,7 @@ class ProductsModel {
   int? productCatogery;
   String? fav;
   int? priceAfterDiscount;
+  double? productRating;
 
   ProductsModel({
     this.productsId,
@@ -29,6 +30,7 @@ class ProductsModel {
     this.productDataCreate,
     this.productCatogery,
     this.priceAfterDiscount,
+    this.productRating,
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
@@ -46,6 +48,10 @@ class ProductsModel {
     productCatogery = json['product_catogery'];
     fav = json['fav'].toString();
     priceAfterDiscount = json['priceAfterDiscount'];
+    //we know that the value that came ot us is number wither it's int or double
+    //but dart doesn't konw so we tell dart :hey dart this is a number by "as num".num is the parent father of all of the number in dart wither it's int,double
+    //after dart know that this is a number we can convert it to double.
+    productRating = (json["product_rating"] as num).toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -65,6 +71,7 @@ class ProductsModel {
     data['product_data_create'] = productDataCreate;
     data['product_catogery'] = productCatogery;
     data['fav'] = fav;
+    data['product_rating'] = productRating;
     return data;
   }
 }
