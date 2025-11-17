@@ -105,15 +105,12 @@ class ProductsControllerImp extends ProductsController {
   }
 
   @override
-  goToProductDetails(productDetails) async {
-    //Why did you add asyn,await?
-    //We want when the user rate product and return back to the products page.we have to get the data agin why?
-    //To display to him the new rating value when enter to the product details page again.
-    await Get.toNamed(
+  goToProductDetails(productDetails) {
+    // Navigate to the product details page without awaiting
+    Get.toNamed(
       AppRoutes.productDetails,
       arguments: {"productDetails": productDetails},
     );
-    getData();
   }
 
   goToSearchPage() {

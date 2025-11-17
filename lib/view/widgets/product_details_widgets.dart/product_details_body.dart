@@ -5,7 +5,6 @@ import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/productDetailsText.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_quantity_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsBody extends StatelessWidget {
@@ -122,33 +121,7 @@ class ProductDetailsBody extends StatelessWidget {
                         ],
                       ),
                   SizedBox(height: 20),
-                  //We put the rating starst outside fo that column because of the rating should always apear.
-                  //بغض النظر ن انو المنتج بنتمي لي اي  catogery.
-                  Align(
-                    alignment: AlignmentGeometry.topLeft,
-                    child: RatingBar.builder(
-                      allowHalfRating: true,
-                      itemSize: 30,
-                      glowColor: Colors.amberAccent,
-                      initialRating:
-                          productDetailsControllerImp.productRatingValu!,
-                      minRating: 0,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return Icon(
-                          Icons.star_border_outlined,
-                          color: Colors.amber,
-                        );
-                      },
-                      onRatingUpdate: (value) {
-                        productDetailsControllerImp.rateProduct(
-                          productDetailsControllerImp.productModel.productsId
-                              .toString(),
-                          value.toString(),
-                        );
-                      },
-                    ),
-                  ),
+                  // Removed RatingBar.builder and its logic
                 ],
               ),
             ),

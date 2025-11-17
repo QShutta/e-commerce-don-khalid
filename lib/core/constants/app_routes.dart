@@ -13,11 +13,11 @@ class AppRoutes {
   static const String signUpEmail = '/signUpEmail';
   static const String signUpOtp = '/signUpOtp';
 
-  //Home
+  //Home here we mean by it the home with bottom nav bar.
   static const String home = '/home';
-  //HomeWithBottomNav
-
-  static const String productsRoot = '/homeWithBottomNav';
+  //Why did you didn't add a root for the homewithoutbottomNavBar?
+  //Because of what?the homewithoutbottomnav is displayed inside of the home so.there is no need to create a seprate root for it.
+  static const String productsRoot = '/products';
   static const String productDetails = '/productDetails';
   static const String favorite = '/favirute';
   static const String favoriteProductDetails = '/favoriteProductDetails';

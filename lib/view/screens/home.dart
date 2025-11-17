@@ -20,7 +20,14 @@ class HomePage extends StatelessWidget {
           widget: SingleChildScrollView(
             child: Column(
               children: [
-                BannerSlider(productList: homeControllerImp.products),
+                HomeText(text: "الأفضل مبيعا"),
+                homeControllerImp.topSellingList.isEmpty
+                    ? FallBackBannerSlider(
+                      productList: homeControllerImp.products,
+                    )
+                    : BannerSlider(
+                      productList: homeControllerImp.topSellingList,
+                    ),
                 HomeText(text: "100".tr),
                 CategoryList(catogeriesList: homeControllerImp.categories),
                 EmpowerSection(
