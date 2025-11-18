@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
@@ -5,6 +7,7 @@ import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/home_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:e_commerce_halfa/data/model/setting_model.dart';
 import 'package:e_commerce_halfa/data/model/top_selling_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,10 +26,11 @@ class HomeControllerImp extends HomeController {
   MyServices myServices = Get.find();
   StautusRequest statusRequest = StautusRequest.none;
   HomeData homeData = HomeData(Get.find());
+  int? ranomNum;
   String? userName;
   List<Catogeries> categories = [];
   List<TopSellingModel> topSellingList = [];
-
+  List<SettingModel> textList = [];
   TextEditingController searchController = TextEditingController();
   // List products = [];
   List<ProductsModel> products = [];
@@ -93,7 +97,12 @@ class HomeControllerImp extends HomeController {
               (response['topSelling']['data'] as List)
                   .map((product) => TopSellingModel.fromJson(product))
                   .toList();
+          textList =
+              (response['texts']['data'] as List)
+                  .map((text) => SettingModel.fromJson(text))
+                  .toList();
 
+          ranomNum = Random().nextInt(textList.length);
           // print removed
         } else {
           statusRequest = StautusRequest.failure;
