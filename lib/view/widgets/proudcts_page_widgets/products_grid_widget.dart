@@ -10,66 +10,52 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class ProductsGridWidget extends StatelessWidget {
+class ProductsGridWidget extends StatefulWidget {
   final List<ProductsModel> productList;
   ProductsGridWidget({super.key, required this.productList});
 
+  @override
+  State<ProductsGridWidget> createState() => _ProductsGridWidgetState();
+}
+
+class _ProductsGridWidgetState extends State<ProductsGridWidget> {
   final ProductsControllerImp productsControllerImp = Get.put(
     ProductsControllerImp(),
   );
-  final favController = Get.put(FavController());
+  final FavController favController = Get.put(FavController());
+
+  @override
+  void initState() {
+    super.initState();
+    favController.initFavForProducts(widget.productList); // ✅ مرة واحدة فقط
+  }
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: productList.length,
+      itemCount: widget.productList.length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //This to controll on the heigh of the card.
         mainAxisExtent: 210,
         crossAxisSpacing: 2.0,
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
-        // We store the favorite state of each product inside a Map called isFav.
-        // The Map works like: { productId : favStatus }
-        // • productId → the unique ID of the product
-        // • favStatus → "1" means it is favorite, "0" means it is not
-        // Example shape of the Map after filling it:
-        //   { 10: "1", 11: "0", 14: "1" }
-        // This line takes the product ID as the key and assigns the product's
-        // favorite value to it. This makes it easy to check if any product is
-        // favorite
-        //I have create the prdouct var just to make the code more readable and easisest to read.
         var product = productsControllerImp.producstsLis![index];
-
-        favController.isFav[product.productsId] = product.fav;
-
-        return GetBuilder<FavController>(
-          initState: (_) {},
-          builder: (getBuilCont) {
-            return ProductItem(
-              imageUrl:
-                  "${AppLinkApi.productsImageLink}/${product.productImage}",
-              productName: translateDataBase(
-                product.proudctNameEn,
-                product.productNameAr,
-              ),
-              productPrice: product.productPrice.toString(),
-              onProductClicked: () {
-                //productList
-                //عبارة عن
-                //List<ProductsModel>،
-                // لذلك product
-                // هو عنصر من نوع
-                // ProductsModel
-                productsControllerImp.goToProductDetails(product);
-              },
-              productId: product.productsId!,
-              fav: product.fav.toString(),
-              productPriceAfterDiscount: product.priceAfterDiscount!.toString(),
-              discount: product.productDiscount, // Assuming fav is a string
-            );
+        return ProductItem(
+          productId: product.productsId!,
+          imageUrl: "${AppLinkApi.productsImageLink}/${product.productImage}",
+          productName: translateDataBase(
+            product.proudctNameEn,
+            product.productNameAr,
+          ),
+          productPrice: product.productPrice.toString(),
+          productPriceAfterDiscount: product.priceAfterDiscount!.toString(),
+          discount: product.productDiscount,
+          fav: product.fav.toString(),
+          onProductClicked: () {
+            productsControllerImp.goToProductDetails(product);
           },
         );
       },
@@ -97,8 +83,8 @@ class ProductItem extends StatelessWidget {
     required this.productId,
     required this.discount,
   });
+  final FavController favCont = Get.find(); // ✅ لا تعمل Get.put هنا
 
-  FavController favCont = Get.put(FavController());
   @override
   Widget build(BuildContext context) {
     return Padding(

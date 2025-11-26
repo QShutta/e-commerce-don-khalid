@@ -2,6 +2,7 @@ import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/favData.dart';
+import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -68,6 +69,12 @@ class FavController extends GetxController {
     //عشان نقول لـ GetX إن في تغيير حصل في الـ controller دا،
     // وبالتالي أي GetBuilder بيعتمد على الـ FavController دا هيعمل rebuild للجزء بتاعه.
     update();
+  }
+
+  initFavForProducts(List<ProductsModel> list) {
+    for (var product in list) {
+      isFav[product.productsId] = product.fav.toString();
+    }
   }
 
   addToFav(String productId) async {
