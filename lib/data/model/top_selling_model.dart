@@ -12,14 +12,10 @@ class TopSellingModel {
   int? productDiscount;
   String? productDataCreate;
   int? productCatogery;
-  String? fav;
-  int? priceAfterDiscount;
-  double? productRating;
 
   TopSellingModel({
     this.orderCount,
     this.productsId,
-    this.fav,
     this.productNameAr,
     this.proudctNameEn,
     this.productDescAr,
@@ -31,8 +27,6 @@ class TopSellingModel {
     this.productDiscount,
     this.productDataCreate,
     this.productCatogery,
-    this.priceAfterDiscount,
-    this.productRating,
   });
 
   TopSellingModel.fromJson(Map<String, dynamic> json) {
@@ -49,32 +43,23 @@ class TopSellingModel {
     productDiscount = json['product_discount'];
     productDataCreate = json['product_data_create'];
     productCatogery = json['product_catogery'];
-    fav = json['fav'].toString();
-    priceAfterDiscount = json['priceAfterDiscount'];
-    //we know that the value that came ot us is number wither it's int or double
-    //but dart doesn't konw so we tell dart :hey dart this is a number by "as num".num is the parent father of all of the number in dart wither it's int,double
-    //after dart know that this is a number we can convert it to double.
-    productRating = (json["product_rating"] as num).toDouble();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['products_id'] = productsId;
-    data['priceAfterDiscount'] = priceAfterDiscount;
-    data['fav'] = fav;
-    data['product_name_ar'] = productNameAr;
-    data['proudct_name_en'] = proudctNameEn;
-    data['product_desc_ar'] = productDescAr;
-    data['product_desc_en'] = productDescEn;
-    data['product_image'] = productImage;
-    data['product_count'] = productCount;
-    data['product_active'] = productActive;
-    data['product_price'] = productPrice;
-    data['product_discount'] = productDiscount;
-    data['product_data_create'] = productDataCreate;
-    data['product_catogery'] = productCatogery;
-    data['fav'] = fav;
-    data['product_rating'] = productRating;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['orderCount'] = this.orderCount;
+    data['products_id'] = this.productsId;
+    data['product_name_ar'] = this.productNameAr;
+    data['proudct_name_en'] = this.proudctNameEn;
+    data['product_desc_ar'] = this.productDescAr;
+    data['product_desc_en'] = this.productDescEn;
+    data['product_image'] = this.productImage;
+    data['product_count'] = this.productCount;
+    data['product_active'] = this.productActive;
+    data['product_price'] = this.productPrice;
+    data['product_discount'] = this.productDiscount;
+    data['product_data_create'] = this.productDataCreate;
+    data['product_catogery'] = this.productCatogery;
     return data;
   }
 }

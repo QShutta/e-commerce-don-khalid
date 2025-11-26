@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
@@ -65,37 +66,26 @@ class HomeControllerImp extends HomeController {
 
   @override
   getData() async {
-    print("----------------------------------------------------");
-    print("inside of the getdata first line.");
-    print("----------------------------------------------------");
-
     try {
       //The inital value for the statusRequest is loading.
       statusRequest = StautusRequest.loading;
       update();
-      var response = await homeData.getData();
+      var response = await homeData.getData(
+        myServices.sharedPreferences.getString("user_id")!,
+      );
+
       statusRequest = handlingStatusRequest(response);
       if (statusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
-          print("----------------------------------------------------");
-          print(
-            "inside of   if (response["
-            ")",
-          );
-          print("----------------------------------------------------");
-
           categories =
               (response['catogeries']['data'] as List)
                   .map((catogery) => Catogeries.fromJson(catogery))
                   .toList();
+
           // print removed
           products =
-              (response['products']['data'] as List)
+              (response['products'] as List)
                   .map((product) => ProductsModel.fromJson(product))
-                  .toList();
-          topSellingList =
-              (response['topSelling']['data'] as List)
-                  .map((product) => TopSellingModel.fromJson(product))
                   .toList();
           textList =
               (response['texts']['data'] as List)
@@ -103,7 +93,12 @@ class HomeControllerImp extends HomeController {
                   .toList();
 
           ranomNum = Random().nextInt(textList.length);
-          // print removed
+          topSellingList =
+              (response['topSelling']['data'] as List)
+                  .map((product) => TopSellingModel.fromJson(product))
+                  .toList();
+          //دي بتمثل ليك النص بتاع العضر .البظهر في صفحة الhome
+          //زي كن صاحب فرصة ولاحاجات د ي.
         } else {
           statusRequest = StautusRequest.failure;
         }
@@ -115,6 +110,7 @@ class HomeControllerImp extends HomeController {
       update();
     }
   }
+
   //Why did we pass the productCat?
   //Because we need to filter the products based on the selected category.
   //🔥 ليه ما بنستخدم بس selectedCat؟
@@ -139,7 +135,9 @@ class HomeControllerImp extends HomeController {
       //The inital value for the statusRequest is loading.
       statusRequest = StautusRequest.loading;
       update();
-      var response = await homeData.getData();
+      var response = await homeData.getData(
+        myServices.sharedPreferences.getString("user_id")!,
+      );
       statusRequest = handlingStatusRequest(response);
       if (statusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
@@ -163,5 +161,10 @@ class HomeControllerImp extends HomeController {
 
       update();
     }
+  }
+
+  void printDeep(dynamic data) {
+    const encoder = JsonEncoder.withIndent('  ');
+    print(encoder.convert(data));
   }
 }

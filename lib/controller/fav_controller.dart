@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //what is the job of this controller?
-//This controller will be used in the products page.
+//This controller will be used in the products page.,home page
 //It's job is just to add product to the favorite
 //and remove product from the favorite table.
 //Selecting wither this product is fav or not.
@@ -36,7 +36,7 @@ class FavController extends GetxController {
   // بسرعة وفعالية في الـ
   // UI،
   // بدون ما نحتاج نحدث كل البيانات من قاعدة البيانات تاني.
-  Map isFav = {};
+  RxMap isFav = {}.obs;
   String? userId;
   StautusRequest statusRequest = StautusRequest.none;
   FavData favData = FavData(Get.find());
@@ -77,7 +77,7 @@ class FavController extends GetxController {
       productId,
     );
     statusRequest = handlingStatusRequest(response);
-
+    update();
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
         Get.snackbar(
@@ -100,7 +100,7 @@ class FavController extends GetxController {
       productId,
     );
     statusRequest = handlingStatusRequest(response);
-
+    update();
     if (statusRequest == StautusRequest.success) {
       if (response["status"] == "success") {
         Get.snackbar(
@@ -110,14 +110,19 @@ class FavController extends GetxController {
           backgroundColor: Colors.blue,
           snackPosition: SnackPosition.BOTTOM,
         );
-        update();
       } else {
         statusRequest = StautusRequest.failure;
       }
+      update();
     }
   }
-}
 
+  printMap(Map myMap) {
+    myMap.forEach((key, value) {
+      print("$key:$value");
+    });
+  }
+}
 
 
   // ليه عملنا الـ 

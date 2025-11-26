@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
-      // home: ViewAddress(),
+      // home: HomeTest(),
       initialRoute: AppRoutes.languageSelection,
       getPages: appPages,
     );

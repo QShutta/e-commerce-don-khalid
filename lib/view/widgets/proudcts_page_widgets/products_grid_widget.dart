@@ -17,7 +17,7 @@ class ProductsGridWidget extends StatelessWidget {
   final ProductsControllerImp productsControllerImp = Get.put(
     ProductsControllerImp(),
   );
-  final favController = Get.put<FavController>(FavController());
+  final favController = Get.put(FavController());
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -31,36 +31,46 @@ class ProductsGridWidget extends StatelessWidget {
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
-        //Why did the course instructor fill the map "isFav" here?why in this line?xxxxxxxxxxxxxxxxxxxxxx
-        //هو ال isFav will be fill here مش مفتررض تكون في oninit why did he filled it here in this location?
-        favController.isFav[productsControllerImp
-                .producstsLis![index]
-                .productsId] =
-            productsControllerImp.producstsLis![index].fav;
+        // We store the favorite state of each product inside a Map called isFav.
+        // The Map works like: { productId : favStatus }
+        // • productId → the unique ID of the product
+        // • favStatus → "1" means it is favorite, "0" means it is not
+        // Example shape of the Map after filling it:
+        //   { 10: "1", 11: "0", 14: "1" }
+        // This line takes the product ID as the key and assigns the product's
+        // favorite value to it. This makes it easy to check if any product is
+        // favorite
+        //I have create the prdouct var just to make the code more readable and easisest to read.
+        var product = productsControllerImp.producstsLis![index];
 
-        return ProductItem(
-          imageUrl:
-              "${AppLinkApi.productsImageLink}/${productList[index].productImage}",
-          productName: translateDataBase(
-            productList[index].proudctNameEn,
-            productList[index].productNameAr,
-          ),
-          productPrice: productList[index].productPrice.toString(),
-          onProductClicked: () {
-            //productList
-            //عبارة عن
-            //List<ProductsModel>،
-            // لذلك productList[index]
-            // هو عنصر من نوع
-            // ProductsModel
-            productsControllerImp.goToProductDetails(productList[index]);
+        favController.isFav[product.productsId] = product.fav;
+
+        return GetBuilder<FavController>(
+          initState: (_) {},
+          builder: (getBuilCont) {
+            return ProductItem(
+              imageUrl:
+                  "${AppLinkApi.productsImageLink}/${product.productImage}",
+              productName: translateDataBase(
+                product.proudctNameEn,
+                product.productNameAr,
+              ),
+              productPrice: product.productPrice.toString(),
+              onProductClicked: () {
+                //productList
+                //عبارة عن
+                //List<ProductsModel>،
+                // لذلك product
+                // هو عنصر من نوع
+                // ProductsModel
+                productsControllerImp.goToProductDetails(product);
+              },
+              productId: product.productsId!,
+              fav: product.fav.toString(),
+              productPriceAfterDiscount: product.priceAfterDiscount!.toString(),
+              discount: product.productDiscount, // Assuming fav is a string
+            );
           },
-          productId: productList[index].productsId!,
-          fav: productList[index].fav.toString(),
-          productPriceAfterDiscount:
-              productList[index].priceAfterDiscount!.toString(),
-          discount:
-              productList[index].productDiscount, // Assuming fav is a string
         );
       },
     );
@@ -76,7 +86,7 @@ class ProductItem extends StatelessWidget {
   final String fav;
   final void Function()? onProductClicked;
   final int productId;
-  const ProductItem({
+  ProductItem({
     super.key,
     required this.onProductClicked,
     required this.productPriceAfterDiscount,
@@ -88,6 +98,7 @@ class ProductItem extends StatelessWidget {
     required this.discount,
   });
 
+  FavController favCont = Get.put(FavController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -132,36 +143,34 @@ class ProductItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GetBuilder<FavController>(
-                      builder: (controller) {
-                        return IconButton(
-                          onPressed: () {
-                            if (controller.isFav[productId] == "1") {
-                              controller.setFav(productId, "0");
-                              controller.deleteFromFav(productId.toString());
-                            } else {
-                              controller.setFav(productId, "1");
-                              controller.addToFav(productId.toString());
-                            }
-                            // //What did i have to put in this line?
-                            // controller.setFav(
-                            //   productId,
-                            //   controller.isFav[productId] == "1" ? "0" : "1",
-                            // );
-                          },
-                          icon:
-                              controller.isFav[productId] == "1"
-                                  ? Icon(
-                                    Icons.favorite,
-                                    color: AppColor.primaryColor,
-                                  )
-                                  : Icon(
-                                    Icons.favorite_outline,
-                                    color: Colors.grey,
-                                  ),
-                        );
-                      },
-                    ),
+                    Obx(() {
+                      return IconButton(
+                        onPressed: () {
+                          if (favCont.isFav.value[productId] == "1") {
+                            favCont.setFav(productId, "0");
+                            favCont.deleteFromFav(productId.toString());
+                          } else {
+                            favCont.setFav(productId, "1");
+                            favCont.addToFav(productId.toString());
+                          }
+                          // //What did i have to put in this line?
+                          // controller.setFav(
+                          //   productId,
+                          //   controller.isFav[productId] == "1" ? "0" : "1",
+                          // );
+                        },
+                        icon:
+                            favCont.isFav[productId] == "1"
+                                ? Icon(
+                                  Icons.favorite,
+                                  color: AppColor.primaryColor,
+                                )
+                                : Icon(
+                                  Icons.favorite_outline,
+                                  color: Colors.grey,
+                                ),
+                      );
+                    }),
                     discount == 0
                         ? Text(
                           "\$${productPrice!}",

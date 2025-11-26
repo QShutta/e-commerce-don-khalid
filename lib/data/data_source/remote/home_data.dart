@@ -5,8 +5,8 @@ class HomeData {
   Crud crud;
   HomeData(this.crud);
 
-  Future getData() async {
-    var response = await crud.postData(AppLinkApi.home, {});
+  Future getData(userId) async {
+    var response = await crud.postData(AppLinkApi.home, {"user_id": userId});
     return response.fold((l) => l, (r) => r);
   }
 

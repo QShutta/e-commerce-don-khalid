@@ -4,7 +4,7 @@ import 'package:e_commerce_halfa/view/widgets/home_widgets/banner_slider.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/catogery_list.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/empower_section.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/home_text.dart';
-import 'package:e_commerce_halfa/view/widgets/home_widgets/top_proudcts.dart';
+import 'package:e_commerce_halfa/view/widgets/home_widgets/discoun_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,16 +30,48 @@ class HomePage extends StatelessWidget {
                     ),
                 HomeText(text: "100".tr),
                 CategoryList(catogeriesList: homeControllerImp.categories),
+
+                // homeControllerImp.ranomNum == Null
+                //     ?
                 EmpowerSection(
                   title: "200".tr,
                   subTitle: "201".tr,
                   body: "202".tr,
                 ),
+
+                // : SizedBox(
+                //   height: 100,
+                //   width: 100,
+                //   child: IconButton(
+                //     onPressed: () {
+                //       print(
+                //         "-------------- START TEXT LIST --------------",
+                //       );
+
+                //       // Check if list is not empty
+                //       if (homeControllerImp.products.isNotEmpty) {
+                //         // Loop through the list and print details for each item
+                //         for (var item in homeControllerImp.textList) {
+                //           // Note: I am assuming the property names based on your JSON keys
+                //           // (usually snake_case in JSON becomes camelCase in Dart models)
+                //           print("ID: ${item.settingsId}");
+                //           print("Title: ${item.settingsTitle}");
+                //           print("Subtitle: ${item.settingSubTitle}");
+                //           print("*****************");
+                //         }
+                //       } else {
+                //         print("The textList is empty!");
+                //       }
+
+                //       print(
+                //         "--------------- END TEXT LIST ---------------",
+                //       );
+                //     },
+                //     icon: const Icon(Icons.textsms),
+                //   ),
+                // ),
                 HomeText(text: "207".tr),
-                TopProducts(
-                  productsList: homeControllerImp.products,
-                  isFav: false,
-                ),
+                DiscountProducts(productsList: homeControllerImp.products),
               ],
             ),
           ),
