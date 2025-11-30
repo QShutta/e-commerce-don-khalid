@@ -37,10 +37,13 @@ class Onboarding extends StatelessWidget {
             SizedBox(height: 20),
             DotsIndicator(),
             SizedBox(height: 25),
-            NextButton(
-              onPressed: () {
-                onBoardingCont.next();
-              },
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: NextButton(
+                onPressed: () {
+                  onBoardingCont.next();
+                },
+              ),
             ),
             SizedBox(height: 15),
             SkipButton(

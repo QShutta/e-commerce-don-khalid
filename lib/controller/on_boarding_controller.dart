@@ -31,6 +31,7 @@ abstract class OnBoardingController extends GetxController {
 
 class OnBoardingControllerImp extends OnBoardingController {
   int currentPage = 0;
+  bool isLastPage = false ; // Determine is LastPage or not
   // PageController is used to control and manage the PageView widget.
   // It allows us to programmatically move between pages using methods like 'animateToPage'.
   // We initialize it in onInit to make sure it's ready when the widget starts.
@@ -88,6 +89,12 @@ class OnBoardingControllerImp extends OnBoardingController {
     // PageView
     //بيدي رقم الصفحة الجديدة تلقائياً
     currentPage = index;
+    if(currentPage == onboardingList.length - 1) {
+        isLastPage = true ; 
+    }
+    else {
+      isLastPage = false ; 
+    }
     update(); // This method is used to notify the UI that the state has changed.
     // It tells GetX to rebuild any widgets that are listening to this controller.
     // So when the page changes, we call update() to refresh the UI with the new page index.

@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/controller/on_boarding_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,8 +17,9 @@ class NextButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
       ),
       onPressed: onPressed,
-      child: Text(
-        "9".tr,
+      child:GetBuilder<OnBoardingControllerImp>(builder: (controller)=>Text(
+       controller.isLastPage == true ? "218".tr :  "9".tr,
+        // "218".tr => لنبدا
         // "Next".tr, // Next button text in Arabic
         // "التالي".tr, // Next button text in Arabic
         style: TextStyle(
@@ -25,7 +27,7 @@ class NextButton extends StatelessWidget {
           fontSize: 20,
           color: Colors.white,
         ),
-      ),
+      )),
     );
   }
 }

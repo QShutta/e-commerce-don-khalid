@@ -173,6 +173,7 @@ class MyTranslation extends Translations {
 
       "216": "Write the product name...",
       "217": "What did you are looking for?",
+      "218" : "Finish"
     },
     "ar": {
       "1": "اختيار أفضل المنتجات",
@@ -282,6 +283,7 @@ class MyTranslation extends Translations {
       "215": "بحث المنتجات",
       "216": "اكتب اسم المنتج...",
       "217": "بتفتش في شنو ؟",
+      "218" : "لنبدأ"
     },
   };
 }
