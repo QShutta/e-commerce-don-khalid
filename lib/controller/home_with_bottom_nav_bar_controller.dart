@@ -19,7 +19,11 @@ class HomeWithBottomNavBarControllerImp extends HomeWithBottomNavBarController {
     SettingsPage(),
   ];
   TextEditingController searchController = TextEditingController();
-  List titleBottomAppBar = ["203".tr, "204".tr, "Notfication", "206".tr];
+  // We use a getter here so the titles are re-translated on every rebuild.
+  // .tr is evaluated each time the UI accesses this list, not once at init.
+  // This prevents the titles from becoming static when the app language changes.
+  List get titleBottomAppBar => ["203".tr, "204".tr, "220".tr, "206".tr];
+
   List iconBottomNavBar = [
     Icons.home_outlined,
     Icons.shopping_bag_outlined,

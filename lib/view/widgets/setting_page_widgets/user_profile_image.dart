@@ -22,17 +22,11 @@ class UserProfileImage extends StatelessWidget {
             child: Lottie.asset(ImageAssets.loading),
           );
         } else {
-          return Container(
-            width: 120,
-            height: 120,
-            clipBehavior: Clip.antiAlias,
-            decoration: const BoxDecoration(shape: BoxShape.circle),
-            child: CachedNetworkImage(
-              imageUrl: "${AppLinkApi.usersImage}/${controller.userImageUrl}",
-              fit: BoxFit.contain,
-              placeholder: (context, url) => Lottie.asset(ImageAssets.loading),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
+          return CachedNetworkImage(
+            imageUrl: "${AppLinkApi.usersImage}/${controller.userImageUrl}",
+            fit: BoxFit.contain,
+            placeholder: (context, url) => Lottie.asset(ImageAssets.loading),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           );
         }
       },

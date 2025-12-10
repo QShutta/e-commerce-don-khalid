@@ -29,8 +29,7 @@ class MainApp extends StatelessWidget {
     LocaleController langCont = Get.find();
     return GetMaterialApp(
       theme: langCont.appTheme,
-      // locale: langCont.lang,
-      locale: Locale("ar"),
+      locale: langCont.lang,
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,

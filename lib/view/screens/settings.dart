@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/controller/settings_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/change_language_button.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/disable_notification_switch.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/edit_button.dart';
@@ -22,10 +23,14 @@ class SettingsPage extends StatelessWidget {
           //موضوع الصورة ما تميتو لية؟
           //محتاج ارجع لي
           //course php in the part of adding image and whach the videos to implement this
-          UserProfileImage(),
+          //حاوقف الميزة بتاعت رفع الصورة لية ؟
+          //It contain bug and i have to fix it .but the amount of time that is availbe to me in the day about 2 ,3 h is not
+          //enough to engage with the error.
+          //so i will stop the feture temporary and return to it back in the future.
+          // UserProfileImage(),
           // صورة المستخدم
-          SizedBox(height: 20),
-          EditButton(),
+          // SizedBox(height: 20),
+          // EditButton(),
           ChangeLanguageButton(),
           LighDarkSwitch(),
           DisableNotificationSwitch(),
@@ -54,9 +59,7 @@ class SettingsPage extends StatelessWidget {
           CustomeListTile(
             titleText: 'Contact Us',
             leadingIcon: Icons.support_agent,
-            onListTileClicked: () {
-              settingController.callSupport();
-            },
+            onListTileClicked: () {},
           ),
           SizedBox(height: 10),
 

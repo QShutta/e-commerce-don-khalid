@@ -15,6 +15,7 @@ class LocaleController extends GetxController {
   // لو اللغة عربية هنستخدم تصميم معين، ولو إنجليزي هنستخدم تصميم تاني
 
   ThemeData appTheme = englishTheme;
+
   changeLanguage(String langCode) {
     Locale locale = Locale(langCode);
     myServices.sharedPreferences.setString("lang", langCode);
@@ -24,6 +25,7 @@ class LocaleController extends GetxController {
 
     // نحدث التصميم في كامل التطبيق
     Get.changeTheme(appTheme);
+    //دة عشان يغير اللغة .
     Get.updateLocale(locale);
   }
 

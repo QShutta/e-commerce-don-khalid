@@ -109,7 +109,7 @@ class HomeWithBottomNav extends StatelessWidget {
           },
           child: Scaffold(
             appBar: DonAppBar(
-              title: "Don Shop",
+              title: "219".tr,
               //This is the color of the title in the appBar.
               textColor: Colors.white,
 

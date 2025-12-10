@@ -5,7 +5,9 @@ import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/core/class/crud.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/constants/apptheme.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
+import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/user_data.dart';
 import 'package:e_commerce_halfa/data/model/users_model.dart';
@@ -14,10 +16,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SettingController extends GetxController {
   Crud crud = Get.put(Crud());
+  final LocaleController localeController = Get.find<LocaleController>();
   // Crud crud = Get.find();
   bool switchDarkLigh = false;
   UsersModel? userData;
@@ -25,7 +27,17 @@ class SettingController extends GetxController {
   MyServices myServices = Get.find();
   UsersData usersData = UsersData(Get.find());
   File? image;
+
+  //المتغير دة قيمتو حتتغير حسب اللغة المتختارها المستخدم يعني لو لامستخدم اختار لغة انجليزي النص حيكوenglish
+  //and if the languge is arbic the text will be عربي
+  String? langText;
   StautusRequest? stautusRequest;
+  Locale? lang;
+
+  //دة المتغير  اللى هنستخدمه عشان نغير تصميم التطبيق حسب اللغة
+  // لو اللغة عربية هنستخدم تصميم معين، ولو إنجليزي هنستخدم تصميم تاني
+
+  ThemeData appTheme = englishTheme;
   // هنا حتجيب الصورة من الـ
   //DB (مثلاً url)
   String userImageUrl = "";
@@ -40,6 +52,10 @@ class SettingController extends GetxController {
   // التقط صورة من الكاميرا
   @override
   void onInit() {
+    langText =
+        myServices.sharedPreferences.getString("lang") == "ar"
+            ? "English"
+            : "عربي";
     print(
       "------------------------------------getData------------------------------",
     );
@@ -50,6 +66,20 @@ class SettingController extends GetxController {
     );
     super.onInit();
     // print("${AppLinkApi.usersImage}/${userImageUrl!}");
+  }
+
+  //This function the job of this function is to change the language when the user
+  //click on the button if the language is arabic will change it to english and if it's enlish will cange it to arabic.
+  changeLanguage() {
+    //دي عشان نتحصل علي اللغة الحالية للتطبيق .
+    String currentLang = myServices.sharedPreferences.getString("lang")!;
+    //دي عشان نعكس اللغة يعني لو اللغة الحالية عربي حنغيرها لي انجلزي ولو انجلزي نبقيها عربي وهكذا .
+    String newLang = currentLang == "ar" ? "en" : "ar";
+    //هنا بنستدعي الدالة القمنها بي بناءها مسبقا لتغيير اللغة .
+    localeController.changeLanguage(newLang);
+
+    //النص القاعد في الزر بتاع تغيير اللغة برضو مفترض يتغير
+    langText = newLang == "ar" ? "English" : "عربي";
   }
 
   addImageFromCamera() async {
@@ -118,35 +148,28 @@ class SettingController extends GetxController {
     update();
   }
 
+  //{} → تجعل الباراميتر اختياري
   Future<void> uploadProfileImage(File image, {String? fileName}) async {
-    print(
-      "----------------------------------inside of the uploadPrfoleImage---------------------------------------",
-    );
-    fileName ??= basename(image.path);
-    print("--------------------------------------------------------------");
-    print("before of postRequestWithFile");
+    fileName ??= basename(image.path); // ← إنشاء اسم افتراضي إذا لم يُمرر
+
+    // ← **التعديل الجديد:** تمرير oldImageName للباك
     var response = await crud.postRequestWithFile(
       "${AppLinkApi.serverUrl}/uploade_user_image.php",
-      {
-        "user_id": myServices.sharedPreferences.getString("user_id").toString(),
-        // "user_id": "81",
-      },
+      {"user_id": myServices.sharedPreferences.getString("user_id").toString()},
       image,
-      fileName: fileName, // ← مرر الاسم هنا
+      fileName: fileName,
+      //userImageUrl دة متغير نحن اصلا معرفنو مسبقا في ال controller
+      //String userImageUrl = "";
+      //هذا المتغيّر يخزن اسم الصورة الحالية للمستخدم أو رابطها بعد ما تجيب بيانات المستخدم من السيرفر.
+      oldImageName: userImageUrl, // ← إرسال اسم الصورة القديمة
     );
-    print("--------------------------------------------------------------");
-    print("after of postRequestWithFile");
 
     if (response != null && response['success'] == true) {
-      userImageUrl = response['image_url'];
-      print("--------------------------------------------------------------");
+      userImageUrl = response['image_url']; // ← تحديث الرابط الجديد بعد الرفع
+      update(); // تحديث الـ UI
       print("Upload successful: $userImageUrl");
-      print("--------------------------------------------------------------");
-      update();
     } else {
-      print("--------------------------------------------------------------");
       print("Upload failed: ${response?['message']}");
-      print("--------------------------------------------------------------");
     }
   }
 
@@ -171,16 +194,5 @@ class SettingController extends GetxController {
       }
     }
     update(); //This will update the UI
-  }
-
-  callSupport() async {
-    //In the path will put the number that we want to call there.
-    final Uri phoneNumber = Uri(scheme: 'tel', path: '0909054928');
-    //بنفحص اذا التطبيق بتعنا قادر يفتح التطبيق بتاع المكالامات او لا
-    if (await canLaunchUrl(phoneNumber)) {
-      await launchUrl(phoneNumber);
-    } else {
-      throw 'Could not launch $phoneNumber';
-    }
   }
 }

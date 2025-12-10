@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           widget: SingleChildScrollView(
             child: Column(
               children: [
-                HomeText(text: "الأفضل مبيعا"),
+                HomeText(text: "218".tr),
                 homeControllerImp.topSellingList.isEmpty
                     ? FallBackBannerSlider(
                       productList: homeControllerImp.products,

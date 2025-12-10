@@ -1,15 +1,22 @@
+import 'package:e_commerce_halfa/controller/settings_controller.dart';
+import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class ChangeLanguageButton extends StatelessWidget {
-  const ChangeLanguageButton({super.key});
+  ChangeLanguageButton({super.key});
 
+  final SettingController settingController = Get.find<SettingController>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.language),
       title: Text("Change Language"),
       trailing: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          settingController.changeLanguage();
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(
             0xffEEF2F6,
@@ -18,8 +25,8 @@ class ChangeLanguageButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10), // Keep the rounded corners
           ),
         ),
-        child: const Text(
-          "English",
+        child: Text(
+          settingController.langText!,
           style: TextStyle(
             color: Color(0xff084699),
             fontSize: 18, // Customize font size

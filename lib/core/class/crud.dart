@@ -55,6 +55,8 @@ class Crud {
     Map data,
     File file, {
     String? fileName,
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    String? oldImageName,
   }) async {
     var request = http.MultipartRequest("POST", Uri.parse(url));
 
@@ -74,6 +76,13 @@ class Crud {
     data.forEach((key, value) {
       request.fields[key] = value;
     });
+    //دة بعمل شنو ؟
+    if (oldImageName != null && oldImageName.isNotEmpty) {
+      // If oldImageName has a value, add it to the request fields.
+      // This sends the name of the old image to the server so it can delete
+      // the old image after successfully uploading the new one.
+      request.fields['old_image_name'] = oldImageName;
+    }
 
     var myRequest = await request.send();
     var response = await http.Response.fromStream(myRequest);
