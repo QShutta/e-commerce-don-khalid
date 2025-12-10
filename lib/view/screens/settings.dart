@@ -10,6 +10,7 @@ import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/user_profile_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//Before of try to handle the issue of arabic/english,dark/light theme.
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
   final SettingController settingController = Get.put(SettingController());
