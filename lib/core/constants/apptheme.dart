@@ -15,6 +15,33 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 ThemeData englishTheme = ThemeData(
+  brightness: Brightness.light,
+  appBarTheme: AppBarTheme(backgroundColor: AppColor.primaryColor),
+  fontFamily: "playFair",
+  textTheme: const TextTheme(
+    headlineLarge: TextStyle(
+      color: Colors.white,
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    ),
+    bodyLarge: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      color: Colors.white,
+    ),
+    bodyMedium: TextStyle(fontSize: 16, color: Colors.black),
+    bodySmall: TextStyle(fontSize: 14, color: Colors.white70),
+    labelLarge: TextStyle(fontSize: 16, color: Colors.white),
+  ),
+);
+
+ThemeData englishDarkTheme = ThemeData(
+  brightness: Brightness.dark,
   appBarTheme: AppBarTheme(backgroundColor: AppColor.primaryColor),
   fontFamily: "playFair",
   textTheme: const TextTheme(
@@ -40,6 +67,33 @@ ThemeData englishTheme = ThemeData(
 );
 
 ThemeData arabicTheme = ThemeData(
+  brightness: Brightness.light,
+  appBarTheme: AppBarTheme(backgroundColor: AppColor.primaryColor),
+  fontFamily: "cairo",
+  textTheme: const TextTheme(
+    headlineLarge: TextStyle(
+      color: Colors.white,
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    ),
+    bodyLarge: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      color: Colors.white,
+    ),
+    bodyMedium: TextStyle(fontSize: 16, color: Colors.black),
+    bodySmall: TextStyle(fontSize: 14, color: Colors.white70),
+    labelLarge: TextStyle(fontSize: 16, color: Colors.white),
+  ),
+);
+
+ThemeData arabicDarkTheme = ThemeData(
+  brightness: Brightness.dark,
   appBarTheme: AppBarTheme(backgroundColor: AppColor.primaryColor),
   fontFamily: "cairo",
   textTheme: const TextTheme(

@@ -53,7 +53,8 @@ class ProductDetailsHeader extends StatelessWidget {
                 tag: productDetailsControllerImp.productModel.productsId!,
                 child: CachedNetworkImage(
                   imageUrl: imageUrl!,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
+
                   placeholder:
                       (context, url) =>
                           Center(child: Lottie.asset(ImageAssets.loading)),

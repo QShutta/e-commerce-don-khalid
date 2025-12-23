@@ -54,7 +54,7 @@ class BannerSlider extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl:
                     "${AppLinkApi.productsImageLink}/${product.productImage}",
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
                 width: double.infinity,
                 placeholder:
                     (context, url) =>

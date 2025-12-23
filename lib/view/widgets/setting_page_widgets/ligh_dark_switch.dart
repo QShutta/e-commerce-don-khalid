@@ -41,7 +41,9 @@ class LighDarkSwitch extends StatelessWidget {
             inactiveTrackColor: Color(0xffDAE0E7),
             inactiveThumbColor: Colors.white,
             value: controller.switchDarkLigh,
-            onChanged: controller.onLighDarkSwithchClicked,
+            onChanged: (value) {
+              controller.onLighDarkSwithchClicked(value);
+            },
           ),
         );
       },

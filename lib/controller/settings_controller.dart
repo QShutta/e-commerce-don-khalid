@@ -52,6 +52,8 @@ class SettingController extends GetxController {
   // التقط صورة من الكاميرا
   @override
   void onInit() {
+    // Sync the switch visual state with the actual controller state
+    switchDarkLigh = localeController.isDarkmode;
     langText =
         myServices.sharedPreferences.getString("lang") == "ar"
             ? "English"
@@ -140,6 +142,8 @@ class SettingController extends GetxController {
 
   onLighDarkSwithchClicked(value) {
     switchDarkLigh = value;
+    // Call the function in LocaleController to apply the change
+    localeController.changeThemeMode(value);
     update();
   }
 
