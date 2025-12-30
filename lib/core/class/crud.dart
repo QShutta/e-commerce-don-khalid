@@ -85,12 +85,54 @@ class Crud {
     }
 
     var myRequest = await request.send();
+
     var response = await http.Response.fromStream(myRequest);
 
     if (myRequest.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
       print("Error");
+    }
+  }
+
+  //In the recomendation system we have to pass the data in the form of json so we create this method:
+  Future<Either<StautusRequest, Map>> postDataAsJson(
+    String linkUrl,
+    Map data,
+  ) async {
+    try {
+      if (await checkInternet()) {
+        var res = await http.post(
+          Uri.parse(linkUrl),
+          headers: {"Content-Type": "application/json"},
+          //The job of this line of code is to pass the data as json format not a map.
+          //Because in the recomendation system we expect the data to be in json format.
+          body: jsonEncode(data),
+        );
+        print("Raw Status Code: ${res.statusCode}");
+        print("Raw Body: ${res.body}");
+        if (res.statusCode == 200 || res.statusCode == 201) {
+          print("Response status code: ${res.statusCode}");
+          // If the request is successful
+          Map resBody = json.decode(res.body);
+          print(
+            " -------------------------------$resBody---------------------------",
+          );
+          return Right(resBody);
+        } else {
+          // If the request fails, return a failure status
+          // with the error message from the server
+          return Left(StautusRequest.serverFailure);
+        }
+      } else {
+        // If there is no internet connection, return an offline failure status
+        // This is a failure in the request, not in the server
+        // so we return a Left with the StautusRequest.offlineFailure
+        return Left(StautusRequest.offlineFailure);
+      }
+    } catch (e) {
+      print("Server Exception: $e");
+      return Left(StautusRequest.serverException);
     }
   }
 }

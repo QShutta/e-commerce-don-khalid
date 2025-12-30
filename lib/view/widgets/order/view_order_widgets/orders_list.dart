@@ -22,14 +22,15 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
               height: 72,
             ),
           ),
-          const Text(
-            "No orders yet",
+          // Empty list UI
+          Text(
+            "241".tr, // No orders yet
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 4),
           Text(
-            "When you place orders, they'll appear here",
-            style: TextStyle(color: Colors.grey.shade600),
+            "242".tr, // When you place orders...
+            style: TextStyle(color: Colors.grey),
           ),
         ],
       ),
@@ -87,15 +88,16 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                         child: IconButton(
                           onPressed: () {
                             Get.defaultDialog(
-                              title: "تأكيد الإلغاء",
-                              middleText:
-                                  "هل أنت متأكد أنك تريد إلغاء الطلب رقم #${order.orderId}؟",
+                              title: "244".tr,
+                              middleText: "245".trParams({
+                                "id": order.orderId.toString(),
+                              }),
 
                               // زر الإلغاء
                               onCancel: () {
                                 // لا يحدث شيء، يتم إغلاق مربع الحوار تلقائياً
                               },
-                              textCancel: "إلغاء",
+                              textCancel: "63".tr,
                               cancelTextColor: Colors.grey,
 
                               // زر التأكيد (الحذف)
@@ -105,7 +107,7 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                                   order.orderId.toString(),
                                 ); // استدعاء دالة الحذف
                               },
-                              textConfirm: "تأكيد الحذف",
+                              textConfirm: "246".tr,
                               confirmTextColor: Colors.white,
                               buttonColor: Colors.red, // لون أحمر للتنبيه
                             );
@@ -129,7 +131,7 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                             child: Text(
                               //رمز #
                               // ما عندو معنى برمجي، لكنه رمز بصري يخلي رقم الطلب واضح ومميز للمستخدم.
-                              "Order #${order.orderId}",
+                              "243".trParams({"id": order.orderId.toString()}),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,

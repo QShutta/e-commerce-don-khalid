@@ -1,19 +1,14 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
 import 'package:e_commerce_halfa/controller/home_controller.dart';
+import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/data/model/setting_model.dart';
 import 'package:e_commerce_halfa/view/widgets/my_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EmpowerSection extends StatelessWidget {
-  const EmpowerSection({
-    super.key,
-    required this.title,
-    required this.subTitle,
-    required this.body,
-  });
-  final String title;
-  final String subTitle;
+  const EmpowerSection({super.key, required this.body});
+
   final String body;
 
   @override
@@ -36,7 +31,10 @@ class EmpowerSection extends StatelessWidget {
                   children: [
                     Text(
                       // "200".tr,
-                      empower.settingsTitle!,
+                      translateDataBase(
+                        empower.settingSubtitleEn,
+                        empower.settingSubTitle,
+                      ),
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade600,
                         fontSize: 14,
@@ -45,7 +43,10 @@ class EmpowerSection extends StatelessWidget {
                     SizedBox(height: 6),
                     Text(
                       // "201".tr,
-                      empower.settingSubTitle!,
+                      translateDataBase(
+                        empower.settingSubtitleEn,
+                        empower.settingSubTitle,
+                      ),
                       style: Theme.of(
                         context,
                       ).textTheme.titleMedium!.copyWith(color: Colors.black),

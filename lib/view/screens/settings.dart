@@ -42,12 +42,12 @@ class SettingsPage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           CustomeListTile(
-            titleText: "About Us",
+            titleText: "232".tr,
             leadingIcon: Icons.info_outline,
             onListTileClicked: () {},
           ),
           CustomeListTile(
-            titleText: "Address",
+            titleText: "233".tr,
             leadingIcon: Icons.location_on_outlined,
             onListTileClicked: () {
               Get.toNamed(AppRoutes.viewAddress);
@@ -55,20 +55,20 @@ class SettingsPage extends StatelessWidget {
           ),
           SizedBox(height: 10),
           CustomeListTile(
-            titleText: 'Contact Us',
+            titleText: '234'.tr,
             leadingIcon: Icons.support_agent,
             onListTileClicked: () {},
           ),
           SizedBox(height: 10),
 
           CustomeListTile(
-            titleText: "Change Password",
+            titleText: "235".tr,
             leadingIcon: Icons.key_outlined,
             onListTileClicked: () {},
           ),
           SizedBox(height: 10),
           CustomeListTile(
-            titleText: "Sign Out",
+            titleText: "236".tr,
             leadingIcon: Icons.logout_outlined,
             onListTileClicked: () {
               Get.defaultDialog(
@@ -83,7 +83,7 @@ class SettingsPage extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.exit_to_app,
                           color: Colors.redAccent,
@@ -91,7 +91,7 @@ class SettingsPage extends StatelessWidget {
                         ),
                         SizedBox(width: 8),
                         Text(
-                          "Sign Out",
+                          "236".tr,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -101,8 +101,8 @@ class SettingsPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    const Text(
-                      "Are you sure you want to SignOut?",
+                    Text(
+                      "237".tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16),
                     ),
@@ -121,8 +121,8 @@ class SettingsPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const Text(
-                            "Yes",
+                          child: Text(
+                            "238".tr,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -137,8 +137,8 @@ class SettingsPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const Text(
-                            "Cancel",
+                          child: Text(
+                            "63".tr,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),

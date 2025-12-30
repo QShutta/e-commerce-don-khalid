@@ -33,11 +33,7 @@ class HomePage extends StatelessWidget {
 
                 // homeControllerImp.ranomNum == Null
                 //     ?
-                EmpowerSection(
-                  title: "200".tr,
-                  subTitle: "201".tr,
-                  body: "202".tr,
-                ),
+                EmpowerSection(body: "202".tr),
 
                 // : SizedBox(
                 //   height: 100,

@@ -22,7 +22,7 @@ class CuponButtonAndForm extends StatelessWidget {
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-              hintText: 'Enter coupon code',
+              hintText: '263'.tr,
 
               /*border = القاعدة العامة (يستخدم إذا ما حددت غيره).
                         enabledBorder = للحالة العادية.

@@ -29,7 +29,7 @@ class CustomBottomAppBar extends StatelessWidget {
       // وبين الحافة المقوسة
       // داخل
       // BottomAppBar.
-      notchMargin: 20.0,
+      notchMargin: 15.0,
       child: Row(
         children: [
           // عدد العناصر الأساسية في الـ
@@ -68,7 +68,7 @@ class CustomBottomAppBar extends StatelessWidget {
             return index == 2
                 ? Spacer()
                 : Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 15),
                   child: CustomeButtonBottomNavBar(
                     onTap: () {
                       homeWithBottomNavBarController.changeCurrentPage(i);

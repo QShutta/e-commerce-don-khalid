@@ -31,7 +31,7 @@ class CartSummery extends StatelessWidget {
                       Icon(Icons.check_circle_outline, color: Colors.blue),
                       SizedBox(width: 5),
                       Text(
-                        'تم تطبيق الكوبون:',
+                        "260".tr, // Coupon applied:
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -68,14 +68,14 @@ class CartSummery extends StatelessWidget {
             ),
             SizedBox(height: 10),
             TotalText(
-              text: "الخصم".tr,
+              text: "261".tr, // Discount
               price: "%${cartCont.discountCoupon}",
               color: AppColor.greyText,
             ),
             SizedBox(height: 10),
             SizedBox(height: 10),
             TotalText(
-              text: "سعر التوصيل".tr,
+              text: "262".tr, // Delivery Price
               price: "\$500",
               color: AppColor.greyText,
             ),

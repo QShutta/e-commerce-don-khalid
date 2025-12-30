@@ -34,7 +34,7 @@ class LighDarkSwitch extends StatelessWidget {
       builder: (controller) {
         return ListTile(
           leading: Icon(Icons.dark_mode_outlined),
-          title: Text("Ligh/Dark Mode"),
+          title: Text("221".tr),
           trailing: Switch(
             activeTrackColor: AppColor.primaryColor,
             activeThumbColor: Colors.white,

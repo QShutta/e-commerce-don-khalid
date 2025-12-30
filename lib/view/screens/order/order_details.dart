@@ -16,7 +16,7 @@ class OrderDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomeAppBar(
-        searchTextTitle: 'OrderDetails',
+        searchTextTitle: "253".tr, // Order Details
         textColor: AppColor.primaryColor,
       ),
       body: GetBuilder<OrderDetailsController>(
@@ -36,7 +36,7 @@ class OrderDetails extends StatelessWidget {
                           TableRow(
                             children: [
                               Text(
-                                "الصنف",
+                                "254".tr, // Item
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: AppColor.primaryColor,
@@ -45,7 +45,7 @@ class OrderDetails extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "العدد",
+                                "255".tr, // Quantity
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: AppColor.primaryColor,
@@ -54,7 +54,7 @@ class OrderDetails extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "السعر",
+                                "256".tr, // Price
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: AppColor.primaryColor,
@@ -120,13 +120,16 @@ class OrderDetails extends StatelessWidget {
                 SizedBox(height: 10),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10.0),
-
                   child: Card(
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Order Price:\$${orderController.orderModel!.orderTotalPrice}",
+                        "257".trParams({
+                          "price":
+                              orderController.orderModel!.orderTotalPrice
+                                  .toString(),
+                        }), // Order Price: $@price
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColor.primaryColor,
@@ -157,7 +160,7 @@ class OrderDetails extends StatelessWidget {
                         ),
                         width: double.infinity,
                         child: Text(
-                          "Shipping Address",
+                          "258".tr, // Shipping Address
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             color: Colors.black,
@@ -174,7 +177,8 @@ class OrderDetails extends StatelessWidget {
                         width: double.infinity,
                         child: Text(
                           orderController.orderModel!.addressName == null
-                              ? "No address data"
+                              ? "259"
+                                  .tr // No address data
                               : "${orderController.orderModel!.addressName}\n${orderController.orderModel!.addressCity}\n${orderController.orderModel!.addressStreet}\n",
                           textAlign: TextAlign.start,
                           style: TextStyle(

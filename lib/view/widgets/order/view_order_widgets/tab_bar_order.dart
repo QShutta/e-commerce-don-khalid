@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TabBarOrder extends StatelessWidget {
   const TabBarOrder({super.key});
@@ -23,7 +24,10 @@ class TabBarOrder extends StatelessWidget {
         labelColor: Colors.black,
         indicatorColor: AppColor.primaryColor,
         unselectedLabelColor: Colors.black87,
-        tabs: const [Tab(text: "Active"), Tab(text: "Archived")],
+        tabs: [
+          Tab(text: "239".tr), // Active
+          Tab(text: "240".tr), // Archived
+        ],
       ),
     );
   }

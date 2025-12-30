@@ -25,7 +25,7 @@ class EditButton extends StatelessWidget {
                     settingController.addImageFromCamera();
                     Get.back();
                   },
-                  child: Column(children: [Icon(Icons.camera), Text("Camera")]),
+                  child: Column(children: [Icon(Icons.camera), Text("222".tr)]),
                 ),
                 SizedBox(width: 150),
                 InkWell(
@@ -36,7 +36,7 @@ class EditButton extends StatelessWidget {
                   child: Column(
                     children: [
                       Icon(Icons.photo_library_outlined),
-                      Text("Gellary"),
+                      Text("223".tr),
                     ],
                   ),
                 ),
@@ -49,7 +49,7 @@ class EditButton extends StatelessWidget {
         width: double.infinity,
         child: Text(
           textAlign: TextAlign.center,
-          "Edit",
+          "231".tr,
           style: TextStyle(color: AppColor.primaryColor),
         ),
       ),

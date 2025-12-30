@@ -67,6 +67,8 @@ class LocaleController extends GetxController {
 
     //دة بيعيد بناء كل الواجهات الموجودة في التطبيق .
     Get.forceAppUpdate();
+    // notify GetBuilder / GetX listeners that locale/theme changed
+    update();
   }
 
   //I think this is the fucntion that will be used to switch between dark/light mode.
@@ -81,8 +83,8 @@ class LocaleController extends GetxController {
     myServices.sharedPreferences.setBool("isDarkMode", isDark);
     updateThemeData(currentLang, isDarkmode);
     Get.changeTheme(appTheme);
-    // update();
-
+    // Notify listeners and force a full app update so UI rebuilds with new theme
+    update();
     Get.forceAppUpdate();
   }
 
@@ -104,16 +106,19 @@ class LocaleController extends GetxController {
       lang = Locale("ar", "SA");
       appTheme = arabicTheme;
       Jiffy.setLocale("ar");
+      update();
     } else if (sharedPrefLang == "en") {
       lang = Locale("en", "US");
       appTheme = englishTheme;
-      Jiffy.setLocale("ar");
+      Jiffy.setLocale("en");
+      update();
     } else {
       lang = Locale(
         Get.deviceLocale!.languageCode,
         Get.deviceLocale!.countryCode,
       );
       Jiffy.setLocale(Get.deviceLocale!.languageCode);
+      update();
     } // Set the initial theme based on both retrieved values
     updateThemeData(langCode, isDarkmode);
     //Why did the course instructor put these in the locale controller?

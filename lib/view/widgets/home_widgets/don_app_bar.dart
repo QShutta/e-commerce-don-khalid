@@ -52,10 +52,10 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
           showSearch
               ? IconButton(
                 onPressed: onFirstSearchButtonClicked,
-                icon: const Icon(
+                icon: Icon(
                   Icons.search_outlined,
                   size: 30,
-                  color: Colors.black,
+                  color: Colors.white.withValues(alpha: 0.70),
                 ),
               )
               : null,
@@ -64,6 +64,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
             ? Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
+                color: Colors.white.withValues(alpha: 0.70),
                 onPressed: onFavoriteButtonPressed,
                 icon: const Icon(Icons.favorite_border_outlined, size: 30),
               ),
@@ -77,7 +78,7 @@ class DonAppBar extends StatelessWidget implements PreferredSizeWidget {
                 icon: Icon(
                   Icons.discount_outlined,
                   size: 30,
-                  color: offerButtonColor,
+                  color: Colors.white.withValues(alpha: 0.70),
                 ),
               ),
             )

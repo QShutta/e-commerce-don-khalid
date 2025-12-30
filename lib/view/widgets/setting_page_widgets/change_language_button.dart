@@ -12,7 +12,7 @@ class ChangeLanguageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.language),
-      title: Text("Change Language"),
+      title: Text("225".tr),
       trailing: ElevatedButton(
         onPressed: () {
           settingController.changeLanguage();

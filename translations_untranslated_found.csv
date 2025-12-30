@@ -1,0 +1,11 @@
+key,english,arabic,files
+221,"Light/Dark Mode","وضع فاتح/داكن","lib/view/widgets/setting_page_widgets/ligh_dark_switch.dart"
+222,"Camera","الكاميرا","lib/view/widgets/setting_page_widgets/edit_button.dart"
+223,"Gallery","المعرض","lib/view/widgets/setting_page_widgets/edit_button.dart"
+224,"Disable Notification","تعطيل الإشعارات","lib/view/widgets/setting_page_widgets/disable_notification_switch.dart"
+225,"Change Language","تغيير اللغة","lib/view/widgets/setting_page_widgets/change_language_button.dart"
+226,"Update","تحديث","lib/view/widgets/address/update_address_details/update_address_button.dart"
+227,"Update Details","تحديث التفاصيل","lib/view/widgets/address/update_address_details_map/button.dart"
+228,"MYTest","اختبار","lib/test.dart (dev)"
+229,"Rate: @rating","التقييم: @rating","lib/view/screens/offers_page.dart"
+230,"OK","موافق","lib/controller/auth_controller/sign_in_controller.dart"

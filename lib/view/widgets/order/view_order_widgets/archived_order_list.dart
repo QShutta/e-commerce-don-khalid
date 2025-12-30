@@ -4,6 +4,7 @@ import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
 import 'package:e_commerce_halfa/view/widgets/order/view_order_widgets/rating_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:jiffy/jiffy.dart';
 
@@ -33,19 +34,22 @@ Widget buildArchivedOrderList(
               height: 72,
             ),
           ),
-          const Text(
-            "No orders yet",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+
+          // Empty list UI (translated)
+          Text(
+            "241".tr, // No orders yet
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 4),
           Text(
-            "When you place orders, they'll appear here",
+            "242".tr, // When you place orders, they'll appear here
             style: TextStyle(color: Colors.grey.shade600),
           ),
         ],
       ),
     );
   }
+
   return GetBuilder<OrderController>(
     builder: (orderCont) {
       return ListView.separated(
@@ -97,9 +101,9 @@ Widget buildArchivedOrderList(
                             children: [
                               Expanded(
                                 child: Text(
-                                  //رمز #
-                                  // ما عندو معنى برمجي، لكنه رمز بصري يخلي رقم الطلب واضح ومميز للمستخدم.
-                                  "Order #${order.orderId}",
+                                  "243".trParams({
+                                    "id": order.orderId.toString(),
+                                  }), // Order #@id
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
@@ -107,6 +111,7 @@ Widget buildArchivedOrderList(
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
+
                               IconButton(
                                 onPressed: () {
                                   showDialog(
@@ -138,7 +143,7 @@ Widget buildArchivedOrderList(
                                   orderController.printOrderStatus(
                                     order.orderStatus.toString(),
                                   ),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.green,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,

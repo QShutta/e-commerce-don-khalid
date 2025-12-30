@@ -41,17 +41,17 @@ class OrderController extends GetxController {
   String printOrderStatus(String value) {
     switch (value) {
       case "0":
-        return "Pending Approval"; // قيد انتظار الموافقة
+        return "247".tr; // Pending Approval
       case "1":
-        return "Preparing"; // قيد التحضير
+        return "248".tr; // Preparing
       case "2":
-        return "Shipping"; // قيد التوصيل
+        return "249".tr; // Shipping
       case "3":
-        return "Delivered"; // تم التوصيل
+        return "250".tr; // Delivered
       case "4":
-        return "Archived"; // أرشيف
+        return "251".tr; // Archived
       default:
-        return "Unknown";
+        return "252".tr; // Unknown
     }
   }
 
