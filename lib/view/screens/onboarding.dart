@@ -4,6 +4,7 @@ import 'package:e_commerce_halfa/view/widgets/on_boarding_page/next_button.dart'
 import 'package:e_commerce_halfa/view/widgets/on_boarding_page/on_boarding_item.dart';
 import 'package:e_commerce_halfa/view/widgets/on_boarding_page/skip_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 import 'package:get/get.dart';
 
 //Test move from the last on boarding to the sign page page

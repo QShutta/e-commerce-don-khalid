@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 // We use it to initialize SharedPreferences once and access it anywhere in the app.
 class MyServices extends GetxService {
   late SharedPreferences sharedPreferences;
-
   // This method initializes SharedPreferences only once
   Future init() async {
     sharedPreferences = await SharedPreferences.getInstance();

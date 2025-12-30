@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
+import 'package:e_commerce_halfa/core/functions/finger_print.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/auth/signin_data.dart';
@@ -14,6 +15,7 @@ abstract class SignInController extends GetxController {
   goToForgetPassword();
   signInWithGoogle();
   signInWithFacebook();
+  signInWithFingerPrint();
 }
 
 class SignInControllerImp extends SignInController {
@@ -28,7 +30,6 @@ class SignInControllerImp extends SignInController {
   SignInData signInData = SignInData(Get.find());
   @override
   void onInit() {
-
     FirebaseMessaging.instance.getToken().then((token) {
       print("----------------------------------------");
       print("Firebase Token: $token");
@@ -65,33 +66,32 @@ class SignInControllerImp extends SignInController {
       update();
       if (stautusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
-        
-          myServices.sharedPreferences.setString(
-            "user_id",
-            response["data"]["user_id"].toString(),
-          );
-          myServices.sharedPreferences.setString(
-            "user_name",
-            response["data"]["user_name"].toString(),
-          );
-          myServices.sharedPreferences.setString(
-            "user_email",
-            response["data"]["user_email"].toString(),
-          );
-  await myServices.sharedPreferences.setBool("isLoggedIn", true);
-    // Subscribe the user to a topic to be able to send notifcaitno to him.
-    //This will be used in case of that we want to send notification to all of the users that registered in 
-    //our applciationp.
-    FirebaseMessaging.instance.subscribeToTopic('users');
+          // Persist user data and await writes so they complete before navigation
+          final String uid = response["data"]["user_id"].toString();
+          final String uname = response["data"]["user_name"].toString();
+          final String uemail = response["data"]["user_email"].toString();
+          await myServices.sharedPreferences.setString("user_id", uid);
+          await myServices.sharedPreferences.setString("user_name", uname);
+          await myServices.sharedPreferences.setString("user_email", uemail);
+          await myServices.sharedPreferences.setBool("isLoggedIn", true);
+          print('DEBUG: stored user_id=$uid');
+          // Subscribe the user to a topic to be able to send notifcaitno to him.
+          //This will be used in case of that we want to send notification to all of the users that registered in
+          //our applciationp.
+          FirebaseMessaging.instance.subscribeToTopic('users');
 
-    //The course instructor want to allow the user to subscrbe to his own topic.so that each user has his own topic
-    //What is the benfit of this thing?
-    //هو عمل كدة عشان نحنا نقدر انو نرسل اشعار فقط للمستخدم المحدد يعني مثلا هو طلب اوردر معين من غير المنطق ان
-    //نرسل اشعارات لجميع المستخدمين الموجودين في التطبيق انو الاوردر بتاع فلان وصل فهمتة ؟
-    String userId=myServices.sharedPreferences.getString("user_id").toString();
-    FirebaseMessaging.instance.subscribeToTopic('users$userId');
+          //The course instructor want to allow the user to subscrbe to his own topic.so that each user has his own topic
+          //What is the benfit of this thing?
+          //هو عمل كدة عشان نحنا نقدر انو نرسل اشعار فقط للمستخدم المحدد يعني مثلا هو طلب اوردر معين من غير المنطق ان
+          //نرسل اشعارات لجميع المستخدمين الموجودين في التطبيق انو الاوردر بتاع فلان وصل فهمتة ؟
+          String userId =
+              myServices.sharedPreferences.getString("user_id").toString();
+          FirebaseMessaging.instance.subscribeToTopic('users');
 
-
+          // subscribe to user-specific topic if available
+          if (userId.isNotEmpty && userId != 'null') {
+            FirebaseMessaging.instance.subscribeToTopic('users$userId');
+          }
 
           Get.offAllNamed(AppRoutes.home);
         } else {
@@ -174,5 +174,34 @@ class SignInControllerImp extends SignInController {
       );
     }
     update();
+  }
+
+  bool isLoading = false;
+
+  @override
+  Future<bool> signInWithFingerPrint() async {
+    AppAuth appAuth = AppAuth();
+    try {
+      isLoading = true;
+      update();
+
+      final success = await appAuth.authLogin();
+
+      isLoading = false;
+
+      update();
+
+      return success == true;
+    } catch (e, st) {
+      isLoading = false;
+      update();
+      print('Fingerprint login exception: $e');
+      print(st);
+      Get.defaultDialog(
+        title: 'Error',
+        middleText: 'Fingerprint login failed: ${e.toString()}',
+      );
+      return false;
+    }
   }
 }

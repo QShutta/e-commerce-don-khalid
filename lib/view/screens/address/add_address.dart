@@ -4,7 +4,6 @@ import 'package:e_commerce_halfa/view/screens/address/map_button.dart';
 import 'package:e_commerce_halfa/view/widgets/address/add_address/address_map.dart';
 import 'package:e_commerce_halfa/view/widgets/custome_app_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class AddAddress extends StatelessWidget {
@@ -15,10 +14,7 @@ class AddAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(
-        searchTextTitle: 'Address Add',
-        textColor: Colors.black,
-      ),
+      appBar: CustomeAppBar(searchTextTitle: '608'.tr, textColor: Colors.black),
 
       body: GetBuilder<AddAddressController>(
         builder: (controller) {
@@ -40,7 +36,7 @@ class AddAddress extends StatelessWidget {
                             onButtonClick: () {
                               addAddressCont.goToAddressDetailsPage();
                             },
-                            buttonText: "Add Details",
+                            buttonText: "607".tr,
                           ),
                         ),
                       ],

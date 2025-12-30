@@ -15,7 +15,7 @@ dependencies:
   dartz: ^0.10.1
   firebase_auth: ^5.6.0
   firebase_core: ^3.14.0
-  firebase_messaging: 15.2.8
+  firebase_messaging: ^15.2.8
   flutter:
     sdk: flutter
   flutter_local_notifications: ^19.1.0
@@ -33,6 +33,7 @@ dependencies:
   intl: ^0.20.2
   jiffy: ^6.4.3
   latlong2: ^0.9.1
+  local_auth: ^3.0.0
   lottie: ^3.3.1
   path: ^1.9.1
   qr_flutter: ^4.1.0
@@ -55,6 +56,7 @@ flutter:
     - assets/images/home/banner_slider_images/
     - assets/images/delivery/
     - assets/images/order/
+    - assets/images/model/
     # - assets/images/onboarding/on_board1.svg
     # - assets/images/onboarding/on_board2.svg
     # - assets/images/onboarding/on_board3.svg

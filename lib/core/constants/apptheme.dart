@@ -15,6 +15,7 @@ import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 ThemeData englishTheme = ThemeData(
+  brightness: Brightness.light,
   appBarTheme: AppBarTheme(backgroundColor: AppColor.primaryColor),
   fontFamily: "playFair",
   textTheme: const TextTheme(
@@ -38,7 +39,7 @@ ThemeData englishTheme = ThemeData(
     labelLarge: TextStyle(fontSize: 16, color: Colors.white),
   ),
 );
-
+ 
 ThemeData arabicTheme = ThemeData(
   appBarTheme: AppBarTheme(backgroundColor: AppColor.primaryColor),
   fontFamily: "cairo",

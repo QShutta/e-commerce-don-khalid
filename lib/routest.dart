@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/midle_ware/init_middle_ware.dart';
+import 'package:e_commerce_halfa/view/screens/about_us.dart';
 import 'package:e_commerce_halfa/view/screens/address/add_address.dart';
 import 'package:e_commerce_halfa/view/screens/address/add_address_details.dart';
 import 'package:e_commerce_halfa/view/screens/address/update_address_details.dart';
@@ -25,6 +26,7 @@ import 'package:e_commerce_halfa/view/screens/onboarding.dart';
 import 'package:e_commerce_halfa/view/screens/order/order_details.dart';
 import 'package:e_commerce_halfa/view/screens/product_details.dart';
 import 'package:e_commerce_halfa/view/screens/products.dart';
+import 'package:e_commerce_halfa/view/screens/settings.dart';
 import 'package:get/get.dart';
 
 List<GetPage> appPages = [
@@ -162,7 +164,14 @@ List<GetPage> appPages = [
     transition: Transition.rightToLeft,
     transitionDuration: const Duration(milliseconds: 400),
   ),
-
+  GetPage(name: AppRoutes.aboutUs, page: ()=> AboutUs() , 
+   transition: Transition.rightToLeft , 
+   transitionDuration: const Duration(milliseconds: 400) 
+  ), 
+  GetPage(name: AppRoutes.settings, page: ()=>SettingsPage() , 
+  transition: Transition.rightToLeft , 
+  transitionDuration: const Duration(milliseconds: 400)
+  )  , 
   //------------------------------------End Address---------------------------
   GetPage(
     name: AppRoutes.checkout,

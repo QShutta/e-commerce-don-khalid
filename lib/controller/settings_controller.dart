@@ -19,6 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingController extends GetxController {
   Crud crud = Get.put(Crud());
   // Crud crud = Get.find();
+  bool switchFingerPrint = false;
   bool switchDarkLigh = false;
   UsersModel? userData;
   bool switchNotification = false;
@@ -43,6 +44,11 @@ class SettingController extends GetxController {
     print(
       "------------------------------------getData------------------------------",
     );
+    // Load saved fingerprint preference (use consistent key "fingerPrint")
+
+    switchFingerPrint =
+        myServices.sharedPreferences.getBool("fingerPrint") ?? false;
+    update();
     getData();
 
     print(
@@ -50,6 +56,38 @@ class SettingController extends GetxController {
     );
     super.onInit();
     // print("${AppLinkApi.usersImage}/${userImageUrl!}");
+  }
+
+  Future<void> enableFingerPrint(bool state) async {
+    switchFingerPrint = !state;
+    print(switchFingerPrint);
+    // If enabling fingerprint, require that a user is already signed in
+    if (switchFingerPrint == true) {
+      String? userId = myServices.sharedPreferences.getString("user_id");
+      print(userId);
+      if (userId == null || userId.isEmpty) {
+        Get.defaultDialog(
+          title: 'Notice',
+          middleText: 'Please sign in first before enabling fingerprint login.',
+          textConfirm: 'OK',
+          onConfirm: () => Get.back(),
+        );
+        return;
+      }
+    }
+    await myServices.sharedPreferences.setBool(
+      "fingerPrint",
+      switchFingerPrint,
+    );
+    // persist which user enabled fingerprint so we can re-associate on biometric login
+    if (switchFingerPrint) {
+      final String? uid = myServices.sharedPreferences.getString('user_id');
+      print("useruid:$uid");
+      await myServices.sharedPreferences.setString('fingerPrint_user_id', uid!);
+    } else {
+      await myServices.sharedPreferences.remove('fingerPrint_user_id');
+    }
+    update();
   }
 
   addImageFromCamera() async {
@@ -70,13 +108,24 @@ class SettingController extends GetxController {
   }
 
   logout() async {
+    // Clear login state but keep fingerprint preference so user can login later with biometrics
     myServices.sharedPreferences.setBool("isLoggedIn", false);
 
-    Get.offAllNamed(AppRoutes.signIn);
-    String userId =
-        myServices.sharedPreferences.getString("user_id").toString();
+    // Unsubscribe from topics using current user id (if any)
+    final String? currentUserId = myServices.sharedPreferences.getString(
+      "user_id",
+    );
     await FirebaseMessaging.instance.unsubscribeFromTopic("users");
-    await FirebaseMessaging.instance.unsubscribeFromTopic("users$userId");
+    if (currentUserId != null && currentUserId.isNotEmpty) {
+      await FirebaseMessaging.instance.unsubscribeFromTopic(
+        "users$currentUserId",
+      );
+    }
+
+    // Remove only session-specific data; keep fingerprint prefs so biometric login remains possible
+    myServices.sharedPreferences.remove('user_id');
+    // Note: we intentionally DO NOT call sharedPreferences.clear() to preserve fingerprint settings
+    Get.offAllNamed(AppRoutes.signIn);
     //Why did they use this?
     //To ensure that all user-related data is removed upon logout, enhancing security and privacy.
     //why?
@@ -109,7 +158,8 @@ class SettingController extends GetxController {
   }
 
   onLighDarkSwithchClicked(value) {
-    switchDarkLigh = value;
+    switchDarkLigh = !value;
+
     update();
   }
 
@@ -119,6 +169,8 @@ class SettingController extends GetxController {
   }
 
   Future<void> uploadProfileImage(File image, {String? fileName}) async {
+    stautusRequest = StautusRequest.loading;
+    update();
     print(
       "----------------------------------inside of the uploadPrfoleImage---------------------------------------",
     );
@@ -128,8 +180,9 @@ class SettingController extends GetxController {
     var response = await crud.postRequestWithFile(
       "${AppLinkApi.serverUrl}/uploade_user_image.php",
       {
-        "user_id": myServices.sharedPreferences.getString("user_id").toString(),
-        // "user_id": "81",
+        "user_id": myServices.sharedPreferences.getString("user_id"),
+        // include previous image name so server code doesn't warn about missing key
+        "old_image_name": userImageUrl,
       },
       image,
       fileName: fileName, // ← مرر الاسم هنا
@@ -142,6 +195,7 @@ class SettingController extends GetxController {
       print("--------------------------------------------------------------");
       print("Upload successful: $userImageUrl");
       print("--------------------------------------------------------------");
+      stautusRequest = StautusRequest.success;
       update();
     } else {
       print("--------------------------------------------------------------");
@@ -171,6 +225,16 @@ class SettingController extends GetxController {
       }
     }
     update(); //This will update the UI
+  }
+
+  openWhatsAppNumber() async {
+    final Uri phone = Uri.parse("https://wa.me/249909054928");
+
+    try {
+      await launchUrl(phone);
+    } catch (e) {
+      throw "Could not Lanuch WhatsApp $e";
+    }
   }
 
   callSupport() async {

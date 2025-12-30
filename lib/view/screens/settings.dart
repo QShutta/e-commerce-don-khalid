@@ -1,10 +1,11 @@
 import 'package:e_commerce_halfa/controller/settings_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/change_language_button.dart';
+import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/custome_list_tile.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/disable_notification_switch.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/edit_button.dart';
+import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/finger_print_switch.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/ligh_dark_switch.dart';
-import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/custome_list_tile.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/user_profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,7 @@ class SettingsPage extends StatelessWidget {
           EditButton(),
           ChangeLanguageButton(),
           LighDarkSwitch(),
+          FingerPrintSwitch(),
           DisableNotificationSwitch(),
           SizedBox(height: 20),
           Divider(
@@ -39,12 +41,14 @@ class SettingsPage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           CustomeListTile(
-            titleText: "About Us",
+            titleText: "423".tr,
             leadingIcon: Icons.info_outline,
-            onListTileClicked: () {},
+            onListTileClicked: () {
+              Get.toNamed(AppRoutes.aboutUs);
+            },
           ),
           CustomeListTile(
-            titleText: "Address",
+            titleText: "424".tr,
             leadingIcon: Icons.location_on_outlined,
             onListTileClicked: () {
               Get.toNamed(AppRoutes.viewAddress);
@@ -52,7 +56,7 @@ class SettingsPage extends StatelessWidget {
           ),
           SizedBox(height: 10),
           CustomeListTile(
-            titleText: 'Contact Us',
+            titleText: '425'.tr,
             leadingIcon: Icons.support_agent,
             onListTileClicked: () {
               settingController.callSupport();
@@ -61,13 +65,13 @@ class SettingsPage extends StatelessWidget {
           SizedBox(height: 10),
 
           CustomeListTile(
-            titleText: "Change Password",
+            titleText: "426".tr,
             leadingIcon: Icons.key_outlined,
             onListTileClicked: () {},
           ),
           SizedBox(height: 10),
           CustomeListTile(
-            titleText: "Sign Out",
+            titleText: "427".tr,
             leadingIcon: Icons.logout_outlined,
             onListTileClicked: () {
               settingController.logout();

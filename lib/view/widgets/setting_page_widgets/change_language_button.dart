@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class ChangeLanguageButton extends StatelessWidget {
   const ChangeLanguageButton({super.key});
@@ -7,7 +8,7 @@ class ChangeLanguageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.language),
-      title: Text("Change Language"),
+      title: Text("419".tr),
       trailing: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(

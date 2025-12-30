@@ -52,6 +52,8 @@ class HomeControllerImp extends HomeController {
   @override
   logOut() async {
     await myServices.sharedPreferences.setBool("isLoggedIn", false);
+    print(myServices.sharedPreferences.getBool("fingerPrint"));
+    print(myServices.sharedPreferences.getString("fingerPrint_user_id"));
     Get.offAllNamed(AppRoutes.signIn);
   }
 

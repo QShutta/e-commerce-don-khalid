@@ -42,7 +42,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             padding: EdgeInsets.symmetric(vertical: 15),
           ),
           child: Text(
-            "Place Order",
+            "801".tr,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         ),
       ),
       appBar: CustomeAppBar(
-        searchTextTitle: 'Checkout',
+        searchTextTitle: '802'.tr,
         textColor: AppColor.primaryColor,
       ),
       body: GetBuilder<CheckoutController>(
@@ -62,13 +62,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
             widget: ListView(
               children: [
                 const SizedBox(height: 10),
-                CustomeTextCheckout(text: 'Choose Payment Method'),
+                CustomeTextCheckout(text: '803'.tr),
                 GetBuilder<CheckoutController>(
                   builder: (myInCon) {
                     return Row(
                       children: [
                         PaymentOption(
-                          title: "Cash",
+                          title: "804".tr,
                           icon: Icons.money_rounded,
                           //كيف يعني ؟
                           //the defult value of the selecdpayment is 0 if the user click on cards it will become
@@ -79,7 +79,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           onTap: myInCon.onCashSelected,
                         ),
                         PaymentOption(
-                          title: "Cards",
+                          title: "805".tr,
                           icon: Icons.credit_card_rounded,
                           isSelected:
                               myInCon.selectedPayment == 1, //1=>cards,0=>cash
@@ -90,13 +90,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   },
                 ),
                 const SizedBox(height: 30),
-                CustomeTextCheckout(text: "Choose Delivery Type"),
+                CustomeTextCheckout(text: "815".tr),
                 GetBuilder<CheckoutController>(
                   builder: (myInCon) {
                     return Row(
                       children: [
                         DeliveryOption(
-                          title: "Delivery",
+                          title: "806".tr,
                           imagePath: ImageAssets.deliveryMan,
                           isSelected:
                               myInCon.selectedDelivery ==
@@ -104,7 +104,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           onTap: myInCon.onDeliverSelected,
                         ),
                         DeliveryOption(
-                          title: "Pick up in Store",
+                          title: "807".tr,
                           imagePath: ImageAssets.reciveOnShop,
                           isSelected: myInCon.selectedDelivery == 1,
                           onTap: myInCon.onPickUpSelected,
@@ -120,7 +120,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ? Column(
                           children: [
                             const SizedBox(height: 30),
-                            CustomeTextCheckout(text: "Shipping Address"),
+                            CustomeTextCheckout(text: "808".tr),
                             SizedBox(height: 10),
                             HnadlingDataView(
                               stautusRequest: controller.statusRequest,

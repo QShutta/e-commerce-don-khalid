@@ -2,6 +2,13 @@
 cmake_minimum_required(VERSION 3.13)
 project(runner LANGUAGES CXX)
 
+# If the install prefix wasn't set by the user, default to the user's local directory
+# This avoids attempts to install into system directories like /usr/local during
+# development when running `cmake --install` or `flutter build linux`.
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "$ENV{HOME}/.local" CACHE PATH "Install path prefix" FORCE)
+endif()
+
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "e_commerce_halfa")

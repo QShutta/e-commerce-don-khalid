@@ -34,7 +34,7 @@ class DisableNotificationSwitch extends StatelessWidget {
       builder: (controller) {
         return ListTile(
           leading: Icon(Icons.notifications_off_outlined),
-          title: Text("Disable Notification"),
+          title: Text("422".tr),
           trailing: Switch(
             activeTrackColor: AppColor.primaryColor,
             activeThumbColor: Colors.white,

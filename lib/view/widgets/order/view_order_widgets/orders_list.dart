@@ -4,7 +4,6 @@ import 'package:e_commerce_halfa/core/constants/image_assets.dart';
 import 'package:e_commerce_halfa/data/model/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:jiffy/jiffy.dart';
 
 Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
@@ -22,15 +21,12 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
               height: 72,
             ),
           ),
-          const Text(
-            "No orders yet",
+          Text(
+            "901".tr,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 4),
-          Text(
-            "When you place orders, they'll appear here",
-            style: TextStyle(color: Colors.grey.shade600),
-          ),
+          Text("902".tr, style: TextStyle(color: Colors.grey.shade600)),
         ],
       ),
     );
@@ -61,7 +57,7 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                       height: 44,
                       width: 44,
                       decoration: BoxDecoration(
-                        color: AppColor.primaryColor.withOpacity(0.12),
+                        color: AppColor.primaryColor.withValues(alpha: 0.12),
                         shape: BoxShape.circle,
                       ),
                       child: Center(
@@ -76,7 +72,8 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                       height: 44,
                       width: 44,
                       decoration: BoxDecoration(
-                        color: AppColor.primaryColor.withOpacity(0.12),
+                        // Used withValues instead of withOpactity(0.12)
+                        color: AppColor.primaryColor.withValues(alpha: 0.12),
                         shape: BoxShape.circle,
                       ),
                       child: Center(
@@ -139,7 +136,7 @@ Widget buildOrderList(List<OrderModel> list, OrderController orderController) {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.green.withOpacity(0.12),
+                              color: Colors.green.withValues(alpha: 0.12),
                               borderRadius: BorderRadius.circular(999),
                             ),
                             child: Text(

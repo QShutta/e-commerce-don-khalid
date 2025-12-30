@@ -49,7 +49,6 @@ class Crud {
       return Left(StautusRequest.serverException);
     }
   }
-
   postRequestWithFile(
     String url,
     Map data,
@@ -77,9 +76,9 @@ class Crud {
 
     var myRequest = await request.send();
     var response = await http.Response.fromStream(myRequest);
-
     if (myRequest.statusCode == 200) {
-      return jsonDecode(response.body);
+      print(response.body) ; 
+          return jsonDecode(response.body); 
     } else {
       print("Error");
     }

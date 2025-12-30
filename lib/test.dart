@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 //before of 39S
 class Test extends StatefulWidget {
@@ -94,6 +97,100 @@ class FavTest extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [Text("Favorite Page")],
+    );
+  }
+}
+
+// class ModelTest extends StatelessWidget {
+//   ModelTest({super.key});
+//   final Flutter3DController controller = Flutter3DController();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("3D Model", style: TextStyle(fontFamily: 'cairo')),
+//       ),
+//       body: Flutter3DViewer(
+//         src: 'assets/images/model/Astronaut.glb',
+//         onLoad: (load) {
+//           controller.onModelLoaded.addListener(() {});
+//         },
+//       ),
+//     );
+//   }
+// }
+
+class RecommandationTest extends StatefulWidget {
+  const RecommandationTest({super.key});
+
+  @override
+  State<RecommandationTest> createState() => _RecommandationTestState();
+}
+
+class _RecommandationTestState extends State<RecommandationTest> {
+  List recommandation = [];
+  bool isLoading = true;
+  Future getRecommendation() async {
+    isLoading = true;
+    setState(() {});
+    Uri url = Uri.http("localhost:8080", "/test2.php");
+    Response response = await post(url);
+    isLoading = false;
+    setState(() {});
+    Map res = jsonDecode(response.body);
+    List recommand = res['recommendations'];
+    recommandation.addAll(recommand);
+  }
+
+  Future selectAllProductsRecommandation() async {
+    getRecommendation();
+    List productIds = recommandation;
+    Uri url = Uri.http("localhost:8080", "/");
+    Response response = await post(url);
+    var data = jsonDecode(response.body);
+    List recommends = data['data'];
+    return recommends;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: [
+          InkWell(
+            onTap: () {},
+            child: Row(
+              children: [
+                Text(
+                  "Recommanded for you",
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward)),
+                SizedBox(height: 4),
+                Container(
+                  height: 200,
+                  child: ListView.separated(
+                    itemCount: recommandation.length,
+                    separatorBuilder: (context, i) => SizedBox(width: 4),
+                    itemBuilder: (context, i) {
+                      return Column(
+                        spacing: 5,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(recommandation[i]['image']),
+                          Text(recommandation[i]['name']),
+                          Text("${recommandation[i]['price']}"),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

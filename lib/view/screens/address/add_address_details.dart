@@ -14,10 +14,7 @@ class AddAddressDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(
-        searchTextTitle: "Address Details",
-        textColor: Colors.black,
-      ),
+      appBar: CustomeAppBar(searchTextTitle: "601".tr, textColor: Colors.black),
       body: GetBuilder<AddAddressDetailsController>(
         builder: (controller) {
           return HnadlingDataView(
@@ -34,7 +31,7 @@ class AddAddressDetails extends StatelessWidget {
                       onButtonPressed: () {
                         addAddressDetailsController.addAddress();
                       },
-                      buttonText: 'Add',
+                      buttonText: '602'.tr,
                     ),
                   ],
                 ),

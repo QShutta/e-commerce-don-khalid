@@ -14,14 +14,14 @@ class AddAddressFormFields extends StatelessWidget {
       children: [
         CustomTextFormField(
           suffixIcon: Icon(Icons.abc),
-          label: 'Enter the Name',
+          label: '603'.tr,
           focusNode: addAddressDetailsController.nameFocus,
           onFieldSubmitted: (value) {
             FocusScope.of(
               context,
             ).requestFocus(addAddressDetailsController.cityFocus);
           },
-          hint: 'Home , Office , Appartment',
+          hint: '604'.tr,
           validator: (String? val) {
             return validInput(val!, 3, 100, "name");
           },
@@ -31,13 +31,13 @@ class AddAddressFormFields extends StatelessWidget {
         CustomTextFormField(
           suffixIcon: Icon(Icons.location_city_rounded),
           focusNode: addAddressDetailsController.cityFocus,
-          label: 'Enter the city',
+          label: '605'.tr,
           onFieldSubmitted: (value) {
             FocusScope.of(
               context,
             ).requestFocus(addAddressDetailsController.streetFocus);
           },
-          hint: 'Enter the city',
+          hint: '605'.tr,
           validator: (String? val) {
             return validInput(val!, 3, 100, "name");
           },
@@ -51,8 +51,8 @@ class AddAddressFormFields extends StatelessWidget {
             FocusScope.of(context).unfocus();
           },
           focusNode: addAddressDetailsController.streetFocus,
-          label: 'Enter the street',
-          hint: 'Enter the street',
+          label: '606'.tr,
+          hint: '606'.tr,
           validator: (String? val) {
             return validInput(val!, 3, 100, "name");
           },

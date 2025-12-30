@@ -35,6 +35,14 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.force("androidx.browser:browser:1.8.0")
+    resolutionStrategy.force("androidx.activity:activity-ktx:1.10.0")
+    resolutionStrategy.force("androidx.core:core-ktx:1.16.0")
+    resolutionStrategy.force("androidx.core:core:1.16.0")
+    resolutionStrategy.force("androidx.activity:activity:1.10.0")
+}
+
 flutter {
     source = "../.."
 }
@@ -43,4 +51,9 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("androidx.browser:browser:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.10.0")
+    implementation("androidx.core:core-ktx:1.16.0")
+    implementation("androidx.core:core:1.16.0")
+    implementation("androidx.activity:activity:1.10.0")
 }

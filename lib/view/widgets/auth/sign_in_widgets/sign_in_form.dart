@@ -1,6 +1,7 @@
 import 'package:e_commerce_halfa/controller/auth_controller/sign_in_controller.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/valid_input.dart';
+import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/finger_print_sign_in.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/forgot_password_text.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/sign_in_button.dart';
 import 'package:e_commerce_halfa/view/widgets/auth/sign_in_widgets/social_media_sign_in.dart';
@@ -149,8 +150,14 @@ class SignInForm extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             Center(child: Text("23".tr)),
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
+            // FingerPrint Button
+             FingerPrintSignIn() , 
+             const SizedBox(
+              height: 12,
+             ) , 
             // Google and Facebook
+          
             SocialMediaSignIn(),
           ],
         ),

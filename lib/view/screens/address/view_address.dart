@@ -24,10 +24,7 @@ class ViewAddress extends StatelessWidget {
         },
         child: Icon(Icons.add),
       ),
-      appBar: CustomeAppBar(
-        searchTextTitle: 'Address',
-        textColor: Colors.black,
-      ),
+      appBar: CustomeAppBar(searchTextTitle: '609'.tr, textColor: Colors.black),
       body: GetBuilder<ViewAddressController>(
         builder: (controller) {
           return HnadlingDataView(

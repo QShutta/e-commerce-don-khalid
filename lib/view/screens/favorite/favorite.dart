@@ -19,10 +19,7 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(
-        searchTextTitle: 'Favorites',
-        textColor: Colors.black,
-      ),
+      appBar: CustomeAppBar(searchTextTitle: '701'.tr, textColor: Colors.black),
 
       body: GetBuilder<Myfavcontroller>(
         builder: (controller) {
