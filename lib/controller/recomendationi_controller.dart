@@ -13,11 +13,6 @@ class RecomendationController extends GetxController {
   RecomendationData recomendationData = RecomendationData(Get.find());
   late StautusRequest statusRequest;
   MyServices myServices = Get.find();
-  @override
-  void onInit() {
-    getRecommendations();
-    super.onInit();
-  }
 
   getRecommendations() async {
     statusRequest = StautusRequest.loading;
@@ -42,5 +37,11 @@ class RecomendationController extends GetxController {
       }
     }
     update(); //This will update the UI
+  }
+
+  @override
+  void onInit() {
+    getRecommendations();
+    super.onInit();
   }
 }

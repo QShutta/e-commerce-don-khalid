@@ -33,8 +33,8 @@ class ProductDetailsBody extends StatelessWidget {
                   ProductDetailsText(
                     textStyle: Theme.of(context).textTheme.headlineMedium,
                     text: translateDataBase(
-                      productDetailsControllerImp.productModel.proudctNameEn!,
-                      productDetailsControllerImp.productModel.productNameAr,
+                      productDetailsControllerImp.productModel!.proudctNameEn!,
+                      productDetailsControllerImp.productModel!.productNameAr,
                     ),
                   ),
                   SizedBox(height: 20),
@@ -43,8 +43,8 @@ class ProductDetailsBody extends StatelessWidget {
                       color: AppColor.greyText,
                     ), //Description
                     text: translateDataBase(
-                      productDetailsControllerImp.productModel.productDescEn!,
-                      productDetailsControllerImp.productModel.productDescAr,
+                      productDetailsControllerImp.productModel!.productDescEn!,
+                      productDetailsControllerImp.productModel!.productDescAr,
                     ),
                   ),
 
@@ -54,9 +54,9 @@ class ProductDetailsBody extends StatelessWidget {
                   //   text:
                   //       "\$${productDetailsControllerImp.productModel.productPrice}",
                   // ),
-                  productDetailsControllerImp.productModel.productDiscount == 0
+                  productDetailsControllerImp.productModel!.productDiscount == 0
                       ? Text(
-                        "\$${productDetailsControllerImp.productModel.productPrice!}",
+                        "\$${productDetailsControllerImp.productModel!.productPrice!}",
                         style: TextStyle(
                           color: AppColor.skyBlueForText,
                           fontWeight: FontWeight.bold,
@@ -66,7 +66,7 @@ class ProductDetailsBody extends StatelessWidget {
                       : Row(
                         children: [
                           Text(
-                            "\$${productDetailsControllerImp.productModel.priceAfterDiscount!}",
+                            "\$${productDetailsControllerImp.productModel?.priceAfterDiscount!}",
                             style: TextStyle(
                               color: AppColor.skyBlueForText,
                               fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class ProductDetailsBody extends StatelessWidget {
                           ),
                           const SizedBox(width: 250),
                           Text(
-                            "\$${productDetailsControllerImp.productModel.productPrice!}",
+                            "\$${productDetailsControllerImp.productModel!.productPrice!}",
                             style: TextStyle(
                               color: Colors.grey,
                               decoration:
@@ -94,15 +94,15 @@ class ProductDetailsBody extends StatelessWidget {
                   //--------------------------------------------------------------
                   //حاوقف موضوع ال subitems
                   //عشان اقدر افهم كيف السلة بتشتغل.
-                  (productDetailsControllerImp.productModel.productCatogery ==
+                  (productDetailsControllerImp.productModel!.productCatogery ==
                               22 ||
                           productDetailsControllerImp
-                                  .productModel
+                                  .productModel!
                                   .productCatogery ==
                               26)
                       ? ProductQuantityWidget(
                         productId:
-                            productDetailsControllerImp.productModel.productsId
+                            productDetailsControllerImp.productModel!.productsId
                                 .toString(),
                       )
                       : Column(
@@ -114,7 +114,7 @@ class ProductDetailsBody extends StatelessWidget {
                           ProductQuantityWidget(
                             productId:
                                 productDetailsControllerImp
-                                    .productModel
+                                    .productModel!
                                     .productsId
                                     .toString(),
                           ),

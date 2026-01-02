@@ -51,35 +51,13 @@ flutter:
   uses-material-design: true
 
   assets:
-   
-    - assets/images/rating_icon_image.png
     - assets/images/data_states/
-    - assets/images/onboarding/on_board1.svg
-    - assets/images/onboarding/on_board2.svg
-    - assets/images/onboarding/on_board3.svg
-    - assets/images/onboarding/on_board4.svg
-    - assets/images/onboarding/lang.png
-    - assets/images/auth/Login-amico.svg
-    - assets/images/auth/sign_up_amico.svg
-    - assets/images/auth/Forgot_password.svg
-    - assets/images/auth/email.svg
-    - assets/images/auth/otp.svg
-    - assets/images/auth/reset_passowrd.svg
-    - assets/images/auth/verified.svg
-    - assets/images/auth/success.svg
-    - assets/images/home/banner_slider_images/مكنة_زيت_فول_الدون.png
-    - assets/images/home/banner_slider_images/جزمة_الدون.png
-    - assets/images/home/banner_slider_images/don_top2_gpt.png
-    - assets/images/home/banner_slider_images/don_top1_gpt.png
-    - assets/images/home/banner_slider_images/don_suite.png
-    - assets/images/home/banner_slider_images/don_sdyre.png
-    - assets/images/home/banner_slider_images/don_sandale.png
-    - assets/images/home/banner_slider_images/don_perfume_gpt.png
-    - assets/images/home/banner_slider_images/don_jalabye_gpt.png
-    - assets/images/delivery/delivery_man.png
-    - assets/images/delivery/recive_on_shop.png
-    - assets/images/order/order_image.png
-
+    - assets/images/onboarding/
+    - assets/images/auth/
+    - assets/images/home/banner_slider_images/
+    - assets/images/delivery/
+    - assets/images/order/
+    - assets/images/
   fonts:
 
     - family: playFair
