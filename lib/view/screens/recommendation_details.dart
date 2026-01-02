@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce_halfa/controller/recomendationi_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../app_link_api.dart';
+import '../../controller/recomendation_controller.dart';
 import '../../core/constants/image_assets.dart';
 import '../../core/functions/translate_data_base.dart';
 

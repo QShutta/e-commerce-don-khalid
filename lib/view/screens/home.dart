@@ -1,5 +1,4 @@
 import 'package:e_commerce_halfa/controller/home_controller.dart';
-import 'package:e_commerce_halfa/controller/recomendationi_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/view/discount_products_details.dart';
 import 'package:e_commerce_halfa/view/screens/recommendation_details.dart';
@@ -10,6 +9,7 @@ import 'package:e_commerce_halfa/view/widgets/home_widgets/home_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/recomendation_controller.dart';
 import '../widgets/home_widgets/discoun_products.dart';
 import '../widgets/home_widgets/recommand_section.dart';
 import 'row_section.dart';
