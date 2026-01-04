@@ -49,6 +49,9 @@ class MySearchCont extends GetxController {
                 //.fromJson will convert the map to object model.
                 .map((product) => ProductsModel.fromJson(product))
                 .toList();
+        print(
+          "---------------------indide of the response[status]=success-------------------------",
+        );
       } else {
         stautusRequest = StautusRequest.failure;
       }
