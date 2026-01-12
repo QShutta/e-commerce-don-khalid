@@ -1,5 +1,6 @@
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/productDetailsText.dart';
@@ -7,7 +8,6 @@ import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/produ
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../screens/recommendation_screen.dart';
 import '../../screens/row_section.dart';
 
 class ProductDetailsBody extends StatelessWidget {
@@ -127,7 +127,7 @@ class ProductDetailsBody extends StatelessWidget {
                   RowSection(
                     text: "You May Also Like",
                     onTap: () {
-                      Get.to(() => RecommendationScreen());
+                      Get.toNamed(AppRoutes.recommendationSection);
                     },
                   ),
                   // Removed RatingBar.builder and its logic
