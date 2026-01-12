@@ -1,4 +1,5 @@
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
+import 'package:e_commerce_halfa/controller/recomendation_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
@@ -12,7 +13,7 @@ import '../../screens/row_section.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
-
+  final RecomendationController recomendationController = Get.find();
   ProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {
@@ -57,9 +58,9 @@ class ProductDetailsBody extends StatelessWidget {
                   //   text:
                   //       "\$${productDetailsControllerImp.productModel.productPrice}",
                   // ),
-                  productDetailsControllerImp.productModel!.productDiscount == 0
+                  productDetailsControllerImp.productModel.productDiscount == 0
                       ? Text(
-                        "\$${productDetailsControllerImp.productModel!.productPrice!}",
+                        "\$${productDetailsControllerImp.productModel.productPrice!}",
                         style: TextStyle(
                           color: AppColor.skyBlueForText,
                           fontWeight: FontWeight.bold,
@@ -130,6 +131,34 @@ class ProductDetailsBody extends StatelessWidget {
                       Get.toNamed(AppRoutes.recommendationSection);
                     },
                   ),
+                  Container(
+                    height: 200,
+                    width: 200,
+                    child: GetBuilder<RecomendationController>(
+                      builder: (controller) {
+                        return GridView.builder(
+                          itemCount: recomendationController.productList.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 10,
+                              ),
+                          itemBuilder: (context, i) {
+                            return GridTile(
+                              header: Image.network(
+                                controller.productList[i].productImage!,
+                              ),
+                              child: translateDataBase(
+                                controller.productList[i].proudctNameEn!,
+                                controller.productList[i].productNameAr!,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+
                   // Removed RatingBar.builder and its logic
                 ],
               ),
