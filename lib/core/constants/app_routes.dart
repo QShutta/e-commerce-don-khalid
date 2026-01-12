@@ -38,4 +38,6 @@ class AppRoutes {
   static const String orderDetails = '/orderDetails';
   //----------------------------------------------------------
   static const String offersPageLink = '/OffersPage';
+  static const String recommendationSection = "/recommendationSection";
+  static const String recommendationDetails = "/recommendationProductDetails";
 }

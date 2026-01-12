@@ -9,8 +9,8 @@ import '../../app_link_api.dart';
 import '../../core/constants/image_assets.dart';
 import '../../core/functions/translate_data_base.dart';
 
-class RecommendationDetails extends StatelessWidget {
-  RecommendationDetails({super.key});
+class RecommendationScreen extends StatelessWidget {
+  RecommendationScreen({super.key});
   final RecomendationController controller =
       Get.find<RecomendationController>();
   @override

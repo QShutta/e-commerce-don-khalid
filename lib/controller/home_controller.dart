@@ -58,6 +58,14 @@ class HomeControllerImp extends HomeController {
     // Get.toNamed(AppRoutes.settings);
   }
 
+  goToProductDetails(ProductsModel productDetails) {
+    // Navigate to the product details page without awaiting
+    Get.toNamed(
+      AppRoutes.productDetails,
+      arguments: {"productDetails": productDetails},
+    );
+  }
+
   @override
   logOut() async {
     await myServices.sharedPreferences.setBool("isLoggedIn", false);

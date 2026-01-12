@@ -22,7 +22,7 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: DonAppBar(
         title: 'Products',
-        textColor: Colors.black,
+        textColor: Colors.white,
         onNotificationIconButtonClicked: () {},
         onFavoriteButtonPressed: () {
           productsController.goToFavoritePage();

@@ -54,6 +54,7 @@ class DiscountProductsDetails extends StatelessWidget {
                   print(
                     "The user clcik on spacfic proudct...Test.and the product is/n:${product.productNameAr}",
                   );
+                  homeControllerImp.goToProductDetails(product);
                 },
                 child: Container(
                   margin: EdgeInsets.all(4),

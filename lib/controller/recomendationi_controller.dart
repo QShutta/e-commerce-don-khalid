@@ -5,6 +5,8 @@ import 'package:e_commerce_halfa/data/data_source/remote/recomendation_data.dart
 import 'package:e_commerce_halfa/data/model/recomendation_model.dart';
 import 'package:get/get.dart';
 
+import '../core/constants/app_routes.dart';
+
 //after of 159
 class RecomendationController extends GetxController {
   List<RecomendationModel> productList = [];
@@ -13,6 +15,11 @@ class RecomendationController extends GetxController {
   RecomendationData recomendationData = RecomendationData(Get.find());
   late StautusRequest statusRequest;
   MyServices myServices = Get.find();
+  @override
+  void onInit() {
+    getRecommendations();
+    super.onInit();
+  }
 
   getRecommendations() async {
     statusRequest = StautusRequest.loading;
@@ -39,9 +46,10 @@ class RecomendationController extends GetxController {
     update(); //This will update the UI
   }
 
-  @override
-  void onInit() {
-    getRecommendations();
-    super.onInit();
+  goToRecommendationDetails(RecomendationModel recommendationModel) {
+    Get.toNamed(
+      AppRoutes.recommendationDetails,
+      arguments: {"recommendationDetails": recommendationModel},
+    );
   }
 }
