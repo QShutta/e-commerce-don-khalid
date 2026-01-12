@@ -1,10 +1,7 @@
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
-import 'package:e_commerce_halfa/controller/recomendationi_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
-import 'package:e_commerce_halfa/view/screens/row_section.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/productDetailsText.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_quantity_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +9,7 @@ import 'package:get/get.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
-  final RecomendationController recomendationController = Get.find();
+
   ProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {
@@ -36,8 +33,8 @@ class ProductDetailsBody extends StatelessWidget {
                   ProductDetailsText(
                     textStyle: Theme.of(context).textTheme.headlineMedium,
                     text: translateDataBase(
-                      productDetailsControllerImp.productModel.proudctNameEn!,
-                      productDetailsControllerImp.productModel.productNameAr,
+                      productDetailsControllerImp.productModel!.proudctNameEn!,
+                      productDetailsControllerImp.productModel!.productNameAr,
                     ),
                   ),
                   SizedBox(height: 20),
@@ -46,8 +43,8 @@ class ProductDetailsBody extends StatelessWidget {
                       color: AppColor.greyText,
                     ), //Description
                     text: translateDataBase(
-                      productDetailsControllerImp.productModel.productDescEn!,
-                      productDetailsControllerImp.productModel.productDescAr,
+                      productDetailsControllerImp.productModel!.productDescEn!,
+                      productDetailsControllerImp.productModel!.productDescAr,
                     ),
                   ),
 
@@ -57,9 +54,9 @@ class ProductDetailsBody extends StatelessWidget {
                   //   text:
                   //       "\$${productDetailsControllerImp.productModel.productPrice}",
                   // ),
-                  productDetailsControllerImp.productModel.productDiscount == 0
+                  productDetailsControllerImp.productModel!.productDiscount == 0
                       ? Text(
-                        "\$${productDetailsControllerImp.productModel.productPrice!}",
+                        "\$${productDetailsControllerImp.productModel!.productPrice!}",
                         style: TextStyle(
                           color: AppColor.skyBlueForText,
                           fontWeight: FontWeight.bold,
@@ -69,7 +66,7 @@ class ProductDetailsBody extends StatelessWidget {
                       : Row(
                         children: [
                           Text(
-                            "\$${productDetailsControllerImp.productModel.priceAfterDiscount!}",
+                            "\$${productDetailsControllerImp.productModel?.priceAfterDiscount!}",
                             style: TextStyle(
                               color: AppColor.skyBlueForText,
                               fontWeight: FontWeight.bold,
@@ -78,7 +75,7 @@ class ProductDetailsBody extends StatelessWidget {
                           ),
                           const SizedBox(width: 250),
                           Text(
-                            "\$${productDetailsControllerImp.productModel.productPrice!}",
+                            "\$${productDetailsControllerImp.productModel!.productPrice!}",
                             style: TextStyle(
                               color: Colors.grey,
                               decoration:
@@ -91,22 +88,21 @@ class ProductDetailsBody extends StatelessWidget {
                         ],
                       ),
                   SizedBox(height: 20),
-
                   //Why did we add this condition?
                   // Because some products don't have size or color options
                   //So we display the data according to the product category.
                   //--------------------------------------------------------------
                   //حاوقف موضوع ال subitems
                   //عشان اقدر افهم كيف السلة بتشتغل.
-                  (productDetailsControllerImp.productModel.productCatogery ==
+                  (productDetailsControllerImp.productModel!.productCatogery ==
                               22 ||
                           productDetailsControllerImp
-                                  .productModel
+                                  .productModel!
                                   .productCatogery ==
                               26)
                       ? ProductQuantityWidget(
                         productId:
-                            productDetailsControllerImp.productModel.productsId
+                            productDetailsControllerImp.productModel!.productsId
                                 .toString(),
                       )
                       : Column(
@@ -118,20 +114,13 @@ class ProductDetailsBody extends StatelessWidget {
                           ProductQuantityWidget(
                             productId:
                                 productDetailsControllerImp
-                                    .productModel
+                                    .productModel!
                                     .productsId
                                     .toString(),
                           ),
                         ],
                       ),
                   SizedBox(height: 20),
-                  RowSection(
-                    text: "You May Also Like",
-                    onTap: () {
-                      Get.toNamed(AppRoutes.recommendationSection);
-                    },
-                  ),
-
                   // Removed RatingBar.builder and its logic
                 ],
               ),

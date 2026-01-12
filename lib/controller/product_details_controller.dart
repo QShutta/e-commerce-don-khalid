@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
@@ -34,9 +32,15 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     Color.fromARGB(255, 238, 81, 146), // White
     Color(0xFF8B4513), // Brown (SaddleBrown)
   ];
-
-  // ProductsControllerImp productsControllerImp =
-  //     Get.find<ProductsControllerImp>();
+  //I don't know why to creat this list but i just follow the course instructor
+  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  List subItems = [
+    {"name": "black", "id": "1", "active": "1"},
+    {"name": "beige", "id": "2", "active": "1"},
+    {"name": "brown", "id": "3", "active": "0"},
+  ];
+  ProductsControllerImp productsControllerImp =
+      Get.find<ProductsControllerImp>();
 
   ProductData productData = ProductData(Get.find());
   ProductsModel productModel = Get.arguments["productDetails"];

@@ -72,7 +72,6 @@ class BannerSlider extends StatelessWidget {
 class FallBackBannerSlider extends StatelessWidget {
   FallBackBannerSlider({super.key, required productList});
   final HomeControllerImp homeControllerImp = Get.find();
-
   @override
   Widget build(BuildContext context) {
     // CarouselSlider

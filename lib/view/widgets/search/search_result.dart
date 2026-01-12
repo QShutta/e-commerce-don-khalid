@@ -11,19 +11,19 @@ import 'package:get/get.dart';
 class SearchResult extends StatelessWidget {
   SearchResult({super.key});
 
-  final MySearchCont searchCont = Get.find<MySearchCont>();
+  final MySearchCont mySearchCont = Get.find<MySearchCont>();
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GetBuilder<MySearchCont>(
-        builder: (innerController) {
+        builder: (controller) {
           return HnadlingDataView(
-            stautusRequest: innerController.stautusRequest,
+            stautusRequest: mySearchCont.stautusRequest,
             widget:
-                innerController.searchResults.isNotEmpty
+                mySearchCont.searchResults.isNotEmpty
                     ? SearchListWidget(
-                      productsList: innerController.searchResults,
-                      mySearchCont: innerController,
+                      productsList: mySearchCont.searchResultsWithDiscount,
+                      mySearchCont: mySearchCont,
                     )
                     : Container(
                       margin: EdgeInsets.only(top: 250),
@@ -46,28 +46,23 @@ class SearchListWidget extends StatelessWidget {
   final MySearchCont mySearchCont;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MySearchCont>(
-      builder: (_) {
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: productsList.length,
-          itemBuilder: (context, index) {
-            final product = productsList[index];
-            return SearchResultWidget(
-              productTitle: translateDataBase(
-                product.proudctNameEn,
-                product.productNameAr,
-              ),
-              productPrice: "${product.productPrice}",
-              productImage: MyCachedImage(
-                imageUrl:
-                    "${AppLinkApi.productsImageLink}/${product.productImage}",
-              ),
-              onUserClickOnProductInSearch: () {
-                mySearchCont.goToProductDetails(product);
-              },
-            );
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: productsList.length,
+      itemBuilder: (context, index) {
+        final product = productsList[index];
+        return SearchResultWidget(
+          productTitle: translateDataBase(
+            product.proudctNameEn,
+            product.productNameAr,
+          ),
+          productPrice: "\$${product.productPrice}",
+          productImage: MyCachedImage(
+            imageUrl: "${AppLinkApi.productsImageLink}/${product.productImage}",
+          ),
+          onUserClickOnProductInSearch: () {
+            mySearchCont.goToProductDetails(product);
           },
         );
       },

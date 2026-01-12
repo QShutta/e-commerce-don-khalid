@@ -1,32 +1,34 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce_halfa/core/class/stautus_request.dart';
+import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../app_link_api.dart';
-import '../../../controller/recomendation_controller.dart';
-import '../../../core/constants/image_assets.dart';
-import '../../../core/functions/translate_data_base.dart';
+import '../../app_link_api.dart';
+import '../../controller/recomendation_controller.dart';
+import '../../core/constants/image_assets.dart';
+import '../../core/functions/translate_data_base.dart';
 
-class RecommandationSection extends StatelessWidget {
-  const RecommandationSection({super.key});
-
+class RecommendationScreen extends StatelessWidget {
+  RecommendationScreen({super.key});
+  final RecomendationController controller =
+      Get.find<RecomendationController>();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RecomendationController>(
-      init: RecomendationController(),
-      builder: (controller) {
-        if (controller.statusRequest == StautusRequest.loading) {
-          return const SizedBox(
-            height: 200,
-            child: Center(child: CircularProgressIndicator()),
-          );
-        }
-        return GridView.builder(
-          itemCount: 3,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text(
+          "Recommendation for you",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
+      body: HnadlingDataView(
+        stautusRequest: controller.statusRequest,
+        widget: GridView.builder(
+          itemCount: controller.productList.length,
+          physics: const AlwaysScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 0.75,
@@ -91,8 +93,8 @@ class RecommandationSection extends StatelessWidget {
               ),
             );
           },
-        );
-      },
+        ),
+      ),
     );
   }
 }
