@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../app_link_api.dart';
-import '../../../controller/recomendation_controller.dart';
 import '../../../core/constants/image_assets.dart';
 import '../../../core/functions/translate_data_base.dart';
 
 class RecommandationSection extends StatelessWidget {
-  const RecommandationSection({super.key});
+  RecommandationSection({super.key});
+  final HomeControllerImp homeControllerImp = Get.find<HomeControllerImp>();
 
   @override
   Widget build(BuildContext context) {

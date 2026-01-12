@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
-      // home: TestRecomendation(),
+      // home: TestPage(),
       initialRoute: AppRoutes.languageSelection,
       getPages: appPages,
     );

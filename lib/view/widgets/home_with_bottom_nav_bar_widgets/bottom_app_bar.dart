@@ -31,7 +31,6 @@ class CustomBottomAppBar extends StatelessWidget {
       // BottomAppBar.
       notchMargin: 15.0,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           // عدد العناصر الأساسية في الـ
           //BottomBar هو 4 Widgets
@@ -46,7 +45,7 @@ class CustomBottomAppBar extends StatelessWidget {
           //FloatingActionButton
           // بيكون في النص بالضبط فوق الـ
           // Spacer
-          ...List.generate(homeWithBottomNavBarController.pages.length, (
+          ...List.generate(homeWithBottomNavBarController.pages.length + 1, (
             index,
           ) {
             // نستخدم هذا الشرط عشان نتجاوز الفراغ
@@ -61,25 +60,27 @@ class CustomBottomAppBar extends StatelessWidget {
             // index = 0 أو 1 → نستخدمه كما هو
             // index = 3 → لازم نطرحه 1 عشان نصل للعنصر رقم 2
             // index = 4 → نطرحه 1 عشان نصل للعنصر رقم 3
-            int i = index;
+            int i = index > 2 ? index - 1 : index;
             //قلنا ليهو انتة لو وصلتة العنصر رقم 2 ختي لينا شنو ?
             //spacer
             //اي مساحة فاضية عشان نقدر نخت فيها ال
             //floationactionbutton
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              child: CustomeButtonBottomNavBar(
-                onTap: () {
-                  homeWithBottomNavBarController.changeCurrentPage(i);
-                },
-                icon: homeWithBottomNavBarController.iconBottomNavBar[i],
-                title: homeWithBottomNavBarController.titleBottomAppBar[i],
-                active:
-                    homeWithBottomNavBarController.selectedItem == i
-                        ? true
-                        : false,
-              ),
-            );
+            return index == 2
+                ? Spacer()
+                : Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: CustomeButtonBottomNavBar(
+                    onTap: () {
+                      homeWithBottomNavBarController.changeCurrentPage(i);
+                    },
+                    icon: homeWithBottomNavBarController.iconBottomNavBar[i],
+                    title: homeWithBottomNavBarController.titleBottomAppBar[i],
+                    active:
+                        homeWithBottomNavBarController.selectedItem == i
+                            ? true
+                            : false,
+                  ),
+                );
           }),
         ],
       ),
