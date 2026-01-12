@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'bindings/inital_binding.dart';
 import 'firebase_options.dart';
 
 //Before of try to add rating to the product it self
@@ -33,8 +32,7 @@ class MainApp extends StatelessWidget {
       locale: langCont.lang,
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
-      initialBinding: InitialBinding(),
-      // home: TestPage(),
+      // home: TestRecomendation(),
       initialRoute: AppRoutes.languageSelection,
       getPages: appPages,
     );
