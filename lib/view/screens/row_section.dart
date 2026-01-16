@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // This Shape Like This in Row For Example
 // Best Selling                      See all
@@ -27,7 +28,7 @@ class RowSection extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Text(
-              "See all",
+              "273".tr,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 19,
                 color: Colors.blue,

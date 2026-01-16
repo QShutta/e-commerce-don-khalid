@@ -50,6 +50,7 @@ class DiscountProducts extends StatelessWidget {
                 margin: EdgeInsets.all(4),
                 child: Card(
                   color: Colors.white,
+                  elevation: 9,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(

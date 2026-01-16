@@ -39,5 +39,6 @@ class AppRoutes {
   //----------------------------------------------------------
   static const String offersPageLink = '/OffersPage';
   static const String recommendationSection = "/recommendationSection";
-  static const String recommendationDetails = "/recommendationProductDetails";
+  // ---About Us
+  static const String aboutUs = "/aboutUs";
 }

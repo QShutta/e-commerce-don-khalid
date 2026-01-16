@@ -92,6 +92,7 @@ class ProductItem extends StatelessWidget {
       child: InkWell(
         onTap: onProductClicked,
         child: Card(
+          elevation: 9,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
               20,
@@ -106,7 +107,7 @@ class ProductItem extends StatelessWidget {
               children: [
                 Center(
                   child: SizedBox(
-                    height: 100,
+                    height: 88,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Hero(
@@ -114,6 +115,7 @@ class ProductItem extends StatelessWidget {
                         child: CachedNetworkImage(
                           imageUrl: imageUrl!,
                           fit: BoxFit.cover,
+
                           placeholder:
                               (context, url) => Center(
                                 child: Lottie.asset(ImageAssets.loading),
@@ -125,7 +127,11 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(style: TextStyle(color: AppColor.greyText), productName!),
+                Text(
+                  style: TextStyle(color: AppColor.greyText),
+                  productName!,
+                  textAlign: TextAlign.center,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

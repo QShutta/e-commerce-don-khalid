@@ -1,170 +1,318 @@
 import 'package:e_commerce_halfa/controller/product_details_controller.dart';
 import 'package:e_commerce_halfa/controller/recomendation_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
-import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/constants/color_app.dart';
 import 'package:e_commerce_halfa/core/functions/translate_data_base.dart';
+import 'package:e_commerce_halfa/data/model/products_model.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/productDetailsText.dart';
 import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/product_quantity_widget.dart';
+import 'package:e_commerce_halfa/view/widgets/product_details_widgets.dart/recommendation_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/home_controller.dart';
+import '../../../core/constants/app_routes.dart';
 import '../../screens/row_section.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductDetailsControllerImp productDetailsControllerImp = Get.find();
   final RecomendationController recomendationController = Get.find();
+  final HomeControllerImp homeControllerImp = Get.find();
   ProductDetailsBody({super.key});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductDetailsControllerImp>(
       builder: (controller) {
-        return HnadlingDataView(
-          stautusRequest: productDetailsControllerImp.statusRequest,
-          widget: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(50),
-              topRight: Radius.circular(50),
-            ),
-            child: Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height - 250,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProductDetailsText(
-                    textStyle: Theme.of(context).textTheme.headlineMedium,
-                    text: translateDataBase(
-                      productDetailsControllerImp.productModel!.proudctNameEn!,
-                      productDetailsControllerImp.productModel!.productNameAr,
-                    ),
+        return productDetailsControllerImp.productModel is ProductsModel
+            ? HnadlingDataView(
+              stautusRequest: productDetailsControllerImp.statusRequest,
+              widget: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / .90, // -250
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 30,
                   ),
-                  SizedBox(height: 20),
-                  ProductDetailsText(
-                    textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: AppColor.greyText,
-                    ), //Description
-                    text: translateDataBase(
-                      productDetailsControllerImp.productModel!.productDescEn!,
-                      productDetailsControllerImp.productModel!.productDescAr,
-                    ),
-                  ),
-
-                  SizedBox(height: 10),
-                  // ProductDetailsText(
-                  //   textStyle: Theme.of(context).textTheme.headlineMedium,
-                  //   text:
-                  //       "\$${productDetailsControllerImp.productModel.productPrice}",
-                  // ),
-                  productDetailsControllerImp.productModel.productDiscount == 0
-                      ? Text(
-                        "\$${productDetailsControllerImp.productModel.productPrice!}",
-                        style: TextStyle(
-                          color: AppColor.skyBlueForText,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProductDetailsText(
+                        textStyle: Theme.of(context).textTheme.headlineMedium,
+                        text: translateDataBase(
+                          productDetailsControllerImp
+                              .productModel!
+                              .proudctNameEn!,
+                          productDetailsControllerImp
+                              .productModel!
+                              .productNameAr,
                         ),
-                      )
-                      : Row(
-                        children: [
-                          Text(
-                            "\$${productDetailsControllerImp.productModel?.priceAfterDiscount!}",
+                      ),
+                      SizedBox(height: 20),
+                      ProductDetailsText(
+                        textStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: AppColor.greyText), //Description
+                        text: translateDataBase(
+                          productDetailsControllerImp
+                              .productModel!
+                              .productDescEn!,
+                          productDetailsControllerImp
+                              .productModel!
+                              .productDescAr,
+                        ),
+                      ),
+
+                      SizedBox(height: 10),
+                      // ProductDetailsText(
+                      //   textStyle: Theme.of(context).textTheme.headlineMedium,
+                      //   text:
+                      //       "\$${productDetailsControllerImp.productModel.productPrice}",
+                      // ),
+                      productDetailsControllerImp
+                                  .productModel
+                                  .productDiscount ==
+                              0
+                          ? Text(
+                            "\$${productDetailsControllerImp.productModel.productPrice!}",
                             style: TextStyle(
                               color: AppColor.skyBlueForText,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
+                          )
+                          : Row(
+                            children: [
+                              Text(
+                                "\$${productDetailsControllerImp.productModel?.priceAfterDiscount!}",
+                                style: TextStyle(
+                                  color: AppColor.skyBlueForText,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              const SizedBox(width: 250),
+                              Text(
+                                "\$${productDetailsControllerImp.productModel!.productPrice!}",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  decoration:
+                                      TextDecoration
+                                          .lineThrough, // 👈 السعر الأصلي مشطوب
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 250),
-                          Text(
-                            "\$${productDetailsControllerImp.productModel!.productPrice!}",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              decoration:
-                                  TextDecoration
-                                      .lineThrough, // 👈 السعر الأصلي مشطوب
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                  SizedBox(height: 20),
-                  //Why did we add this condition?
-                  // Because some products don't have size or color options
-                  //So we display the data according to the product category.
-                  //--------------------------------------------------------------
-                  //حاوقف موضوع ال subitems
-                  //عشان اقدر افهم كيف السلة بتشتغل.
-                  (productDetailsControllerImp.productModel!.productCatogery ==
-                              22 ||
-                          productDetailsControllerImp
-                                  .productModel!
-                                  .productCatogery ==
-                              26)
-                      ? ProductQuantityWidget(
-                        productId:
-                            productDetailsControllerImp.productModel!.productsId
-                                .toString(),
-                      )
-                      : Column(
-                        children: [
-                          // ProductSizeWidget(),
-                          // SizedBox(height: 20),
-                          // ProductColorsWidget(),
-                          // SizedBox(height: 20),
-                          ProductQuantityWidget(
+                      SizedBox(height: 20),
+                      //Why did we add this condition?
+                      // Because some products don't have size or color options
+                      //So we display the data according to the product category.
+                      //--------------------------------------------------------------
+                      //حاوقف موضوع ال subitems
+                      //عشان اقدر افهم كيف السلة بتشتغل.
+                      (productDetailsControllerImp
+                                      .productModel!
+                                      .productCatogery ==
+                                  22 ||
+                              productDetailsControllerImp
+                                      .productModel!
+                                      .productCatogery ==
+                                  26)
+                          ? ProductQuantityWidget(
                             productId:
                                 productDetailsControllerImp
                                     .productModel!
                                     .productsId
                                     .toString(),
+                          )
+                          : Column(
+                            children: [
+                              // ProductSizeWidget(),
+                              // SizedBox(height: 20),
+                              // ProductColorsWidget(),
+                              // SizedBox(height: 20),
+                              ProductQuantityWidget(
+                                productId:
+                                    productDetailsControllerImp
+                                        .productModel!
+                                        .productsId
+                                        .toString(),
+                              ),
+                              SizedBox(height: 20),
+                              RowSection(
+                                text: "272".tr,
+                                onTap: () {
+                                  Get.offNamed(AppRoutes.recommendationSection);
+                                },
+                              ),
+                              GetBuilder<RecomendationController>(
+                                builder: (controller) {
+                                  return GridView.builder(
+                                    physics: AlwaysScrollableScrollPhysics(),
+                                    padding: EdgeInsets.all(10),
+                                    shrinkWrap: true,
+                                    itemCount:
+                                        recomendationController
+                                            .productList
+                                            .length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          mainAxisSpacing: 10,
+                                        ),
+                                    itemBuilder: (context, i) {
+                                      return RecommendationItem(
+                                        recomendationModel:
+                                            controller.productList[i],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                  SizedBox(height: 20),
-                  RowSection(
-                    text: "You May Also Like",
-                    onTap: () {
-                      Get.toNamed(AppRoutes.recommendationSection);
-                    },
-                  ),
-                  Container(
-                    height: 200,
-                    width: 200,
-                    child: GetBuilder<RecomendationController>(
-                      builder: (controller) {
-                        return GridView.builder(
-                          itemCount: recomendationController.productList.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 10,
-                              ),
-                          itemBuilder: (context, i) {
-                            return GridTile(
-                              header: Image.network(
-                                controller.productList[i].productImage!,
-                              ),
-                              child: translateDataBase(
-                                controller.productList[i].proudctNameEn!,
-                                controller.productList[i].productNameAr!,
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ),
 
-                  // Removed RatingBar.builder and its logic
-                ],
+                      // Removed RatingBar.builder and its logic
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
+            )
+            : HnadlingDataView(
+              stautusRequest: productDetailsControllerImp.statusRequest,
+              widget: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / .90, // -250
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 30,
+                  ),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProductDetailsText(
+                        textStyle: Theme.of(context).textTheme.headlineMedium,
+                        text: translateDataBase(
+                          productDetailsControllerImp
+                              .productModel
+                              .proudctNameEn!,
+                          productDetailsControllerImp
+                              .productModel
+                              .productNameAr!,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      ProductDetailsText(
+                        textStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: AppColor.greyText), //Description
+                        text: translateDataBase(
+                          productDetailsControllerImp
+                              .productModel
+                              .productDescEn!,
+                          productDetailsControllerImp
+                              .productModel
+                              .productDescAr,
+                        ),
+                      ),
+
+                      SizedBox(height: 10),
+                      // ProductDetailsText(
+                      //   textStyle: Theme.of(context).textTheme.headlineMedium,
+                      //   text:
+                      //       "\$${productDetailsControllerImp.productModel.productPrice}",
+                      // ),
+                      productDetailsControllerImp
+                                  .productModel
+                                  .productDiscount ==
+                              0
+                          ? Text(
+                            "\$${productDetailsControllerImp.productModel.productPrice!}",
+                            style: TextStyle(
+                              color: AppColor.skyBlueForText,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          )
+                          : Row(
+                            children: [
+                              Text(
+                                "\$${productDetailsControllerImp.productModel.productPrice!}",
+                                style: TextStyle(
+                                  color: AppColor.skyBlueForText,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              const SizedBox(width: 250),
+                              Text(
+                                "\$${productDetailsControllerImp.productModel.productPrice!}",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  decoration:
+                                      TextDecoration
+                                          .lineThrough, // 👈 السعر الأصلي مشطوب
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                      SizedBox(height: 20),
+                      //Why did we add this condition?
+                      // Because some products don't have size or color options
+                      //So we display the data according to the product category.
+                      //--------------------------------------------------------------
+                      //حاوقف موضوع ال subitems
+                      //عشان اقدر افهم كيف السلة بتشتغل.
+                      (productDetailsControllerImp
+                                      .productModel
+                                      .productCatogery ==
+                                  22 ||
+                              productDetailsControllerImp
+                                      .productModel
+                                      .productCatogery ==
+                                  26)
+                          ? ProductQuantityWidget(
+                            productId:
+                                productDetailsControllerImp
+                                    .productModel
+                                    .productsId
+                                    .toString(),
+                          )
+                          : Column(
+                            children: [
+                              // ProductSizeWidget(),
+                              // SizedBox(height: 20),
+                              // ProductColorsWidget(),
+                              // SizedBox(height: 20),
+                              ProductQuantityWidget(
+                                productId:
+                                    productDetailsControllerImp
+                                        .productModel
+                                        .productsId
+                                        .toString(),
+                              ),
+                            ],
+                          ),
+
+                      // Removed RatingBar.builder and its logic
+                    ],
+                  ),
+                ),
+              ),
+            );
       },
     );
   }

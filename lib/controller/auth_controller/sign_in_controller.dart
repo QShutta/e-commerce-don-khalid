@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/core/class/crud.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
@@ -19,7 +20,7 @@ abstract class SignInController extends GetxController {
 class SignInControllerImp extends SignInController {
   late FocusNode passwordFocusNode;
   late FocusNode emailFocusNode;
-
+  Crud crud = Get.put(Crud());
   late TextEditingController emailCont;
   late TextEditingController passwordCont;
   StautusRequest stautusRequest = StautusRequest.none;
@@ -28,7 +29,6 @@ class SignInControllerImp extends SignInController {
   SignInData signInData = SignInData(Get.find());
   @override
   void onInit() {
-
     FirebaseMessaging.instance.getToken().then((token) {
       print("----------------------------------------");
       print("Firebase Token: $token");
@@ -65,7 +65,6 @@ class SignInControllerImp extends SignInController {
       update();
       if (stautusRequest == StautusRequest.success) {
         if (response["status"] == "success") {
-        
           myServices.sharedPreferences.setString(
             "user_id",
             response["data"]["user_id"].toString(),
@@ -78,20 +77,19 @@ class SignInControllerImp extends SignInController {
             "user_email",
             response["data"]["user_email"].toString(),
           );
-  await myServices.sharedPreferences.setBool("isLoggedIn", true);
-    // Subscribe the user to a topic to be able to send notifcaitno to him.
-    //This will be used in case of that we want to send notification to all of the users that registered in 
-    //our applciationp.
-    FirebaseMessaging.instance.subscribeToTopic('users');
+          await myServices.sharedPreferences.setBool("isLoggedIn", true);
+          // Subscribe the user to a topic to be able to send notifcaitno to him.
+          //This will be used in case of that we want to send notification to all of the users that registered in
+          //our applciationp.
+          FirebaseMessaging.instance.subscribeToTopic('users');
 
-    //The course instructor want to allow the user to subscrbe to his own topic.so that each user has his own topic
-    //What is the benfit of this thing?
-    //هو عمل كدة عشان نحنا نقدر انو نرسل اشعار فقط للمستخدم المحدد يعني مثلا هو طلب اوردر معين من غير المنطق ان
-    //نرسل اشعارات لجميع المستخدمين الموجودين في التطبيق انو الاوردر بتاع فلان وصل فهمتة ؟
-    String userId=myServices.sharedPreferences.getString("user_id").toString();
-    FirebaseMessaging.instance.subscribeToTopic('users$userId');
-
-
+          //The course instructor want to allow the user to subscrbe to his own topic.so that each user has his own topic
+          //What is the benfit of this thing?
+          //هو عمل كدة عشان نحنا نقدر انو نرسل اشعار فقط للمستخدم المحدد يعني مثلا هو طلب اوردر معين من غير المنطق ان
+          //نرسل اشعارات لجميع المستخدمين الموجودين في التطبيق انو الاوردر بتاع فلان وصل فهمتة ؟
+          String userId =
+              myServices.sharedPreferences.getString("user_id").toString();
+          FirebaseMessaging.instance.subscribeToTopic('users$userId');
 
           Get.offAllNamed(AppRoutes.home);
         } else {

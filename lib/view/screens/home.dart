@@ -1,7 +1,7 @@
 import 'package:e_commerce_halfa/controller/home_controller.dart';
 import 'package:e_commerce_halfa/core/class/handling_data_view.dart';
+import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/discount_products_details.dart';
-import 'package:e_commerce_halfa/view/screens/recommendation_screen.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/banner_slider.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/catogery_list.dart';
 import 'package:e_commerce_halfa/view/widgets/home_widgets/empower_section.dart';
@@ -86,9 +86,9 @@ class HomePage extends StatelessWidget {
                 ),
                 DiscountProducts(productsList: homeControllerImp.products),
                 RowSection(
-                  text: "Recommandation For You",
+                  text: "271".tr,
                   onTap: () {
-                    Get.to(() => RecommendationScreen());
+                    Get.toNamed(AppRoutes.recommendationSection);
                   },
                 ),
 

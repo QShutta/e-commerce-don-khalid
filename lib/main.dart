@@ -1,3 +1,4 @@
+import 'package:e_commerce_halfa/bindings/inital_binding.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/localization/locale_controller.dart';
 import 'package:e_commerce_halfa/core/localization/translation.dart';
@@ -33,6 +34,7 @@ class MainApp extends StatelessWidget {
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       // home: TestRecomendation(),
+      initialBinding: InitialBinding(),
       initialRoute: AppRoutes.languageSelection,
       getPages: appPages,
     );

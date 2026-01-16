@@ -1,10 +1,10 @@
-import 'package:e_commerce_halfa/controller/products_controller.dart';
 import 'package:e_commerce_halfa/core/class/stautus_request.dart';
 import 'package:e_commerce_halfa/core/functions/handling_status_request.dart';
 import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/cart_data.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/products_data.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:e_commerce_halfa/data/model/recomendation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,11 +37,13 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   //     Get.find<ProductsControllerImp>();
 
   ProductData productData = ProductData(Get.find());
-  ProductsModel productModel = Get.arguments["productDetails"];
+  var productModel = Get.arguments["productDetails"];
   @override
   void onInit() {
     print("--------------------------------------------------");
-    print("This is the product detailsControllerImp onInit method");
+    print(
+      "This is the product detailsCProductsModelontrollerImp onInit method",
+    );
     print("--------------------------------------------------");
     initalValues();
     print("--------------------------------------------------");
@@ -52,10 +54,21 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   initalValues() async {
     statusRequest = StautusRequest.loading;
     update();
-    //دة بورينا المتنج المعين مضاف كم مرة .
-    productCount = await getProductCount(productModel.productsId.toString());
-    statusRequest = StautusRequest.success;
-    update();
+
+    if (productModel is ProductsModel) {
+      //دة بورينا المتنج المعين مضاف كم مرة .
+
+      productCount = await getProductCount(productModel.productsId.toString());
+      statusRequest = StautusRequest.success;
+      update();
+    } else {
+      RecomendationModel recomendationModel = Get.arguments['productDetails'];
+      productModel = recomendationModel;
+      //دة بورينا المتنج المعين مضاف كم مرة .
+      productCount = await getProductCount(productModel.productsId.toString());
+      statusRequest = StautusRequest.success;
+      update();
+    }
   }
 
   //This will be used to add product to the cart

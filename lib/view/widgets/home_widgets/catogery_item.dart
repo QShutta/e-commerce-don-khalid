@@ -35,7 +35,7 @@ class CategoryItem extends GetView<HomeControllerImp> {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade300,
-            blurRadius: 5,
+            blurRadius: 6,
             offset: Offset(0, 3),
           ),
         ],

@@ -28,10 +28,7 @@ class DiscountProductsDetails extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              "Products For You",
-              style: TextStyle(color: Colors.white),
-            ),
+            title: Text("207".tr, style: TextStyle(color: Colors.white)),
             centerTitle: true,
             backgroundColor: Colors.blue,
           ),
@@ -54,10 +51,13 @@ class DiscountProductsDetails extends StatelessWidget {
                   print(
                     "The user clcik on spacfic proudct...Test.and the product is/n:${product.productNameAr}",
                   );
+                  homeControllerImp.goToProductDetails(product);
                 },
                 child: Container(
                   margin: EdgeInsets.all(4),
                   child: Card(
+                    elevation: 9,
+
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
