@@ -9,15 +9,9 @@ import 'package:get/get.dart';
 class RecomendationController extends GetxController {
   List<RecomendationModel> productList = [];
   //In case of the user choose to pick up the product from the store i want to display the store location in the map.
-
   RecomendationData recomendationData = RecomendationData(Get.find());
   late StautusRequest statusRequest;
   MyServices myServices = Get.find();
-  @override
-  void onInit() {
-    getRecommendations();
-    super.onInit();
-  }
 
   getRecommendations() async {
     statusRequest = StautusRequest.loading;
@@ -26,6 +20,7 @@ class RecomendationController extends GetxController {
     var response = await recomendationData.getData(
       myServices.sharedPreferences.getString("user_id")!,
     );
+
     statusRequest = handlingStatusRequest(response);
     update();
     if (statusRequest == StautusRequest.success) {
@@ -42,5 +37,11 @@ class RecomendationController extends GetxController {
       }
     }
     update(); //This will update the UI
+  }
+
+  @override
+  void onInit() {
+    getRecommendations();
+    super.onInit();
   }
 }

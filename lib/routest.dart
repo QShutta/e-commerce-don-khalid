@@ -1,5 +1,7 @@
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/core/midle_ware/init_middle_ware.dart';
+import 'package:e_commerce_halfa/recommendation_screen.dart';
+import 'package:e_commerce_halfa/view/screens/about_us.dart';
 import 'package:e_commerce_halfa/view/screens/address/add_address.dart';
 import 'package:e_commerce_halfa/view/screens/address/add_address_details.dart';
 import 'package:e_commerce_halfa/view/screens/address/update_address_details.dart';
@@ -10,18 +12,17 @@ import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_passwo
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_password_otp_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/forgot_passowrd/forgot_password_reset_password_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_in_page.dart';
-
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_otp.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/auth/sign_up/success_sign_up_page.dart';
 import 'package:e_commerce_halfa/view/screens/cart.dart';
-import 'package:e_commerce_halfa/view/screens/offers_page.dart';
-import 'package:e_commerce_halfa/view/screens/order/checkout.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite.dart';
 import 'package:e_commerce_halfa/view/screens/favorite/favorite_product_details.dart';
 import 'package:e_commerce_halfa/view/screens/home_with_bottom_nav.dart';
 import 'package:e_commerce_halfa/view/screens/language_selection.dart';
+import 'package:e_commerce_halfa/view/screens/offers_page.dart';
 import 'package:e_commerce_halfa/view/screens/onboarding.dart';
+import 'package:e_commerce_halfa/view/screens/order/checkout.dart';
 import 'package:e_commerce_halfa/view/screens/order/order_details.dart';
 import 'package:e_commerce_halfa/view/screens/product_details.dart';
 import 'package:e_commerce_halfa/view/screens/products.dart';
@@ -185,4 +186,11 @@ List<GetPage> appPages = [
     transitionDuration: const Duration(milliseconds: 400),
   ),
   //----------------------------------------------------------------------
+  // RecommendationSection
+  GetPage(
+    name: AppRoutes.recommendationSection,
+    page: () => RecommendationScreen(),
+  ),
+  // AboutUs
+  GetPage(name: AppRoutes.aboutUs, page: () => AboutUs()),
 ];

@@ -1,9 +1,8 @@
 import 'package:e_commerce_halfa/app_link_api.dart';
-import 'package:e_commerce_halfa/controller/recomendationi_controller.dart';
+import 'package:e_commerce_halfa/controller/recomendation_controller.dart';
 import 'package:e_commerce_halfa/data/model/recomendation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class TestRecomendation extends StatelessWidget {
   TestRecomendation({super.key});

@@ -8,10 +8,13 @@ import 'package:e_commerce_halfa/core/services/services.dart';
 import 'package:e_commerce_halfa/data/data_source/remote/home_data.dart';
 import 'package:e_commerce_halfa/data/model/catogeries_model.dart';
 import 'package:e_commerce_halfa/data/model/products_model.dart';
+import 'package:e_commerce_halfa/data/model/recomendation_model.dart';
 import 'package:e_commerce_halfa/data/model/setting_model.dart';
 import 'package:e_commerce_halfa/data/model/top_selling_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../core/class/crud.dart';
 
 //This is  the home controller
 abstract class HomeController extends GetxController {
@@ -27,6 +30,7 @@ class HomeControllerImp extends HomeController {
   MyServices myServices = Get.find();
   StautusRequest statusRequest = StautusRequest.none;
   HomeData homeData = HomeData(Get.find());
+  Crud crud = Get.find<Crud>();
   int? ranomNum;
   String? userName;
   List<Catogeries> categories = [];
@@ -63,6 +67,20 @@ class HomeControllerImp extends HomeController {
     Get.toNamed(
       AppRoutes.productDetails,
       arguments: {"productDetails": productDetails},
+    );
+  }
+
+  goToRecommendDetails(RecomendationModel recomendationModel) {
+    Get.toNamed(
+      AppRoutes.productDetails,
+      arguments: {"productDetails": recomendationModel},
+    );
+  }
+
+  goToRecommendDetailsOff(RecomendationModel recomendationModel) {
+    Get.offNamed(
+      AppRoutes.productDetails,
+      arguments: {"productDetails": recomendationModel},
     );
   }
 

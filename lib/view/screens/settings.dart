@@ -1,9 +1,9 @@
 import 'package:e_commerce_halfa/controller/settings_controller.dart';
 import 'package:e_commerce_halfa/core/constants/app_routes.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/change_language_button.dart';
+import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/custome_list_tile.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/disable_notification_switch.dart';
 import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/ligh_dark_switch.dart';
-import 'package:e_commerce_halfa/view/widgets/setting_page_widgets/custome_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,7 +44,9 @@ class SettingsPage extends StatelessWidget {
           CustomeListTile(
             titleText: "232".tr,
             leadingIcon: Icons.info_outline,
-            onListTileClicked: () {},
+            onListTileClicked: () {
+              Get.toNamed(AppRoutes.aboutUs);
+            },
           ),
           CustomeListTile(
             titleText: "233".tr,
